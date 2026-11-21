@@ -885,6 +885,78 @@
     "snapshots/87a2f581d99654414c98fe66f1898d6d75b65cbcd1ff46e84c8ca3a8f72d5098/writing.html": {
       "sha256": "9d57472ce598ee8a22b9d296942efd58d42a2b7214b94b19c95ec08e25a6c750",
       "bases": ["retained-edition"]
+    },
+    "article-snapshots/0306d12d1f4a6ceec662ab04dacaa5a4636bb0893b438286ce229ab11d83b5d2/ai-governance-is-control-theory.html": {
+      "sha256": "45b48ba545e0f40efa907550d6ab494e24841a00cdf61fc18dbc93696a702c63",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/055b659ede4dd64a77e712c87a20fd82fdec604d769c8a12c7cb1319f4fe58ba/beyond-embeddings.html": {
+      "sha256": "e7c9385aa5d57adef141eb60db00f378de73cfb3e61df3da83d5df474dd26844",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/42d13085317f026e0f95c02fda650633f93c1515fd34de80296c63abb4c113b6/ai-native-workflows-have-a-moat-problem.html": {
+      "sha256": "0fcbe6ae203dc9561ab38dbc063bf92c9f8be3cddc1bffcb5c733997b70860b1",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/71b4e2104436e7e4558fa8240567d6a897261f9b38b1ad86208ba5cc1283b4be/thinking-systems.html": {
+      "sha256": "90d041a9aba6f5fd41621be248e3dbb67d5763f37df6d3cf22e52f09d0d04560",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/8dd248b9e11dee2b70c3fdb8378c62d28c9bac4181cab7f598bf7f6d4b79632e/ai-verification-crisis.html": {
+      "sha256": "15d84ec52e22a1880f31452cd92157477f69fc819ac8aeecb081ac74b7208316",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/a46f5b6bd8340d8d84f0ba43e8fe6ee6559a77b74c01bc167e4f6f393fb2e32b/agentic-loops.html": {
+      "sha256": "b723aeeb5fd4ca110ef46d12284f6233a0165fbf19d71bdbe157535217bfe969",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/df1d5045fee76cc7497436c529b80e5cee53418668ff4dad5e29d0c39eace573/the-sdlc-is-out-of-balance.html": {
+      "sha256": "a51c4b47e9b8eca591f866c3cc5a75b95dc9bed34c925a5fedb349957d7912f9",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/f91fdaf40d817f72d6ccc4f6f40537e040512375bcd48b408273eff58128246a/ai-cost-cutting-fallacy.html": {
+      "sha256": "45790f31eba04ab22a032aa1c0877e5efe01ca807f7728a061424a7c638c93cc",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/archive.js": {
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/navigation.js": {
+      "sha256": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/space.js": {
+      "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/styles.css": {
+      "sha256": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/10d6abf1c911d0567ef6f555a667afd00283df5a565e6873ecce4ae782183b4c/credits.html": {
+      "sha256": "e08b40359a40a71da1e8f04d429c4ac9a753cdd5b37fa320b6daf7e16374e5f6",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/4f2a4c2c9cf12de88be4c7c62fe5d7af01545068e1f78c479e130703c7d64aa5/talks.html": {
+      "sha256": "c3bf39a92d4b43734a795ea018bcea15a0b0a3dbf99359a9af15c936837fdffd",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/8f5478a0c1d09efdcc4145647c4f8b9163bc873dc5ac37ef9c7557173a306a33/index.html": {
+      "sha256": "f079bc530d88e5da7f8b1f7da2bd61e21fb891ad97e0a9dac4b2d0bd7492da02",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/b82089d4524a93ec50208ce6f154aa67f6e155e8771b73f689e9d60ab773b61c/writing.html": {
+      "sha256": "48a439f57348fe498c649a3df7f20e58c6c69b2627926e77101d9c85ebb1c958",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/bed37cc707c2ab1626565d25a47ffc285ee0999e1b7cf9a781085902e44bfd46/research.html": {
+      "sha256": "2df8c90711ca2e92ad8f3139dafd2a8f4ed8d038d78c115da1f92594386cd124",
+      "bases": ["retained-edition"]
     }
   },
   "notices": [

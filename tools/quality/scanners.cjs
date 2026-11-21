@@ -481,6 +481,14 @@ function secretReviewPath(file) {
 // Reviewed public immutable-directory literals in their two exact source inventories.
 // Each tuple still requires its own reviewed ledger entry; no path/type wildcard.
 const reviewedInventoryPaths = new Set([
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:ead3976e27529722574afdb5ad684239f565afb8',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:c8f67025a4a310b688ce155efbbd0c07ed3fe740',
+  '.github/repository-paths.json:Base64 High Entropy String:b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+  '.github/repository-paths.json:Base64 High Entropy String:22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+  '.github/repository-paths.json:Base64 High Entropy String:ead3976e27529722574afdb5ad684239f565afb8',
+  '.github/repository-paths.json:Base64 High Entropy String:c8f67025a4a310b688ce155efbbd0c07ed3fe740',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
   '.github/repository-paths.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
   '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',

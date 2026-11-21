@@ -27,7 +27,7 @@ Current-source publishing/RI/CI, original figure parity, four independent role e
 The complete R32 manuscript is committed in `manuscript.en.md` at `d43040a`;
 its bytes match the latest author-review Markdown exactly. The matching supplied
 19-page PDF is now retained unchanged in the
-[review directory](../../../review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R32_2026-10-24.pdf).
+[review directory](../../../review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R32_2026-10-24.pdf.ARCHIVED.md).
 Its producer remains WeasyPrint 68.0; it is a review preview, not the native
 Chromium publisher's output. The [R32 PR audit](../../../review/issue-2/2026-10-24-r32-pr-audit.md)
 records exact identities, independent review and remaining work.

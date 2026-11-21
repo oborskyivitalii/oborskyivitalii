@@ -846,6 +846,146 @@
       "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-metadata-code.md",
       "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-metadata-code-execution-receipt.json",
       "disposition": "Own completed factual-source/guide judgment preserved verbatim. No staging or whole-issue acceptance inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "preimplementation Research slot",
+      "requested": {
+        "task_name": "issue213_slot_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_preflight",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#requirements-preflight.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "requirements",
+      "phase": "exact historical archival scope preflight",
+      "requested": {
+        "task_name": "issue213_archive_scope",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_archive_scope",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#archive-preflight.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "code",
+      "phase": "first complete correction and workflow guide",
+      "requested": {
+        "task_name": "issue213_slot_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_code",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#code-final.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "requirements",
+      "phase": "first completed content/retention correction",
+      "requested": {
+        "task_name": "issue213_slot_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_requirements",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#requirements-final.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "white-box",
+      "phase": "first completed correction",
+      "requested": {
+        "task_name": "issue213_slot_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_whitebox",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#whitebox-final.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "requirements",
+      "phase": "finite security disposition preflight",
+      "requested": {
+        "task_name": "issue213_finite_scan_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_finite_scan_preflight",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#security-preflight.md",
+      "disposition": "Own first result preserved verbatim with source/prompt/packet/check/limit accounting. First code formatter and White-box retained-rights blockers stay visible; preflight is not final acceptance."
+    },
+    {
+      "role": "code",
+      "phase": "corrected formatter/rights and finite security dispositions",
+      "requested": {
+        "task_name": "issue213_slot_code_corrected",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_code_corrected",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this exact task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#code-corrected.md",
+      "disposition": "Own completed result preserved verbatim with source, prompt, packet, checks, first findings and limits. Current19-occurrence security failure and its source remain; no whole-issue or staging pass inferred."
+    },
+    {
+      "role": "white-box",
+      "phase": "corrected formatter/rights and finite security dispositions",
+      "requested": {
+        "task_name": "issue213_slot_whitebox_corrected",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_whitebox_corrected",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this exact task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#whitebox-corrected.md",
+      "disposition": "Own completed result preserved verbatim with source, prompt, packet, checks, first findings and limits. Current19-occurrence security failure and its source remain; no whole-issue or staging pass inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "corrected formatter/rights and finite security dispositions",
+      "requested": {
+        "task_name": "issue213_slot_requirements_corrected",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_slot_requirements_corrected",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this exact task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#requirements-corrected.md",
+      "disposition": "Own completed result preserved verbatim with source, prompt, packet, checks, first findings and limits. Current19-occurrence security failure and its source remain; no whole-issue or staging pass inferred."
+    },
+    {
+      "role": "code",
+      "phase": "final finite rights/receipt metadata and exact guide scope",
+      "requested": {
+        "task_name": "issue213_metadata_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_metadata_code",
+      "launchEvidence": "Actual parent collaboration.spawn_agent accepted this exact task with explicit fork_turns none; provider internals remain unknown.",
+      "ownResult": "review/issue-213/publisher-correction-evidence.tar.xz#metadata-code.md",
+      "disposition": "Own completed final metadata judgment preserved verbatim;13rights tuples, original322+103entries, all prior archive/receipt bytes, exact29path guide scope and five sections independently checked. Current clean security/advisory raw reports independently read, with no delivery inference."
     }
   ]
 }

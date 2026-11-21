@@ -1,6 +1,6 @@
 {
   "base_sha": "3877546d29a04f235f9ec0f3175f4e0d90bfd60d",
-  "scope_sha256": "174ed67297a54df2c4ff2d41bd4987684e26c1296897609bad1aeca11ebec45e",
+  "scope_sha256": "8d6486c2c7f3be424af3a8daec7541e35814abd5fd07b68d5d980ce9ec445175",
   "paths": [
     ".github/repository-paths.json",
     ".github/ri-ci-map.json",
@@ -8,26 +8,22 @@
     "guides/SITE-RELEASE-GATES.md",
     "tests/article-candidate-source.test.cjs",
     "tests/article-offline.test.cjs",
-    "tests/color-motion-contract.test.cjs",
     "tests/content-release.test.cjs",
     "tests/content.test.cjs",
     "tests/edition-retention.test.cjs",
     "tests/executive.test.cjs",
     "tests/fixtures/catalog.cjs",
     "tests/fixtures/delivery.cjs",
-    "tests/fixtures/publication-records.cjs",
     "tests/quality-sources.test.cjs",
     "tests/reader-controller.test.cjs",
     "tests/release-archive.test.cjs",
     "tests/release-controller.test.cjs",
     "tests/site-articles.test.cjs",
     "tests/site-engine.test.cjs",
-    "tests/staging-regression.test.cjs",
     "tests/test_issue213_acceptance.py",
     "tests/test_python_toolchain.py",
     "tools/quality/bandit-policy.json",
     "tools/quality/candidate-source.cjs",
-    "tools/quality/color-motion-contract.cjs",
     "tools/quality/generated-checksums.cjs",
     "tools/quality/python_toolchain.py",
     "tools/quality/scanners.cjs",
@@ -44,6 +40,6 @@
     "Site architecture",
     "Delivery routes and controls"
   ],
-  "rationale": "Existing sections accurately describe issue-owned checks, fresh independent correction judgments, exact committed guide proof, source-specific retained artifacts, finite security/advisory dispositions and separate stable/merge/production authority. The bounded source-root, fixture, client registration, exact dependency compatibility and proof-package corrections introduce no new architecture or delivery route.",
-  "reviewer_execution": "/root/issue213_security_metadata_code; explicit fork_turns=none. Own complete protected-base section judgment and reviewed source/packet identities remain verbatim in ci-correction-evidence.tar.xz#issue213-security-metadata-code.md. Subsequent deterministic RI-map whitespace correction preserves identical parsed control data, verified in the archived map-format-equivalence proof; scope binding refreshed mechanically, with no new independent judgment claimed."
+  "rationale": "The reviewed five guide sections continue to describe the complete mixed correction: existing content-slot ownership, exact runtime compatibility, preserved public retention, strict source/rights/security and unchanged protected delivery controls. No architecture, trust allowance or release route is introduced.",
+  "reviewer_execution": "/root/issue213_metadata_code; actual explicit fork_turns=none, no model or effort override. Own final narrow source/guide judgment is verbatim in publisher-correction-evidence.tar.xz#metadata-code.md. It independently recomputed the complete29path scope and judged all five named sections unchanged, and read current clean security/advisory reports. Final receipt-only serialization and RI freshness are verified mechanically; no new independent judgment or release is claimed for that metadata."
 }

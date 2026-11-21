@@ -17,8 +17,8 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 
 ## Open work
 
-- The authorized full Stable Staging attempt passed all eight source shards but stopped before upload on security/advisories. [Live dated checkpoint](https://github.com/oborskyivitalii/oborskyivitalii/issues/213) owns subsequent exact-head status; no stable promotion or production is claimed here.
-- Prepared security correction has eight mapped source checks passing. It preserves detector bounds and old ledgers, supplies finite source-bound public-identifier proof, patches the audited wildcard dependency and retains the exact historical R29 PDF in its unchanged native archive. Final durable proof/guide binding and current-head security/CI remain prerequisites. Earlier source-equivalence.json is historical, not equivalence for later corrections.
+- Latest authorized stage44939856950 passed source/prepublication but failed before upload on an unreviewed template identity. The current correction restores the protected Research template and moves the article journey into the existing TOC reading slot. [Live dated checkpoint](https://github.com/oborskyivitalii/oborskyivitalii/issues/213) owns exact-head delivery; stable promotion remains pending.
+- Existing263d security proof and failures remain. Publisher correction preserves all prior immutable resources; exact runtime tuples match the existing protected family. R32/R33/R34 historical PDFs use lossless member-recovery locators to retain the unchanged RI bound. Fresh independent corrections and clean prepared security/advisories pass; the unchanged protected publisher accepted the complete prepared package. Current native CI, final package replay and hosted review/staging remain prerequisites; older source-equivalence.json is historical.
 - All6whole issue criteria stay open. Mobile/noJS and hosted PDF response/view, schema enrichment, controlled search/selected canonical and delayed measurement remain pending.
 - F01 corrected in actual3link journeys; O02 persistent missing Research body was not reproduced in one settled journey. Intermittent/rapid-input behavior remains unexcluded; do not infer a proven new regression or broad runtime pass.
 - Issue8 owns indexing/URL Inspection; issue116 owns the separate future Subprime mount.
@@ -26,7 +26,7 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 ## Next session
 
 1. Read live issue213/PR216 and verify actual latest head, Preview source and check/admission state.
-2. Finish source-bound proof/guide/security checks and current-head source/Navigation/owning CI, then a fresh full owner /stage through the existing controller. Stop at verified stable staging; do not merge or publish production.
+2. Complete the existing-slot correction, exact archive recovery, fresh independent reviews and protected-main package replay; pass current-head source/Navigation/owning CI, then run the full owner /stage. Stop at verified stable staging.
 
 ## Maintenance
 

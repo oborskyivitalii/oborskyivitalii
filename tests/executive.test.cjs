@@ -302,6 +302,15 @@ test('discovery link reversal preserves its immutable predecessor and rejects un
     encoding: 'utf8',
   });
   assert.ok(seo.normalizeHTML(baseline).includes(before));
+  const current = readHTML(path.join(__dirname, '../docs/research.html'));
+  assert.ok(
+    current.includes(after),
+    'the current Research lens selects the approved native article'
+  );
+  assert.ok(
+    !current.includes(before),
+    'the old upstream mechanics shortcut is replaced explicitly'
+  );
   assert.equal(seo.restoreDiscoveryLink(after, 'research'), before);
   const outside = '<a href="https://example.test/unapproved">Unreviewed claim</a>';
   assert.equal(seo.restoreDiscoveryLink(after + outside, 'research'), before + outside);
@@ -1003,7 +1012,11 @@ test('response reconciliation rejects missing people, sources and stronger parti
   );
 });
 test('issue48 amendment reverses only declared theory and Matthew changes', () => {
-  const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs'),
+  const {
+      restore,
+      restoreContentAmendment,
+      restoreDiscoveryLink,
+    } = require('../tools/check_site_seo.cjs'),
     path = require('node:path');
   const record = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../review/issue-48/content-amendment.json'), 'utf8')
@@ -1024,7 +1037,10 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
       normalizeHTML(change.before)
     );
     if (!pages.has(change.page)) {
-      const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+      const html = restoreDiscoveryLink(
+        readHTML(path.join(__dirname, '../docs/' + change.page + '.html')),
+        change.page
+      );
       pages.set(change.page, { html, preserved: restore(html, change.page) });
     }
     const { html, preserved } = pages.get(change.page);

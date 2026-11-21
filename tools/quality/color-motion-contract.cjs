@@ -1059,15 +1059,6 @@ families.issue183LongArticle = {
   staging: '107306d5accbbda050e94145e8132c872115ad3473bdb8de3166a8710066fde3',
   production: 'a0427dcd04b4e32dd8a734dfea869c590fe9b188ef773291cb0217716e40257a',
 };
-// #213 adds a Research template link; all five executable/style byte hashes stay exact.
-families.issue213DiscoveryLink = {
-  ...families.issue183LongArticle,
-  id: 'issue213-discovery-link',
-  baseEngine: '87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab',
-  plain: 'a74425b2a02ac910ef77d877e91e3f05cdd063d24604c2917b41ee9b08d72b89',
-  staging: '522ce8576427decd6649acd73ea4021017215e696c97ef59f49351bf9e5dba37',
-  production: '9c8d27ba352f45cb8a828af614a2ea9a5b02996cfe54d71ef29d3d743f0c642a',
-};
 // Expand only explicitly reviewed editions; an absent edition is never admitted.
 const runtimes = Object.entries(families).flatMap(([family, value]) =>
   ['plain', 'staging', 'production']

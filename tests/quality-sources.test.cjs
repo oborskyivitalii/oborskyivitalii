@@ -804,6 +804,10 @@ test('the two public inventory paths each require their exact reviewed tuple', (
         'eb3400c0b18476eb7e38e5a430d52a263f917b89',
         '6642018803cd2ae612e7b4186ab13f9105e44e37',
         'c8aafd7b5d13b635e9e3cd0e5b433e8bda6502f2',
+        '22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+        'b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+        'c8f67025a4a310b688ce155efbbd0c07ed3fe740',
+        'ead3976e27529722574afdb5ad684239f565afb8',
       ]) {
         const entry = f.entry(file, 'Base64 High Entropy String', hash);
         const finding = {

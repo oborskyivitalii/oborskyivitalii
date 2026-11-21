@@ -630,3 +630,153 @@ The correction preserves all four old ledger files, scanner/type/size guards and
 The first four completed security role results and Requirements preflight remain verbatim in the archive, with full source/prompt/packet/launch receipts in `security-execution-receipts.json`. Their evidence prerequisites remain visible. A first proof's single misattributed source and mixed-source header are corrected in `issue213-secret-proof-corrected.json`; the original remains separately preserved. The corrected union binds each occurrence to its own scan, immutable source/tree and archived source bytes, with three distinct raw reports. It is not one single-source scan or a whole security pass. All old archive members are byte-identical.
 
 The clean prepared security source's eight mapped issue checks pass; its exact report is archived as `issue213-acceptance-a9d.json`. Final guide binding, current-head integrated security/advisories and hosted source/Navigation/owning admission remain prerequisites for a fresh full staging attempt. All six whole issue criteria remain open; Stable Staging alone is authorized.
+
+
+## Protected publisher correction through an existing Research slot
+
+The author instructed continuation to Stable Staging. Native head before this
+correction is263d071; protected main is3877546. Full staging44939856950 failed
+before provider upload at protected `review-flow.cjs verify`: `unreviewed Color
+motion runtime`. All source shards and prepublication passed; no hosted regression
+or stable promotion occurred. Preserve that failure and its actual source.
+
+Fresh Requirements preflight `/root/issue213_slot_preflight`, explicit fork none,
+permitted this bounded correction with RPF01 exact oracle/disclosure, RPF02 stale
+authority descriptions and conditional RPF03 capacity obligations. Its own result
+and packet remain verbatim in `publisher-correction-evidence.tar.xz`.
+
+Restore the actual protected Research card template; remove its unused extra
+T028/U005. In the existing TOC lens, replace U002's upstream mechanics-report
+shortcut with the native SDLC article and an explicit article label. This is a
+real selected-reading change, not semantic equivalence. Preserve the upstream
+repository, both Writing collections, TOC background and all UA journeys. The
+active exact amendment now records that one route/label replacement. The previous
+card amendment is preserved in the evidence archive and original263d Git source.
+Issue48 historical amendment bytes remain unchanged.
+
+Remove the candidate-only runtime family/client entry. Rebuild all ordinary,
+Color staging and production identities; the unchanged protected-main motion
+selector recognizes the existing issue183-long-article family for all three.
+This prepared dirty-source observation is not a clean package or release pass.
+The complete clean package must pass unchanged protected publication modules
+before another expensive owner attempt. No manifest relabel, fingerprint bypass,
+scanner/byte/browser-budget relaxation or credentialed candidate checkout.
+
+### Test impact and retained history
+
+| Affected contract | Independent oracle and treatment | Selected checks |
+| --- | --- | --- |
+| Research reading route | Exact protected predecessor/new article fragment; wrong-page, forged hash/route, duplicate and unrelated-change rejection retained | executive and content suites, SEO policy |
+| Historical lens alignment | Reverse only the new exact successor before immutable issue48 comparison; preserve changed-association/attribution negatives | existing executive issue48 case and content alignment |
+| Runtime trust | Derive actual three editions against unchanged protected family; no new family allowance | color-motion-contract, release-controller, staging-regression and fixture consumers |
+| Immutable public continuity | Every previously emitted immutable file remains byte-identical; add only18missing files to retained source | edition-retention, snapshot/source/release suites and exact file comparison |
+| Capacity and historical PDFs | Original bytes equal extracted TAR members; no active/public resource removed | recovery manifest, RI build/verify, complete catalog and source checks |
+| Delivery integration | Full resulting package accepted by unchanged protected publisher, then fresh exact-head CI and one full owner attempt | Basic/Navigation/owning acceptance, protected package replay, hosted staging profile |
+
+First bounded SEO/content execution retained51/52passing; the remaining historical
+issue48 comparison had not yet reversed the changed lens route. The correction
+adds that exact reversal and current rendered-successor assertions while retaining
+the original immutable issue48 record and negative case. Targeted three-case
+correction passes3/3 with no skips. Full current-source policy remains required.
+
+Preserving every disappearing263d immutable resource adds1,013,069source bytes.
+The complete generated/retained state measured266,038,565hash bytes against the
+unchanged265,000,000bound, exceeding it by1,038,565before final evidence. Fresh
+Requirements archive preflight `/root/issue213_archive_scope`, explicit fork none,
+verified the exact superseded R32/R33/R34 previews and scratch archive. The three
+original PDFs total3,310,937bytes; the lossless archive is1,170,736bytes, saving
+2,140,201before locators/metadata. Each original path maps explicitly to its
+basename member in `historical-pdf-recovery.json`; extraction equals each original
+byte for byte. Current R37 selection and unresolved rights/publication gates stay.
+Historical source audits and original artifact manifests are unchanged; active
+blueprint/README links lead to recovery locators. Final RI/capacity and independent
+completed-candidate judgments remain required.
+
+All six whole issue criteria remain open. Stable Staging is the authorized stopping
+point; protected merge, Production, external publication and delayed search
+outcomes retain separate decisions/evidence.
+
+
+### First completed correction judgments and bounded repairs
+
+Own first Code `/root/issue213_slot_code` requested changes C-F01: three JS files
+had been formatted with defaults instead of the pinned config. Restore their
+263d predecessors and reapply only the focused semantic changes, then format with
+`tools/quality/prettier.config.json`. First White-box `/root/issue213_slot_whitebox`
+found WB213-F01:18retained resources lacked rights entries; two consumers failed
+the existing exact rights join. Add their exact digests under the existing
+pinned-prior-public-bytes basis, with no new clearance. Both failed consumers
+now pass2/2in a bounded correction; pinned formatting passes. First Requirements
+`/root/issue213_slot_requirements` found no new bounded requirements blocker; it
+kept delivery/whole-issue acceptance pending. All first outputs remain verbatim.
+
+One clean prepared ee6383security execution passed Semgrep/Bandit but refused
+101untriaged candidates. An exact diagnostic reproduction found103tuples: the two
+extra browser-integrity tuples pass the existing unchanged installed-lock proof.
+Fresh Requirements `/root/issue213_finite_scan_preflight` verified101source
+literal/hashed-value/byte witnesses, permitting99finite ledger tuples and8exact
+inventory IDs; two stale guide fields require generated proof, never a ledger.
+The current guide binding must be recomputed against the corrected committed
+control scope and re-reviewed. The four new test detector-ID literals are also
+individually witnessed in their separate bounded prepared-source raw report;
+they are public SHA1 identities of those same four immutable directory values.
+No wildcard, directory/type-wide admission, scanner threshold or closed prior
+ledger is relaxed. Existing exact-path/rule/hash and forged-record negative
+controls extend to the four new public directory cases and pass2/2.
+
+These repairs are prepared source observations. Fresh corrected-candidate Code,
+White-box and Requirements judgments, clean security/advisories, exact owning
+checks, protected package replay, actual Preview and owner staging remain gates.
+
+
+### Corrected source review and final finite metadata reconciliation
+
+Fresh Code `/root/issue213_slot_code_corrected` and White-box
+`/root/issue213_slot_whitebox_corrected` verified the formatter,18rights entries,
+103finite dispositions, public byte continuity and unchanged guard boundaries.
+White-box executed22selected maintained cases; Code executed5focused cases and
+complete three-edition runtime closure. Fresh Requirements
+`/root/issue213_slot_requirements_corrected` found no new requirements blocker.
+The five workflow-guide sections remain accurate, with current scope binding required.
+
+The complete clean101e6b security run passes Semgrep/Bandit but refuses19remaining
+occurrences:13new retained-rights resource hashes and6redundant custom checksum
+fields in execution receipts. Both QA/Code independently accounted for them.
+Each rights digest equals the retained resource and prior263d public bytes;
+`rights-secret-proof.json` binds exact source,raw report,line,value and resource.
+Add13finite existing Hex tuples, without a new rule,guard or trust scope. Remove
+only the6duplicated custom receipt hash fields; exact own results and their hashes
+remain in archive member manifests. Every original judgment/failure stays intact.
+
+No publication,template,runtime,rights source,guard,test or requirement/oracle changes
+in this final metadata delta. Retain prior corrected Requirements and White-box
+coverage only after checking those exact bytes/dependencies; obtain fresh Code
+review of the final13tuple/receipt/guide binding. Full security and exact-source
+owning/Navigation checks still must pass.
+
+The complete clean101e6b staging package passed the unchanged protected-main
+`tools/staging/review-flow.cjs verify` consumer. Its source/tree/package/public
+identities and protected module hashes are in `protected-replay-101.json`. This
+is an offline cross-version package observation, not provider or browser delivery.
+The final native candidate needs its own package replay before the owner attempt.
+
+
+### Final independent metadata judgment and frozen delivery source
+
+Fresh Code `/root/issue213_metadata_code`, explicit fork none, verified every final
+13tuple against native101raw occurrences, actual retained rights/resource bytes
+and the263dpublic predecessor. The original322+103entries,6receipt-field-only
+removals,77prior archive members and three verbatim own outputs were independently
+checked. Existing2ledger controls and JSON format pass; exact29path guide scope
+and five sections were independently recomputed and judged unchanged. Its own
+result is preserved verbatim. Corrected Requirements/White-box scopes carry only
+verified unchanged source,prompt,dependency and oracle bytes; they do not supply
+future deployment acceptance.
+
+Complete clean e522security and advisories pass under their actual source; Code
+read both raw reports independently. All earlier failures stay preserved. The
+final appended result/receipt/guide serialization is factual metadata only;
+product,rights,ledger,guard,test and policy bytes remain identical to reviewed
+e522. Current native CI/owning checks and final native protected-package replay
+are still required before the fresh owner staging attempt. Actual Preview and
+source-bound exploratory reading remain part of the authorized route.

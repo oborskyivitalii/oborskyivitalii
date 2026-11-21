@@ -1,10 +1,16 @@
+Historical storage note, 21 November 2026: R32/R33/R34 PDF previews are preserved
+in [one lossless archive](historical-r32-r34-pdfs.tar.xz), with individual original-path
+recovery locators and [member identities](../../issue-213/historical-pdf-recovery.json).
+The R35 blueprint and current R37 selection supersede these review renditions;
+rights and publication gates remain unchanged. Earlier checkpoint prose below is historical.
+
 # Current author-review files — R32 — 24 October 2026
 
 - [Complete R32 manuscript](../../../site/publications/pmday-ai-both-sides/manuscript.en.md):
   51,320 UTF-8 bytes; SHA256
   `39631585cbf821895ef5060b46481a04fbdd7da04bffc04410de324c859c3f4d`.
   Already committed at `d43040a`; exact match to the supplied latest Markdown.
-- [Supplied R32 PDF review preview](The_Sum_of_Our_Technology_R32_2026-10-24.pdf):
+- [Supplied R32 PDF review preview](The_Sum_of_Our_Technology_R32_2026-10-24.pdf.ARCHIVED.md):
   19 A4 pages, 1,103,360 bytes; SHA256
   `63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe`.
   Imported unchanged, including citation, contributor provenance and revision

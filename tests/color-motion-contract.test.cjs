@@ -208,7 +208,7 @@ test('producer refactoring preserves client compatibility while runtime bytes an
       before.client,
       'publisher internals do not change the client contract'
     );
-    const reviewed = motion.reviewedRuntime('issue213-discovery-link-plain');
+    const reviewed = motion.reviewedRuntime('issue183-long-article-plain');
     assert.equal(builder.runtimeVersion(after), reviewed.variant.baseEngine);
     const generation = JSON.parse(fs.readFileSync(path.join(root, 'site/output-lock.json'))),
       read = (name) => fs.readFileSync(path.join(root, 'docs', name), 'utf8'),
@@ -304,7 +304,7 @@ test('reading batch records bind actual generated edition bytes and reject tampe
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
-        reviewed = motion.reviewedRuntime('issue213-discovery-link-' + name);
+        reviewed = motion.reviewedRuntime('issue183-long-article-' + name);
       assert.equal(artifact.verify(publicDir, actual), true);
       assert.deepEqual(actual.variant, reviewed.variant);
       for (const [file, expected] of Object.entries(reviewed.files)) {
@@ -1279,15 +1279,15 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue213-discovery-link-plain');
+    assert.equal(motion.select(plain).id, 'issue183-long-article-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue213-discovery-link-staging');
+    assert.equal(motion.select(staged).id, 'issue183-long-article-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue213-discovery-link-production');
+    assert.equal(motion.select(production).id, 'issue183-long-article-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -1296,7 +1296,7 @@ test('current platform runtime tuples reproduce the complete plain, staging and 
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue213-discovery-link-plain').variant.baseEngine
+        motion.reviewedRuntime('issue183-long-article-plain').variant.baseEngine
       );
     }
   } finally {

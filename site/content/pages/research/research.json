@@ -28,8 +28,7 @@
     "T024": "Evidence and limits: an inspectable research synthesis and source library, with proposed operating protocols. Evidence differs across tasks and settings; neither more code nor this synthesis proves a universal productivity effect.",
     "T025": "Start with verification and delivery-cost reading →",
     "T026": "Evidence and limits: early-stage conceptual research and a draft engineering specification, not an accepted standard or a demonstrated guarantee of safe operation. Current meanings belong to the living specification.",
-    "T027": "Start with Thinking Systems and control reading →",
-    "T028": "AI code crisis: why the SDLC is out of balance →"
+    "T027": "Start with Thinking Systems and control reading →"
   },
   "attributes": {
     "A001": "Delivery research topics",
@@ -39,7 +38,6 @@
     "U001": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
     "U002": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
     "U003": "writing.html#topic-delivery",
-    "U004": "writing.html#topic-systems",
-    "U005": "articles/the-sdlc-is-out-of-balance.html"
+    "U004": "writing.html#topic-systems"
   }
 }

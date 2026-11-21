@@ -1355,18 +1355,18 @@ function restoreDiscoveryLink(html, page, record = issue213) {
   assert.equal(record.baseline, '3877546d29a04f235f9ec0f3175f4e0d90bfd60d');
   assert.deepEqual(
     record.changes.map((change) => [change.page, change.id]),
-    [['research', 'delivery-article-link']],
-    'Only the bounded Research reading link may reverse'
+    [['research', 'delivery-lens-article-route']],
+    'Only the bounded Research lens reading route may reverse'
   );
   const change = record.changes[0];
   assert.equal(
     change.beforeSHA256,
-    '76cba2fe7e84ee32d843180f68dc8a2a7dd0001418cc4e49133e9bb50bef1e54',
+    '9295f19772fd0e26ace27fbd81432217b35e1251a701244414334e5def8e40ec',
     'Exact discovery predecessor'
   );
   assert.equal(
     change.afterSHA256,
-    'fd9818d6d26ade638c1f1e55c973cc89fa153fb41f115db713ab658769994629',
+    'e528103dbc76e42646961111c86ad3607eb8717e6e83f17f0cbf6c1edce1b890',
     'Exact discovery successor'
   );
   return restoreContentAmendment(html, page, record);

@@ -418,7 +418,10 @@ test('canonical topic-first public records preserve bounded copy, source bylines
 });
 
 test('research theories retain project alignment and explicit association on narrow layouts', () => {
-  const research = pages.research,
+  const research = require('../tools/check_site_seo.cjs').restoreDiscoveryLink(
+      pages.research,
+      'research'
+    ),
     lenses = research.match(/<section id="lenses"[\s\S]*?<\/section>/)[0];
   const cards = [
     ...lenses.matchAll(

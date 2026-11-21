@@ -8,7 +8,9 @@ belong to the owning issues and [MEMORY](../MEMORY.md), not an old session hando
 
 Issue213's21November2026 author-review candidate uses the existing SDLC article
 for the delivery-system interpretation of “AI code crisis”. Research retains its
-two directions and upstream/Writing links, with one additional direct article link.
+two directions and upstream/Writing links. Its existing TOC delivery-reading slot now
+selects the native SDLC article instead of the upstream mechanics-report shortcut;
+the TOC background and systems reading remain. The Research card template is unchanged.
 Verification Crisis and Cost-Cutting Fallacy remain distinct companion works.
 The future Subprime report mount remains issue116; this does not create another hub
 or transfer research authority. The [source-bound review](../review/issue-213/2026-11-21-discovery-review.md)
