@@ -510,3 +510,74 @@ no product output, source manuscript, frozen edition/event, PDF, runtime, budget
 release decision. Fresh narrow oracle correction review and current full owning
 acceptance remain required before advancement. F01 actual corrected hosted rewalk is
 still pending; mobile/noJS/hosted PDF response remain explicit limits.
+
+
+### Author review Preview checkpoint
+
+Reviewed product source88ba557a75e613f55658b96e6a92fa6b39061288,
+tree79b07c12d112f8c33824ee0c65159f155f39446f, exactly matches clean prepared
+26c905d973142398b460eee6a6453072de1b32d7. Complete acceptance-26c9.json
+passes all8mapped checks, evidence_valid true, source_dirty false, no errors.
+No whole criterion or release gate is thereby completed. Native source separately
+passed the complete SEO CLI and selection/history verification for all8accepted
+articles (native-88ba-seo.json and native-88ba-publications.json).
+
+Fresh explicit fork-none, no model/effort overrides, accepted distinct handles
+/root/issue213_producer_pin_requirements, /root/issue213_producer_pin_code and
+/root/issue213_producer_pin_whitebox completed exact26c9 R-F02 judgments; their own
+verbatim results are producer-pin-requirements.md, producer-pin-code.md and
+producer-pin-whitebox.md. Packet6337c362acab60eebab434ff5d07e18f91c8eb63ecc3d4314cf20145f09c1f29.
+The exact producer mismatch is resolved without deleting prior failures or weakening
+historical carrier/source/geometry/resource refusals. Provider internals unknown.
+
+Run44928975524 passed candidate/build/package/publish/HTTP smoke for native88ba557a.
+Verified immutable Preview: https://b913c877.oborskyi-author-ci-staging.pages.dev.
+Source/issue/browser admission remains deferred by the existing Draft prototype
+route; full/stage/merge/promotion jobs are skipped, not passed. Receipt is
+preview-88ba-receipt.json. A temporarily empty run listing after ref update led to
+one reversible close/reopen of DraftPR216 to request its existing reopened route.
+Subsequent records showed two runs:44928968068 cancelled by existing concurrency,
+44928975524 succeeded. Absence in the early listing was not proof the native ref
+API could not trigger CI; no such unsupported cause is claimed. No source retry
+until green, authorization change or release step was introduced.
+
+Fresh /root/issue213_exploratory_correction, explicit fork-none, accepted distinct
+handle, independently walked Verification→SDLC→Cost-Cutting→SDLC on the actual
+immutable Preview. All3contextual hrefs and arrivals remained on candidate origin
+with STAGING88ba557a. Own unchanged result exploratory-correction.md resolves F01
+in sampled hosted UI. It retains a first-click timeout and transient Research
+observation O02; no false first-attempt or broad runtime pass is claimed.
+
+Fresh /root/issue213_research_navigation_diagnostic, explicit fork-none, accepted
+distinct handle, performed one cold Research→contextual SDLC→settled header Research
+journey. Full Research body returned without reload; persistent missing-body O02
+was not reproduced. Actual H1 textContent is
+AI-assisted delivery.AI agent governance.; both earlier Research-name oracle and
+this diagnostic's inserted-space exact match can time out while the body is present.
+Own report research-navigation-diagnostic.md preserves that false negative and all
+actual observations. This bounds O02; it does not exclude intermittent/rapid-input
+behavior or establish load-performance timing. No source correction was justified
+by this bounded diagnostic. Parent independently selected the same actual article
+URL/badge in cloud tab5 and marked it deliverable for the author.
+
+All25actual execution launch/result receipts are in independent-execution-receipts.json;
+source packet/manifest/request snapshots are in reviewer-inputs.tar.xz. The contaminated
+preparatory Exploratory result remains explicitly excluded; it is not counted as
+independent approval. Source prompt hashes and own first outputs stay unchanged.
+No claim of provider-internal model/context attestation or whole-issue acceptance.
+
+Remaining gates: author visual/publication decision; protected Ready/source/issue/
+browser admission and later separately authorized stable/merge/production; actual
+mobile/noJS and hosted PDF response/view coverage; Article schema expansion; exact
+Google/Medium selected canonical, controlled SERP/demand and finalized post-release
+measurement. All6whole issue criteria remain open. The original untaged PDF reading
+order/physical-device/timing limits remain, and no ranking/AI/entity result is promised.
+
+This final follow-up changes only verified verbatim receipts, factual checkpoint,
+path catalog and deterministic RI views. CONTRIBUTING233/283/315 permits no recursive
+review of their own receipt when relevant semantics/gates remain unchanged. The
+protected source/output subtree identities and absence of changes outside explicitly
+listed metadata scopes are verified in source-equivalence.json. Existing source88ba
+is the exact tested product/Preview; any receipt-only successor is not falsely called
+a new whole-source eight-check run or a new browser deployment. Its RI/RI-CI freshness
+is checked separately, and later delivery must bind its actual latest source.

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fca982dbd9baf68e4ff1a4f1e522372b77a74ee079bbeb5672985d7126ed3a2b",
+    "digest": "7f4b2dbc53b5e8d75873f72c80abf2dcc4090bc33fab693b10931f941e8897b2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -281,12 +281,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "4cf9ee5d584f6649b44160971b682a480c24e8e51dc16776366f7f60ae21287a"
+        "sha256": "9fae362921f4538c4d263282d4c6108931d276cf6024b429834e8528591241ee"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "115d5fce383a1c2fc9d0fa683d68611caf9195fdae69f9756fbe73837a849599"
+        "sha256": "8db43e9c2b12394f77a8d66a622da9d8b2a1b2270035626955c4241af1b1f8cf"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -436,7 +436,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3e8b9a7c15389f9a14b73897e32161b463504d045b202fb3ed52a93561cb43e1"
+        "sha256": "0c63692ae9e3b6619301b4b5c6c4b2ddcf15d16d730f6ee968554aff2c91fef3"
       },
       {
         "path": "NOTICE.md",
@@ -5755,12 +5755,17 @@
       {
         "path": "review/issue-213/2026-11-21-discovery-review.md",
         "identity_mode": "content",
-        "sha256": "1bedbd26c157d6ef0ffe7d82509ae4e48595924ae302996acb951af0bdecacd5"
+        "sha256": "823b421de6efaeea912fa55e756c0ba329db52d521aa7cb32766a33a6b7a9628"
       },
       {
         "path": "review/issue-213/acceptance-2439.json",
         "identity_mode": "content",
         "sha256": "4fde99f313a3cda6514a2b70c0cc6a7221e6b78293c9bd914aff3eea9494984b"
+      },
+      {
+        "path": "review/issue-213/acceptance-26c9.json",
+        "identity_mode": "content",
+        "sha256": "da109f8aaa1117a325541536c4c63cf30bcf33c5cc4debb05c8ea4d93b027b03"
       },
       {
         "path": "review/issue-213/acceptance-5057.json",
@@ -5808,6 +5813,11 @@
         "sha256": "00016c78e827b104bb4e5d4a0e880f6cfae275d30c646c4f142d8bcb0cf7596d"
       },
       {
+        "path": "review/issue-213/exploratory-correction.md",
+        "identity_mode": "content",
+        "sha256": "c1a94bdb97fef0c9eae6fb60554d3dc3988d6a626e1aca61e4593f9ca4c56c65"
+      },
+      {
         "path": "review/issue-213/exploratory-excluded.md",
         "identity_mode": "content",
         "sha256": "5146d20c99699ad979149e17ccea86dc9efbeec281aeeefd07c5a24b25f4f91a"
@@ -5823,9 +5833,24 @@
         "sha256": "4218e19c843eedb6a258b1f9a2b4ca08d9a9907147f94ca85fee2f59ba0ed792"
       },
       {
+        "path": "review/issue-213/independent-execution-receipts.json",
+        "identity_mode": "content",
+        "sha256": "b2a16662b4325375eade9ea6ce7f0a48df2888dee1a2971ad55d8ce71e4b63b9"
+      },
+      {
         "path": "review/issue-213/integration-5057-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "a2177b7481ac7487bbc55257355faf59dbaec405f0344e1b335ebb3c21b158f3"
+      },
+      {
+        "path": "review/issue-213/native-88ba-publications.json",
+        "identity_mode": "content",
+        "sha256": "89c611a5c460024ebae1f8c14bab468b07f95dcb9259a61dd460ec1c6b78510f"
+      },
+      {
+        "path": "review/issue-213/native-88ba-seo.json",
+        "identity_mode": "content",
+        "sha256": "b5605c81801bedffd10a33d04dc7f3940f8e48a0ee9eb046ace43106efaa6b60"
       },
       {
         "path": "review/issue-213/native-link-code.md",
@@ -5868,6 +5893,16 @@
         "sha256": "40b3c57230eadbaeb4763b2d1cbb13b18b4777f7eacabd32ad7e1d3db971c937"
       },
       {
+        "path": "review/issue-213/preview-88ba-receipt.json",
+        "identity_mode": "content",
+        "sha256": "6d520ac08ffc6995d165dec66af996d04aee12d920bac8852ec0afec184aaef3"
+      },
+      {
+        "path": "review/issue-213/producer-pin-code.md",
+        "identity_mode": "content",
+        "sha256": "5d277b2f8dfde5a0fa53558f1fb8c1b5db23301db890d4a59d08b857864b00f0"
+      },
+      {
         "path": "review/issue-213/producer-pin-evidence.tar.xz",
         "identity_mode": "content",
         "sha256": "9bc2f14f1f631badeb3f5b29774b77b4e16718b13db84ca2a42c7632b6c4f98b"
@@ -5876,6 +5911,16 @@
         "path": "review/issue-213/producer-pin-preflight.md",
         "identity_mode": "content",
         "sha256": "c4331918d893070a5fa9695c515bcde182975e18bbb98860d46ab83e16723345"
+      },
+      {
+        "path": "review/issue-213/producer-pin-requirements.md",
+        "identity_mode": "content",
+        "sha256": "7e61cead92cf9cf4fd0537db6d2435d0f9ed4c589b691dfb175047d801a498db"
+      },
+      {
+        "path": "review/issue-213/producer-pin-whitebox.md",
+        "identity_mode": "content",
+        "sha256": "e7d355e06f98cff767ac10c05cb83cb23120c1eff49470b25ec4e2ce4b368d63"
       },
       {
         "path": "review/issue-213/r13-pdf-renderer.py.txt",
@@ -5898,6 +5943,16 @@
         "sha256": "fe329a71a479af6980cb68c7ecbae30449aa0ca277029939ed38a0c35de96808"
       },
       {
+        "path": "review/issue-213/research-navigation-diagnostic.md",
+        "identity_mode": "content",
+        "sha256": "b040f43618b5f384705d1dcabe546a6642e4082894fe045040c5e3a54f44c681"
+      },
+      {
+        "path": "review/issue-213/reviewer-inputs.tar.xz",
+        "identity_mode": "content",
+        "sha256": "814e8cd891136ca0ae8b3f55138b2e62ab84a8e80c9cf07717c368a032b5e475"
+      },
+      {
         "path": "review/issue-213/search-baseline/daily.json",
         "identity_mode": "content",
         "sha256": "760d6371dfe67aac3df6b741e4f988498a555c3507453828197983143cb7b321"
@@ -5916,6 +5971,11 @@
         "path": "review/issue-213/search-baseline/request.json",
         "identity_mode": "content",
         "sha256": "607b4f725a5ad3b18a364865c2ba761d6a1e81112ca5eec1df0b4e821fbe98cf"
+      },
+      {
+        "path": "review/issue-213/source-equivalence.json",
+        "identity_mode": "content",
+        "sha256": "c5fc7045c90687c9effcfbf0de8761c5d0ae60c530eff97697e9549420f3b57e"
       },
       {
         "path": "review/issue-213/timeout-code.md",
@@ -28570,6 +28630,17 @@
       "title": "acceptance-2439.json"
     },
     {
+      "path": "review/issue-213/acceptance-26c9.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "acceptance-26c9.json"
+    },
+    {
       "path": "review/issue-213/acceptance-5057.json",
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
@@ -28669,6 +28740,17 @@
       "title": "Issue213 retained-source context: independent requirements preflight"
     },
     {
+      "path": "review/issue-213/exploratory-correction.md",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 213 — fresh exploratory correction"
+    },
+    {
       "path": "review/issue-213/exploratory-excluded.md",
       "kind": "file",
       "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
@@ -28702,6 +28784,17 @@
       "title": "fixture-diagnostic-evidence.tar.xz"
     },
     {
+      "path": "review/issue-213/independent-execution-receipts.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "independent-execution-receipts.json"
+    },
+    {
       "path": "review/issue-213/integration-5057-evidence.tar.xz",
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
@@ -28711,6 +28804,28 @@
         "AGENTS.md"
       ],
       "title": "integration-5057-evidence.tar.xz"
+    },
+    {
+      "path": "review/issue-213/native-88ba-publications.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-88ba-publications.json"
+    },
+    {
+      "path": "review/issue-213/native-88ba-seo.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "native-88ba-seo.json"
     },
     {
       "path": "review/issue-213/native-link-code.md",
@@ -28801,6 +28916,28 @@
       "title": "preparation-evidence.tar.xz"
     },
     {
+      "path": "review/issue-213/preview-88ba-receipt.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "preview-88ba-receipt.json"
+    },
+    {
+      "path": "review/issue-213/producer-pin-code.md",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent Code review — R-F02 producer-pin correction"
+    },
+    {
       "path": "review/issue-213/producer-pin-evidence.tar.xz",
       "kind": "file",
       "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
@@ -28821,6 +28958,28 @@
         "AGENTS.md"
       ],
       "title": "R-F02 Requirements preflight — exact producer successor"
+    },
+    {
+      "path": "review/issue-213/producer-pin-requirements.md",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Requirements FINAL delta — R-F02"
+    },
+    {
+      "path": "review/issue-213/producer-pin-whitebox.md",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent White-box QA — R-F02 final delta"
     },
     {
       "path": "review/issue-213/r13-pdf-renderer.py.txt",
@@ -28867,6 +29026,28 @@
       "title": "Issue 213 — Requirements & Acceptance preflight"
     },
     {
+      "path": "review/issue-213/research-navigation-diagnostic.md",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 213 — O02 bounded navigation diagnostic"
+    },
+    {
+      "path": "review/issue-213/reviewer-inputs.tar.xz",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reviewer-inputs.tar.xz"
+    },
+    {
       "path": "review/issue-213/search-baseline/daily.json",
       "kind": "file",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
@@ -28909,6 +29090,17 @@
         "AGENTS.md"
       ],
       "title": "request.json"
+    },
+    {
+      "path": "review/issue-213/source-equivalence.json",
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-equivalence.json"
     },
     {
       "path": "review/issue-213/timeout-code.md",

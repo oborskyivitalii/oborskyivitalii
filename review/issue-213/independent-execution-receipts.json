@@ -1,0 +1,515 @@
+{
+  "schema": 1,
+  "observedOn": "2026-11-21",
+  "commonPrompt": {
+    "path": "agents/reviewers/README.md",
+    "sha256": "725c8432ec1f2fea9a61cdbaba01d32676778b3e83b7a73fe2faea422b4ea0a8"
+  },
+  "providerInternals": {
+    "actualModel": "unknown",
+    "internalConversationMemoryInjection": "unknown",
+    "operationalBoundary": "Explicit no-conversation inheritance plus source packet and no peer-result reading; not an OS/provider attestation."
+  },
+  "executions": [
+    {
+      "role": "requirements",
+      "phase": "initial preparation",
+      "requested": {
+        "task_name": "issue213_requirements_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_requirements_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/requirements-preflight.md",
+      "ownResultSHA256": "fe329a71a479af6980cb68c7ecbae30449aa0ca277029939ed38a0c35de96808",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "bounded recovery preflight",
+      "requested": {
+        "task_name": "issue213_archive_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_archive_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/archive-preflight.md",
+      "ownResultSHA256": "f8d0ad7415558d0be2e27e2e5d691245dd8204b2ecc4d3d1b1d1b85c6a524d5c",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "code",
+      "phase": "first candidate",
+      "requested": {
+        "task_name": "issue213_code_initial",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_code_initial",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "ownResult": "review/issue-213/code-initial.md",
+      "ownResultSHA256": "ad6233f559075ea69a5243a3ebbe60e3b27e66a4b20e4f0009316c894a4fe2a0",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "first candidate",
+      "requested": {
+        "task_name": "issue213_requirements_initial",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_requirements_initial",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/requirements-initial.md",
+      "ownResultSHA256": "2add9ac654fc272adf1488eac8add16562b0c9ccb6ebd6f5ae9fc778bcbf1e45",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "whitebox",
+      "phase": "first candidate",
+      "requested": {
+        "task_name": "issue213_whitebox_initial",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_whitebox_initial",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "ownResult": "review/issue-213/whitebox-initial.md",
+      "ownResultSHA256": "fd8ad126a93ae313698ba938d5d2d8e75349a9015e49a7fd807b58ec7fb36f8b",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "retention context preflight",
+      "requested": {
+        "task_name": "issue213_context_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_context_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/context-preflight.md",
+      "ownResultSHA256": "00016c78e827b104bb4e5d4a0e880f6cfae275d30c646c4f142d8bcb0cf7596d",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "code",
+      "phase": "retention correction",
+      "requested": {
+        "task_name": "issue213_code_correction",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_code_correction",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "ownResult": "review/issue-213/code-correction.md",
+      "ownResultSHA256": "6932b079ed671f046e19610bd788bbd0bcde019eb74779e8f15fbe9f76414a08",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "retention correction",
+      "requested": {
+        "task_name": "issue213_requirements_correction",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_requirements_correction",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/requirements-correction.md",
+      "ownResultSHA256": "d838a27a999e32666a7af5a926e19150f8d37b7dc56deff7e4681e92e2bef731",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "whitebox",
+      "phase": "retention correction",
+      "requested": {
+        "task_name": "issue213_whitebox_correction",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_whitebox_correction",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "ownResult": "review/issue-213/whitebox-correction.md",
+      "ownResultSHA256": "69df28a1a95efa0f8ef3c49e42a60429b603d158b35d4a97aa11f134ed0baa55",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "wrapper preflight",
+      "requested": {
+        "task_name": "issue213_timeout_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_timeout_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/timeout-preflight.md",
+      "ownResultSHA256": "fc9108e1fded34ef0c42ac137b18c0b95019468dda745a35cc411c6163e2e370",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "code",
+      "phase": "wrapper correction",
+      "requested": {
+        "task_name": "issue213_timeout_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_timeout_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "ownResult": "review/issue-213/timeout-code.md",
+      "ownResultSHA256": "439e9d494bde0c5efe4a19b8b76008b1639a6eed7765eb0f413677371141de18",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "wrapper correction",
+      "requested": {
+        "task_name": "issue213_timeout_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_timeout_requirements",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/timeout-requirements.md",
+      "ownResultSHA256": "8e6a3b254081dd7074c35b1df795a45bb6ed51be38afd3bcd82f86fe3537c38c",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "whitebox",
+      "phase": "wrapper correction",
+      "requested": {
+        "task_name": "issue213_timeout_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_timeout_whitebox",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "ownResult": "review/issue-213/timeout-whitebox.md",
+      "ownResultSHA256": "64fe105015ce957580f0e8d7d931c034bc296855314b6606b63c2c17fd47b3a2",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "exploratory",
+      "phase": "excluded preparation",
+      "requested": {
+        "task_name": "issue213_exploratory",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_exploratory",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "ownResult": "review/issue-213/exploratory-excluded.md",
+      "ownResultSHA256": "5146d20c99699ad979149e17ccea86dc9efbeec281aeeefd07c5a24b25f4f91a",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "excluded after observed peer-summary exposure"
+    },
+    {
+      "role": "exploratory",
+      "phase": "first hosted",
+      "requested": {
+        "task_name": "issue213_exploratory_hosted",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_exploratory_hosted",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "ownResult": "review/issue-213/exploratory-hosted-initial.md",
+      "ownResultSHA256": "80d49e87ea3385a32dce7a86897951413c197f7556d0bfc28f4a4cb020776806",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "F01 preflight",
+      "requested": {
+        "task_name": "issue213_native_link_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_native_link_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/native-link-preflight.md",
+      "ownResultSHA256": "fe05f0bd34a82dd98d7a883b6857a86a9d41ceef76eced093948c034eb358648",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "code",
+      "phase": "F01 correction",
+      "requested": {
+        "task_name": "issue213_native_link_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_native_link_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "ownResult": "review/issue-213/native-link-code.md",
+      "ownResultSHA256": "9640ad3f5cd8c7a0938ac076f321966d60921941b5fb844ab5c4637002ab9b15",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "F01 correction",
+      "requested": {
+        "task_name": "issue213_native_link_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_native_link_requirements",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/native-link-requirements.md",
+      "ownResultSHA256": "7b1dec5c2fced789df471ff80cab54b04450ab9d86d760062c6c98374cbb2765",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "whitebox",
+      "phase": "F01 correction",
+      "requested": {
+        "task_name": "issue213_native_link_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_native_link_whitebox",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "ownResult": "review/issue-213/native-link-whitebox.md",
+      "ownResultSHA256": "366c87d1c76a217c9d7926ec4dd823acc5cd8050acaa9542dc9c29bbcef2355d",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "R-F02 preflight",
+      "requested": {
+        "task_name": "issue213_producer_pin_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_producer_pin_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/producer-pin-preflight.md",
+      "ownResultSHA256": "c4331918d893070a5fa9695c515bcde182975e18bbb98860d46ab83e16723345",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "code",
+      "phase": "R-F02 correction",
+      "requested": {
+        "task_name": "issue213_producer_pin_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_producer_pin_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "ownResult": "review/issue-213/producer-pin-code.md",
+      "ownResultSHA256": "5d277b2f8dfde5a0fa53558f1fb8c1b5db23301db890d4a59d08b857864b00f0",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "R-F02 correction",
+      "requested": {
+        "task_name": "issue213_producer_pin_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_producer_pin_requirements",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "ownResult": "review/issue-213/producer-pin-requirements.md",
+      "ownResultSHA256": "7e61cead92cf9cf4fd0537db6d2435d0f9ed4c589b691dfb175047d801a498db",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "whitebox",
+      "phase": "R-F02 correction",
+      "requested": {
+        "task_name": "issue213_producer_pin_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_producer_pin_whitebox",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "ownResult": "review/issue-213/producer-pin-whitebox.md",
+      "ownResultSHA256": "e7d355e06f98cff767ac10c05cb83cb23120c1eff49470b25ec4e2ce4b368d63",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "exploratory",
+      "phase": "F01 actual hosted correction",
+      "requested": {
+        "task_name": "issue213_exploratory_correction",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_exploratory_correction",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "ownResult": "review/issue-213/exploratory-correction.md",
+      "ownResultSHA256": "c1a94bdb97fef0c9eae6fb60554d3dc3988d6a626e1aca61e4593f9ca4c56c65",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "exploratory",
+      "phase": "O02 bounded diagnosis",
+      "requested": {
+        "task_name": "issue213_research_navigation_diagnostic",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_research_navigation_diagnostic",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "ownResult": "review/issue-213/research-navigation-diagnostic.md",
+      "ownResultSHA256": "b040f43618b5f384705d1dcabe546a6642e4082894fe045040c5e3a54f44c681",
+      "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
+      "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    }
+  ]
+}

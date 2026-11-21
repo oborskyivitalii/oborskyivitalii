@@ -4,27 +4,29 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 
 ## Snapshot
 
-- Protected main and production resolve to 3877546d29a04f235f9ec0f3175f4e0d90bfd60d.
-- [Issue213](https://github.com/oborskyivitalii/oborskyivitalii/issues/213) owns AI code crisis discovery. Branch: work/issue-213-search-discovery; [Draft PR216](https://github.com/oborskyivitalii/oborskyivitalii/pull/216).
-- [Current review](review/issue-213/2026-11-21-discovery-review.md) records the prepared article/link/PDF candidate, independent preflights, failures and verification limits.
+- Protected main observed at3877546d29a04f235f9ec0f3175f4e0d90bfd60d on21November.
+- [Issue213](https://github.com/oborskyivitalii/oborskyivitalii/issues/213), [Draft PR216](https://github.com/oborskyivitalii/oborskyivitalii/pull/216), branch work/issue-213-search-discovery.
+- Reviewed product source88ba557a75e613f55658b96e6a92fa6b39061288; [exact Preview](https://b913c877.oborskyi-author-ci-staging.pages.dev/articles/the-sdlc-is-out-of-balance.html). Prepared26c9 has the same tree; all8mapped source checks pass. Build/package/HTTP smoke and bounded actual native-link review pass.
+- [Review](review/issue-213/2026-11-21-discovery-review.md) preserves failures, all own judgments, excluded attempt, source/tree bindings and receipt-only successor proof.
 
 ## Decisions
 
-- The author approved the first bounded existing-article package and PR Preview preparation. Keep the SDLC title/slug, distinct companions and upstream research authority.
-- Research template/check changes use the ordinary route. No merge, stable promotion, production or external-platform edit is authorised in this checkpoint.
-- Preserve existing RI bounds; exact redundant historical PDF copies are recoverable from unchanged native ZIPs through the versioned manifest/locators.
+- First bounded SDLC/Research/companion/PDF package is prepared for author visual review. Keep title/slug, distinct companions and upstream research authority.
+- Draft prototype is separate from protected Ready/source/issue/browser admission and later stable/merge/production decisions. No later release is authorized by this handoff.
+- Existing RI bounds,120prior public immutable files,83declared retained resources and exact recoverable historical PDF ZIPs are preserved. No runtime/CSS byte change.
 
 ## Open work
 
-- Issue213 initial native Preview32989176 and prepared2439 eight-check pass are recorded. F01 native-link correction141-case pass and independent source reviews are recorded at a10; exact producer-pin correction, new owning run and corrected hosted rewalk remain pending.
-- All six whole acceptance criteria remain open. Article schema enrichment, controlled SERP/demand, Google-selected/Medium canonical inspection and delayed outcome measurement remain explicitly pending.
-- Issue8 owns indexing/URL Inspection; issue116 owns the separate future Subprime report mount.
+- Author reviews the exact Preview. Any receipt-only newer head has identical protected product sources/output; see source-equivalence.json rather than pretending that head was the eight-check source.
+- All6whole issue criteria stay open. Mobile/noJS and hosted PDF response/view, schema enrichment, controlled search/selected canonical and delayed measurement remain pending.
+- F01 corrected in actual3link journeys; O02 persistent missing Research body was not reproduced in one settled journey. Intermittent/rapid-input behavior remains unexcluded; do not infer a proven new regression or broad runtime pass.
+- Issue8 owns indexing/URL Inspection; issue116 owns the separate future Subprime mount.
 
 ## Next session
 
-1. Read issue213 and its linked Draft PR/review for the actual latest candidate and outcomes.
-2. Complete exact-source preview verification and present it for author review; continue later release steps only under the applicable author decision.
+1. Read live issue213/PR216 and verify actual latest head, Preview source and check/admission state.
+2. Continue the existing delivery route only after the applicable author visual/release decision; keep original acceptance and remaining observation gates.
 
 ## Maintenance
 
-- Keep these five bounded sections; current issue/PR checkpoints own dynamic evidence. Rebuild and verify RI and RI-CI after indexed changes; exact-head receipt-only updates belong in the owning issue/PR.
+- Keep these five sections. Verbatim receipt/RI updates preserve semantics and need provenance/byte/freshness verification; changed implementation or oracle requires fresh review.

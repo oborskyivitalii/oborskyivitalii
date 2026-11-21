@@ -7987,6 +7987,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/acceptance-26c9.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/acceptance-5057.json": {
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
@@ -8041,6 +8047,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/exploratory-correction.md": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/exploratory-excluded.md": {
       "kind": "file",
       "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
@@ -8059,9 +8071,27 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/independent-execution-receipts.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/integration-5057-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-88ba-publications.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-88ba-seo.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8113,6 +8143,18 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/preview-88ba-receipt.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/producer-pin-code.md": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/producer-pin-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
@@ -8122,6 +8164,18 @@
     "review/issue-213/producer-pin-preflight.md": {
       "kind": "file",
       "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/producer-pin-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/producer-pin-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8146,6 +8200,18 @@
     "review/issue-213/requirements-preflight.md": {
       "kind": "file",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/research-navigation-diagnostic.md": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/reviewer-inputs.tar.xz": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8176,6 +8242,12 @@
     "review/issue-213/search-baseline/request.json": {
       "kind": "file",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/source-equivalence.json": {
+      "kind": "file",
+      "purpose": "Issue213 final verbatim review/check/deployment receipts and unchanged product-source equivalence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

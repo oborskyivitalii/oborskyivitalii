@@ -1,0 +1,691 @@
+{
+  "schema": 1,
+  "observedOn": "2026-11-21",
+  "productSource": "88ba557a75e613f55658b96e6a92fa6b39061288",
+  "productTree": "79b07c12d112f8c33824ee0c65159f155f39446f",
+  "preparedSource": "26c905d973142398b460eee6a6453072de1b32d7",
+  "preparedTreeIdentical": true,
+  "immutablePreview": "https://b913c877.oborskyi-author-ci-staging.pages.dev",
+  "alias": "https://pr-216.oborskyi-author-ci-staging.pages.dev",
+  "workflowRun": 44928975524,
+  "workflowURL": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44928975524",
+  "jobs": [
+    {
+      "id": 136921228994,
+      "name": "target",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Retain the staging target before candidate work",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        }
+      ]
+    },
+    {
+      "id": 136921229963,
+      "name": "github.event_name != 'pull_request' && 'PR staging admission not applicable' || github.event.pull_request.draft && 'Prototype staging admission deferred' || github.event.action == 'labeled' && 'PR staging admission refresh not requested' || 'Staging admission'",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136921361031,
+      "name": "candidate",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Authenticate the exact checked-out candidate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install locked prepublication tools for an explicit staging attempt",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "Install declared locked publication tools when available",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Select a trusted earlier generation for authored content updates",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "Install locked content-source tools for an ordinary preview",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "Targeted controller checks and one immutable public build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Select the supported source rendition and bind its visual identity",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Bind candidate bytes and select their prepublication profile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Retain the candidate for this workflow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 136921362174,
+      "name": "begin-admission",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136921648293,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Authenticate the exact checked-out candidate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Download the eight native staging source receipts",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Install locked prepublication tools for an explicit staging attempt",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "Install declared locked publication tools when available",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Confirm the transferred manifest, source and prepublication profile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete host-independent staging guards before candidate upload",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "Retain all prepublication observations even when a guard fails",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12
+        },
+        {
+          "name": "Require an authenticated candidate for deployable upload",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Require successful staging source jobs and receipt transfer before deployable upload",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Require the source aggregate bound into current preflight",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Bind the build record and add hosting policy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Run node - <<'JS'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39
+        }
+      ]
+    },
+    {
+      "id": 136921649053,
+      "name": "staging-source-shard-${{ matrix.shard }}",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136921989972,
+      "name": "publish",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify package and configured project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Reject a moved PR or staging controller before deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 136922163423,
+      "name": "published-comment",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        }
+      ]
+    },
+    {
+      "id": 136922163440,
+      "name": "smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify current hosted routes, revision and runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare bounded Ubuntu downloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7
+        },
+        {
+          "name": "Install locked Chromium smoke tools",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "Restore verified pinned browsers without prior launch",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "Minimal two-width hosted rendition smoke",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "Install the locked parser for the issue-5 local diagnostic",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "Exercise genuine content release on an isolated local fixture",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12
+        },
+        {
+          "name": "Export and verify the article PDF with locked managed Chromium",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        }
+      ]
+    },
+    {
+      "id": 136922165457,
+      "name": "stage-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136922333183,
+      "name": "status-comment",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        }
+      ]
+    },
+    {
+      "id": 136922333648,
+      "name": "full",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136922334197,
+      "name": "merge-admission",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136922334327,
+      "name": "promote",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136922405442,
+      "name": "change-admission-receipt",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44928975524,
+      "logs_url": null,
+      "steps": null
+    }
+  ],
+  "comments": [
+    {
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/pull/216#issuecomment-7065916267",
+      "body": "<!-- site-review-deployment -->\n### Site review\n\n**PR preview** · source `88ba557a75e613f55658b96e6a92fa6b39061288`\nPrototype build/package and HTTP identity passed. Source, issue and browser admission deferred until visual approval.\n[Latest PR preview](https://pr-216.oborskyi-author-ci-staging.pages.dev)\n[Exact tested candidate](https://b913c877.oborskyi-author-ci-staging.pages.dev)\n[GitHub Actions run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44928975524)\n\nDraft prototypes defer source/browser admission. Stable staging requires the exact-head admission and staging gate.\n<!-- site-review-state:{\"preview\":{\"source\":\"88ba557a75e613f55658b96e6a92fa6b39061288\",\"url\":\"https://b913c877.oborskyi-author-ci-staging.pages.dev\",\"alias\":\"https://pr-216.oborskyi-author-ci-staging.pages.dev\",\"status\":\"Prototype build/package and HTTP identity passed. Source, issue and browser admission deferred until visual approval.\",\"run\":\"https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44928975524\"}} -->",
+      "user": {
+        "login": "github-actions[bot]",
+        "name": "github-actions[bot]",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "id": 41898282
+      },
+      "id": 7065916267,
+      "pull_request_review_id": null,
+      "in_reply_to_id": null,
+      "created_at": "2026-11-21T16:47:01Z",
+      "updated_at": "2026-11-21T17:19:04Z",
+      "review": null,
+      "side": null,
+      "line": null,
+      "start_line": null,
+      "path": null,
+      "body_html": "\n<h3 dir=\"auto\">Site review</h3>\n<p dir=\"auto\"><strong>PR preview</strong> · source <code class=\"notranslate\">88ba557a75e613f55658b96e6a92fa6b39061288</code><br>\nPrototype build/package and HTTP identity passed. Source, issue and browser admission deferred until visual approval.<br>\n<a href=\"https://pr-216.oborskyi-author-ci-staging.pages.dev\" rel=\"nofollow\">Latest PR preview</a><br>\n<a href=\"https://b913c877.oborskyi-author-ci-staging.pages.dev\" rel=\"nofollow\">Exact tested candidate</a><br>\n<a href=\"https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/44928975524\">GitHub Actions run</a></p>\n<p dir=\"auto\">Draft prototypes defer source/browser admission. Stable staging requires the exact-head admission and staging gate.</p>\n"
+    }
+  ],
+  "admission": "Draft prototype build/package/HTTP only; source/issue/browser admission deferred"
+}

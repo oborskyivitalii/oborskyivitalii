@@ -1,0 +1,47 @@
+{
+  "source": "88ba557a75e613f55658b96e6a92fa6b39061288",
+  "tree": "79b07c12d112f8c33824ee0c65159f155f39446f",
+  "accepted": [
+    {
+      "id": "agentic-loops",
+      "edition": "agentic-loops-en-20261116-editorial",
+      "url": "articles/agentic-loops.html"
+    },
+    {
+      "id": "ai-cost-cutting-fallacy",
+      "edition": "ai-cost-cutting-fallacy-en-20261121-discovery",
+      "url": "articles/ai-cost-cutting-fallacy.html"
+    },
+    {
+      "id": "ai-governance-is-control-theory",
+      "edition": "ai-governance-is-control-theory-en-20261116-editorial",
+      "url": "articles/ai-governance-is-control-theory.html"
+    },
+    {
+      "id": "ai-native-workflows-have-a-moat-problem",
+      "edition": "ai-native-workflows-have-a-moat-problem-en-20261116-editorial",
+      "url": "articles/ai-native-workflows-have-a-moat-problem.html"
+    },
+    {
+      "id": "ai-verification-crisis",
+      "edition": "ai-verification-crisis-en-20261121-discovery",
+      "url": "articles/ai-verification-crisis.html"
+    },
+    {
+      "id": "beyond-embeddings",
+      "edition": "beyond-embeddings-en-20261116-cover-clearance",
+      "url": "articles/beyond-embeddings.html"
+    },
+    {
+      "id": "sdlc-out-of-balance",
+      "edition": "sdlc-out-of-balance-en-r13-20261121",
+      "url": "articles/the-sdlc-is-out-of-balance.html"
+    },
+    {
+      "id": "thinking-systems",
+      "edition": "thinking-systems-en-20261116-editorial",
+      "url": "articles/thinking-systems.html"
+    }
+  ],
+  "historyValidated": true
+}
