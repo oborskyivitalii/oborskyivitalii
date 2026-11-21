@@ -741,6 +741,111 @@
       "ownResultSHA256": "3dbd73200edf8fc3b0a492583856dfc2035ab31c16dfa2222e244f868675f7d8",
       "scopeAndPacket": "Exact e025 and complete protected-base control scope; packet and own unchanged first result archived.",
       "disposition": "Completed unchanged guide judgment and factual metadata review; stale receipt corrected mechanically, no whole issue or staging pass inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "security correction first result",
+      "requested": {
+        "task_name": "issue213_security_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_preflight",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit no inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-preflight.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own first result preserved verbatim; evidence prerequisites remain as stated, no whole-issue acceptance."
+    },
+    {
+      "role": "requirements",
+      "phase": "security correction first result",
+      "requested": {
+        "task_name": "issue213_security_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_requirements",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit no inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-requirements.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own first result preserved verbatim; evidence prerequisites remain as stated, no whole-issue acceptance."
+    },
+    {
+      "role": "code",
+      "phase": "security correction first result",
+      "requested": {
+        "task_name": "issue213_security_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_code",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit no inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-code.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own first result preserved verbatim; evidence prerequisites remain as stated, no whole-issue acceptance."
+    },
+    {
+      "role": "whitebox",
+      "phase": "security correction first result",
+      "requested": {
+        "task_name": "issue213_security_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_whitebox",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit no inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-whitebox.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own first result preserved verbatim; evidence prerequisites remain as stated, no whole-issue acceptance."
+    },
+    {
+      "role": "exploratory",
+      "phase": "security correction first result",
+      "requested": {
+        "task_name": "issue213_security_exploratory",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_exploratory",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit no inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-exploratory.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own first result preserved verbatim; evidence prerequisites remain as stated, no whole-issue acceptance."
+    },
+    {
+      "role": "whitebox",
+      "phase": "factual proof provenance correction",
+      "requested": {
+        "task_name": "issue213_proof_correction_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_proof_correction_whitebox",
+      "launchEvidence": "Parent observed accepted collaboration.spawn_agent response with exact handle and explicit fork_turns none.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-proof-correction-whitebox.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-execution-receipts.json",
+      "disposition": "Own completed prepared-proof correction pass preserved; archive/locator integration and final guide/security/hosted acceptance remain pending."
+    },
+    {
+      "role": "code",
+      "phase": "factual metadata correction and complete protected-base guide judgment",
+      "requested": {
+        "task_name": "issue213_security_metadata_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_security_metadata_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted this exact task handle with explicit no conversation inheritance.",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-security-metadata-code.md",
+      "fullReceiptInArchive": "review/issue-213/ci-correction-evidence.tar.xz#security-metadata-code-execution-receipt.json",
+      "disposition": "Own completed factual-source/guide judgment preserved verbatim. No staging or whole-issue acceptance inferred."
     }
   ]
 }

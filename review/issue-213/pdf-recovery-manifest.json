@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reason": "Exact redundant historical copies replaced with existing-archive locators to preserve RI capacity for issue213.",
+  "reason": "Exact redundant historical loose PDF copies use unchanged archive-member locators; all original bytes, publication identities and RI limits remain.",
   "originals": [
     {
       "originalPath": "review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.pdf",
@@ -25,6 +25,15 @@
       "bytes": 1415489,
       "sha256": "c715bbe933095708934d45f23e21d1d0830f53dce845bf7b08a80dac1c19b718",
       "archiveSha256": "7280ee7b976a9d1ae267ae05dc875683ac18323db57544e8aa09bda9da8df698"
+    },
+    {
+      "originalPath": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.pdf",
+      "archivePath": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz",
+      "archiveFormat": "tar.xz",
+      "member": "article.pdf",
+      "bytes": 1417566,
+      "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1",
+      "archiveSha256": "038392346ededf1852b91981ae8f8826551e5202ce6ddfaa6d57e81d1ff1e089"
     }
   ],
   "supersession": "R27 revises R26; R28 revises R27; R29 records its correction over R28. Current PMDay manuscript/resources remain separate and all publication/rights gates remain pending.",

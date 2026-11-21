@@ -265,7 +265,12 @@
         "tests/content-baseline.test.cjs",
         "tests/content-delivery.test.cjs",
         "tests/release-controller.test.cjs",
-        "tools/release/staging-policy.cjs"
+        "tools/release/staging-policy.cjs",
+        "tools/quality/secrets-issue213.json",
+        "tools/quality/generated-checksums.cjs",
+        "tools/quality/python_toolchain.py",
+        "tools/quality/toolchain/requirements.txt",
+        "tests/test_python_toolchain.py"
       ],
       "checks": [
         "acceptance-policy",
@@ -748,7 +753,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "1d2103a11b63d24deeee88844f08215f0c20b6471d302c93ef316294e6870888",
+    "digest": "c4001085018ccca8eb84e0f28a7250e0fa5da7a6549371f4f6fd581c574fb387",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -944,7 +949,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "75c2ab3b6f569b3d9b0de7445c31c15eb272ed540e26830b1215cb2e176b656a"
+        "sha256": "ea290f76905fb6222f9b1191a141917073d88b507edbdbd29737b6361c2636b2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",

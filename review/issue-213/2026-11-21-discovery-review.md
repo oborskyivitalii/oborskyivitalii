@@ -619,3 +619,14 @@ are not attested. All six whole ACs and external search/schema/measurement gates
 remain open; stage/merge/production are separate observations.
 
 Final fresh Code metadata/guide execution /root/issue213_final_guide_code inspected e025 and preserved unchanged guide disposition at scope bd1a83452f8aedc06ac378dd386067a2307c36ecf63af6977a30be102f52bdcf. Only stale receipt remained; its exact binding is now recorded. All36actual executions and own first outputs are preserved. Final receipt bytes and generated RI are mechanically checked without new semantic changes.
+
+
+## Stable Staging security correction
+
+The first authorized full owner staging attempt passed admission, candidate reconstruction and all eight full source shards, then failed before upload on finite untriaged detector candidates and the wildcard dependency advisory. No stable promotion occurred. Its raw prepublication reports are preserved in [the existing correction archive](ci-correction-evidence.tar.xz), members under `raw-stage/`. Failed results are not relabelled.
+
+The correction preserves all four old ledger files, scanner/type/size guards and the RI capacity bound. A fifth finite ledger records exact public-identifier tuples. The patched dependency graph has a fifth exact Semgrep declaration override, complete installed-graph checks, real API and positive/negative CE controls; no advisory ignore or metadata rewrite. The Bandit disposition retains its exact boolean-return finding and expiry while rebinding the actual source. Historical R29 PDF bytes are recoverable from the unchanged native archive; no active site input was removed.
+
+The first four completed security role results and Requirements preflight remain verbatim in the archive, with full source/prompt/packet/launch receipts in `security-execution-receipts.json`. Their evidence prerequisites remain visible. A first proof's single misattributed source and mixed-source header are corrected in `issue213-secret-proof-corrected.json`; the original remains separately preserved. The corrected union binds each occurrence to its own scan, immutable source/tree and archived source bytes, with three distinct raw reports. It is not one single-source scan or a whole security pass. All old archive members are byte-identical.
+
+The clean prepared security source's eight mapped issue checks pass; its exact report is archived as `issue213-acceptance-a9d.json`. Final guide binding, current-head integrated security/advisories and hosted source/Navigation/owning admission remain prerequisites for a fresh full staging attempt. All six whole issue criteria remain open; Stable Staging alone is authorized.

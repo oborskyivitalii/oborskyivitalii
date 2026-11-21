@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4e54cd94f0773dc19e5290f0d00e36678a4baa6df33b15d165ddf709eacc44e6",
+    "digest": "7cc32fa6e5c173f61181a0b61683505820bab0c811a955046c62815aaff0fd13",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -281,12 +281,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "75c2ab3b6f569b3d9b0de7445c31c15eb272ed540e26830b1215cb2e176b656a"
+        "sha256": "ea290f76905fb6222f9b1191a141917073d88b507edbdbd29737b6361c2636b2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e1bfc0bfccc1ee893356179c570ac65aa6066c9a07660b7ca7c11cd2f1b427ec"
+        "sha256": "55a8f50e33413befc441c57a8b6b995000e853de2e19a0b4c6fb11805d336e6d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -436,7 +436,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "021a5d2c4e209d6eece829e18cd32ef4abe0125110b8ba1df7c2a6bff03b62bb"
+        "sha256": "9938265212eb9005affe358dd5bc41b52a62dcd72e4939360849142ce8a561df"
       },
       {
         "path": "NOTICE.md",
@@ -1380,7 +1380,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "d545bdf57e956492c189e8f9dd74754ec018ad8824725d48cea9649a2de50da3"
+        "sha256": "7ba34887e3ebfc018a1d792e74a704b9570328b8c13563ecc3c3d754799b8b4a"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -5695,17 +5695,12 @@
       {
         "path": "review/issue-2/r29-20261024/README.md",
         "identity_mode": "content",
-        "sha256": "783b9791ed634328891235b72872475f49054fbab21a9d7dced2dc34dc9fa0d4"
+        "sha256": "128d4e71fcaa8045d6e5e111301d4dfd7669ac086fa9d37fca401666801ec5e8"
       },
       {
         "path": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.md",
         "identity_mode": "content",
         "sha256": "9c75ec7b9372e159cc33c332e25e68010fcedd81293c838ba53ce1bf7f679d1e"
-      },
-      {
-        "path": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.pdf",
-        "identity_mode": "content",
-        "sha256": "7939f15ebfe1ac2588c0cedc79f53f4400d1a0271b174df732e4b0c2447ed7d1"
       },
       {
         "path": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz",
@@ -5755,7 +5750,7 @@
       {
         "path": "review/issue-213/2026-11-21-discovery-review.md",
         "identity_mode": "content",
-        "sha256": "337f6a73490547707c172e804a09347e33e3e0e2beebfdd0699cf7625106dba8"
+        "sha256": "e659f9721d1c39311eed8b35c8cea30a437ef11a346c2e3d7ba8fb0ccc4c1b33"
       },
       {
         "path": "review/issue-213/acceptance-2439.json",
@@ -5790,7 +5785,7 @@
       {
         "path": "review/issue-213/ci-correction-evidence.tar.xz",
         "identity_mode": "content",
-        "sha256": "0f6709d3d8dacfa86082e1d86a7aeb575944a808c4e7ff04c96b79a64583ab24"
+        "sha256": "2ecb0f4fe60948a3aa6dfd18b303dda188da22e3efa22f329ff5a4e5f1f0050c"
       },
       {
         "path": "review/issue-213/code-correction.md",
@@ -5840,7 +5835,7 @@
       {
         "path": "review/issue-213/independent-execution-receipts.json",
         "identity_mode": "content",
-        "sha256": "d03fc2e39abf33d42a740559c65375109d51b7437e4f082e6df642ed82090f98"
+        "sha256": "83980636121b18b746bcb1fcbdfb66c57450a5cdd5e10ac62740d0de27dc3aec"
       },
       {
         "path": "review/issue-213/integration-5057-evidence.tar.xz",
@@ -5890,7 +5885,7 @@
       {
         "path": "review/issue-213/pdf-recovery-manifest.json",
         "identity_mode": "content",
-        "sha256": "fb968cc559afd671799f352ad825d6bcbd6f2e9651adf4ac35616317c3d2ac80"
+        "sha256": "04753a7d986feb06d8827d218fd18d7c64e2aea35c2bde21e22f2afd713d9545"
       },
       {
         "path": "review/issue-213/preparation-evidence.tar.xz",
@@ -6015,7 +6010,7 @@
       {
         "path": "review/issue-213/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "cdf403e3cbd5f712b31c8281c9c2110f06e4f0ac1560692268f63f7f386e5ae0"
+        "sha256": "c01bb9ad09e3b989d2f36e493a83564f71fe98a5d3e9eb997c20bb41ef7a3899"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14110,7 +14105,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "f7143943b72215b73349092e4cb771a3e144606bb1a5971a253d2910f881d18f"
+        "sha256": "de409412ab8da4ac9b5dceb02f009cb2298c25cc444616df9c75fdeda2015dc5"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -14375,7 +14370,7 @@
       {
         "path": "tests/test_python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "143f029e08aac0300ee781d3464dfc316b41e497d91081a648860bdc6442c1c5"
+        "sha256": "b02832d592876dce2dd9b8d7d1da6eb9ad4e3bd6f5f1c736aea1ae82a0e4b529"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -14750,7 +14745,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "92d2c3a110bd298a847c04678903a53cbdbb349b57b436901650afc6eb653997"
+        "sha256": "c66c1f65978c38e5efcdad2bc202c2170e84cffb39de75086ee5c2dfb19048cc"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -14980,7 +14975,7 @@
       {
         "path": "tools/quality/generated-checksums.cjs",
         "identity_mode": "content",
-        "sha256": "42b9b51d0608ba4def4c3bf6408bddad8775de51ee7e697f457e50ee59c37383"
+        "sha256": "5f75fad899737f1494326488ac629aefb0037b418ea385a73937c70f07c8cb31"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -15075,7 +15070,7 @@
       {
         "path": "tools/quality/python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "885a94f536bf91c143450a8c2d88adcc6c9bdaf7ec605031b810c9aabf9539a8"
+        "sha256": "eb851607f38e0914e5246aee69779e3bd8abba5450e2f675ad4dd053639f46e0"
       },
       {
         "path": "tools/quality/reader-performance.cjs",
@@ -15105,7 +15100,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "28cd6d80fa0a8ead817b71dfc3e008a710d344c5341fd2488d97c2795538e921"
+        "sha256": "96fe64ff182ce4445e15e90db0569eebd85faae0d031d5a36d0ceb0fd73662c8"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -15116,6 +15111,11 @@
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
         "sha256": "8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0"
+      },
+      {
+        "path": "tools/quality/secrets-issue213.json",
+        "identity_mode": "content",
+        "sha256": "3da5d0d8fd3f389cacda88ea1681cc7b0bef8b8ea10b403151fdf8f998e04ac8"
       },
       {
         "path": "tools/quality/secrets-publication.json",
@@ -15200,7 +15200,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "36a1823a4bf2854a4e3b1032fec11cb874f51d0152b52620ffec1c9b2e67bce9"
+        "sha256": "942ff4e06aaae59c7bcd4617011581b788829a53106244092121dd460c153aa2"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
@@ -28506,17 +28506,6 @@
         "AGENTS.md"
       ],
       "title": "The Sum of Our Technology"
-    },
-    {
-      "path": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24.pdf",
-      "kind": "file",
-      "purpose": "R29 native review PDF generated by the unchanged canonical publisher and explicit review print producer.",
-      "role": "history",
-      "owner": "review/issue-2/2026-10-24-r29-problem-framing.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "The_Sum_of_Our_Technology_R29_2026-10-24.pdf"
     },
     {
       "path": "review/issue-2/r29-20261024/The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz",
@@ -49219,6 +49208,17 @@
         "AGENTS.md"
       ],
       "title": "secrets-baseline.json"
+    },
+    {
+      "path": "tools/quality/secrets-issue213.json",
+      "kind": "file",
+      "purpose": "Issue213 finite exact public-identifier secret-scan dispositions, source-bound proof and unchanged closed-ledger limits.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-issue213.json"
     },
     {
       "path": "tools/quality/secrets-publication.json",

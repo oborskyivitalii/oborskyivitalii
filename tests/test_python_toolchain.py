@@ -22,9 +22,11 @@ class PythonToolchainTests(unittest.TestCase):
         "opentelemetry-api==1.45.2\nopentelemetry-sdk==1.45.2\n"
         "opentelemetry-exporter-otlp-proto-http==1.45.2\n"
         "opentelemetry-semantic-conventions==0.66b2\n"
+        "wcmatch==11.2\nbracex==3.2\n"
     )
     declarations = [
         "mcp==1.29.0",
+        "wcmatch~=8.3",
         "opentelemetry-api~=1.37.0",
         "opentelemetry-sdk~=1.37.0",
         "opentelemetry-exporter-otlp-proto-http~=1.37.0",
@@ -49,6 +51,8 @@ class PythonToolchainTests(unittest.TestCase):
             distribution(
                 "opentelemetry-semantic-conventions", "0.66b2", ["opentelemetry-api==1.45.2"]
             ),
+            distribution("wcmatch", "11.2", ["bracex>=3.2"]),
+            distribution("bracex", "3.2"),
         ]
 
     def test_exact_reviewed_set_and_all_other_constraints_pass(self):
@@ -56,7 +60,7 @@ class PythonToolchainTests(unittest.TestCase):
         original = copy.deepcopy(graph)
         result = TOOLCHAIN.verify(self.lock, graph)
         self.assertTrue(result["pass"])
-        self.assertEqual((result["packages"], result["dependencies"]), (7, 11))
+        self.assertEqual((result["packages"], result["dependencies"]), (9, 13))
         self.assertEqual(
             result["compatibilityOverrides"],
             [
@@ -64,6 +68,11 @@ class PythonToolchainTests(unittest.TestCase):
                     "package": "semgrep",
                     "declared": "mcp==1.29.0",
                     "installed": "mcp==1.30.0",
+                },
+                {
+                    "package": "semgrep",
+                    "declared": "wcmatch~=8.3",
+                    "installed": "wcmatch==11.2",
                 },
                 {
                     "package": "semgrep",
@@ -85,7 +94,7 @@ class PythonToolchainTests(unittest.TestCase):
         self.assertEqual(graph, original, "all distribution metadata stays unmodified")
         graph[1].requires.append("packaging[verify]>=20")
         graph[2].requires = ["mcp>=1.30; extra == 'verify'"]
-        self.assertEqual(TOOLCHAIN.verify(self.lock, graph)["dependencies"], 13)
+        self.assertEqual(TOOLCHAIN.verify(self.lock, graph)["dependencies"], 15)
 
     def test_graph_without_semgrep_needs_no_compatibility_record(self):
         result = TOOLCHAIN.verify(
@@ -126,6 +135,10 @@ class PythonToolchainTests(unittest.TestCase):
     def test_unreviewed_versions_fail_even_when_lock_matches_installation(self):
         cases = [
             ("semgrep", "1.179.0"),
+            ("wcmatch", "8.5.2"),
+            ("wcmatch", "11.1"),
+            ("wcmatch", "11.2.1"),
+            ("bracex", "3.0.1"),
             ("mcp", "1.29.0"),
             ("mcp", "1.30.1"),
             ("mcp", "2.2.0"),

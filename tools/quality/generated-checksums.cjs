@@ -632,6 +632,73 @@ function collectChecksumFields({ lock, revision, previews, bundle, read, readByt
   return result;
 }
 
+function guideBase(projectRoot) {
+  const result = cp.spawnSync(
+    'git',
+    [
+      '--no-replace-objects',
+      '-C',
+      projectRoot,
+      'rev-parse',
+      '--verify',
+      'refs/remotes/origin/main^{commit}',
+    ],
+    { encoding: 'utf8', timeout: 15000 }
+  );
+  const value = result.stdout?.trim();
+  return result.status === 0 && /^[a-f0-9]{40}$/.test(value) ? value : null;
+}
+
+function collectGuideChecksumFields(projectRoot, read) {
+  const result = new Map();
+  const base = guideBase(projectRoot);
+  if (!base) return result;
+  // The checker reads committed source. Never use that proof for dirty receipt bytes.
+  if (publicationGit(projectRoot, ['status', '--porcelain', '--untracked-files=no']).length)
+    return result;
+  const head = publicationGit(projectRoot, ['rev-parse', 'HEAD']).toString().trim();
+  const ancestor = publicationGit(projectRoot, ['merge-base', base, head]).toString().trim();
+  const files = publicationGit(projectRoot, ['diff', '--name-only', ancestor, head, '--', 'review'])
+    .toString()
+    .trim()
+    .split('\n')
+    .filter((file) => /^review\/issue-[1-9][0-9]*\/workflow-guide-evidence\.json$/.test(file));
+  if (files.length !== 1) return result;
+  for (const file of files) {
+    const record = JSON.parse(read(file));
+    if (record.base_sha !== ancestor) continue;
+    const checked = cp.spawnSync(
+      'python3',
+      [
+        'tools/check_ri_ci.py',
+        'guide-review',
+        '--root',
+        projectRoot,
+        '--base-sha',
+        record.base_sha,
+        '--head-sha',
+        head,
+      ],
+      { cwd: projectRoot, encoding: 'utf8', timeout: 15000, maxBuffer: 1024 * 1024 }
+    );
+    if (checked.status !== 0) continue;
+    const actual = JSON.parse(checked.stdout);
+    if (
+      actual.review_receipt !== file ||
+      actual.base_sha !== record.base_sha ||
+      actual.scope_sha256 !== record.scope_sha256 ||
+      !['reviewed-unchanged', 'reviewed-updated'].includes(actual.decision)
+    )
+      continue;
+    const fields = new Map();
+    bind(fields, ['scope_sha256'], actual.scope_sha256);
+    fields.set(key(['base_sha']), { value: actual.base_sha, spans: new Set([1]) });
+    const text = read(file);
+    result.set(file, checksumRecord(text, jsonSpans(text, fields)));
+  }
+  return result;
+}
+
 function sourceIdentity(projectRoot) {
   const builder = require(path.join(projectRoot, 'tools/site/build.cjs'));
   const files = ['site', 'tools/site', 'tools/publishing'].flatMap((directory) =>
@@ -646,12 +713,24 @@ function sourceIdentity(projectRoot) {
   );
   for (const file of ['package.json', 'package-lock.json', 'tools/quality/generated-checksums.cjs'])
     if (fs.existsSync(path.join(projectRoot, file))) files.push(file);
+  const map = '.github/ri-ci-map.json';
+  if (fs.existsSync(path.join(projectRoot, map))) {
+    files.push(
+      map,
+      '.github/repository-paths.json',
+      'tools/check_ri_ci.py',
+      'guides/REPOSITORY-WORKFLOW.md'
+    );
+    const coupling = JSON.parse(readRegular(projectRoot, map));
+    files.push(...coupling.reviewed_source_identity.inputs.map((input) => input.path));
+  }
   const captures = 'review/site-v1-20261004-v11-captures';
   for (const file of builder.files(path.join(projectRoot, captures)))
     files.push(captures + '/' + file);
   return digest(
     JSON.stringify([
       publicationGit(projectRoot, ['rev-parse', 'HEAD^{commit}', 'HEAD^{tree}']).toString('utf8'),
+      guideBase(projectRoot),
       files.sort().map((file) => [file, digest(readRegular(projectRoot, file))]),
     ])
   );
@@ -687,6 +766,8 @@ function proveGeneratedChecksums(projectRoot = root) {
     readBytes,
   });
   for (const [file, record] of collectPublicationChecksumFields(projectRoot, read))
+    collected.set(file, record);
+  for (const [file, record] of collectGuideChecksumFields(projectRoot, read))
     collected.set(file, record);
   const proved = new Map(),
     privateFiles = new Map();
@@ -771,6 +852,7 @@ module.exports = {
   verifiedGeneratedChecksumFinding,
   collectChecksumFields,
   collectPublicationChecksumFields,
+  collectGuideChecksumFields,
   admitGeneratedChecksumFindings,
   findingKey,
 };
