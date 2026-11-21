@@ -377,7 +377,8 @@
         "tools/quality/analytics-isolation.cjs",
         "tests/fixtures/catalog.cjs",
         "tools/publishing/web-media.py",
-        "tools/quality/toolchain/requirements.txt"
+        "tools/quality/toolchain/requirements.txt",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -522,7 +523,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "site/templates/components/legal-notices.html"
+        "site/templates/components/legal-notices.html",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -787,7 +789,8 @@
         "tools/quality/analytics-browser.cjs",
         "tools/quality/article-browser.cjs",
         "tools/quality/article-tags-browser.cjs",
-        "tools/quality/color-browser.cjs"
+        "tools/quality/color-browser.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -811,7 +814,8 @@
         "LICENSE-CODE.md",
         "LICENSE-CONTENT.md",
         "NOTICE.md",
-        "tools/site/legal.cjs"
+        "tools/site/legal.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -851,7 +855,8 @@
         "tools/quality/advisory-exceptions.json",
         "tools/quality/toolchain/requirements.txt",
         "tools/quality/toolchain/package-lock.json",
-        "tools/quality/browser-archives.json"
+        "tools/quality/browser-archives.json",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -909,7 +914,8 @@
         "tools/site/build.cjs",
         "site/engine/**",
         "site/scenes/**",
-        "site/site.json"
+        "site/site.json",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -1001,7 +1007,8 @@
         "site/engine/styles.css",
         "docs/styles.css",
         "tests/fixtures/catalog.cjs",
-        "tools/staging/color.cjs"
+        "tools/staging/color.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -1020,7 +1027,8 @@
         "site/scenes/world.cjs",
         "site/engine/**",
         "site/scenes/**",
-        "site/site.json"
+        "site/site.json",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -1594,7 +1602,8 @@
         "tests/architecture.test.cjs",
         "tools/quality/architecture.cjs",
         "site/**",
-        "tools/site/**"
+        "tools/site/**",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -1616,7 +1625,8 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -1654,7 +1664,8 @@
         "review/issue-169/trusted-reader-producer.json",
         "review/issue-179/seo-producers.json",
         "tools/check_site_seo.cjs",
-        "review/issue-213/content-amendment.json"
+        "review/issue-213/content-amendment.json",
+        "tools/publishing/profile.cjs"
       ],
       "content": true
     },
@@ -1999,7 +2010,7 @@
     {
       "path": "tests/site-articles.test.cjs",
       "language": "javascript",
-      "purpose": "Native reader, local catalog/dates/translations, draft isolation, byte bounds, cold equality, retained immutable closure and history; selected public material source/resource closure and working campaign isolation",
+      "purpose": "Native reader, local catalog/dates/translations, draft isolation, byte bounds, cold equality, retained immutable closure and history; selected public material source/resource closure and working campaign isolation; exact canonical native reading, origin-policy warm/cold dependency and ambiguity/admission refusal",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2014,7 +2025,8 @@
         "site/engine/scroll-entry.cjs",
         "site/engine/reading-surfaces.css",
         "site/templates/**",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/profile.cjs"
       ],
       "content": true
     },
@@ -2030,7 +2042,8 @@
       "inputs": [
         "tests/site-transaction.test.cjs",
         "tools/site/transaction.cjs",
-        "tools/site/build.cjs"
+        "tools/site/build.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -2069,7 +2082,8 @@
         "tools/site/**",
         "tools/quality/article-browser.cjs",
         "tools/quality/serve.cjs",
-        "tools/quality/hosted.cjs"
+        "tools/quality/hosted.cjs",
+        "tools/publishing/profile.cjs"
       ],
       "content": true
     },
@@ -2219,7 +2233,8 @@
         "site/templates/**",
         "site/engine/navigation.js",
         "site/article-template-preview.json",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -2267,7 +2282,8 @@
         "tests/fixtures/catalog.cjs",
         "tools/staging/color.cjs",
         "tools/site/edition-retention.cjs",
-        "tools/site/html.cjs"
+        "tools/site/html.cjs",
+        "tools/publishing/profile.cjs"
       ],
       "content": true
     },
@@ -2374,7 +2390,8 @@
         "tools/site/legal.cjs",
         ".github/workflows/site-pages.yml",
         "tools/quality/budgets.json",
-        "tools/quality/common.cjs"
+        "tools/quality/common.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -2474,7 +2491,8 @@
         "tools/quality/budgets.json",
         "tools/quality/common.cjs",
         "tools/quality/color-motion-contract.cjs",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/profile.cjs"
       ]
     },
     {
@@ -2580,7 +2598,8 @@
         "tools/quality/article-tags-browser.cjs",
         "tools/quality/local-browser.cjs",
         "tools/release/rights.cjs",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/publishing/profile.cjs"
       ],
       "content": true
     },
@@ -3058,7 +3077,11 @@
         "tools/release/edition.cjs",
         "tools/quality/candidate-source.cjs",
         "site/rights.json",
-        "tools/quality/source-tests.cjs"
+        "tools/quality/source-tests.cjs",
+        "tools/publishing/profile.cjs",
+        "tools/site/articles.cjs",
+        "tools/site/build.cjs",
+        "site/publications/policy.json"
       ]
     }
   ]

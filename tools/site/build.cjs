@@ -437,10 +437,19 @@ function prepareArticles(
   preview,
   archiveDigests
 ) {
-  const nativeEditions = articles.nativeEditionLinks(catalog);
+  const nativeLinkInputs =
+    selectedArticles.length &&
+    Object.values(catalog.records).some((record) => record.kind === 'local-article')
+      ? ['site/publications/policy.json']
+      : [];
+  const nativeOrigin = nativeLinkInputs.length
+    ? require('../publishing/profile.cjs').productionOrigin(root)
+    : null;
+  const nativeEditions = articles.nativeEditionLinks(catalog, nativeOrigin);
   const seen = new Map();
   for (const article of selectedArticles) {
     article.input = articles.input(root, article, nativeEditions);
+    article.input.inputs = [...new Set(article.input.inputs.concat(nativeLinkInputs))];
     article.inputDigests = fileDigests(root, article.input.inputs, seen);
     const publicInputs = { ...article.inputDigests };
     // The native block binds only selected reviewed declarations. Keep the raw

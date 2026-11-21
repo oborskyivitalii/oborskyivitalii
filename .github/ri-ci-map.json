@@ -880,7 +880,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b273e3f81309f1e87244776fcb603258176a004f94113ae9bf1fd32ce0a9bf8f",
+    "digest": "70dfc472de6ca5a584f5ec01a0c3f6e8a73a3c12521d3714a17995dfac10576f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -1076,7 +1076,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7f2644ceea0281c13c50d3cc2463d4a491869030329b7a20a9683e72b2597a2c"
+        "sha256": "4cf9ee5d584f6649b44160971b682a480c24e8e51dc16776366f7f60ae21287a"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1384,7 +1384,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "6006840658cd54ee4f8daa8ecb395a3ce0b53726bc5bbac08f94e64f44090e48"
+        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

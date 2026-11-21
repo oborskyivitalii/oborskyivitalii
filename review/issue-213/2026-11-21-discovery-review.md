@@ -382,3 +382,131 @@ changed while the last cases ran, but selected JavaScript producer/fixture/right
 and public bytes stayed exact5057. Do not label that broader working tree clean5057.
 Next clean owning run binds the wrapper fix and all final source identity; prior seven
 owning checks remain preserved successful observations of5057, not substituted results.
+
+
+### First native Preview and F01 correction iteration
+
+Nativec0ef2a9c8e3a500cad48254c1cac625178c5ffcf is the exact prepared2439 tree
+6902b57e8fad31d59c4c8ed6a69b0d2c4729b75d, published through the native Git
+object API. Local direct push lacked credentials; no login/credential bypass.
+Fetched the branch, preserved checkpoint/issue-213-reviewed-2439, and soft-reset
+the identical tree to the native head only after clean owning execution completed.
+Native current selection independently validated all8 accepted article histories.
+
+Clean prepared2439 owning acceptance passed all8checks: BASIC, SEO, DISCOVERY,
+CATALOG, PUBLISHING, STYLE, RI and RI-CI. Full report is acceptance-2439.json;
+evidence valid, source_dirty false, no errors, whole issue closure false. Fresh
+/root/issue213_timeout_requirements, /root/issue213_timeout_code and
+/root/issue213_timeout_whitebox were explicitly fork-none/no model/effort overrides,
+accepted distinct handles. Their unchanged own outputs are timeout-requirements.md,
+timeout-code.md and timeout-whitebox.md; packet00422665646c91fc53c68d21ec91a895bc4497a96e5ccd1923635534fad3cfe1.
+White-box executed16bounded timeout/error/accounting probes. No provider model/history
+internal attestation is inferred. These checks/reviews concern previous2439/c0 scope.
+
+DraftPR216: https://github.com/oborskyivitalii/oborskyivitalii/pull/216.
+Controller44926113407 passed candidate/build/package/publish and HTTP identity.
+Immutable first Preview https://32989176.oborskyi-author-ci-staging.pages.dev;
+PRalias https://pr-216.oborskyi-author-ci-staging.pages.dev; botcomment7065916267.
+Source/issue/browser admission is deferred for Draft, not falsely marked passed;
+stable, merge and production were not attempted. All original whole ACs remain open.
+
+Preparatory /root/issue213_exploratory was explicitly fork-none but accidentally
+listed agents while awaiting URL and saw current peer completion summaries. Its
+entire result is excluded, preserved unchanged in exploratory-excluded.md; no part
+supplies independent acceptance. Fresh distinct /root/issue213_exploratory_hosted
+was explicitly fork-none, no model/effort overrides, accepted newhandle; its own
+first hosted output is exploratory-hosted-initial.md. No peer result/agent-list
+read was reported in that execution; provider internals remain unknown. It observed
+actual desktop opening/contents/table and Research→SDLC, but requested F01 correction:
+three new contextual native links leave candidate origin. Initial attempt to click
+production was automatically rejected for staging-only scope; no bypass/retry or
+production observation followed. A safer in-scope correction preserves candidate
+origin. Mobile/noJS controls were unavailable in documented browserAPI; direct
+hostedPDF ordinaryHTTP403 leaves its byte/download observation pending. Independent
+prior Code five-page visual/parity evidence remains separately source-bound.
+
+Fresh Requirements preflight /root/issue213_native_link_preflight, explicit
+fork-none, accepted distinct handle, inspected actual source and factual F01 excerpt
+without peer verdicts. First result native-link-preflight.md supports bounded
+correction with strict policy/credit/cache/refusal and hosted-rewalk obligations.
+Packet4552dd3c9b171e82e43a25d0baca1e7716e039a2033293a2980e565220bfc07a.
+
+Extract the existing strict productionOrigin(root) validator in publishing/profile
+without changing its rejection set/error semantics, and reuse it from the actual
+native build context. Add exact configured-origin+catalog-admitted alias to the
+existing ambiguity-refusing reading map. Source credits/title/self exclusion and
+reader presentation are unchanged. Manuscripts, frozen editions/events, all PDF and
+rights/licensing sources are byte-identical to nativec0. Builder adds policy bytes
+to article input hashes/concurrency reread only when native consumers exist; no
+unrelated-build prerequisite or missing-policy fallback. Nineteen existing permanent
+build-consumer selectors add the actual profile dependency; owning DISCOVERY keeps
+its maintained reader suite and adds explicit new owner inputs.
+
+First bounded probe2/3 failed because the synthetic fixture deleted policy together
+with replaced article sources; this was a fixture omission, not permission to bypass
+validation. Preserve the actual policy file in the four inspected publication-reset
+fixtures. Corrected probe3/3 and focused141/141 passed, zero skip/cancel/todo. Extended
+native reading checks cover root alias/immutable snapshot, source credit, unadmitted/
+lookalike/query/fragment, admission removal, canonical/platform collision, warm/cold
+origin-only policy invalidation and invalid-origin refusal. Unrelated no-native build
+with absent policy is explicitly accepted; real native consumer invalid-policy still
+fails. Raw probes/141-case output and source proposal/derivation are in
+native-link-preparation-evidence.tar.xz. Current code ESLint passed.
+
+Regenerated docs show all3 F01 links as relative native aliases. Actual derived
+base/plain/staging/production runtime identities and all5 CSS/JS hashes are exactly
+unchanged from c0; no new Color family or relaxed runtime matcher is needed. Article
+snapshot versions correctly change with rendering inputs. All120 prior production
+immutable files and83declared retention entries must still be checked. Fresh exact
+corrected-candidate roles/owning checks and corrected hosted rewalk are pending.
+
+
+Initial F01 RI preparation refused a tracked generated snapshot removed by the
+ordinary rebuild: index still listed the old active docs path although the authored
+catalog had its current replacement. This is not a waived preservation check; the
+required old production snapshots remain in declared retention. Stage the actual
+new/deleted generated paths before the strict RI walk, then regenerate/verify against
+that admitted inventory. No RI bound/exclusion or publication retention changed.
+
+
+### F01 exact source review and R-F02 producer pin reconciliation
+
+Clean prepareda10ae283ac87e7cab48457f0597cbdcf5e2fd46a,
+tree30a95aacce77c4f3bef6676ff551968ad852256a, received fresh explicit
+fork-none, no model/effort override, separate accepted handles
+/root/issue213_native_link_requirements, /root/issue213_native_link_code and
+/root/issue213_native_link_whitebox. Their own unchanged first outcomes are
+native-link-requirements.md, native-link-code.md and native-link-whitebox.md;
+packet2eedbf948b45c89dc90a6d619a651f808f1a085d88f7ff8326dc896b4037af4d.
+Code/White-box found bounded F01 correction sound and independently exercised
+source/refusal/old immutable closure. Requirements correctly holds overall advancement
+for R-F02: actual current Social carrier producer bytes assertion. Provider internals
+remain unknown; no peer verdict supplied as an independent oracle.
+
+Complete clean a10 owning report is acceptance-a10.json, evidence_valid true,5/8pass:
+BASIC/PUBLISHING/STYLE/RI/RI-CI pass; SEO rejects the new exact build source hash;
+CATALOG55/56 has its fresh SEO CLI case fail with that same pin; DISCOVERY's four
+executive Social/Writing/Research/hierarchy cases fail at the same exact guard while
+its other maintained modules, including release-rights, complete. None is relabelled
+current pass. The complete run finished before any pin/source mutation.
+
+Fresh /root/issue213_producer_pin_preflight, explicit fork-none, accepted distinct
+execution, independently inspected every build-source pin route, raw first failure,
+unchanged carrier source and existing negatives. Its first output is
+producer-pin-preflight.md. Only Social's explicit successor array controls the current
+build hash; both Research/Writing proofs delegate to it. Home and other frames have
+no additional build.cjs pin. Append only exact SHA256
+6832551602bee5d7281595e07bec7006cf9ccb97f3305638d0fe2bfe2879039b.
+Frozen #179 record/digest, old successors, historical predecessor pins, all SVG/resource
+reconstructions and unrelated page semantic checks remain unchanged. No wildcard,
+record rewrite, unknown producer or changed-geometry acceptance is introduced.
+
+The resulting complete SEO CLI passes all five original page comparisons, and the
+bounded four executive cases pass4/4 including original forged-record, appended-source,
+source/geometry/resource negatives. Raw first error, current SEO result and4case
+execution are in producer-pin-evidence.tar.xz. This is a reasoned exact-hash correction
+after a distinct source-code review, not deleting/reducing an assertion. It changes
+no product output, source manuscript, frozen edition/event, PDF, runtime, budget or
+release decision. Fresh narrow oracle correction review and current full owning
+acceptance remain required before advancement. F01 actual corrected hosted rewalk is
+still pending; mobile/noJS/hosted PDF response remain explicit limits.

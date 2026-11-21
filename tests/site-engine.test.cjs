@@ -25,6 +25,11 @@ function fixture(t) {
   // These legacy route/cache cases do not carry the repository's accepted Git sources.
   isolateLegacyCatalog(dir, root);
   fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(dir, 'site/publications'));
+  fs.copyFileSync(
+    path.join(root, 'site/publications/policy.json'),
+    path.join(dir, 'site/publications/policy.json')
+  );
   fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;

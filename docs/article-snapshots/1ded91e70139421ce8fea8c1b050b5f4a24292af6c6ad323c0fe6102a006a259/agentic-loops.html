@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="A control-theory perspective on agentic loops and engineering control."/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="site-effects-contract" content="1"/>
+<title>Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops — Vitalii Oborskyi</title>
+<meta name="author" content="Vitalii Oborskyi"/>
+<meta property="og:site_name" content="Vitalii Oborskyi"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops — Vitalii Oborskyi"/>
+<meta property="og:description" content="A control-theory perspective on agentic loops and engineering control."/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops — Vitalii Oborskyi"/>
+<meta name="twitter:description" content="A control-theory perspective on agentic loops and engineering control."/>
+<!-- prettier-ignore -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","name":"Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops","headline":"Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops","description":"A control-theory perspective on agentic loops and engineering control.","inLanguage":"en","author":[{"@type":"Person","name":"Vitalii Oborskyi","url":"https://vitaliioborskyi.ai/"}],"datePublished":"2026-11-16T15:44:29Z","dateModified":"2026-11-16T15:44:29Z"}
+  </script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/theme.js"></script>
+<link rel="stylesheet" href="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/styles.css"/>
+<link rel="icon" href="../../media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg" type="image/svg+xml"/>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/space.js" defer></script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/archive.js" defer></script>
+<script src="../../runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/navigation.js" defer></script>
+  <script data-site-analytics="cloudflare" src="../../runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js" defer></script>
+
+  <meta name="site-engine" content="87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab">
+  <meta name="site-route" content="1ded91e70139421ce8fea8c1b050b5f4a24292af6c6ad323c0fe6102a006a259">
+  <meta name="site-contract" content="1">
+  <meta name="site-article-renderer" content="1">
+  <meta name="site-variant" content="base">
+<meta name="site-article" content="agentic-loops:en">
+<script type="application/json" id="site-documents">{"agentic-loops:en":{"url":"articles/agentic-loops.html","snapshot":"article-snapshots/1ded91e70139421ce8fea8c1b050b5f4a24292af6c6ad323c0fe6102a006a259/agentic-loops.html"}}</script>
+<meta name="site-base" content="../../">
+</head>
+  <body data-page="writing" data-article="agentic-loops:en">
+    <div class="space-scene" aria-hidden="true"><svg class="space-fallback" fill="none" stroke="var(--accent)" data-motif="writing" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><use href="../../article-media/2a45122d0120d0edcc7164427cf7b088c8e5e0566a5060055410961d32706b16/writing-fallback.svg#writing-fallback"></use></svg><canvas id="space-canvas"></canvas></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap"><a class="wordmark" href="../.././" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="../.././">Home</a><a href="../../research.html">Research</a><a href="../../writing.html" aria-current="page">Writing</a><a href="../../talks.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript
+    ><div class="display-controls"><label class="theme-control" hidden>Theme
+        <select id="theme-mode" aria-label="Color theme"><option value="auto">Auto · local time</option><option value="light">Day</option><option value="dark">Night</option></select></label><button id="space-motion" class="motion-control" type="button" aria-pressed="false" hidden>Motion: off</button></div></details></header>
+<main id="main" tabindex="-1" class="article-reader wrap" lang="en">
+  <article class="reader-mode" aria-labelledby="reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops">
+    <header class="article-intro">
+      <a class="reader-back" href="../../writing.html">← Back to Writing</a>
+      <h1 id="reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops">Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops</h1>
+      <p class="article-subtitle"><em>Source edition: <a href="https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/">LinkedIn</a>, 10 June 2026.</em></p>
+      <p class="article-authors">Vitalii Oborskyi <span class="reader-status">· Article</span></p>
+      <p class="reader-metadata"><span>Published on this site <time datetime="2026-11-16T15:44:29Z">16 November 2026</time></span> · <span>About 3 min read</span></p>
+    </header>
+    <div class="reader-layout">
+      <nav class="article-toc" aria-label="Article contents">
+  <details class="reader-contents">
+    <summary>Contents <span data-reader-current aria-hidden="true"></span></summary>
+    <ol><li><a href="#the-fragmented-rediscovery-of-control-theory">The Fragmented Rediscovery of Control Theory</a></li>
+<li><a href="#the-uncomfortable-questions-of-day-zero">The Uncomfortable Questions of Day Zero</a></li></ol>
+  </details>
+</nav>
+
+      <div class="reader-content">
+        <div class="article-body"><div class="reader-introduction"><figure id="figure-cover"><a class="reader-image-open" href="../../article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg" aria-label="Enlarge image: A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers."><img src="../../article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg" alt="A network of recursive AI agents sits beside a control panel for policies, guardrails, oversight, and circuit breakers." width="1200" height="674" loading="eager"></a><figcaption><p>The original cover from the June 2026 LinkedIn edition.</p><details class="reader-figure-credit"><summary>Source and image details</summary><p>Cover image from the LinkedIn edition of Vitalii Oborskyi’s article.</p></details></figcaption><a class="article-figure-original" href="../../article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg">Open full-size image</a></figure>
+<p>We are currently observing a new wave of optimism in the AI coding assistant market. The trend of the season is &quot;agentic loops.&quot; The industry narrative has rapidly shifted: it is no longer enough to give a model tools; now, you need to &quot;close the loop&quot; and create agents that monitor, review, fix, and iterate over each other’s work in a continuous cycle.</p>
+<p>From a hype-lifecycle perspective, this is an incredibly elegant operational move. As the market begins to hit the &quot;Subprime Code Crisis&quot; pattern—where rapid, unmanaged code generation creates a massive downstream bottleneck in review, testing, architectural ownership, and long-term maintainability—the default response is rarely to slow down and redesign the delivery system.</p>
+<p>Instead, engineering teams are offered a new sandbox characterized by massive combinatorial complexity. The prescription is simple: Don’t just use the assistant; build a loop around it. Then build another agent to inspect that loop. Then add another layer to improve the inspector, and patch the gaps with memory, rules, hooks, skills, reviewers, permissions, and orchestration.</p>
+<p>Consequently, teams spend more tokens, more time, and more architectural attention building recursive systems where one probabilistic component tries to validate another probabilistic component.</p>
+</div><section class="reader-chapter"><h2 id="the-fragmented-rediscovery-of-control-theory">The Fragmented Rediscovery of Control Theory</h2>
+<p>While some of these configurations are genuinely useful, we must name the underlying pattern clearly: the software industry is currently rediscovering classical Control Theory, one isolated product feature at a time.</p>
+<p>Hooks, rules, skills, review agents, subagents, automated PR loops, and self-correction cycles—these are not random, independent features. They are fragments of a control system designed to stabilize non-deterministic software behavior.</p>
+<p>The problem is not that these fragments are technically wrong. The problem is that these fragments are being sold to engineering teams without the comprehensive methodology required to run them safely. A hook is not governance. A review agent is not absolute validation authority. A self-correction loop is not automatically safe simply because it closes over its own output.</p>
+<p>A probabilistic agent checking another probabilistic agent does not constitute a reliable control system unless the signals, boundaries, systemic authority, fallback paths, and stop conditions are explicitly designed from day zero.</p>
+</section><section class="reader-chapter"><h2 id="the-uncomfortable-questions-of-day-zero">The Uncomfortable Questions of Day Zero</h2>
+<p>Why don&#39;t vendors give engineering teams the full, sober picture upfront? Because a real control framework forces leadership to answer uncomfortable operational and financial questions before a single line of code is deployed:</p>
+<p>- What is the precise control objective of this system?</p>
+<p>- What level of behavioral deviation is acceptable before a circuit breaker trips?</p>
+<p>- What does the full domain risk space look like?</p>
+<p>- Which signals in the loop are genuinely trusted?</p>
+<p>- Who holds ultimate accountability for the autonomous output?</p>
+<p>- Where, and under what exact conditions, does the loop stop?</p>
+<p>- What happens when an agent optimizes for passing localized, automated checks while systematically degrading long-term maintainability?</p>
+<p>- At what point does human review saturate and become the definitive bottleneck?</p>
+<p>- When does the ongoing cost of control outgrow the actual business value of automation?</p>
+<p>These architectural constraints are significantly harder to sell to stakeholders than the simplistic promise of &quot;just adding another agent.&quot; However, these are precisely the questions that determine whether AI-assisted engineering matures into a reliable, enterprise-grade operating model or merely becomes a more sophisticated mechanism for generating unmanaged complexity.</p>
+<p>Selling magic will always be easier than selling engineering discipline. At least until the experimentation budget runs dry.</p>
+<p>The model can propose. The system must verify. The team must still own the loop.</p>
+<p><strong>Vitalii Oborskyi</strong> is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of <a href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture">Uncertainty Architecture</a> and <a href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis">The Subprime Code Crisis</a>.</p>
+<p><a href="https://vitaliioborskyi.ai/">Author website</a> · <a href="https://www.linkedin.com/in/vitaliioborskyi/">LinkedIn</a></p>
+</section></div>
+        <div class="reader-closing">
+          <div class="reader-tags-slot"></div>
+          <div class="reader-related-slot"></div>
+          <div class="reader-appendices"><section class="article-sources" data-article-rights="662369b849ed97a7d36aa80aa09617340116186d49b9cf3fbe49eee3aca80f04"><details><summary>Edition rights and resources</summary><p>Vitalii Oborskyi. The original article text from the June 2026 LinkedIn edition is included on the author site under CC BY 4.0. Linked material retains its own terms.</p><p>Content edition: agentic-loops-en-20261116-editorial. Rights: accepted. Source SHA256 460805854efb69634d99ce89941af3900d8434432c7e1a8c5f2424a228ea16b8; semantic SHA256 0ca679688b4af36115aeede5ffcc9dff8e54e9789badef48b58e582464b2fd25.</p><ul><li>site/assets/publications/agentic-loops/cover.png · SHA256 dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b<p>Cover image from the LinkedIn edition of Vitalii Oborskyi’s article.</p><p>Pixel-equivalent source JPEG: article-media/5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360/cover.jpg · SHA256 5f8490fc28edf22e1a224c2adc10f6aa814d091ce620c059e86e4a64c7843360. Decoded RGBA SHA256 90f3296a30d3c06cdff9e62223adfa1cd2ed4c36ba65008cdbbc23c9fec9a486; color profile SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.</p></li><li>site/assets/publications/agentic-loops/cover.png · SHA256 dc50371b8287d45ee9b32404da989faa8f041986ffda413f71e0412d3bdcef5b<p>Cover image from the LinkedIn edition of Vitalii Oborskyi’s article.</p><p>Padded social preview JPEG: article-media/fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d/cover-social.jpg · SHA256 fe4ca5dc397894e9c267484abb9606022abfdb6ab31560ce988efddf21c4438d. Decoded RGBA SHA256 e9672c37c0f241fbff725e529198e4a90c5f861a05751f43ca8ff22f3495e210; color profile SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.</p></li></ul><p><a href="../../credits.html#license-scope">Site licenses and exclusions</a>. Third-party material retains its own terms; pending clearance is not a reuse grant.</p></details></section></div>
+          <nav class="reader-end" aria-label="After the article">
+            <a href="../../writing.html">← More writing</a>
+            <a href="#reinventing-control-theory-one-feature-at-a-time-the-fallacy-of-agentic-loops">Back to top ↑</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <dialog class="reader-dialog reader-image-dialog" aria-label="Image viewer" hidden>
+  <div class="reader-dialog-header">
+    <h2>Image</h2>
+    <button type="button" data-reader-close aria-label="Close image viewer">Close</button>
+  </div>
+  <div class="reader-image-stage" data-reader-image tabindex="0" aria-label="Image detail"></div>
+  <p class="reader-image-caption" data-reader-image-caption></p>
+  <div class="reader-dialog-actions">
+    <button type="button" data-reader-zoom aria-pressed="false">Actual size</button>
+    <a href="#main" data-reader-image-original>Open original image</a>
+  </div>
+</dialog>
+<dialog class="reader-dialog reader-note-dialog" aria-label="Reference" hidden>
+  <div class="reader-dialog-header">
+    <h2 data-reader-note-title>Reference</h2>
+    <button type="button" data-reader-close aria-label="Close reference">Close</button>
+  </div>
+  <div class="reader-note-body" data-reader-note-body></div>
+  <div class="reader-dialog-actions">
+    <a href="#main" data-reader-note-full>View in sources and references</a>
+  </div>
+</dialog>
+
+  </article>
+</main>
+<footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="../.././#about">About</a><a href="../.././#contact">Contact</a><a href="../../credits.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
+</body>
+</html>

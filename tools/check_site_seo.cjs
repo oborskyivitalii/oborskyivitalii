@@ -263,6 +263,8 @@ function socialCarrierProducer(name, expected, projectRoot = root, record = soci
     'tools/site/build.cjs': [
       '6c146f73fa02ee2d7a35d868b53305469d30e9fee31b8ca99b7e2bfe8cb69920',
       'c03539be6fbc0eca360eee521289ff49d2c3b004fe4407d40691755b89abaa8e',
+      // #213 changes native reading inputs; Research/Writing carrier proofs stay exact.
+      '6832551602bee5d7281595e07bec7006cf9ccb97f3305638d0fe2bfe2879039b',
     ],
     'tools/site/snapshot.cjs': ['8d280c374a52229bd0b9d88f695e0d692714cba995c5f685b480a5b508b5b7d1'],
   };

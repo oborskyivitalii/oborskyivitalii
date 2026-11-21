@@ -1285,51 +1285,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/3c5955e0b0addfd82740b4b03b34bb846f8ecc8d0817f29d4b78c51e9de67393": {
+    "docs/article-snapshots/1ded91e70139421ce8fea8c1b050b5f4a24292af6c6ad323c0fe6102a006a259": {
       "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/3c5955e0b0addfd82740b4b03b34bb846f8ecc8d0817f29d4b78c51e9de67393/beyond-embeddings.html": {
+    "docs/article-snapshots/1ded91e70139421ce8fea8c1b050b5f4a24292af6c6ad323c0fe6102a006a259/agentic-loops.html": {
       "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/49e0ea174cdaad3b6f22ec139be339cb48b166f0dc5532083bf13ad2533f9af6": {
+    "docs/article-snapshots/47b1dc770c582d94dc23b17c9c4798381adade0d70baf956c41a92391e5f0947": {
       "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/49e0ea174cdaad3b6f22ec139be339cb48b166f0dc5532083bf13ad2533f9af6/ai-governance-is-control-theory.html": {
+    "docs/article-snapshots/47b1dc770c582d94dc23b17c9c4798381adade0d70baf956c41a92391e5f0947/ai-native-workflows-have-a-moat-problem.html": {
       "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/4abc49c8c4306e82d9609ed5fff7d4b7802c634f1025da7a044e08ce8d9fa9d0": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/4abc49c8c4306e82d9609ed5fff7d4b7802c634f1025da7a044e08ce8d9fa9d0/the-sdlc-is-out-of-balance.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/4dbba2b5a9f72ceaca420d00798ebb02f761e4f762b624c59f48985481ddc7e9": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/4dbba2b5a9f72ceaca420d00798ebb02f761e4f762b624c59f48985481ddc7e9/ai-verification-crisis.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1345,6 +1321,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-snapshots/5baea6abf1b2abef010afc982a93b8ae1da3354dd139b359d4c43f8e876bacc1": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/5baea6abf1b2abef010afc982a93b8ae1da3354dd139b359d4c43f8e876bacc1/the-sdlc-is-out-of-balance.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-snapshots/5c246b819b84aebed856278dc2ec0ae3bb0d7cbfdfb674b49dbef98b58a42aae": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
@@ -1357,15 +1345,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/65d783d4f715bc93ff96f10fd4126f4edec5c9922f7505f20c095bb861aa84c8": {
+    "docs/article-snapshots/5d3496d47cddb0bcc6d5c81adffe68dd00c5a886baf975bf9929c095157b0b20": {
       "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/65d783d4f715bc93ff96f10fd4126f4edec5c9922f7505f20c095bb861aa84c8/thinking-systems.html": {
+    "docs/article-snapshots/5d3496d47cddb0bcc6d5c81adffe68dd00c5a886baf975bf9929c095157b0b20/beyond-embeddings.html": {
       "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1393,18 +1381,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/b6acb903294d36d3c79f734626abd82b61573060d462892638c167567c44ac11": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/b6acb903294d36d3c79f734626abd82b61573060d462892638c167567c44ac11/ai-cost-cutting-fallacy.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/article-snapshots/bcad10190551a8e82e0713817d284c87d64b2995574d01f8a1df22182ea4e003": {
       "kind": "directory",
       "purpose": "Exact current native raw article rendition and existing immutable closure; no prior-publication claim.",
@@ -1417,15 +1393,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c8aaddee17496e9439edc7e638e73979a2e26be61e03cf58e657d0cad2f8592f": {
+    "docs/article-snapshots/c0e660aaa5fc7f118feb51db4564a955853ab3a36506dbf65c4cd732cc985a43": {
       "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/c8aaddee17496e9439edc7e638e73979a2e26be61e03cf58e657d0cad2f8592f/ai-native-workflows-have-a-moat-problem.html": {
+    "docs/article-snapshots/c0e660aaa5fc7f118feb51db4564a955853ab3a36506dbf65c4cd732cc985a43/ai-verification-crisis.html": {
       "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1453,6 +1429,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/article-snapshots/d37e06bd7ec5a55e0aea2d2a63d1830ea8abc81e5ef2451118e178b3643ced65": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/d37e06bd7ec5a55e0aea2d2a63d1830ea8abc81e5ef2451118e178b3643ced65/thinking-systems.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/e22cbc06db6b3dda1f0ca7e98cec69cbd6da2ef24ef4f7f236fd69419ff54625": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/e22cbc06db6b3dda1f0ca7e98cec69cbd6da2ef24ef4f7f236fd69419ff54625/ai-governance-is-control-theory.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/article-snapshots/e6c18bd39d79a2be547cb69f15184331569c5a7a1feecb8249d79762d7b28a58": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
@@ -1465,18 +1465,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/article-snapshots/e82be64f14d0a29e912974c6886c04b59dee3212f9ef1df38badc72fda1a72ba": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/article-snapshots/e82be64f14d0a29e912974c6886c04b59dee3212f9ef1df38badc72fda1a72ba/agentic-loops.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/article-snapshots/ebcc5f1b1565d262dbfd000aca2a4ecf6f871e883890d16e48cdbc00ec754b10": {
       "kind": "directory",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
@@ -1486,6 +1474,18 @@
     "docs/article-snapshots/ebcc5f1b1565d262dbfd000aca2a4ecf6f871e883890d16e48cdbc00ec754b10/thinking-systems.html": {
       "kind": "file",
       "purpose": "Current immutable generated room/article snapshot and complete runtime/resource closure.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f8907face6a7b6e42a3a8d28ab07382c56bc9b72365204c810b7feac9b354773": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/article-snapshots/f8907face6a7b6e42a3a8d28ab07382c56bc9b72365204c810b7feac9b354773/ai-cost-cutting-fallacy.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2005,6 +2005,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/45f7a835d87c532b638ac8e98f103eeb36d8297542337fa8a1560ef8aad5309d": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/45f7a835d87c532b638ac8e98f103eeb36d8297542337fa8a1560ef8aad5309d/index.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/53cdaea75d292abcc05433af0b5f6a10fdef86c5f3c27177fb54df3aad36cc16": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/53cdaea75d292abcc05433af0b5f6a10fdef86c5f3c27177fb54df3aad36cc16/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/55d86ad8e2b857fb2f5b638ab402120c7e21700f38332834809068fc3bfff66d": {
       "kind": "directory",
       "purpose": "Generated current article social rendition, document or dependent snapshot; regenerate from canonical site owners.",
@@ -2026,6 +2050,30 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5902cb9feb65132393351d3b6ce13fc80dc85a906272f33449cbcbae30eb75ee": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5902cb9feb65132393351d3b6ce13fc80dc85a906272f33449cbcbae30eb75ee/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/60452aab516dcba1fc83f5aafbd75ff6c572f858e14d17d2d9f71da3085c1ca7": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/60452aab516dcba1fc83f5aafbd75ff6c572f858e14d17d2d9f71da3085c1ca7/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -2161,6 +2209,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/ad9a6abd776b85bd01f24604284865bc6e0ff47193fd29413eb4ed95059bb2de": {
+      "kind": "directory",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ad9a6abd776b85bd01f24604284865bc6e0ff47193fd29413eb4ed95059bb2de/research.html": {
+      "kind": "file",
+      "purpose": "Generated current native site snapshots derived from authored sources and retained-edition contract.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -2197,18 +2257,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/cfe7d4e603393a593ccdeb2dc7dad89a270310dc57393b78d1d7c4a6130e0bc0": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/cfe7d4e603393a593ccdeb2dc7dad89a270310dc57393b78d1d7c4a6130e0bc0/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647": {
       "kind": "directory",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
@@ -2218,54 +2266,6 @@
     "docs/snapshots/d01db7e0413c8492a9bc7e1f37eca13de3fe901585c7a1ce8db237c89320f647/writing.html": {
       "kind": "file",
       "purpose": "Verified prior production immutable snapshot retained with its exact published bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5924f55c44be9cf6bdc27d0d5880fd9210c9addc964bb60e7a6114f663ec5d0": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5924f55c44be9cf6bdc27d0d5880fd9210c9addc964bb60e7a6114f663ec5d0/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/dae1879ee439733f012e327317edc9a4a42eb82224e95c7bc293c91d998c1371": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/dae1879ee439733f012e327317edc9a4a42eb82224e95c7bc293c91d998c1371/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fa6bb827df49c5d8376e32757569f2e2f628533d0cc549610f5020b13f4969a8": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fa6bb827df49c5d8376e32757569f2e2f628533d0cc549610f5020b13f4969a8/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ff3f0b8f80e6da3d4df704798e17c1426d9f8003c067e6d044f9b2ba7858027e": {
-      "kind": "directory",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ff3f0b8f80e6da3d4df704798e17c1426d9f8003c067e6d044f9b2ba7858027e/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable publication resource or snapshot retained by the native site producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -7981,9 +7981,21 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/acceptance-2439.json": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/acceptance-5057.json": {
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/acceptance-a10.json": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8029,6 +8041,18 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/exploratory-excluded.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/exploratory-hosted-initial.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/fixture-diagnostic-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Issue213 source-bound independent preflight or preserved failed fixture diagnosis and accounting.",
@@ -8038,6 +8062,36 @@
     "review/issue-213/integration-5057-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-link-code.md": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-link-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-link-preparation-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-link-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/native-link-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8056,6 +8110,18 @@
     "review/issue-213/preparation-evidence.tar.xz": {
       "kind": "file",
       "purpose": "Exact preparation-source failures, initial Basic failure, PDF AST/parity and bounded source-check evidence; not clean final or hosted acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/producer-pin-evidence.tar.xz": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/producer-pin-preflight.md": {
+      "kind": "file",
+      "purpose": "Issue213 independent source/oracle correction judgment or exact-source failure/success evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -8113,9 +8179,27 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-213/timeout-code.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-213/timeout-preflight.md": {
       "kind": "file",
       "purpose": "Issue213 preserved independent judgment or exact-source check/failed-run evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/timeout-requirements.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-213/timeout-whitebox.md": {
+      "kind": "file",
+      "purpose": "Issue213 preserved exact-source check, independent review or native reading-link diagnosis.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

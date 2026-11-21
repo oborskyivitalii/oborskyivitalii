@@ -137,6 +137,11 @@ test.before(() => {
   // would otherwise point at owners deliberately absent from this directory.
   isolateLegacyCatalog(root, repo);
   fs.rmSync(path.join(root, 'site/publications'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(root, 'site/publications'));
+  fs.copyFileSync(
+    path.join(repo, 'site/publications/policy.json'),
+    path.join(root, 'site/publications/policy.json')
+  );
   publication(root, candidates[0]);
   publication(root, candidates[1]);
   json(root, 'site/article-preview.json', { schema: 1, candidates });

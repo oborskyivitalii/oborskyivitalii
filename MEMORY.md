@@ -5,7 +5,7 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 ## Snapshot
 
 - Protected main and production resolve to 3877546d29a04f235f9ec0f3175f4e0d90bfd60d.
-- [Issue213](https://github.com/oborskyivitalii/oborskyivitalii/issues/213) owns AI code crisis discovery. Branch: work/issue-213-search-discovery; Draft PR pending.
+- [Issue213](https://github.com/oborskyivitalii/oborskyivitalii/issues/213) owns AI code crisis discovery. Branch: work/issue-213-search-discovery; [Draft PR216](https://github.com/oborskyivitalii/oborskyivitalii/pull/216).
 - [Current review](review/issue-213/2026-11-21-discovery-review.md) records the prepared article/link/PDF candidate, independent preflights, failures and verification limits.
 
 ## Decisions
@@ -16,7 +16,7 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 
 ## Open work
 
-- Issue213 Code/Requirements/White-box correction reports are recorded at5057. All190 affected consumer cases passed; owning-wrapper timeout correction and actual hosted Preview/Exploratory remain pending.
+- Issue213 initial native Preview32989176 and prepared2439 eight-check pass are recorded. F01 native-link correction141-case pass and independent source reviews are recorded at a10; exact producer-pin correction, new owning run and corrected hosted rewalk remain pending.
 - All six whole acceptance criteria remain open. Article schema enrichment, controlled SERP/demand, Google-selected/Medium canonical inspection and delayed outcome measurement remain explicitly pending.
 - Issue8 owns indexing/URL Inspection; issue116 owns the separate future Subprime report mount.
 

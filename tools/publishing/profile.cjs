@@ -77,13 +77,7 @@ function platformSelection(profile, article, platform) {
   }
 }
 
-function distributionSelection(root, article, selection) {
-  if (selection === undefined) return undefined;
-  object(selection, ['originalLabel', 'materialsLabel'], 'distribution');
-  for (const key of ['originalLabel', 'materialsLabel']) {
-    text(selection[key], 200, 'distribution ' + key);
-    if (/[\r\n]/.test(selection[key])) throw new Error('Distribution labels must be single-line');
-  }
+function productionOrigin(root) {
   const policyPath = 'site/publications/policy.json';
   const policy = JSON.parse(utf8(readSource(root, policyPath).bytes, 'production policy'));
   object(policy, ['schema', 'productionOrigin'], 'production policy');
@@ -98,12 +92,23 @@ function distributionSelection(root, article, selection) {
     net.isIP(origin.hostname.replace(/^\[|\]$/g, '')) ||
     !origin.hostname.includes('.') ||
     /(?:^|\.)(?:local|internal|invalid|example|test)$/.test(origin.hostname) ||
-    /(?:staging|preview|localhost|\.pages\.dev$|\.invalid$)/i.test(origin.hostname) ||
-    !idPattern.test(article.metadata.slug) ||
-    article.metadata.slug.length > 80
+    /(?:staging|preview|localhost|\.pages\.dev$|\.invalid$)/i.test(origin.hostname)
   )
     throw new Error('Distribution requires the public production origin and bounded article slug');
-  const articleUrl = origin.origin + '/articles/' + article.metadata.slug + '.html';
+  return origin.origin;
+}
+
+function distributionSelection(root, article, selection) {
+  if (selection === undefined) return undefined;
+  object(selection, ['originalLabel', 'materialsLabel'], 'distribution');
+  for (const key of ['originalLabel', 'materialsLabel']) {
+    text(selection[key], 200, 'distribution ' + key);
+    if (/[\r\n]/.test(selection[key])) throw new Error('Distribution labels must be single-line');
+  }
+  const origin = productionOrigin(root);
+  if (!idPattern.test(article.metadata.slug) || article.metadata.slug.length > 80)
+    throw new Error('Distribution requires the public production origin and bounded article slug');
+  const articleUrl = origin + '/articles/' + article.metadata.slug + '.html';
   if (article.metadata.canonical && article.metadata.canonical !== articleUrl) {
     throw new Error('Distribution planned URL differs from the observed canonical');
   }
@@ -565,4 +570,4 @@ function loadProfile(root, article) {
   };
 }
 
-module.exports = { loadProfile };
+module.exports = { loadProfile, productionOrigin };

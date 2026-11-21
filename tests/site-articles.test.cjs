@@ -47,6 +47,11 @@ test.before(() => {
     recursive: true,
     force: true,
   });
+  fs.mkdirSync(path.join(source, 'site/publications'));
+  fs.copyFileSync(
+    path.join(repo, 'site/publications/policy.json'),
+    path.join(source, 'site/publications/policy.json')
+  );
   fs.rmSync(path.join(source, 'site/assets/publications'), {
     recursive: true,
     force: true,
@@ -257,6 +262,15 @@ function sdkCount(bytes, pathname, origin = 'https://analytics.example.com') {
 
 test('author reading links follow a native alias while publisher links retain their meaning', (t) => {
   const root = fixture(t, { cold: true });
+  const policyPath = 'site/publications/policy.json';
+  const policyBytes = fs.readFileSync(path.join(root, policyPath));
+  const policy = JSON.parse(policyBytes);
+  fs.rmSync(path.join(root, policyPath));
+  assert.doesNotThrow(
+    () => preview(root, [], { all: true }),
+    'unrelated routes need no native origin'
+  );
+  write(root, policyPath, policyBytes);
   const target = publication(root);
   accept(root, target);
   const catalogPath = 'site/content/catalog.json';
@@ -275,10 +289,17 @@ test('author reading links follow a native alias while publisher links retain th
 
   const article = publication(root, 'reading-path');
   const editionURL = publisherURL.slice(0, -1);
+  const canonicalURL = policy.productionOrigin + '/articles/reader-profile.html';
+  const unknownURL = policy.productionOrigin + '/articles/not-admitted.html';
+  const lookalikeURL = 'https://vitaliioborskyi.ai.other-domain.org/articles/reader-profile.html';
   const manuscript =
     article.manuscript.replace('# Reader profile', `# [Reader profile](${editionURL})`) +
-    `\n[Related work](${editionURL})\n`;
+    `\n[Related work](${editionURL})\n` +
+    `\nFor context, [native reading](${canonicalURL}) continues the argument.\n` +
+    `\nOther [unadmitted work](${unknownURL}) and [another origin](${lookalikeURL}) stay external.\n` +
+    `\nSpecific [query](${canonicalURL}?source=original) and [fragment](${canonicalURL}#original) keep their source URL.\n`;
   article.metadata.references.push({ id: 'publisher-original', url: editionURL });
+  article.metadata.references.push({ id: 'native-source', url: canonicalURL });
   json(root, `${article.directory}/publication.json`, article.metadata);
   article.edition.source.sha256 = build.sha(manuscript);
   article.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
@@ -300,8 +321,38 @@ test('author reading links follow a native alias while publisher links retain th
   const snapshotHTML = html(root, before.snapshot);
   assert.ok(snapshotHTML.includes('href="https://example.com/source">Research'));
   assert.ok(snapshotHTML.includes(`href="${editionURL}">publisher-original`));
+  assert.ok(snapshotHTML.includes(`href="${canonicalURL}">native-source`));
   assert.ok(snapshotHTML.includes(`Title sources: <a href="${editionURL}">Reader profile`));
   assert.doesNotMatch(snapshotHTML, /data-reading-article=/);
+  assert.ok(snapshotHTML.includes('href="../../articles/reader-profile.html">native reading'));
+  assert.ok(
+    html(root, 'articles/reading-path.html').includes(
+      'href="../articles/reader-profile.html">native reading'
+    )
+  );
+  for (const url of [
+    unknownURL,
+    lookalikeURL,
+    canonicalURL + '?source=original',
+    canonicalURL + '#original',
+  ])
+    assert.ok(snapshotHTML.includes('href="' + url + '"'), url);
+
+  json(root, policyPath, { ...policy, productionOrigin: 'https://author-policy.org' });
+  const changedOrigin = preview(root, ['reading-path']).articles['reading-path:en'];
+  assert.notEqual(changedOrigin.version, before.version, 'policy data invalidates warm article');
+  assert.ok(html(root, changedOrigin.snapshot).includes(`href="${canonicalURL}">native reading`));
+  const cold = preview(root, ['reading-path'], {
+    output: path.join(root, 'policy-cold'),
+    cacheFile: path.join(root, 'policy-cold.cache.json'),
+    all: true,
+  }).articles['reading-path:en'];
+  assert.equal(cold.version, changedOrigin.version, 'warm/cold policy dependency agrees');
+  assert.equal(html(root, cold.snapshot, 'policy-cold'), html(root, changedOrigin.snapshot));
+  json(root, policyPath, { ...policy, productionOrigin: 'https://preview.pages.dev' });
+  assert.throws(() => preview(root, ['reading-path']), /public production origin/);
+  assert.ok(html(root, changedOrigin.snapshot).includes(`href="${canonicalURL}">native reading`));
+  write(root, policyPath, policyBytes);
 
   delete catalog.records['publication-99'];
   catalog.structuredOrder.pop();
@@ -311,6 +362,42 @@ test('author reading links follow a native alias while publisher links retain th
   assert.ok(
     html(root, after.snapshot).includes('href="' + publisherURL.slice(0, -1) + '">Related work')
   );
+  assert.ok(html(root, after.snapshot).includes(`href="${canonicalURL}">native reading`));
+});
+
+test('native reading canonical aliases retain ambiguity refusal and exact matching', () => {
+  const { nativeEditionLinks } = require('../tools/site/articles.cjs');
+  const origin = 'https://author-policy.org';
+  const first = 'articles/first.html',
+    second = 'articles/second.html';
+  const shared = origin + '/' + first;
+  const map = nativeEditionLinks(
+    {
+      records: {
+        first: { kind: 'local-article', edition: { url: first }, editions: [{ url: first }] },
+        second: {
+          kind: 'local-article',
+          edition: { url: second },
+          editions: [{ url: second }, { url: shared }],
+        },
+        external: {
+          kind: 'external-publication',
+          edition: { url: 'https://elsewhere.org/story' },
+          editions: [],
+        },
+      },
+    },
+    origin
+  );
+  assert.equal(map.get(shared), null, 'canonical/platform collision refuses either target');
+  assert.equal(map.get(origin + '/' + second), second);
+  for (const url of [
+    origin + '/articles/unknown.html',
+    shared + '?source=original',
+    shared + '#original',
+    'https://author-policy.org.other-domain.org/' + second,
+  ])
+    assert.equal(map.has(url), false, url);
 });
 
 test('compiled analytics admits only catalog-published articles and their declared aliases', (t) => {
