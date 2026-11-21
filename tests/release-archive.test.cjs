@@ -343,7 +343,7 @@ test('optional passive diagnostics reject incomplete coverage without blocking p
   const pages = require('../tools/pages/package.cjs');
   const temp = fixture.temporary(t);
   const source = fixture.source(temp, 'production', undefined, fixture.releasedSourceRoot());
-  source.record = edition.build(source.directory);
+  source.record = edition.build(source.directory, 'base', { sourceRoot: source.authoredRoot });
   const rights = fixture.rightsInventory(source, true);
   const combined = pages.build(
     null,

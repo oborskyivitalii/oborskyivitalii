@@ -510,6 +510,237 @@
       "ownResultSHA256": "b040f43618b5f384705d1dcabe546a6642e4082894fe045040c5e3a54f44c681",
       "scopeAndPacket": "Exact inspected source/packet and bounded own verdict remain in the unmodified role result; input manifests preserved in reviewer-inputs.tar.xz.",
       "disposition": "own first completed result preserved; no blanket whole-issue acceptance inferred"
+    },
+    {
+      "role": "requirements",
+      "phase": "CI correction preflight",
+      "requested": {
+        "task_name": "issue213_ci_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_ci_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "packetSHA256": "b675b3d395fc990d5a5677d0f07ced3fccfdc9473b6b30ccec68f082426bbe54",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-ci-preflight.md",
+      "ownResultSHA256": "d581b62ff6c1b8ee551318ebf75ecb242419c5d03adec96dff2a82ffe189bd6a",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "code",
+      "phase": "CI correction first final",
+      "requested": {
+        "task_name": "issue213_ci_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_ci_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "packetSHA256": "c69c1079e91cbdbc5019162f75ed97044a1e3fd88416b2f1eacb76d7f251c0e1",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-ci-code.md",
+      "ownResultSHA256": "be7d87ca30e189374653c58d3dd991405231bdc23efb4cbb9f76492fe51cd0e0",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "CI correction first final",
+      "requested": {
+        "task_name": "issue213_ci_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_ci_requirements",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "packetSHA256": "c69c1079e91cbdbc5019162f75ed97044a1e3fd88416b2f1eacb76d7f251c0e1",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-ci-requirements.md",
+      "ownResultSHA256": "eb62405cdb2b9bb2874c4e59fa1ee1d783c09608ad4a895f3faaf8859d9eb821",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "whitebox",
+      "phase": "CI correction first final",
+      "requested": {
+        "task_name": "issue213_ci_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_ci_whitebox",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "packetSHA256": "c69c1079e91cbdbc5019162f75ed97044a1e3fd88416b2f1eacb76d7f251c0e1",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-ci-whitebox.md",
+      "ownResultSHA256": "69deaa590154b5b164c861f6ee0b68d74e73e3c70ca2df046dc4bc6a2095b1d6",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "exploratory",
+      "phase": "CI correction first final",
+      "requested": {
+        "task_name": "issue213_ci_exploratory",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_ci_exploratory",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "packetSHA256": "c69c1079e91cbdbc5019162f75ed97044a1e3fd88416b2f1eacb76d7f251c0e1",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-ci-exploratory.md",
+      "ownResultSHA256": "745952347060a5842b405713d62f466edc9fe5c8917aca5681949f3c89b778f9",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "document guard preflight",
+      "requested": {
+        "task_name": "issue213_hook_preflight",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_hook_preflight",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "packetSHA256": "cba15b9374a96496277ae508f210ab8b922ca532bfa4681bb30a058090342bbf",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-hook-preflight.md",
+      "ownResultSHA256": "a7ceb7faf7a458617079c3c2b08901b4df68bb1905e205425dae98c4f2d42508",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "code",
+      "phase": "document guard corrected final",
+      "requested": {
+        "task_name": "issue213_hook_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_hook_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "packetSHA256": "a5f336a8da5e924511922a4d23cbaa026ab699c0061e5e7b9f3b08fddf06a70a",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-hook-code.md",
+      "ownResultSHA256": "e92ce848c706871aba9b505188963d8d9f0d7907723a96f6d1fbc54dd484bde0",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "requirements",
+      "phase": "document guard corrected final",
+      "requested": {
+        "task_name": "issue213_hook_requirements",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_hook_requirements",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/requirements-acceptance.md",
+        "sha256": "010e22ec72bb081a1041068f3128d4d2496f5dabe560e01ed83f02e3b442b7a6"
+      },
+      "packetSHA256": "a5f336a8da5e924511922a4d23cbaa026ab699c0061e5e7b9f3b08fddf06a70a",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-hook-requirements.md",
+      "ownResultSHA256": "3ee6b227256ccfd4a7a4485c18d1c53ed7bcc7b1723739167d0dc987e9d4eeea",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "whitebox",
+      "phase": "document guard corrected final",
+      "requested": {
+        "task_name": "issue213_hook_whitebox",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_hook_whitebox",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/white-box-qa.md",
+        "sha256": "832762ea95a540fd6fce09d9ca75084ac3573ee100dd67081d99ba7ac528596f"
+      },
+      "packetSHA256": "a5f336a8da5e924511922a4d23cbaa026ab699c0061e5e7b9f3b08fddf06a70a",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-hook-whitebox.md",
+      "ownResultSHA256": "1a506467aa834d566637a63404969ce35ca8814aad1f3cf0524f748edc211b68",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "exploratory",
+      "phase": "document guard corrected final",
+      "requested": {
+        "task_name": "issue213_hook_exploratory",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_hook_exploratory",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/exploratory-interaction-qa.md",
+        "sha256": "280feac9d22508fbcef6e7181feaf3625d45b1718fd833576a0e8fb9520c295a"
+      },
+      "packetSHA256": "a5f336a8da5e924511922a4d23cbaa026ab699c0061e5e7b9f3b08fddf06a70a",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-hook-exploratory.md",
+      "ownResultSHA256": "4946caac33adf8c154698d38689711b70955e6bc6263a4583dc407d35a1a0405",
+      "scopeAndPacket": "Own unmodified first output and source packet archived; provider internal context unknown.",
+      "disposition": "First outputs preserved; initial Code/White-box hook failure retained. Final four roles pass bounded corrected scope; no whole issue or release pass inferred."
+    },
+    {
+      "role": "code",
+      "phase": "final factual metadata and full-scope guide binding",
+      "requested": {
+        "task_name": "issue213_final_guide_code",
+        "fork_turns": "none",
+        "model": "omitted",
+        "reasoning_effort": "omitted"
+      },
+      "acceptedTaskHandle": "/root/issue213_final_guide_code",
+      "launchEvidence": "Parent collaboration.spawn_agent accepted response returned this exact task handle.",
+      "rolePrompt": {
+        "path": "agents/reviewers/code-review.md",
+        "sha256": "26b3fba125bf65126455bcd1aa7d2500d4f1766f2865bae5041378893a970697"
+      },
+      "packetSHA256": "04db2af04c1e234da6e5cf41217fd5cf97c6c07687cd0b2e57b3edf48416d72c",
+      "ownResult": "review/issue-213/ci-correction-evidence.tar.xz#issue213-final-guide-code.md",
+      "ownResultSHA256": "3dbd73200edf8fc3b0a492583856dfc2035ab31c16dfa2222e244f868675f7d8",
+      "scopeAndPacket": "Exact e025 and complete protected-base control scope; packet and own unchanged first result archived.",
+      "disposition": "Completed unchanged guide judgment and factual metadata review; stale receipt corrected mechanically, no whole issue or staging pass inferred."
     }
   ]
 }

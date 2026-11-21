@@ -31,6 +31,7 @@ const reviewedDocumentClients = new Set([
   '04fe7163f25eef6f7fb4e0b86641d568af4538550287045613eff27ec45b8d46',
   '27e063a3269a62824e47b7de74c79e0d167cc73e01498b66d3f011ae6091702c',
   '97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab',
+  '87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab',
 ]);
 
 function fingerprint(components, files) {

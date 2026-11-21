@@ -581,3 +581,41 @@ listed metadata scopes are verified in source-equivalence.json. Existing source8
 is the exact tested product/Preview; any receipt-only successor is not falsely called
 a new whole-source eight-check run or a new browser deployment. Its RI/RI-CI freshness
 is checked separately, and later delivery must bind its actual latest source.
+
+
+## 21 November: authorized Stable Staging correction checkpoint
+
+The author explicitly requested Stable Staging; no protected merge or production
+is authorized by that request. PR216 was marked Ready. Actual cb9 Ready CI exposed
+missing issue213 pinned dependency setup, absent full-scope workflow-guide evidence,
+and historical/current fixture dependency and exact-family mismatches. Original
+source run44931000030, Navigation44931000039 and owning44931000093 failures are
+retained in ci-correction-evidence.tar.xz with complete decoded logs.
+
+The first correction exposed an actual current document-contract gap: the new exact
+client was absent from reviewedDocumentClients and skipped HTML hook checks. The
+existing negative test was preserved. The bounded correction registers only the
+already explicit87f959 client; all unknown-client, fingerprint, source, byte,
+document-spoof, rights and budget policies remain. Ordinary output regeneration
+changes producer/version provenance while all five runtime/style bytes stay exact.
+No article text, publication dates, rights, frozen amendment or resource limit changed
+from cb9 in this correction. Whole SEO CLI passes on the regenerated output.
+
+Reviewed source a766fe0a2acffb176876ee578a4d75827ce45a7d, tree
+0a251594c3aa7886eafe4ea7dfd2907888dbaf1b. Current Color contract38/38 passes;
+the preceding six-module diagnostic retains five passed wrappers and the first
+Color failures, and is not relabeled a final-source campaign. RI-CI28/28 and RI40/40
+regressions passed in the correction preparation. All eight mapped issue213 source
+checks pass on exact clean a766; raw report includes pending human gates and is
+archived without treating automation as whole-issue completion.
+
+Ten new distinct explicit fork_turns=none launches/results are recorded separately
+in independent-execution-receipts.json. First Code/White-box blocking outputs remain
+unaltered; four fresh final Requirements/Code/White-box/Exploratory executions pass
+the corrected bounded scope. Code independently reviewed the full protected-base
+guide control delta and judged existing sections accurate. Final metadata/guide
+scope must be rebound before source CI and owner staging. Unknown provider internals
+are not attested. All six whole ACs and external search/schema/measurement gates
+remain open; stage/merge/production are separate observations.
+
+Final fresh Code metadata/guide execution /root/issue213_final_guide_code inspected e025 and preserved unchanged guide disposition at scope bd1a83452f8aedc06ac378dd386067a2307c36ecf63af6977a30be102f52bdcf. Only stale receipt remained; its exact binding is now recorded. All36actual executions and own first outputs are preserved. Final receipt bytes and generated RI are mechanically checked without new semantic changes.

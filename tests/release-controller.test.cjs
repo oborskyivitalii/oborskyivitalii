@@ -33,7 +33,7 @@ test.after(() => {
 
 function prepareReleaseFixture(temp) {
   const source = fixture.source(temp, 'production', undefined, fixture.releasedSourceRoot());
-  source.record = edition.build(source.directory);
+  source.record = edition.build(source.directory, 'base', { sourceRoot: source.authoredRoot });
   const rights = fixture.rightsInventory(source, true);
   const proof = fixture.fullProof(source.record, rights.report);
   const directory = path.join(temp, 'assets');
@@ -547,7 +547,7 @@ test('production metadata is a separately hashed edition and Pages preserves its
 test('production admission requires the exact rights inventory and an actual recorded owner policy', (t) => {
   const temp = fixture.temporary(t);
   const source = fixture.source(temp, 'pending-rights', undefined, fixture.releasedSourceRoot());
-  source.record = edition.build(source.directory);
+  source.record = edition.build(source.directory, 'base', { sourceRoot: source.authoredRoot });
   const pending = fixture.rightsInventory(source);
   let proof = fixture.fullProof(source.record, pending.report);
   const item = { id: 41, digest: proof.gate.githubArtifact.uploadDigest, expired: false };
@@ -580,7 +580,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue183-long-article-production'
+    'issue213-discovery-link-production'
   );
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
@@ -633,8 +633,12 @@ test('explicit production Color preserves approved runtime and rejects a differe
     undefined,
     fixture.releasedSourceRoot()
   );
-  require('../tools/staging/color.cjs').build(released.directory);
-  released.record = edition.build(released.directory, 'color');
+  require('../tools/staging/color.cjs').build(released.directory, {
+    sourceRoot: released.authoredRoot,
+  });
+  released.record = edition.build(released.directory, 'color', {
+    sourceRoot: released.authoredRoot,
+  });
   const report = fixture.rightsInventory(released, true).report,
     summaryFile = path.join(temp, 'candidate-summary.md'),
     workflow = fs.readFileSync(
@@ -1597,8 +1601,8 @@ async function stagedProductionFixture(t, { content = false } = {}) {
     authoredRoot = fixture.releasedSourceRoot(),
     tested = fixture.staging(temp, true, authoredRoot);
   const source = fixture.source(temp, 'staged-production', 'c'.repeat(40), authoredRoot);
-  require('../tools/staging/color.cjs').build(source.directory);
-  source.record = edition.build(source.directory, 'color');
+  require('../tools/staging/color.cjs').build(source.directory, { sourceRoot: authoredRoot });
+  source.record = edition.build(source.directory, 'color', { sourceRoot: authoredRoot });
   const rights = fixture.rightsInventory(source, true);
   const controlled = require('./fixtures/staging-evidence.cjs');
   const input = controlled.aggregateFixture(true),

@@ -387,8 +387,12 @@ test('current generated editions cross the selected controller consumers', async
     undefined,
     delivery.releasedSourceRoot()
   );
-  require('../tools/staging/color.cjs').build(production.directory);
-  production.record = require('../tools/release/edition.cjs').build(production.directory, 'color');
+  require('../tools/staging/color.cjs').build(production.directory, {
+    sourceRoot: production.authoredRoot,
+  });
+  production.record = require('../tools/release/edition.cjs').build(production.directory, 'color', {
+    sourceRoot: production.authoredRoot,
+  });
   delivery.rightsInventory(production, true);
   for (const [edition, source] of [
     ['staging', staged],
