@@ -780,3 +780,37 @@ product,rights,ledger,guard,test and policy bytes remain identical to reviewed
 e522. Current native CI/owning checks and final native protected-package replay
 are still required before the fresh owner staging attempt. Actual Preview and
 source-bound exploratory reading remain part of the authorized route.
+
+
+### Native Preview, operator limits and deterministic RI-map formatting repair
+
+Native cf2ab301 is byte-identical to the reviewed frozen tree. Draft Preview
+44959869330 succeeds, with exact native source/tree verified at the immutable
+c308824f deployment. Native local owning acceptance passes all8checks with valid
+clean-source evidence and no errors; its raw report is retained in the archive.
+The complete native package also passes unchanged protected-main publication
+modules. Local package and hosted Preview retain their own distinct public digests.
+
+Fresh fork-none `/root/issue213_hosted_exploratory` preparation was excluded after
+reading mixed issue-history summaries; it supplied no hosted judgment. A fresh
+sanitary-owner execution `/root/issue213_preview_operator` observed actual hosted
+desktop navigation, article/table/companions and bounded PDF reading, with no
+reproduced defect. Fresh subset `/root/issue213_mobile_nojs_operator` confirmed
+source and ordinary reading but observed an organization DevTools block. Neither
+execution claims actual mobile390/no-JS, physical-device or whole SURFACES pass.
+Their unchanged own first reports/packets and failed local-browser setup facts
+are retained; no organization policy is bypassed. Existing selected CI profiles
+remain mandatory and these human limitations stay open.
+
+Native Ready Basic44960802978passes all8source shards but fails maintained
+formatting on exactly `.github/ri-ci-map.json`; the later absent-report upload
+failure is secondary. Full source format check reproduces this sole path.
+`check_ri_ci.py refresh` emits valid JSON with whitespace that differs from the
+pinned formatter; a later refresh after a format pass reintroduced that drift.
+Apply pinned Prettier only to this one map, prove complete parsed JSON equality
+and coupling verification, then regenerate RI views. Full maintained formatter
+now reports no changed files. No test, guard, policy, requirement/oracle, runtime,
+rights or article byte changes. This is a verified deterministic metadata/format
+correction, not a new semantic judgment or a relabeling of the failed source.
+The raw failure, complete formatter report and before/after equivalence proof
+remain in the evidence archive. New native source still needs fresh CI and staging.

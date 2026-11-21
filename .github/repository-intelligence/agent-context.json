@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a4b2272d596947031f08136a3113786f011c46126a2c31064edf267641d24c29",
+    "digest": "82e5441878876c79298ea87c2c54991d6cdd43210ba6bfee61c96af315fb1690",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -286,7 +286,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3d4eddf9011010660f3be555d57401e5471ff43b9107132133a5975433b123fc"
+        "sha256": "ede9c2330909ce3ede60734a737e18fe3639557b8754ba43792d6ca2d9b7fabe"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -436,7 +436,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "23f13b8cfbe96194eab766c12bd9876077e253ff9ed464f88d173b30ce519cc7"
+        "sha256": "f9c6cc47b094a16ab49065526a93de681608b40ea4899de2021007eef53806df"
       },
       {
         "path": "NOTICE.md",
@@ -5820,7 +5820,7 @@
       {
         "path": "review/issue-213/2026-11-21-discovery-review.md",
         "identity_mode": "content",
-        "sha256": "27a9a874fad009ab1c8a18922ad0550c3ed72c5f466ca26c625c9cb0ff50fb39"
+        "sha256": "ce92773bbb80d7912787e06e5a237a8fb45f058d0f66549ad43e6a7c9600d69d"
       },
       {
         "path": "review/issue-213/acceptance-2439.json",
@@ -6000,7 +6000,7 @@
       {
         "path": "review/issue-213/publisher-correction-evidence.tar.xz",
         "identity_mode": "content",
-        "sha256": "37e350bbcafe5c5113bd5dc948e67d8fd115d2cd8fe1a9fcfd6da4e16b2af9b0"
+        "sha256": "84946a9f02c17a7ffbcb44116b203830aef4f023e77ad52951ac57c8701ccfd1"
       },
       {
         "path": "review/issue-213/r13-pdf-renderer.py.txt",
@@ -6090,7 +6090,7 @@
       {
         "path": "review/issue-213/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "dbbe0069303fc3395f764e0d93f8e4deedb7c2817714e16433d48f171104829e"
+        "sha256": "ec1264e64e1f9cdd2d946785782fd76d916496caffc10f2efc300e9965943e37"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",

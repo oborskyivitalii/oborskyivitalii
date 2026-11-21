@@ -26,7 +26,7 @@ Dated handoff. Last verified: **2026-11-21**. Revalidate live sources when resum
 ## Next session
 
 1. Read live issue213/PR216 and verify actual latest head, Preview source and check/admission state.
-2. Complete the existing-slot correction, exact archive recovery, fresh independent reviews and protected-main package replay; pass current-head source/Navigation/owning CI, then run the full owner /stage. Stop at verified stable staging.
+2. Current correction and native Preview are verified; the first Ready Basic passed8source shards but found RI-map whitespace drift. Keep refresh before pinned map formatting, then RI build/verify; never refresh that map again afterward without formatting it. Pass corrected native CI, then the full owner /stage; stop at verified stable staging.
 
 ## Maintenance
 
