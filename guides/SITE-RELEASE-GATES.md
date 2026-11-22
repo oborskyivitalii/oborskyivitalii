@@ -207,16 +207,20 @@ The Python lock includes its installer and every installed audit dependency. Ful
 installers use `--no-deps` only with that complete lock, immediately followed by
 `python tools/quality/python_toolchain.py`. The verifier rejects missing, changed,
 duplicate, unfrozen or incompatible packages. For unmodified Semgrep CE1.185.0,
-the verifier requires each of these four reviewed compatibility records exactly once:
+the verifier requires each of these five reviewed compatibility records exactly once:
 
 | Exact upstream declaration | Exact installed dependency |
 | --- | --- |
 | `mcp==1.29.0` | `mcp==1.30.0` |
+| `wcmatch~=8.3` | `wcmatch==11.2` |
 | `opentelemetry-api~=1.37.0` | `opentelemetry-api==1.45.2` |
 | `opentelemetry-sdk~=1.37.0` | `opentelemetry-sdk==1.45.2` |
 | `opentelemetry-exporter-otlp-proto-http~=1.37.0` | `opentelemetry-exporter-otlp-proto-http==1.45.2` |
 
-The lock pins the OpenTelemetry stable packages to 1.45.2 and their matching
+The lock pins patched wcmatch11.2 with bracex3.2 to address
+GHSA-53pm-wgxf-c6qf without editing Semgrep distribution metadata or ignoring
+advisories. Its globmatch API and actual CE scan require positive/negative
+compatibility evidence. The lock pins the OpenTelemetry stable packages to 1.45.2 and their matching
 instrumentation packages to 0.66b2. It also pins the Semgrep logging dependency
 structlog to 26.1.0. These records
 deliberately exceed Semgrep's declared version constraints; acceptance requires
@@ -227,6 +231,14 @@ The advisory engine repeats full installed-graph verification and audits every
 locked package, including the patched SDK and installer. A missing, duplicate,
 changed or foreign compatibility record fails; future version/constraint changes
 need another compatibility review under the same gate.
+
+The issue213 checksum ledger is one additional explicit closed input, retaining
+the same exact tuple/schema/duplicate and 2 MB guards; the four older ledgers
+stay unchanged. Its source-bound triage proof covers public identifiers only.
+The current workflow-guide receipt admits only the exact base/scope fields after
+the maintained guide checker recomputes the committed scope against the actual
+main ancestor. Dirty, stale, ambiguous or unrelated receipts do not provide this
+checksum proof. Ledger entries never authorize neighboring files or new values.
 
 New untriaged findings fail the relevant check until classified. A real release
 blocker must be fixed or carry an explicit, scoped and expiring reviewed exception.

@@ -2,19 +2,21 @@
 
 *Why automating the next bottleneck is an incomplete strategy for business return.*
 
-Vitalii Oborskyi · 10 November 2026 · R12 author-review edition · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
+Vitalii Oborskyi · 10 November 2026 · R13 author-review revision, 21 November 2026 · [vitaliioborskyi.ai](https://vitaliioborskyi.ai/)
 
 ![An accelerated coding stage tilts the delivery chain while people support the downstream work.](asset:hero)
 
-## The code-review sales story starts with a partial diagnosis
+## Why the AI code crisis extends beyond code review
 
-“Code review is the next bottleneck” has become a sales argument. [Anthropic’s announcement](https://claude.com/resources/articles/code-review) describes growing review pressure and offers agents to help cover the output. The commercial sequence is straightforward: coding accelerated; automate review next.
+The AI code crisis concerns more than code defects: AI-generated changes can outpace verification, integration and understanding. My [Subprime Code Crisis research](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) studies this imbalance.
 
-That may address a real constraint. But it is a partial problem statement. Turning it into a transformation strategy means treating each subsequent slow stage as the next automation target.
+### The code-review sales story starts with a partial diagnosis
+
+“Code review is the next bottleneck” has become a sales argument. [Anthropic’s announcement](https://claude.com/resources/articles/code-review) offers agents to address review pressure. Coding accelerated; automate review next. That may address a real constraint, but a transformation strategy needs a wider diagnosis.
 
 **My diagnosis: AI adoption has pushed the SDLC out of balance at industry level.** Faster individual activities have changed the demands on everything around them.
 
-Local improvements can become an open-ended sequence: one intervention shifts the constraint; another weakens a capability elsewhere. The business pays for each improvement without assurance of a better end-to-end result. Follow the workstream first; then examine what it leaves out.
+Local improvements can shift constraints or weaken another capability without improving the end-to-end result. Follow the workstream first; then examine what it leaves out.
 
 ## Follow the constraint through the delivery system
 
@@ -40,7 +42,7 @@ The target is therefore useful change at sustainable cost. Rebalancing can mean 
 
 So far, we have followed a workstream: the sequence through which changes pass. The delivery system also depends on how people learn, share context, make decisions and recover from failures. A local optimisation can improve the flow while weakening one of those relationships.
 
-This is why code review deserves a closer look. The same activity being presented as the next bottleneck also helps the team learn what it will have to own.
+Code review illustrates both constraints: it checks changes and helps the team learn what it must own.
 
 ## Code review reveals the system behind the workstream
 
@@ -48,11 +50,13 @@ This is why code review deserves a closer look. The same activity being presente
 
 During a review, the author explains a decision, reviewers question assumptions, and colleagues connect the change to the rest of the system. The code is one output. People can also leave with more usable context about behaviour and dependencies.
 
-That shared understanding supports competent ownership: the ability to judge subsequent changes, maintain the system, diagnose failures and choose a safe recovery. Assigning responsibility establishes who is accountable; it does not, by itself, give that person the knowledge needed to act.
+Shared understanding supports competent ownership: judging changes, maintaining the system, diagnosing failures and choosing a safe recovery. Accountability alone does not provide the knowledge to act.
 
 ![Code review has two complementary paths. Verification produces evidence about the proposed change. Knowledge transfer supports shared understanding, which helps enable competent ownership and the ability to maintain, diagnose and recover the system.](asset:review-learning-r7)
 
-The comprehension gap appears when generation outpaces the team’s ability to understand what it owns. Delegating code does not delegate responsibility. The volume of accepted changes can grow faster than the knowledge that enables people to carry that responsibility.
+The comprehension gap appears when accepted changes outpace the team’s understanding. Delegating code does not delegate responsibility or provide the knowledge needed to carry it.
+
+Addy Osmani calls a related gap [comprehension debt](https://addyosmani.com/blog/comprehension-debt/). Passing tests do not establish the team’s ability to explain, change or recover the system.
 
 ![A conceptual time graph compares generation capacity with team understanding capacity, both expressed as comparable changes per month. The potential gap illustrates a workflow whose learning mechanisms have not kept pace.](asset:comprehension-gap-r7)
 
@@ -60,7 +64,7 @@ Automating the checking path can remove a queue and part of the learning path at
 
 The solution need not be everyone reading every line. The [Claude Code team’s October account](https://claude.dev/blog/solving-code-review-at-anthropic/) reports higher throughput and a lower reverted share after changing its review process. It distinguishes defect detection from shared understanding, using targeted AI explainers and open working channels while acknowledging no formal process for the latter.
 
-This is also a human learning constraint. People do not acquire understanding at machine generation speed. The same issue can arise in design, testing and operations: each stage may produce more output while the people responsible for connecting it lose usable context.
+This learning constraint extends to design, testing and operations: output can grow while the people responsible for connecting it lose usable context.
 
 ![Potential AI task pace and effective human and organisational capacity across the lifecycle. Curves and gaps are conceptual, with no measured values or stage rankings.](asset:asymmetry)
 
@@ -80,13 +84,23 @@ The disagreement concerns a review-only diagnosis. The studies and engineering a
 
 ## Finding a new balance
 
-Once we see both the flow constraint and the learning constraint, “automate the next stage” becomes a hypothesis to examine.
+Protecting flow and learning makes “automate the next stage” a hypothesis to test.
 
-Take agentic review: one model reviews another model’s code. It may scale checking. But could the models share blind spots? What evidence grounds their judgments? And who learns enough from those changes to operate the system? An experiment should examine checking quality and retained understanding, as well as review speed.
+Diagnostic prompts, not validated thresholds:
 
-Now take living documentation: a model generates an explanation from the code. Who verifies that the explanation is correct? And does understanding that description provide enough understanding to diagnose and recover the actual system? Moving up an abstraction layer does not answer those questions by itself.
+| Symptom | Examine | Test |
+| --- | --- | --- |
+| Waiting changes | Queue age and admitted WIP | Smaller batches at the actual constraint |
+| Unclear system behaviour | Explanation and recovery capability | Protected learning and a recovery drill |
+| Releases without outcome gains | Adoption, total cost, quality and workload | Different demand, scope or allocation |
 
-Smaller batches, WIP limits, specification-driven work and bounded disposable implementations may help in other parts of the system. They also have conditions and costs. We should test where they help, what they displace and which necessary functions they leave unresolved.
+Related: [The AI Cost-Cutting Fallacy](https://vitaliioborskyi.ai/articles/ai-cost-cutting-fallacy.html).
+
+Agentic review may scale checking, but could the models share blind spots? What grounds their judgments, and who learns enough to operate the result? Test checking quality and retained understanding alongside review speed.
+
+Living documentation raises similar questions: who checks the generated explanation, and does understanding it enable diagnosis and recovery of the actual system? An abstraction layer does not answer those questions by itself.
+
+Smaller batches, WIP limits, specification-driven work and bounded disposable implementations may help. Test their conditions, costs, displaced work and unresolved functions.
 
 This suggests that we are unlikely to arrive at one universal AI-native SDLC or a single optimal balance. Instead, organisations will need a range of context-specific operating models, each with a different degree of delegation to AI. The appropriate model depends on the work, domain, criticality, organisational capabilities and economics. In some situations, extensive delegation may be justified; in others, limited assistance may be preferable. And sometimes, the sound engineering decision may be not to use AI at all.
 
@@ -110,7 +124,7 @@ For example, trial AI-assisted review on a bounded service against the current p
 
 Include a recovery drill in a safe test environment. An engineer who did not author the change uses the access, documentation and tools normally available on call. Can they explain the affected behaviour, diagnose a plausible failure and restore service within the business-defined time? Compare equivalent scenarios before and during the pilot. Investigate failures; a passed drill supports only the scope tested. Faster review cannot compensate for an unacceptable loss of operational capability.
 
-If extensive pilots are unaffordable, narrow the scope. Listen to the team, especially the sceptics. Their concerns may reveal costs that productivity dashboards miss. Examine those observations alongside the benefits; dismissing them as resistance can hide the problems the pilot needs to detect.
+If extensive pilots are unaffordable, narrow the scope. Examine the team’s concerns alongside the benefits: sceptics may reveal costs that dashboards miss. Dismissing them as resistance can hide problems the pilot needs to detect.
 
 Success may mean the same useful outcomes at lower total cost, more value from the same resources, or a newly viable capability. In each case, the operating model must meet its agreed quality, workload and recovery constraints, with people still able to explain, maintain and recover what they own. Keep interventions that achieve the chosen result. Change or stop those that merely move the cost.
 
@@ -142,5 +156,5 @@ This article develops the delivery-system argument from my DevCon Romania talk, 
 
 [Website and research](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)
 
-© 2026 Vitalii Oborskyi. R12 author-review edition. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
+© 2026 Vitalii Oborskyi. R13 author-review revision. Original text and diagrams: CC BY 4.0. AI-assisted hero illustration; third-party sources retain their rights.
 

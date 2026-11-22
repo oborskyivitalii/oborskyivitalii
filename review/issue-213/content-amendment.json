@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "issue": 213,
+  "baseline": "3877546d29a04f235f9ec0f3175f4e0d90bfd60d",
+  "changes": [
+    {
+      "page": "research",
+      "id": "delivery-lens-article-route",
+      "intent": "AC02/AC04 replace the existing TOC delivery-reading shortcut to the upstream mechanics report with the native SDLC article; preserve the upstream repository, Writing collection, TOC background and all unrelated lens semantics",
+      "before": "<a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md\">Read the delivery-system interpretation ↗</a>",
+      "after": "<a class=\"text-link\" href=\"articles/the-sdlc-is-out-of-balance.html\">AI code crisis: read the SDLC delivery-system analysis ↗</a>",
+      "beforeSHA256": "9295f19772fd0e26ace27fbd81432217b35e1251a701244414334e5def8e40ec",
+      "afterSHA256": "e528103dbc76e42646961111c86ad3607eb8717e6e83f17f0cbf6c1edce1b890"
+    }
+  ]
+}

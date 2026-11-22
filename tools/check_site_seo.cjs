@@ -202,6 +202,9 @@ const issue108 = JSON.parse(
 const issue159 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-159/content-amendment.json'), 'utf8')
 );
+const issue213 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-213/content-amendment.json'), 'utf8')
+);
 const issue159ProducerPaths = [
   'site/templates/components/archive-reading-link.html',
   'site/templates/components/archive-topic-landing.html',
@@ -260,6 +263,8 @@ function socialCarrierProducer(name, expected, projectRoot = root, record = soci
     'tools/site/build.cjs': [
       '6c146f73fa02ee2d7a35d868b53305469d30e9fee31b8ca99b7e2bfe8cb69920',
       'c03539be6fbc0eca360eee521289ff49d2c3b004fe4407d40691755b89abaa8e',
+      // #213 changes native reading inputs; Research/Writing carrier proofs stay exact.
+      '6832551602bee5d7281595e07bec7006cf9ccb97f3305638d0fe2bfe2879039b',
     ],
     'tools/site/snapshot.cjs': ['8d280c374a52229bd0b9d88f695e0d692714cba995c5f685b480a5b508b5b7d1'],
   };
@@ -1343,7 +1348,32 @@ function restoreResearchNavigation(html, page) {
   }
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
+function restoreDiscoveryLink(html, page, record = issue213) {
+  if (page !== 'research') return html;
+  assert.equal(record.schema, 1, 'Discovery amendment schema');
+  assert.equal(record.issue, 213, 'Discovery amendment owner');
+  assert.equal(record.baseline, '3877546d29a04f235f9ec0f3175f4e0d90bfd60d');
+  assert.deepEqual(
+    record.changes.map((change) => [change.page, change.id]),
+    [['research', 'delivery-lens-article-route']],
+    'Only the bounded Research lens reading route may reverse'
+  );
+  const change = record.changes[0];
+  assert.equal(
+    change.beforeSHA256,
+    '9295f19772fd0e26ace27fbd81432217b35e1251a701244414334e5def8e40ec',
+    'Exact discovery predecessor'
+  );
+  assert.equal(
+    change.afterSHA256,
+    'e528103dbc76e42646961111c86ad3607eb8717e6e83f17f0cbf6c1edce1b890',
+    'Exact discovery successor'
+  );
+  return restoreContentAmendment(html, page, record);
+}
+
 function restoreApprovedContent(html, page) {
+  html = restoreDiscoveryLink(html, page);
   if (page === 'talks') html = restoreEventsCatalog(html);
   if (page === 'writing') html = restoreWritingCatalog(html);
   if (page === 'research') {
@@ -1503,6 +1533,7 @@ function verify() {
           ...issue108.changes,
           ...issue118.changes,
           ...issue159.changes,
+          ...issue213.changes,
           ...positioning.changes,
           ...sitecase.changes,
           ...arkadiy.changes,
@@ -1568,6 +1599,7 @@ module.exports = {
   verify,
   restore,
   restoreApprovedContent,
+  restoreDiscoveryLink,
   restoreResearchNavigation,
   restoreContentAmendment,
   restoreRefactorPresentation,

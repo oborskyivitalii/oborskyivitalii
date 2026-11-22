@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "kind": "historical-storage-recovery",
+  "reason": "Superseded R32/R33/R34 rendered review PDFs are losslessly archived to preserve every immutable public resource within the unchanged RI bound. Current R37 publication selection and unfinished rights/publication gates remain. Historical original audits retain their original bytes.",
+  "archivePath": "review/issue-2/pmday-candidate-20261015/historical-r32-r34-pdfs.tar.xz",
+  "archiveSha256": "759109e5c0c04b436c5a83fe06902ad43ad3ffefe4f9f9d720a6fe1a41fe0faa",
+  "archiveBytes": 1170736,
+  "entries": [
+    {
+      "originalPath": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R32_2026-10-24.pdf",
+      "member": "The_Sum_of_Our_Technology_R32_2026-10-24.pdf",
+      "bytes": 1103360,
+      "sha256": "63badf1b31fd89ca4612f9ed641f7714ea8382a8953ed03628bd45216bd55ffe"
+    },
+    {
+      "originalPath": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R33_2026-10-24.pdf",
+      "member": "The_Sum_of_Our_Technology_R33_2026-10-24.pdf",
+      "bytes": 1103558,
+      "sha256": "bef605e3c03b60e4b882909ce4ea47bb18706f2554e3dd0d6a0db75f65e0f773"
+    },
+    {
+      "originalPath": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R34_2026-10-24.pdf",
+      "member": "The_Sum_of_Our_Technology_R34_2026-10-24.pdf",
+      "bytes": 1104019,
+      "sha256": "a4bff09eb22101cef76a3a3cec50879784aeffa85d5ae81d3048c5ae50f08b80"
+    }
+  ],
+  "originalTotalBytes": 3310937,
+  "savedBytesBeforeMetadata": 2140201
+}

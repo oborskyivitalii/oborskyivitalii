@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 213,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/213",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Dated search intent and reproducible baseline with explicit limits.",
+      "automated_scope": "No source test proves demand, locale-controlled rank, finalized GSC coverage or baseline provenance.",
+      "checks": [],
+      "gates": ["BASELINE", "REQUIREMENTS"]
+    },
+    {
+      "id": "AC02",
+      "intent": "One primary article destination with distinct research and companion ownership.",
+      "automated_scope": "CATALOG verifies maintained catalog and native relationship contracts; editorial query ownership remains a decision.",
+      "checks": ["CATALOG"],
+      "gates": ["DESTINATION", "REQUIREMENTS"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Useful source-supported prose and accurate successor editions, rights and dates.",
+      "automated_scope": "PUBLISHING verifies maintained parser/provenance/history/profile/safety contracts. DISCOVERY verifies maintained SEO, material/reader/retention, explicit-source reconstruction and rights contracts; neither proves claims or editorial approval.",
+      "checks": ["PUBLISHING", "DISCOVERY"],
+      "gates": ["EDITORIAL", "REVIEW", "PUBLICATION"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Crawlable discovery, truthful metadata and applicable CS01/02/04/05/08/09/10 integrity.",
+      "automated_scope": "BASIC checks generation/size/syntax; SEO verifies the historical exact semantic comparison; DISCOVERY exercises bounded amendment and material/reader/retention negative cases; STYLE proves only its enforced subset. Actual hosted/mobile/no-JS, Google-selected canonical and pending schema expansion remain external.",
+      "checks": ["BASIC", "SEO", "DISCOVERY", "STYLE"],
+      "gates": ["SURFACES", "SEARCH", "STYLE-REVIEW", "TECHNICAL-SCOPE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Exact-source independently reviewed implementation and authorized delivery.",
+      "automated_scope": "RI and RI-CI prove navigation freshness and source-to-check coupling, not independent execution or release. Other mapped source checks remain necessary but insufficient.",
+      "checks": ["RI", "RI-CI"],
+      "gates": ["REVIEW", "RELEASE"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Owned reproducible post-release indexing and equal-window outcome measurement.",
+      "automated_scope": "No deterministic source check proves delayed indexing, rank, AI citation, entity recognition or a measured improvement.",
+      "checks": [],
+      "gates": ["MEASUREMENT", "SEARCH"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "SEO": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_seo_exact_amendment_and_unrelated_semantics_reconcile"
+    },
+    "DISCOVERY": {
+      "kind": "unittest",
+      "test": "test_issue213_acceptance.Issue213AcceptanceTests.test_discovery_and_material_contracts"
+    },
+    "CATALOG": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_writing_catalog_contracts"
+    },
+    "PUBLISHING": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_publisher_contracts"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "BASELINE": {
+      "kind": "human",
+      "description": "Retain raw dated GSC requests/responses and query/intent matrix with exact locale/device/volume unknowns; obtain required controlled observations or explicit owner disposition. Partial returned windows are not finalized 28-day comparisons."
+    },
+    "REQUIREMENTS": {
+      "kind": "human",
+      "description": "Fresh distinct nonauthor Requirements preflight before dependent implementation and final exact-candidate review of changed acceptance/oracles; preserve initial findings and correction dispositions."
+    },
+    "DESTINATION": {
+      "kind": "human",
+      "description": "Author-approved existing SDLC primary delivery explanation; distinct companion canonicals and upstream Subprime authority; reconcile #8/#11/#116/#183 without duplicate hub."
+    },
+    "EDITORIAL": {
+      "kind": "human",
+      "description": "Independent source/editorial review of new attribution, synthesis and exact source-to-HTML/PDF parity, preserving thought-experiment and evidence limits and accurate rights/edition dates."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Completed fresh distinct nonauthor Requirements, Code, White-box and Exploratory results on the actual changed template/oracle/PDF/preview scope, with source-bound execution and isolation receipts."
+    },
+    "PUBLICATION": {
+      "kind": "human",
+      "description": "Author approves the concrete new edition and required publication treatment; preview preparation is not actual site/external publication. Historical editions/events are immutable."
+    },
+    "SURFACES": {
+      "kind": "human",
+      "description": "Actual exact-candidate PR Preview at desktop/mobile and no-JavaScript for changed readers/Research links, PDF visual inspection and native link/reading checks; physical-device limits explicit."
+    },
+    "SEARCH": {
+      "kind": "human",
+      "description": "Under #8 inspect live indexing, Google-selected and Medium canonical and actual production robots/sitemap/metadata when accessible. Missing observations remain pending."
+    },
+    "STYLE-REVIEW": {
+      "kind": "human",
+      "description": "Independent applicable CS01/02/04/05/08/09/10 judgment beyond bounded guard; preserve unchanged CSS/runtime/resource budgets and review exact test/oracle scope."
+    },
+    "TECHNICAL-SCOPE": {
+      "kind": "human",
+      "description": "Complete or explicitly obtain owner disposition for issue-wide technical SEO scope, including source-supported Article schema enrichment deferred from this first preview. Source tests cannot waive it."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Existing PR Preview → separately authorized Stable Staging → protected merge and separately authorized Production with exact source/artifact/served-byte evidence; current author instruction authorizes correction and Stable Staging only; protected merge and Production remain separate decisions."
+    },
+    "MEASUREMENT": {
+      "kind": "human",
+      "description": "Retain baseline export; #213 owns equal finalized 28-day page/disclosed-query comparisons after delivery, with #8 URL Inspection handoff and separate controlled AI/entity observations. Record actual result, including no improvement."
+    }
+  }
+}

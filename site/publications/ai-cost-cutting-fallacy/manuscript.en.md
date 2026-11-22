@@ -230,6 +230,8 @@ AI is not a way to do the same work with fewer people. It is a way for your exis
 
 ---
 
+**Related reading:** [The SDLC Is Out of Balance: Beyond the AI Code Review Bottleneck](https://vitaliioborskyi.ai/articles/the-sdlc-is-out-of-balance.html) examines how faster generation can move constraints and costs across review, integration, learning and ownership. It separates coding activity from useful delivery and suggests bounded ways to test a different operating model.
+
 **Vitalii Oborskyi** is an enterprise delivery leader and independent research author. His work focuses on AI-assisted software delivery and the governance of systems that depend on model judgment. He is the author of [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis).
 
 [Author website](https://vitaliioborskyi.ai/) · [LinkedIn](https://www.linkedin.com/in/vitaliioborskyi/)

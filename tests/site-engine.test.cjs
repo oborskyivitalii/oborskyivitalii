@@ -25,6 +25,11 @@ function fixture(t) {
   // These legacy route/cache cases do not carry the repository's accepted Git sources.
   isolateLegacyCatalog(dir, root);
   fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(dir, 'site/publications'));
+  fs.copyFileSync(
+    path.join(root, 'site/publications/policy.json'),
+    path.join(dir, 'site/publications/policy.json')
+  );
   fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
@@ -902,7 +907,7 @@ test('reading entry shares immutable hosted and Color runtime without adding rou
   );
   assert.ok(Buffer.byteLength(fs.readFileSync(path.join(dir, 'docs/writing.html'))) <= 100000);
   const color = require('../tools/staging/color.cjs');
-  color.decoratePublic(path.join(dir, 'docs'));
+  color.decoratePublic(path.join(dir, 'docs'), { sourceRoot: dir });
   const colored = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
   assert.ok(colored.includes(navigation), 'Color consumes the exact shared navigation bytes');
   edit(dir, 'site/engine/scroll-entry.cjs', (source) =>

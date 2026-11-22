@@ -137,6 +137,11 @@ test.before(() => {
   // would otherwise point at owners deliberately absent from this directory.
   isolateLegacyCatalog(root, repo);
   fs.rmSync(path.join(root, 'site/publications'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(root, 'site/publications'));
+  fs.copyFileSync(
+    path.join(repo, 'site/publications/policy.json'),
+    path.join(root, 'site/publications/policy.json')
+  );
   publication(root, candidates[0]);
   publication(root, candidates[1]);
   json(root, 'site/article-preview.json', { schema: 1, candidates });
@@ -162,7 +167,7 @@ test.before(() => {
   };
   record.components = snapshot.verify(output, record);
   json(directory, 'artifact.json', record);
-  require('../tools/staging/color.cjs').build(directory);
+  require('../tools/staging/color.cjs').build(directory, { sourceRoot: root });
   require('../tools/staging/edition.cjs').build(directory);
   prepared = { root, generation };
 });
@@ -418,7 +423,11 @@ function compose(f, layers = []) {
   };
   record.components = snapshot.verify(path.join(directory, 'public'), record);
   json(directory, 'artifact.json', record);
-  for (const layer of layers) require('../tools/staging/' + layer + '.cjs').build(directory);
+  for (const layer of layers)
+    require('../tools/staging/' + layer + '.cjs').build(
+      directory,
+      layer === 'color' ? { sourceRoot: f.root } : {}
+    );
   return { directory, record: readJSON(directory, 'artifact.json') };
 }
 

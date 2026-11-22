@@ -764,6 +764,7 @@ function secretReviewFixture() {
     'tools/quality/secrets-reviewed.json',
     'tools/quality/secrets-reviewed-checksums.json',
     'tools/quality/secrets-publication.json',
+    'tools/quality/secrets-issue213.json',
   ];
   const metadata = {
     owner: 'Review owner',
@@ -801,6 +802,12 @@ test('the two public inventory paths each require their exact reviewed tuple', (
       for (const hash of [
         '41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
         'eb3400c0b18476eb7e38e5a430d52a263f917b89',
+        '6642018803cd2ae612e7b4186ab13f9105e44e37',
+        'c8aafd7b5d13b635e9e3cd0e5b433e8bda6502f2',
+        '22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+        'b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+        'c8f67025a4a310b688ce155efbbd0c07ed3fe740',
+        'ead3976e27529722574afdb5ad684239f565afb8',
       ]) {
         const entry = f.entry(file, 'Base64 High Entropy String', hash);
         const finding = {
@@ -852,6 +859,7 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
     f.reviews[1].findings.push(f.entry('review/metadata.json', 'Secret Keyword'));
     f.reviews[2].findings.push(f.entry('review/naïve proof.json'));
     f.reviews[3].findings.push(f.entry('review/publication.json'));
+    f.reviews[4].findings.push(f.entry('review/issue213-checksum.json'));
     f.files.forEach((_, index) => f.write(index));
     fs.writeFileSync(
       path.join(f.directory, 'tools/quality/secrets-reviewed-extra.json'),
@@ -861,7 +869,7 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
       })
     );
     const reviewed = loadSecretReviews(f.directory);
-    assert.equal(reviewed.size, 4);
+    assert.equal(reviewed.size, 5);
     for (const entry of f.reviews.flatMap((review) => review.findings)) {
       const finding = { type: entry.rule, hashed_secret: entry.id.slice(-40) };
       assert.deepEqual(reviewed.get(entry.id), entry);
@@ -887,6 +895,85 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
     );
   } finally {
     fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('the additional closed checksum ledger keeps strict types and metadata', () => {
+  const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    for (const rule of ['Secret Keyword', 'Basic Auth Credentials', 'unknown']) {
+      f.write(4, { ...f.reviews[4], findings: [f.entry('review/public.json', rule)] });
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+    }
+    for (const changed of [
+      { ...f.reviews[4], owner: '' },
+      { ...f.reviews[4], reviewedAt: '2026-02-30' },
+      { ...f.reviews[4], schema_version: 2 },
+      { ...f.reviews[4], findings: {} },
+      { ...f.reviews[4], extraAdmission: true },
+    ]) {
+      f.write(4, changed);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid secret review metadata/);
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('current guide checksum proof follows real committed scope and rejects stale or copied fields', () => {
+  const os = require('node:os'),
+    crypto = require('node:crypto');
+  const helper = require('../tools/quality/generated-checksums.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'guide-checksum-'));
+  const file = 'review/issue-213/workflow-guide-evidence.json';
+  const git = (...args) =>
+    cp.execFileSync('git', args, { cwd: directory, encoding: 'utf8' }).trim();
+  try {
+    cp.execFileSync('git', ['clone', '--shared', '--quiet', root, directory]);
+    git('config', 'user.email', 'fixture@example.invalid');
+    git('config', 'user.name', 'Checksum fixture');
+    git('checkout', '--quiet', '--detach', '7feb1c32dd65d643592057982ec12779c96b5cbc');
+    const baseline = git('rev-parse', 'HEAD');
+    const original = fs.readFileSync(path.join(directory, file), 'utf8');
+    const record = JSON.parse(original);
+    git('update-ref', 'refs/remotes/origin/main', record.base_sha);
+    const modules = 'tools/publishing/toolchain/node_modules';
+    fs.symlinkSync(path.join(root, modules), path.join(directory, modules), 'junction');
+    const read = (name) => fs.readFileSync(path.join(directory, name), 'utf8');
+    const collect = () => helper.collectGuideChecksumFields(directory, read);
+    const hash = crypto.createHash('sha1').update(record.scope_sha256).digest('hex');
+    assert.ok(collect().get(file).locations.has(hash));
+    fs.writeFileSync(path.join(directory, file), original + '\n');
+    assert.equal(collect().size, 0, 'dirty bytes cannot use committed proof');
+    git('reset', '--hard', baseline);
+    const copied = {
+      ...record,
+      rationale: record.rationale + ' Copied value ' + record.scope_sha256,
+    };
+    fs.writeFileSync(path.join(directory, file), JSON.stringify(copied, null, 2));
+    git('add', file);
+    git('commit', '--quiet', '-m', 'Controlled copied field');
+    assert.equal(collect().get(file).locations.has(hash), false, 'same value in prose is unproved');
+    git('reset', '--hard', baseline);
+    const changed = { ...record, scope_sha256: 'a'.repeat(64) };
+    fs.writeFileSync(path.join(directory, file), JSON.stringify(changed));
+    git('add', file);
+    git('commit', '--quiet', '-m', 'Controlled stale scope');
+    assert.equal(collect().size, 0);
+    git('reset', '--hard', baseline);
+    const mapFile = '.github/ri-ci-map.json';
+    const map = JSON.parse(read(mapFile));
+    map.fixtureChange = true;
+    fs.writeFileSync(path.join(directory, mapFile), JSON.stringify(map));
+    git('add', mapFile);
+    git('commit', '--quiet', '-m', 'Controlled changed source');
+    assert.equal(collect().size, 0, 'changed control source invalidates old scope');
+    git('reset', '--hard', baseline);
+    git('update-ref', '-d', 'refs/remotes/origin/main');
+    assert.equal(collect().size, 0, 'missing main identity supplies no authority');
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
   }
 });
 
@@ -986,7 +1073,7 @@ test('browser SRI findings require exact review IDs and a separate selected-tool
       reviewedSecretFinding(f.inventoryFile, unknown, reviewed, new Set(), proof),
       false
     );
-    for (const index of [0, 1, 3]) {
+    for (const index of [0, 1, 3, 4]) {
       f.reviews[2].findings = [];
       f.write(2);
       f.reviews[index].findings = [
@@ -1173,7 +1260,7 @@ test('public npm integrity dispositions require the exact inventory path, ledger
       assert.throws(() => publicationIntegrityProof(f.directory), /integrity|inventory/);
     }
     writeInventory(inventory);
-    for (const index of [0, 1, 2]) {
+    for (const index of [0, 1, 2, 4]) {
       f.reviews[3].findings = [];
       f.write(3);
       f.reviews[index].findings = [f.entry(inventoryFile, finding.type, hash)];

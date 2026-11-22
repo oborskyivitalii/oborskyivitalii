@@ -59,7 +59,8 @@ function write(dir, name, bytes) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, bytes);
 }
-function decoratePublic(dir) {
+// sourceRoot selects the retention declaration only; effects remain trusted module inputs.
+function decoratePublic(dir, { sourceRoot = path.resolve(__dirname, '../..') } = {}) {
   const base = JSON.parse(fs.readFileSync(path.join(dir, 'site-revision.json')));
   assert.ok(!base.variant || base.variant.id === 'base', 'Color is applied exactly once');
   const parts = authoredEffects(),
@@ -97,7 +98,7 @@ function decoratePublic(dir) {
   // Capture keeps exact frozen declarations and immutable dependencies of surviving
   // immutable documents; it does not retain every replaced active page.
   const declared = retention.declaration(
-    JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
+    JSON.parse(fs.readFileSync(path.join(sourceRoot, 'site/retained/manifest.json')))
   );
   const retained = retention.capture(dir, base, { declared });
   fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
@@ -142,13 +143,13 @@ function decoratePublic(dir) {
   retention.restore(dir, retained);
   return { base, revision };
 }
-function build(directory) {
+function build(directory, options = {}) {
   const manifestFile = path.join(directory, 'artifact.json'),
     publicDir = path.join(directory, 'public');
   const source = JSON.parse(fs.readFileSync(manifestFile));
   artifact.verify(publicDir, source);
   const baseArtifactDigest = source.artifactDigest,
-    { revision } = decoratePublic(publicDir);
+    { revision } = decoratePublic(publicDir, options);
   const result = {
     ...source,
     ...artifact.manifest(publicDir),

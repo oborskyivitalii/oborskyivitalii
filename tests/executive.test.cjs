@@ -288,6 +288,56 @@ test('issue159 exact copy reversal retains immutable predecessors and unrelated 
   const credits = readHTML(path.join(__dirname, '../docs/credits.html'));
   assert.equal(seo.restoreContentAmendment(credits, 'credits', amendment), credits);
 });
+test('discovery link reversal preserves its immutable predecessor and rejects unrelated or forged changes', () => {
+  const path = require('node:path');
+  const cp = require('node:child_process');
+  const crypto = require('node:crypto');
+  const seo = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-213/content-amendment.json');
+  const change = record.changes[0];
+  const before = seo.normalizeHTML(change.before);
+  const after = seo.normalizeHTML(change.after);
+  const baseline = cp.execFileSync('git', ['show', record.baseline + ':docs/research.html'], {
+    cwd: path.resolve(__dirname, '..'),
+    encoding: 'utf8',
+  });
+  assert.ok(seo.normalizeHTML(baseline).includes(before));
+  const current = readHTML(path.join(__dirname, '../docs/research.html'));
+  assert.ok(
+    current.includes(after),
+    'the current Research lens selects the approved native article'
+  );
+  assert.ok(
+    !current.includes(before),
+    'the old upstream mechanics shortcut is replaced explicitly'
+  );
+  assert.equal(seo.restoreDiscoveryLink(after, 'research'), before);
+  const outside = '<a href="https://example.test/unapproved">Unreviewed claim</a>';
+  assert.equal(seo.restoreDiscoveryLink(after + outside, 'research'), before + outside);
+  const wrongLink = after.replace('the-sdlc-is-out-of-balance.html', 'unknown.html');
+  assert.notEqual(seo.restoreDiscoveryLink(wrongLink, 'research'), before);
+  assert.equal(seo.restoreDiscoveryLink(after, 'credits'), after);
+  for (const mutate of [
+    (copy) => {
+      copy.baseline = '0'.repeat(40);
+    },
+    (copy) => {
+      copy.changes.push(copy.changes[0]);
+    },
+    (copy) => {
+      copy.changes[0].after += outside;
+    },
+    (copy) => {
+      copy.changes[0].after = wrongLink;
+      copy.changes[0].afterSHA256 = crypto.createHash('sha256').update(wrongLink).digest('hex');
+    },
+  ]) {
+    const copy = structuredClone(record);
+    mutate(copy);
+    assert.throws(() => seo.restoreDiscoveryLink(after, 'research', copy));
+  }
+});
+
 test('issue159 successor producer pins retain their prior inventory and reject changed current bytes', (t) => {
   const path = require('node:path');
   const seo = require('../tools/check_site_seo.cjs');
@@ -962,7 +1012,11 @@ test('response reconciliation rejects missing people, sources and stronger parti
   );
 });
 test('issue48 amendment reverses only declared theory and Matthew changes', () => {
-  const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs'),
+  const {
+      restore,
+      restoreContentAmendment,
+      restoreDiscoveryLink,
+    } = require('../tools/check_site_seo.cjs'),
     path = require('node:path');
   const record = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../review/issue-48/content-amendment.json'), 'utf8')
@@ -983,7 +1037,10 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
       normalizeHTML(change.before)
     );
     if (!pages.has(change.page)) {
-      const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+      const html = restoreDiscoveryLink(
+        readHTML(path.join(__dirname, '../docs/' + change.page + '.html')),
+        change.page
+      );
       pages.set(change.page, { html, preserved: restore(html, change.page) });
     }
     const { html, preserved } = pages.get(change.page);

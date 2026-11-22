@@ -14,7 +14,7 @@ The introduction keeps the engineering cycle and the consequence of misframing a
 
 ## Deliverables
 
-- [The_Sum_of_Our_Technology_R29_2026-10-24.pdf](The_Sum_of_Our_Technology_R29_2026-10-24.pdf): 22-page native review PDF.
+- 22-page native review PDF: extract `article.pdf` from the unchanged [native review kit](The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz). The exact loose-copy recovery identity is recorded in the [issue213 recovery manifest](../../issue-213/pdf-recovery-manifest.json); the archived PDF bytes are unchanged.
 - [The_Sum_of_Our_Technology_R29_2026-10-24.md](The_Sum_of_Our_Technology_R29_2026-10-24.md): exact canonical manuscript, using canonical asset identifiers.
 - [The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz](The_Sum_of_Our_Technology_R29_2026-10-24_Native_Review_Kit.tar.xz): all 34 exact native files, kit `8b1686cb3f856fab534418d9e191db7aeb30c127a2404604a428b59b2913d592`.
 - [artifact-evidence.json](artifact-evidence.json): complete source, edition, producer, member and delivery hashes.

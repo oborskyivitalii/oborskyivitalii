@@ -84,7 +84,12 @@ function render(html, id, articles = {}) {
   );
 }
 
-function build(directory, variant = 'base') {
+// sourceRoot selects retained source bytes; origin/social/release policy stays module-owned.
+function build(
+  directory,
+  variant = 'base',
+  { sourceRoot = path.resolve(__dirname, '../..') } = {}
+) {
   const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
   assert.ok(['base', 'color'].includes(variant), 'select an explicit production rendition');
   assert.equal(record.components.variant?.id || 'base', variant, 'wrong production rendition');
@@ -100,7 +105,7 @@ function build(directory, variant = 'base') {
     edition: { id: 'production', indexable: true, origin },
     css: '',
     retained: require('../site/edition-retention.cjs').declaration(
-      JSON.parse(fs.readFileSync(path.join(__dirname, '../../site/retained/manifest.json')))
+      JSON.parse(fs.readFileSync(path.join(sourceRoot, 'site/retained/manifest.json')))
     ),
     inputs: { origin, robots, sitemap: productionSitemap, notFound, social },
     render: (html, id) => render(html, id, articles),

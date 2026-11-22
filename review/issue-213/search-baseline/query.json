@@ -1,0 +1,29 @@
+{
+  "fields": [
+    "query",
+    "impressions",
+    "clicks",
+    "ctr",
+    "position"
+  ],
+  "response": {
+    "status": "done",
+    "data": [
+      {
+        "query": "arkadiy dobkin",
+        "impressions": 1,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 51
+      },
+      {
+        "query": "vladimir beskorovainyi ai",
+        "impressions": 1,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 59
+      }
+    ],
+    "total_rows": 2
+  }
+}

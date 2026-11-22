@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/199",
-    "date": "2026-11-13",
-    "summary": "Map the repository workflow guide and its exact-source review gate to navigation and owning acceptance."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/213",
+    "date": "2026-11-21",
+    "summary": "Map the owning discovery acceptance policy while retaining all existing RI checks and workflow routes."
   },
   "layers": [
     {
@@ -182,7 +182,8 @@
         ".github/acceptance/issue-188.json",
         ".github/acceptance/issue-189.json",
         ".github/acceptance/issue-211.json",
-        "tests/test_issue189_acceptance.py"
+        "tests/test_issue189_acceptance.py",
+        ".github/acceptance/issue-213.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -264,7 +265,12 @@
         "tests/content-baseline.test.cjs",
         "tests/content-delivery.test.cjs",
         "tests/release-controller.test.cjs",
-        "tools/release/staging-policy.cjs"
+        "tools/release/staging-policy.cjs",
+        "tools/quality/secrets-issue213.json",
+        "tools/quality/generated-checksums.cjs",
+        "tools/quality/python_toolchain.py",
+        "tools/quality/toolchain/requirements.txt",
+        "tests/test_python_toolchain.py"
       ],
       "checks": [
         "acceptance-policy",
@@ -747,7 +753,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5b1d473c9ccf418f51f5c19fdd2147f6f1071fc999c1b99df766acbde11704a4",
+    "digest": "3e89fdc3344352faa719a7f7e0911a28313d2409f17e4ac38e2c15c7ba75d85e",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -850,6 +856,10 @@
         "sha256": "f95c2c01052c1120dea6cdee30f73e6cae2a9899dbaa7e3ba64abcb06946fff2"
       },
       {
+        "path": ".github/acceptance/issue-213.json",
+        "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
       },
@@ -939,7 +949,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6d15e9fcf1535d0f699ed13161e146b928082bc5349568038d3b441df94db9bf"
+        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -959,7 +969,7 @@
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "4144fde82d01b74e312cfc0d8293f97d0731e4cd153dbad34d7cd743f05f39c8"
+        "sha256": "12dad0f673951fae57ea4c5e14edfdc44eb4e2750e8a52a3c7ff7dbb45abe663"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -1247,7 +1257,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "f4b4521d3bf9ebb9bf5113e382e1952aa1263fa995b097545b0bf2451b440ff6"
+        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

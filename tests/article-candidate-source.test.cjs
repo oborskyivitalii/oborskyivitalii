@@ -108,7 +108,11 @@ function fixture(t, layers = []) {
   const directory = path.join(root, 'artifact');
   const output = path.join(directory, 'public');
   let record = structuredClone(prepared.record);
-  for (const layer of layers) record = require(`../tools/staging/${layer}.cjs`).build(directory);
+  for (const layer of layers)
+    record = require(`../tools/staging/${layer}.cjs`).build(
+      directory,
+      layer === 'color' ? { sourceRoot: root } : {}
+    );
   return { root, output, record };
 }
 

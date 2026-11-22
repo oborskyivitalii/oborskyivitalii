@@ -11,7 +11,7 @@ R27 adds a concise Olivier Leturcq contribution record, revision/citation metada
 ## Deliverables
 
 - [The_Sum_of_Our_Technology_R27_2026-10-23.md](The_Sum_of_Our_Technology_R27_2026-10-23.md): byte-exact R27 canonical manuscript.
-- [The_Sum_of_Our_Technology_R27_2026-10-23.pdf](The_Sum_of_Our_Technology_R27_2026-10-23.pdf): 21-page native review PDF.
+- [The_Sum_of_Our_Technology_R27_2026-10-23.pdf](ARCHIVED-PDF.md): 21-page native review PDF.
 - [The_Sum_of_Our_Technology_R27_2026-10-23_Native_Review_Kit.zip](The_Sum_of_Our_Technology_R27_2026-10-23_Native_Review_Kit.zip): all 34 files from native kit `3deebdbf052a2ad3616ae6ba7ea70d35c4e4c09a2e75713379f0aedfb82e154e` with their original manifests and resources.
 - [artifact-evidence.json](artifact-evidence.json): source, semantic, producer, output/archive/member identities and review limits.
 

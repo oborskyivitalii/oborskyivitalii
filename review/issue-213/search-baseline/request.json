@@ -1,0 +1,21 @@
+{
+  "retrievedOn": "2026-11-21",
+  "exactRetrievalTime": "not retained",
+  "connector": "searchconsole",
+  "accounts": [
+    "sc-domain:vitaliioborskyi.ai"
+  ],
+  "date_from": "2026-10-24",
+  "date_to": "2026-11-20",
+  "latestReturnedDailyDate": "2026-11-19",
+  "searchType": "connector default; not selected or independently attested",
+  "dateConvention": "Search Console Pacific dates",
+  "localeDevice": "not selected; aggregated",
+  "limits": [
+    "Initial 2026-10-21 request refused by connector 30-day history limit; corrected to 2026-10-24.",
+    "20 November absent from returned daily data; finality not exposed.",
+    "Query rows are privacy-limited; missing queries do not prove zero searches.",
+    "Page and property impressions use different aggregation; do not sum page totals as property totals.",
+    "CTR is a fraction; multiply by 100 for percentage."
+  ]
+}

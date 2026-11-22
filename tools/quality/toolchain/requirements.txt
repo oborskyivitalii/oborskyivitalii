@@ -4,7 +4,7 @@ attrs==26.1.0
 bandit==1.9.4
 boltons==21.0.0
 boolean.py==5.0
-bracex==3.0.1
+bracex==3.2
 CacheControl==0.14.4
 certifi==2026.10.19
 cffi==2.1.1
@@ -87,6 +87,6 @@ typing-inspection==0.4.4
 typing_extensions==4.16.0
 urllib3==2.8.0
 uvicorn==0.54.0
-wcmatch==8.5.2
+wcmatch==11.2
 wrapt==1.17.3
 zipp==4.1.0

@@ -418,7 +418,10 @@ test('canonical topic-first public records preserve bounded copy, source bylines
 });
 
 test('research theories retain project alignment and explicit association on narrow layouts', () => {
-  const research = pages.research,
+  const research = require('../tools/check_site_seo.cjs').restoreDiscoveryLink(
+      pages.research,
+      'research'
+    ),
     lenses = research.match(/<section id="lenses"[\s\S]*?<\/section>/)[0];
   const cards = [
     ...lenses.matchAll(
@@ -1292,4 +1295,10 @@ test('completed DevCon talk belongs with past events and preserves previous publ
       /event output differs from validated canonical data/
     );
   }
+});
+
+test('synthetic catalog isolation refuses the actual source root before changing it', () => {
+  const { isolateLegacyCatalog } = require('./fixtures/catalog.cjs');
+  const source = path.resolve(__dirname, '..');
+  assert.throws(() => isolateLegacyCatalog(source, source), /requires a distinct fixture root/);
 });

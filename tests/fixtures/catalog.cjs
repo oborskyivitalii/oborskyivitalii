@@ -2,6 +2,7 @@
 
 const cp = require('node:child_process');
 const legacySource = 'e830752f58535c9e2226550a9661ee51c745bdb3';
+const legacyRetentionSource = '3877546d29a04f235f9ec0f3175f4e0d90bfd60d';
 
 function legacyCatalog(root) {
   // Historical external editions are test input, never an editing authority.
@@ -73,17 +74,62 @@ function isolatePublicationCatalog(root, sourceRoot) {
 function isolateLegacyCatalog(root, sourceRoot) {
   const fs = require('node:fs'),
     path = require('node:path');
+  if (fs.realpathSync(root) === fs.realpathSync(sourceRoot))
+    throw Error('Synthetic catalog requires a distinct fixture root');
+  // Keep the complete historical seed before native cross-article links entered it.
+  // Current production retention is tested separately; these fixtures own their
+  // synthetic successors and still exercise real retain()/closure/recovery checks.
+  const retainedBytes = cp.execFileSync(
+    'git',
+    ['show', legacyRetentionSource + ':site/retained/manifest.json'],
+    { cwd: sourceRoot, env: { ...process.env, GIT_NO_LAZY_FETCH: '1' } }
+  );
+  const retained = JSON.parse(retainedBytes);
+  const retainedRoot = path.join(root, 'site/retained');
+  const currentManifest = path.join(retainedRoot, 'manifest.json');
+  const inherited = fs.existsSync(currentManifest)
+    ? JSON.parse(fs.readFileSync(currentManifest)).files
+    : {};
+  for (const name of Object.keys(inherited))
+    if (!Object.hasOwn(retained.files, name))
+      fs.rmSync(path.join(retainedRoot, name), { force: true });
+  for (const name of Object.keys(retained.files)) {
+    const destination = path.join(retainedRoot, name);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(path.join(sourceRoot, 'site/retained', name), destination);
+  }
+  fs.writeFileSync(currentManifest, retainedBytes);
+  const rightsFile = path.join(root, 'site/rights.json');
+  if (fs.existsSync(rightsFile)) {
+    const rights = JSON.parse(fs.readFileSync(rightsFile));
+    const historicalRights = JSON.parse(
+      cp.execFileSync('git', ['show', legacyRetentionSource + ':site/rights.json'], {
+        cwd: sourceRoot,
+        env: { ...process.env, GIT_NO_LAZY_FETCH: '1' },
+      })
+    );
+    rights.retained = historicalRights.retained;
+    fs.writeFileSync(rightsFile, JSON.stringify(rights, null, 2) + '\n');
+  }
   const legacy = legacyCatalog(sourceRoot);
   const current = require('../../tools/site/content.cjs').catalog(sourceRoot);
-  for (const relative of ['index/research.json', 'research/lenses.json']) {
+  for (const relative of [
+    'index/research.json',
+    'research/lenses.json',
+    'research/research.json',
+  ]) {
     const fragment = path.join(root, 'site/content/pages', relative);
     if (!fs.existsSync(fragment)) continue;
     const data = JSON.parse(fs.readFileSync(fragment));
     for (const key of Object.keys(data.urls)) {
-      const match = Object.keys(legacy.records).find(
-        (id) => current.records[id]?.article && current.records[id].edition.url === data.urls[key]
+      const match = Object.entries(current.records).find(
+        ([, record]) => record.article && record.edition.url === data.urls[key]
       );
-      if (match) data.urls[key] = legacy.records[match].edition.url;
+      if (!match) continue;
+      const [id, record] = match;
+      const source = legacy.records[id]?.edition.url || record.platformLinks?.[0]?.url;
+      if (!source) throw Error('Synthetic catalog requires an external source for ' + id);
+      data.urls[key] = source;
     }
     fs.writeFileSync(fragment, JSON.stringify(data, null, 2) + '\n');
   }

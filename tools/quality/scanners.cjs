@@ -435,6 +435,7 @@ const secretReviewInputs = Object.freeze([
   'tools/quality/secrets-reviewed.json',
   'tools/quality/secrets-reviewed-checksums.json',
   'tools/quality/secrets-publication.json',
+  'tools/quality/secrets-issue213.json',
 ]);
 function secretReviewMetadata(review, file) {
   const baseline = file === secretReviewInputs[0];
@@ -480,15 +481,27 @@ function secretReviewPath(file) {
 // Reviewed public immutable-directory literals in their two exact source inventories.
 // Each tuple still requires its own reviewed ledger entry; no path/type wildcard.
 const reviewedInventoryPaths = new Set([
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:ead3976e27529722574afdb5ad684239f565afb8',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:c8f67025a4a310b688ce155efbbd0c07ed3fe740',
+  '.github/repository-paths.json:Base64 High Entropy String:b3f3f29e10d30388a4d6dab43c4977d568cfee84',
+  '.github/repository-paths.json:Base64 High Entropy String:22ac0d8a3eefa042069c4acdd6a78647e766bbad',
+  '.github/repository-paths.json:Base64 High Entropy String:ead3976e27529722574afdb5ad684239f565afb8',
+  '.github/repository-paths.json:Base64 High Entropy String:c8f67025a4a310b688ce155efbbd0c07ed3fe740',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
   '.github/repository-paths.json:Base64 High Entropy String:b8d6213610f36dcd3674f324fc4f068115114156',
   '.github/repository-paths.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:41ceb5699f64d5bfeaccc5850d0cf398a19b10c9',
   '.github/repository-paths.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
   '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:eb3400c0b18476eb7e38e5a430d52a263f917b89',
+  '.github/repository-paths.json:Base64 High Entropy String:6642018803cd2ae612e7b4186ab13f9105e44e37',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:6642018803cd2ae612e7b4186ab13f9105e44e37',
+  '.github/repository-paths.json:Base64 High Entropy String:c8aafd7b5d13b635e9e3cd0e5b433e8bda6502f2',
+  '.github/repository-intelligence/agent-context.json:Base64 High Entropy String:c8aafd7b5d13b635e9e3cd0e5b433e8bda6502f2',
 ]);
 function secretReviewEntry(entry, file) {
-  const checksumOnly = file === secretReviewInputs[2];
+  const checksumOnly = file === secretReviewInputs[2] || file === secretReviewInputs[4];
   const rules = checksumOnly
     ? ['Hex High Entropy String']
     : ['Hex High Entropy String', 'Secret Keyword', 'Basic Auth Credentials'];
@@ -498,7 +511,7 @@ function secretReviewEntry(entry, file) {
     rules.push('Base64 High Entropy String');
   if (file === secretReviewInputs[2] && entry?.path === 'tools/quality/browser-archives.json')
     rules.push('Base64 High Entropy String');
-  if (file === secretReviewInputs[2] && reviewedInventoryPaths.has(entry?.id))
+  if (checksumOnly && reviewedInventoryPaths.has(entry?.id))
     rules.push('Base64 High Entropy String');
   if (
     !entry ||

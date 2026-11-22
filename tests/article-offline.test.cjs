@@ -285,6 +285,11 @@ test.before(() => {
     recursive: true,
     force: true,
   });
+  fs.mkdirSync(path.join(root, 'site/publications'));
+  fs.copyFileSync(
+    path.join(repo, 'site/publications/policy.json'),
+    path.join(root, 'site/publications/policy.json')
+  );
   fs.rmSync(path.join(root, 'site/assets/publications'), {
     recursive: true,
     force: true,

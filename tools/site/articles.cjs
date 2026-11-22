@@ -115,15 +115,19 @@ function summary(article) {
   };
 }
 
-function nativeEditionLinks(catalog) {
+function nativeEditionLinks(catalog, origin = null) {
   const links = new Map();
+  const add = (source, target) => {
+    const matched = links.get(source);
+    links.set(source, matched === undefined || matched === target ? target : null);
+  };
   for (const record of Object.values(catalog.records)) {
     if (record.kind !== 'local-article') continue;
     const target = record.edition.url;
+    if (origin) add(new URL(target, origin + '/').href, target);
     for (const edition of record.editions) {
       const source = edition.url.replace(/\/$/, '');
-      const matched = links.get(source);
-      links.set(source, matched === undefined || matched === target ? target : null);
+      add(source, target);
     }
   }
   return links;

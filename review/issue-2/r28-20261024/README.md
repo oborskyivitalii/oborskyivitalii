@@ -16,7 +16,7 @@ Actual page review also exposed inherited clipping of two-digit bibliography mar
 ## Deliverables
 
 - [The_Sum_of_Our_Technology_R28_2026-10-24.md](The_Sum_of_Our_Technology_R28_2026-10-24.md): byte-exact canonical R28 manuscript, including canonical asset identifiers.
-- [The_Sum_of_Our_Technology_R28_2026-10-24.pdf](The_Sum_of_Our_Technology_R28_2026-10-24.pdf): 22-page native review PDF.
+- [The_Sum_of_Our_Technology_R28_2026-10-24.pdf](ARCHIVED-PDF.md): 22-page native review PDF.
 - [The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip](The_Sum_of_Our_Technology_R28_2026-10-24_Native_Review_Kit.zip): all 34 original files from native kit `4bf1bcf7c8346d312a7f59299c4fe5c472bd91f79231be806d801f0c8e871996`.
 - [artifact-evidence.json](artifact-evidence.json): source, semantic, producer, complete member and delivery identities.
 

@@ -46,6 +46,7 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-179.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-196.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-211.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-213.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: npm ci --prefix tools/quality/toolchain --ignore-scripts
@@ -57,6 +58,7 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-183.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-187.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-211.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-213.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
@@ -74,6 +76,7 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-183.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-187.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-211.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-213.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: |
@@ -88,6 +91,7 @@ jobs:
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-183.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-187.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-211.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-213.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-189.json'
         run: |
           npm ci --prefix tools/publishing/toolchain --ignore-scripts

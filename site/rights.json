@@ -547,6 +547,10 @@
     "publications/sdlc-out-of-balance/materials/reading-r12.pdf": {
       "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
       "bases": ["original-text", "original-diagram"]
+    },
+    "publications/sdlc-out-of-balance/materials/reading-r13.pdf": {
+      "sha256": "a967d35ecd0b16674bbafb2dcf4f02e2bbc33aa51b6780fccf6fc5057fed93ec",
+      "bases": ["original-text", "original-diagram"]
     }
   },
   "retained": {
@@ -800,6 +804,158 @@
     },
     "article-media/8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f/asymmetry-r9.webp": {
       "sha256": "8082d70ee11d652202f57db57cb427c704de971ba734b26905febc1ee000526f",
+      "bases": ["retained-edition"]
+    },
+    "article-media/c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996/reading-r12.pdf": {
+      "sha256": "c3686dce007b399d3fb175d5b235a51b1000500a3e4bc6f024be9767bfb33996",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/59ff20803833d9228a2cd1ef68058787e10f96bb41e3818e61889fcced95a052/ai-governance-is-control-theory.html": {
+      "sha256": "d19efc730ba9936afb7515a1496f80d2cf1c07a5d3c52fa18f0d2d77bdb6ddc2",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/5c246b819b84aebed856278dc2ec0ae3bb0d7cbfdfb674b49dbef98b58a42aae/agentic-loops.html": {
+      "sha256": "c13b59f1ee14e4c48764c36ecba4643820fb9c0ef40bba1fb8cdf040d6a7c7a3",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/7861361b33758acb3095e20d1deceee62b27c7f67b015c4875816a9e36f3b4aa/beyond-embeddings.html": {
+      "sha256": "bc84138aadeaef3510a1b03164762af021e61fe8464ebf5b517ce04351f6a899",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/cd9797d2b0e1afaf73e419adb3a06443cb988c6591068b79be4ed75749991904/ai-cost-cutting-fallacy.html": {
+      "sha256": "d30b161b6e47fd21df552132e7ba60cdbdaae8a5913c76de24be368422102d80",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/d2fa46ccc36402be42c228f7eb4c58efb3d89bf68d20fb645ebd886f143772fe/the-sdlc-is-out-of-balance.html": {
+      "sha256": "f5828f567fe97e317af5e4d6c4ecafc5cb44d135dae28df9aa84349c03c79f7d",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/e6c18bd39d79a2be547cb69f15184331569c5a7a1feecb8249d79762d7b28a58/ai-native-workflows-have-a-moat-problem.html": {
+      "sha256": "e90a2ac94716ec604ef2f0ee4be7428a2bdc35f30cdf7d5bab3241d94f2a5aef",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/ebcc5f1b1565d262dbfd000aca2a4ecf6f871e883890d16e48cdbc00ec754b10/thinking-systems.html": {
+      "sha256": "2e069e9558cd13fef03c7f5d1befc01ad75a09d90345857c129ee630d3ed5143",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/ff54b0c32f023499f82f7922fb6dd8024e7eb72055fae12e1dda42053021eb8a/ai-verification-crisis.html": {
+      "sha256": "85ffa59a1fee29c76b652716d443803c4ea7443c9846934ec4e676ef158c6613",
+      "bases": ["retained-edition"]
+    },
+    "runtime/6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1/analytics.js": {
+      "sha256": "6cb335e76a1aa0004d11ae06d9825991f5ea513a9564457383c8d13c7c54bbb1",
+      "bases": ["retained-edition"]
+    },
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/archive.js": {
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+      "bases": ["retained-edition"]
+    },
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/navigation.js": {
+      "sha256": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f",
+      "bases": ["retained-edition"]
+    },
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/space.js": {
+      "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
+      "bases": ["retained-edition"]
+    },
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/styles.css": {
+      "sha256": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
+      "bases": ["retained-edition"]
+    },
+    "runtime/97208ee3d165d8585186561ca50d2fdebe8ca0831c3fc6b7a7414a43e5f18aab/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/240fcb7694cf131efbde1f4fbab8b9e995d885f2cd64b1bbb9caaf00943c1f71/index.html": {
+      "sha256": "3edee769b8adaa7d479c30cc157647bb01a22013f74fb5afce25343c9724a2d0",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/55d86ad8e2b857fb2f5b638ab402120c7e21700f38332834809068fc3bfff66d/research.html": {
+      "sha256": "ce43a8881b4be59494e244fb1e4099a7b56d9dc5b3132912335e93ff215f542c",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/7ad903a55d2c4086b7ced07e6c984ac070df4d569332870c5fa7ce08c01ee4e1/talks.html": {
+      "sha256": "1c44c960f4344e707212b4576c4632ade4dde62b0f67c740f41f8ddc74086c26",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/7e1a1084b500a36b8813233c04ea5463e0012ea2c114e8ccda564d5e277ea6ae/credits.html": {
+      "sha256": "ca77dbf5e963490f1c8de05cb54b1fcca9f0a51f0807f74858ac4580cecda8a1",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/87a2f581d99654414c98fe66f1898d6d75b65cbcd1ff46e84c8ca3a8f72d5098/writing.html": {
+      "sha256": "9d57472ce598ee8a22b9d296942efd58d42a2b7214b94b19c95ec08e25a6c750",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/0306d12d1f4a6ceec662ab04dacaa5a4636bb0893b438286ce229ab11d83b5d2/ai-governance-is-control-theory.html": {
+      "sha256": "45b48ba545e0f40efa907550d6ab494e24841a00cdf61fc18dbc93696a702c63",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/055b659ede4dd64a77e712c87a20fd82fdec604d769c8a12c7cb1319f4fe58ba/beyond-embeddings.html": {
+      "sha256": "e7c9385aa5d57adef141eb60db00f378de73cfb3e61df3da83d5df474dd26844",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/42d13085317f026e0f95c02fda650633f93c1515fd34de80296c63abb4c113b6/ai-native-workflows-have-a-moat-problem.html": {
+      "sha256": "0fcbe6ae203dc9561ab38dbc063bf92c9f8be3cddc1bffcb5c733997b70860b1",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/71b4e2104436e7e4558fa8240567d6a897261f9b38b1ad86208ba5cc1283b4be/thinking-systems.html": {
+      "sha256": "90d041a9aba6f5fd41621be248e3dbb67d5763f37df6d3cf22e52f09d0d04560",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/8dd248b9e11dee2b70c3fdb8378c62d28c9bac4181cab7f598bf7f6d4b79632e/ai-verification-crisis.html": {
+      "sha256": "15d84ec52e22a1880f31452cd92157477f69fc819ac8aeecb081ac74b7208316",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/a46f5b6bd8340d8d84f0ba43e8fe6ee6559a77b74c01bc167e4f6f393fb2e32b/agentic-loops.html": {
+      "sha256": "b723aeeb5fd4ca110ef46d12284f6233a0165fbf19d71bdbe157535217bfe969",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/df1d5045fee76cc7497436c529b80e5cee53418668ff4dad5e29d0c39eace573/the-sdlc-is-out-of-balance.html": {
+      "sha256": "a51c4b47e9b8eca591f866c3cc5a75b95dc9bed34c925a5fedb349957d7912f9",
+      "bases": ["retained-edition"]
+    },
+    "article-snapshots/f91fdaf40d817f72d6ccc4f6f40537e040512375bcd48b408273eff58128246a/ai-cost-cutting-fallacy.html": {
+      "sha256": "45790f31eba04ab22a032aa1c0877e5efe01ca807f7728a061424a7c638c93cc",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/archive.js": {
+      "sha256": "bf1b9e42356b282f3c08f7763a7a59263241c752df5dd9ee776a6b0bf86b0caa",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/navigation.js": {
+      "sha256": "f2220ac1e699cd32ce6501b829cda27f976160a56efa2d73d578cededc04dd8f",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/space.js": {
+      "sha256": "c8b91326e9a1206e8fbd219ebadc7160fa2a639ffc58fa0f6063ed86e53f2d23",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/styles.css": {
+      "sha256": "c78a92fc66a6dc59b0449e1fc0501d85cc07b79d9380a868d853a5301d7240da",
+      "bases": ["retained-edition"]
+    },
+    "runtime/87f9590292adefa27641b1315e6b4292a871a7acf12b033eab5f2521433899ab/theme.js": {
+      "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/10d6abf1c911d0567ef6f555a667afd00283df5a565e6873ecce4ae782183b4c/credits.html": {
+      "sha256": "e08b40359a40a71da1e8f04d429c4ac9a753cdd5b37fa320b6daf7e16374e5f6",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/4f2a4c2c9cf12de88be4c7c62fe5d7af01545068e1f78c479e130703c7d64aa5/talks.html": {
+      "sha256": "c3bf39a92d4b43734a795ea018bcea15a0b0a3dbf99359a9af15c936837fdffd",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/8f5478a0c1d09efdcc4145647c4f8b9163bc873dc5ac37ef9c7557173a306a33/index.html": {
+      "sha256": "f079bc530d88e5da7f8b1f7da2bd61e21fb891ad97e0a9dac4b2d0bd7492da02",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/b82089d4524a93ec50208ce6f154aa67f6e155e8771b73f689e9d60ab773b61c/writing.html": {
+      "sha256": "48a439f57348fe498c649a3df7f20e58c6c69b2627926e77101d9c85ebb1c958",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/bed37cc707c2ab1626565d25a47ffc285ee0999e1b7cf9a781085902e44bfd46/research.html": {
+      "sha256": "2df8c90711ca2e92ad8f3139dafd2a8f4ed8d038d78c115da1f92594386cd124",
       "bases": ["retained-edition"]
     }
   },

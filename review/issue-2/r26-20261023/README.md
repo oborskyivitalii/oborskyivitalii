@@ -7,7 +7,7 @@ See [the integration and independent review](../2026-10-23-r26-integration.md).
 ## Deliverables
 
 - [The_Sum_of_Our_Technology_R26_2026-10-23.md](The_Sum_of_Our_Technology_R26_2026-10-23.md): exact recovered, approved R26 manuscript; also the canonical source under `site/publications/pmday-ai-both-sides/`.
-- [The_Sum_of_Our_Technology_R26_2026-10-23.pdf](The_Sum_of_Our_Technology_R26_2026-10-23.pdf): newly rendered 21-page native review PDF.
+- [The_Sum_of_Our_Technology_R26_2026-10-23.pdf](ARCHIVED-PDF.md): newly rendered 21-page native review PDF.
 - [The_Sum_of_Our_Technology_R26_2026-10-23_Native_Review_Kit.zip](The_Sum_of_Our_Technology_R26_2026-10-23_Native_Review_Kit.zip): all 34 files from native kit `e6d32f0ab08d2d1c84f3f08a808ea1e31e1d2488965c18d9f74cbdd54ae00060`, with unchanged manifests and full output closure.
 - [artifact-evidence.json](artifact-evidence.json): exact source, semantic, producer, artifact, archive and member identities plus known limits.
 

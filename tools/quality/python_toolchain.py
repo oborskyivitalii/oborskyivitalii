@@ -72,10 +72,11 @@ def verify(text, distributions):
                     extras[dependency].update(requested)
                     changed = True
 
-    # These exact Semgrep declarations are reviewed with patched MCP/OpenTelemetry.
+    # These exact Semgrep declarations are reviewed with patched MCP/OpenTelemetry/wcmatch.
     # They leave distribution metadata and advisory findings unchanged.
     reviewed_overrides = {
         ("mcp==1.29.0", "mcp==1.30.0"),
+        ("wcmatch~=8.3", "wcmatch==11.2"),
         ("opentelemetry-api~=1.37.0", "opentelemetry-api==1.45.2"),
         ("opentelemetry-sdk~=1.37.0", "opentelemetry-sdk==1.45.2"),
         (
