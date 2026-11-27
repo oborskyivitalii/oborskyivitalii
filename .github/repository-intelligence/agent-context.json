@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "82e5441878876c79298ea87c2c54991d6cdd43210ba6bfee61c96af315fb1690",
+    "digest": "f9cdbfeba23b9e63956b7fa6c91d39566719b482f3c8c78b141a9141a09936a4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -155,6 +155,11 @@
         "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
       },
       {
+        "path": ".github/acceptance/issue-217.json",
+        "identity_mode": "content",
+        "sha256": "76e303849329d38e372562757a3f7b090df62f303f07498adb5ffba9299e7454"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "identity_mode": "content",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
@@ -281,12 +286,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "62f3f93c242f0f73235c1312f78f38a43627fc61a2f10719aea77d7204284603"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ede9c2330909ce3ede60734a737e18fe3639557b8754ba43792d6ca2d9b7fabe"
+        "sha256": "086e524cbdda7a7c09124e20362ecac554b45976ab7a3f20a5d8452d9dea5283"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1396,6 +1401,11 @@
         "path": "guides/CODE-STYLE.md",
         "identity_mode": "content",
         "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
+      },
+      {
+        "path": "guides/EDITORIAL-ORCHESTRATION.md",
+        "identity_mode": "content",
+        "sha256": "0ecd0d4f1a2861e0a3add08cde21a7f037a2552c4664a76768a0e10b1a2ff96e"
       },
       {
         "path": "guides/README.md",
@@ -6091,6 +6101,11 @@
         "path": "review/issue-213/workflow-guide-evidence.json",
         "identity_mode": "content",
         "sha256": "ec1264e64e1f9cdd2d946785782fd76d916496caffc10f2efc300e9965943e37"
+      },
+      {
+        "path": "review/issue-217/2026-11-27-editorial-review.md",
+        "identity_mode": "content",
+        "sha256": "7773aa604273cbc1a7e96378bf46557d910c17484e1995d702f47ad747e2e448"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14200,7 +14215,7 @@
       {
         "path": "tests/orchestration.test.cjs",
         "identity_mode": "content",
-        "sha256": "1da3cb3d941cb27d2d4253776b02b89c9274ec9807d389fd17e9d706af9cbb6d"
+        "sha256": "ad16cb5eb8e713809d5ecafd1814750a00157b399a31558adf27b7d408722898"
       },
       {
         "path": "tests/pages-delivery.test.cjs",
@@ -14555,7 +14570,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "10a9815f761c3a046ed590c0ecc86da3a5254a337447d7c715cb471385ddb500"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -14691,6 +14706,11 @@
         "path": "tools/orchestration/contract.json",
         "identity_mode": "content",
         "sha256": "e3cd3d9a08f438764857b3b294eb6e5a1eec93f3a46e6622d364b2031e9c1110"
+      },
+      {
+        "path": "tools/orchestration/editorial-article.cjs",
+        "identity_mode": "content",
+        "sha256": "2cb4b3a4a7f37a00071f857dcba6ff124389ff514d1a04d84508de891d296f56"
       },
       {
         "path": "tools/orchestration/reducer.cjs",
@@ -15355,7 +15375,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "2900ea7d36de4c34147855af7de0c356a9951a9b91537960a317bbe33b54f207"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -16466,6 +16486,17 @@
         "AGENTS.md"
       ],
       "title": "issue-213.json"
+    },
+    {
+      "path": ".github/acceptance/issue-217.json",
+      "kind": "file",
+      "purpose": "Issue 217 editorial orchestration source checks and outstanding runtime and author gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-217.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -19205,6 +19236,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/EDITORIAL-ORCHESTRATION.md",
+      "kind": "file",
+      "purpose": "Synthetic article review decisions and editorial orchestration boundaries.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial orchestration"
     },
     {
       "path": "guides/README.md",
@@ -29534,6 +29576,17 @@
         "AGENTS.md"
       ],
       "title": "workflow-guide-evidence.json"
+    },
+    {
+      "path": "review/issue-217/2026-11-27-editorial-review.md",
+      "kind": "file",
+      "purpose": "Issue 217 native capability preflight and synthetic editorial decision implementation evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #217 — initial editorial decision component"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -47369,7 +47422,7 @@
     {
       "path": "tests/orchestration.test.cjs",
       "kind": "file",
-      "purpose": "Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals.",
+      "purpose": "Offline WEB fixture behavior and synthetic editorial review decision regressions.",
       "role": "test",
       "owner": "guides/WEB-ORCHESTRATION.md",
       "instructions": [
@@ -48454,6 +48507,17 @@
         "AGENTS.md"
       ],
       "title": "contract.json"
+    },
+    {
+      "path": "tools/orchestration/editorial-article.cjs",
+      "kind": "file",
+      "purpose": "Bounded article R1/R2/R3 decision replay with independent output and source identity.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "editorial-article.cjs"
     },
     {
       "path": "tools/orchestration/reducer.cjs",
@@ -52710,6 +52774,16 @@
       "path": "review/issue-213/search-baseline",
       "kind": "directory",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-217",
+      "kind": "directory",
+      "purpose": "Source-bound editorial pilot review and capability evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

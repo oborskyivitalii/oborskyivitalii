@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 217,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/217",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Native execution and independent reviews",
+      "automated_scope": "Local Basic checks existing site behavior. Independent native launch and isolation require live evidence.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW", "NATIVE"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Documentary evidence and research stop",
+      "automated_scope": "Local Basic checks the site baseline. The focused orchestration suite exercises modeled author stop. The blinded and author outcomes require retained pilot evidence.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "SOURCE", "EVIDENCE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Exact author decisions and fidelity",
+      "automated_scope": "Local Basic checks the site baseline. The focused suite exercises scoped decisions, wrong actors, edits and separate outputs. Actual voice and approval evidence remain live.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "REVIEW", "SOURCE", "DECISIONS"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Native article and PDF review",
+      "automated_scope": "Local Basic checks the site baseline. The focused suite checks PDF-only decision invalidation. Actual route and exact linked bytes are separate proof.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "SOURCE", "PUBLISHER"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Editable talks and distribution",
+      "automated_scope": "Local Basic checks existing site behavior. Actual deck and post outputs require the mapped pilot observations.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "TALKS_POSTS"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Durable recovery and budgets",
+      "automated_scope": "Local Basic checks the site baseline. The focused suite exercises event/byte bounds and stale result refusal. Durable checkpoint and external calls require separate proof.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW", "SOURCE", "RECOVERY"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Exact candidate handoff",
+      "automated_scope": "Local Basic checks existing site behavior. The local model has no outward effect. Controller and package evidence remain live.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "HANDOFF"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Integration and measured pilot",
+      "automated_scope": "Local Basic and the bounded style guard cover their registered source scopes. The protected source selector includes the focused replay suite. Independent reviews and pilot measurements remain gates.",
+      "checks": ["BASIC", "STYLE"],
+      "gates": ["REVIEW", "AUTHOR", "SOURCE", "PILOT"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "AUTHOR": {
+      "kind": "human",
+      "description": "Record the applicable author decision for the actual material and any required rights approval."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Record all applicable independent technical role results and style review for the exact candidate."
+    },
+    "SOURCE": {
+      "kind": "human",
+      "description": "Verify exact-source orchestration test evidence from the maintained Site Checks source suite. Local Basic does not select that suite."
+    },
+    "NATIVE": {
+      "kind": "human",
+      "description": "Record separate native worker and critic handles, isolation checks and a fresh correction under issue #217 review evidence."
+    },
+    "EVIDENCE": {
+      "kind": "human",
+      "description": "Record the two blinded source decisions, the computation-limits case and the author-approved research stop in the private pilot record."
+    },
+    "DECISIONS": {
+      "kind": "human",
+      "description": "Record actual R1/R2/R-deck/R3 decisions and pre-edit voice evaluations for the author draft and derivative post, plus edit retention."
+    },
+    "PUBLISHER": {
+      "kind": "human",
+      "description": "In the private pilot record, bind Writing navigation and its missing-selection negative, actual edition PDF inspection, refusal of the stale allowlisted approval, rebuilt article and linked-file SHA-256 readback. Record independent private reflow approval with the thesis decision preserved."
+    },
+    "TALKS_POSTS": {
+      "kind": "human",
+      "description": "In the pilot record, bind standalone editable PPTX, matched slide and note order, rendered pages, claims and legibility, and talk PDF when requested. Pin the accepted edition before post work, compare unchanged manuscript bytes after post correction, record rights by channel and confirm draft/date/approval yields no publication event."
+    },
+    "RECOVERY": {
+      "kind": "human",
+      "description": "In controlled run evidence, bind candidate, inputs, attempts, author decisions and a separate current checkpoint to the verified private store. Exercise interruption after dispatch, stop, late result, author edit, stale checkpoint, budget and one external call under concurrent attempts. Inspect the target and verify delayed A cannot replace accepted B."
+    },
+    "HANDOFF": {
+      "kind": "human",
+      "description": "Record the full package delta and changed PR head refusal before any outward transfer, with separate observations for authorized delivery."
+    },
+    "PILOT": {
+      "kind": "human",
+      "description": "Record author evaluation, active review/edit time, rewrites, claim corrections and observed costs with the reviewed implementation."
+    }
+  }
+}

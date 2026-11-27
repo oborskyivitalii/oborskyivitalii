@@ -520,6 +520,17 @@
       "checks": ["site-basic", "acceptance-policy", "test-profile-regressions", "ri-freshness"]
     },
     {
+      "id": "editorial-orchestration",
+      "purpose": "Synthetic editorial review decisions plus maintained source coverage and live acceptance mapping.",
+      "paths": [
+        "guides/EDITORIAL-ORCHESTRATION.md",
+        "tools/orchestration/editorial-article.cjs",
+        "tests/orchestration.test.cjs",
+        ".github/acceptance/issue-217.json"
+      ],
+      "checks": ["site-basic", "acceptance-policy", "ri-freshness"]
+    },
+    {
       "id": "reviewer-admission",
       "purpose": "One parent-mediated fresh review adapter and existing maintained test/source and owning CI paths. Actual tool calls and context limits are independent evidence.",
       "paths": [
@@ -753,7 +764,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3e89fdc3344352faa719a7f7e0911a28313d2409f17e4ac38e2c15c7ba75d85e",
+    "digest": "7f5bc5a79ba36eaf9270847eb122783e593829e2f3aca46411a1e53cd3c08e5a",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -860,6 +871,10 @@
         "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
       },
       {
+        "path": ".github/acceptance/issue-217.json",
+        "sha256": "76e303849329d38e372562757a3f7b090df62f303f07498adb5ffba9299e7454"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
       },
@@ -949,7 +964,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "62f3f93c242f0f73235c1312f78f38a43627fc61a2f10719aea77d7204284603"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1217,7 +1232,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "10a9815f761c3a046ed590c0ecc86da3a5254a337447d7c715cb471385ddb500"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1257,7 +1272,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "2900ea7d36de4c34147855af7de0c356a9951a9b91537960a317bbe33b54f207"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

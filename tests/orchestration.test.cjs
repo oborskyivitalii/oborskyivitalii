@@ -255,3 +255,195 @@ test('P03 correction: reconciled candidate change holds without resetting operat
   assert.deepEqual(result.effects, []);
   assert.deepEqual(result.state, input.prior);
 });
+
+const { evaluate: evaluateEditorial } = require('../tools/orchestration/editorial-article.cjs');
+
+function editorialRun(outputs = ['html', 'pdf']) {
+  const input = { run: '0'.repeat(64), author: 'editor', outputs, events: [] };
+  const current = () => evaluateEditorial(JSON.stringify(input));
+  const add = (event) => {
+    input.events.push(event);
+    try {
+      return current();
+    } catch (error) {
+      input.events.pop();
+      throw error;
+    }
+  };
+  const brief = (artifact = 'a') =>
+    add({
+      type: 'brief',
+      artifact: artifact.repeat(64),
+      previous: current().brief?.review ?? null,
+    });
+  const manuscript = (artifact = 'b') =>
+    add({
+      type: 'manuscript',
+      artifact: artifact.repeat(64),
+      previous: current().manuscript?.review ?? null,
+      brief: current().brief.review,
+    });
+  const render = (output, artifact) =>
+    add({
+      type: 'render',
+      manuscript: current().manuscript.review,
+      output,
+      artifact: artifact.repeat(64),
+      previous: current().artifacts[output]?.review ?? null,
+    });
+  const decision = (
+    scope,
+    choice,
+    review = (current()[scope] ?? current().artifacts[scope]).review,
+    author = 'editor'
+  ) => add({ type: 'decision', scope, choice, review, author });
+  return { input, current, add, brief, manuscript, render, decision };
+}
+
+test('editorial article accepts HTML independently while the requested PDF is deferred', () => {
+  const run = editorialRun();
+  run.brief();
+  assert.throws(() => run.manuscript(), /brief decision required/);
+  run.decision('brief', 'accept');
+  run.manuscript();
+  assert.throws(() => run.render('pdf', 'c'), /manuscript decision required/);
+  run.decision('manuscript', 'accept');
+  run.render('html', 'c');
+  run.render('pdf', 'c');
+  const htmlReview = run.current().artifacts.html.review;
+  assert.throws(() => run.decision('pdf', 'accept', htmlReview), /stale editorial decision/);
+  run.decision('html', 'accept');
+  assert.throws(
+    () => run.decision('pdf', 'accept', run.current().artifacts.pdf.review, 'worker'),
+    /invalid editorial decision/
+  );
+  const result = run.decision('pdf', 'defer');
+  assert.equal(result.artifacts.html.decision.choice, 'accept');
+  assert.equal(result.artifacts.pdf.decision.choice, 'defer');
+  assert.deepEqual(Object.keys(result), ['scope', 'stopped', 'brief', 'manuscript', 'artifacts']);
+});
+
+test('editorial changes invalidate exact decisions and preserve unaffected output decisions', () => {
+  const run = editorialRun();
+  const firstBrief = run.brief().brief.review;
+  run.decision('brief', 'accept');
+  const firstDraft = run.manuscript().manuscript.review;
+  run.decision('manuscript', 'accept');
+  run.render('html', 'c');
+  const firstPdf = run.render('pdf', 'd').artifacts.pdf.review;
+  run.decision('html', 'accept');
+  run.decision('pdf', 'accept');
+  const newPdf = run.render('pdf', 'e');
+  assert.equal(newPdf.manuscript.review, firstDraft);
+  assert.equal(newPdf.artifacts.html.decision.choice, 'accept');
+  assert.equal(newPdf.artifacts.pdf.decision, null);
+  assert.throws(() => run.decision('pdf', 'accept', firstPdf), /stale editorial decision/);
+
+  const edited = run.manuscript('f');
+  assert.deepEqual(edited.artifacts, {});
+  assert.throws(
+    () =>
+      run.add({
+        type: 'manuscript',
+        artifact: 'b'.repeat(64),
+        brief: firstBrief,
+        previous: firstDraft,
+      }),
+    /stale editorial input/
+  );
+  assert.equal(run.current().manuscript.artifact, 'f'.repeat(64));
+  assert.throws(() => run.decision('manuscript', 'accept', firstDraft), /stale editorial decision/);
+
+  run.brief('1');
+  assert.equal(run.current().manuscript, null);
+  run.brief('a');
+  assert.throws(() => run.decision('brief', 'accept', firstBrief), /stale editorial decision/);
+});
+
+test('editorial stop prevents later writing and a returned draft requires resubmission', () => {
+  const stopped = editorialRun();
+  stopped.brief();
+  assert.equal(stopped.decision('brief', 'stop').stopped, true);
+  assert.throws(() => stopped.manuscript(), /research stopped/);
+
+  const run = editorialRun(['html']);
+  run.brief();
+  run.decision('brief', 'accept');
+  const firstDraft = run.manuscript().manuscript.review;
+  run.decision('manuscript', 'return');
+  assert.throws(() => run.decision('manuscript', 'accept'), /must be resubmitted/);
+  assert.notEqual(run.manuscript().manuscript.review, firstDraft);
+  run.decision('manuscript', 'accept');
+  assert.throws(() => run.render('pdf', 'd'), /output not requested/);
+});
+
+test('editorial input rejects unknown actions and bounded event and byte overflows', () => {
+  const run = editorialRun();
+  assert.throws(() => run.add({ type: 'publish' }), /invalid editorial event/);
+  assert.throws(() => evaluateEditorial(' '.repeat(32_769)), /input size/);
+  run.input.events = Array.from({ length: 65 }, () => null);
+  assert.throws(() => run.current(), /invalid editorial plan/);
+});
+
+test('research can stop after accepting or returning R1 before any writing', () => {
+  for (const choice of ['accept', 'return']) {
+    const run = editorialRun();
+    run.brief();
+    run.decision('brief', choice);
+    assert.equal(run.decision('brief', 'stop').stopped, true);
+    assert.throws(() => run.manuscript(), /research stopped/);
+  }
+});
+
+test('a returned PDF rejects results prepared before the return', () => {
+  const run = editorialRun();
+  run.brief();
+  run.decision('brief', 'accept');
+  run.manuscript();
+  run.decision('manuscript', 'accept');
+  const before = run.render('pdf', 'c').artifacts.pdf.review;
+  run.decision('pdf', 'return');
+  const stale = {
+    type: 'render',
+    manuscript: run.current().manuscript.review,
+    output: 'pdf',
+    artifact: 'd'.repeat(64),
+    previous: before,
+  };
+  assert.throws(() => run.add(stale), /stale editorial input/);
+  assert.equal(run.current().artifacts.pdf.decision.choice, 'return');
+  assert.equal(run.render('pdf', 'd').artifacts.pdf.decision, null);
+});
+
+test('a freshly accepted replacement cannot admit work citing the previous accepted upstream', () => {
+  const run = editorialRun();
+  const firstBrief = run.brief().brief.review;
+  run.decision('brief', 'accept');
+  run.brief('1');
+  run.decision('brief', 'accept');
+  assert.throws(
+    () =>
+      run.add({
+        type: 'manuscript',
+        brief: firstBrief,
+        artifact: 'b'.repeat(64),
+        previous: null,
+      }),
+    /brief decision required/
+  );
+  const firstDraft = run.manuscript().manuscript.review;
+  run.decision('manuscript', 'accept');
+  run.manuscript('2');
+  run.decision('manuscript', 'accept');
+  assert.throws(
+    () =>
+      run.add({
+        type: 'render',
+        manuscript: firstDraft,
+        artifact: 'c'.repeat(64),
+        previous: null,
+        output: 'html',
+      }),
+    /manuscript decision required/
+  );
+});

@@ -2933,7 +2933,7 @@
     {
       "path": "tests/orchestration.test.cjs",
       "language": "javascript",
-      "purpose": "Fixture-only offline WEB state/recovery proposals: strict input boundary, acceptance/start separation, stable semantic dedupe, unknown receipt/cessation holds and public allowlist.",
+      "purpose": "Offline WEB operation fixtures and synthetic article decisions, including strict inputs, stale results, exact review scope and selective output decisions.",
       "owner": "guides/WEB-ORCHESTRATION.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2943,7 +2943,8 @@
         "tests/orchestration.test.cjs",
         "tools/orchestration/**",
         "tests/fixtures/orchestration*.json",
-        "guides/WEB-ORCHESTRATION.md"
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/EDITORIAL-ORCHESTRATION.md"
       ]
     },
     {

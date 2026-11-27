@@ -187,6 +187,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-217.json": {
+      "kind": "file",
+      "purpose": "Issue 217 editorial orchestration source checks and outstanding runtime and author gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -2502,6 +2508,12 @@
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "guides/EDITORIAL-ORCHESTRATION.md": {
+      "kind": "file",
+      "purpose": "Synthetic article review decisions and editorial orchestration boundaries.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -8466,6 +8478,18 @@
       "purpose": "Source-bound independent workflow-guide review disposition for issue213 covered control changes.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-217": {
+      "kind": "directory",
+      "purpose": "Source-bound editorial pilot review and capability evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-217/2026-11-27-editorial-review.md": {
+      "kind": "file",
+      "purpose": "Issue 217 native capability preflight and synthetic editorial decision implementation evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -19515,7 +19539,7 @@
     },
     "tests/orchestration.test.cjs": {
       "kind": "file",
-      "purpose": "Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals.",
+      "purpose": "Offline WEB fixture behavior and synthetic editorial review decision regressions.",
       "role": "test",
       "owner": "guides/WEB-ORCHESTRATION.md"
     },
@@ -20118,6 +20142,12 @@
       "purpose": "Consumed bounded JSON fixture contract for offline orchestration proposals; synthetic inputs authenticate no real authority.",
       "role": "configuration",
       "owner": "guides/WEB-ORCHESTRATION.md"
+    },
+    "tools/orchestration/editorial-article.cjs": {
+      "kind": "file",
+      "purpose": "Bounded article R1/R2/R3 decision replay with independent output and source identity.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
     "tools/orchestration/reducer.cjs": {
       "kind": "file",
