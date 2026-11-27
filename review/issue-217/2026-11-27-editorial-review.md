@@ -34,3 +34,18 @@ Reviewed local candidate `bc051b340bc6a0b04874d770e15b55f536f6eac0`, tree `0eb35
 | Exploratory, `/root/r217_final_exploratory` | A returned brief could not stop, and a queued render could overwrite a returned PDF slot. Allow the pre-writing stop and change the returned slot review ID. |
 
 Original Exploratory run observed five passing journeys and both failures. The four Requirements/Code/White-box/Exploratory passes apply to their recorded candidate and differ from the author's pilot acceptance.
+
+## Regression and live evidence follow-up
+
+The follow-up starts from PR218 head `a7cdd24499071d05747f32e171b9b62234ee781e`, tree `d43ac6cdc7f03bd5dbd88ee711b5e2c4de759183`. The Requirements reviewer `/root/next217_preflight` used explicit `fork_turns="none"`, the issue body and seven pinned source blobs. Its first result proposed sibling replays for the two output approvals, a current-brief decision after writing history and an explicit gate map for AC04–AC08. No relevant prior author dialogue or peer verdict was reported.
+
+| AC | Follow-up evidence and scope |
+| --- | --- |
+| AC01 | Fresh native launch evidence is separate from the local suite. |
+| AC02 | The maintained suite denies a research-only stop after a new brief clears a previously recorded manuscript. The current brief ID is valid for acceptance. Removing the recorded writing history in memory makes exactly this regression fail. |
+| AC03 | Sibling replays have the same author, run, requested outputs, accepted manuscript, artifact digest and render position. The suite checks independent approval in both directions. Removing the output kind from the review identity in memory makes exactly this regression fail. |
+| AC04–AC08 | The owning acceptance record names concrete browser, PDF, deck, post, recovery, disclosure and measurement observations. These gates require their actual evidence. |
+
+Code style applicability covers CS05 for focused tests and config, CS08 for the regression cases and CS09/CS10 for the selector, guard and independent review. No new exception. Test impact is the existing orchestration suite, owning acceptance check and RI/Navigation. The tests and gate wording do not change the replay implementation or any website artifact.
+
+The independent Requirements, Code, White-box and Exploratory executions reviewed `93d906bd5c5663fabcaf0f7f1e4b515c5afb5a73` against the prior PR head, with a diff excluding the review narrative (`660825a39e517d5e4207eeeb84dcf4ec3837388dbc9d7a77e43391af6eaa51d2`). Each launch requested `fork_turns="none"`. White-box confirmed both targeted mutation failures and accepted the synthetic cases. Exploratory independently exercised both crossed approvals and stop after removing a manuscript. Code confirmed the 19-case suite and owning source route. Requirements requested an explicit zero-dispatch observation when B replaces A before dispatch. The follow-up captures that predispatch oracle and makes synchronized note content and applied credits explicit in AC05. It regenerates derived evidence. The core, new tests and relevant role prompts retain their reviewed bytes. Full author and live acceptance remain open.

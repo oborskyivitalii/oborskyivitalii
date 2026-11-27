@@ -97,23 +97,23 @@
     },
     "PUBLISHER": {
       "kind": "human",
-      "description": "In the private pilot record, bind Writing navigation and its missing-selection negative, actual edition PDF inspection, refusal of the stale allowlisted approval, rebuilt article and linked-file SHA-256 readback. Record independent private reflow approval with the thesis decision preserved."
+      "description": "Retain independent browser and PDF evidence in the private pilot record. Open Writing and follow the actual built article route. Remove site selection and verify that the route is absent while both print-kit HTML files still open. Inspect the actual edition PDF separately. With changed allowlisted PDF bytes, refuse stale approval, rebuild the article, follow the link and compare the download SHA-256 with the reviewed SHA-256. Record PDF-only reapproval with the thesis decision preserved."
     },
     "TALKS_POSTS": {
       "kind": "human",
-      "description": "In the pilot record, bind standalone editable PPTX, matched slide and note order, rendered pages, claims and legibility, and talk PDF when requested. Pin the accepted edition before post work, compare unchanged manuscript bytes after post correction, record rights by channel and confirm draft/date/approval yields no publication event."
+      "description": "In the pilot record, bind the editable standalone PPTX to a new topic and source without an article or an existing event deck. Match each note to its slide content and verify order, rendered pages, claims and legibility. Produce a talk PDF when requested. Trace the actual post and its correction to an exact accepted edition and compare unchanged manuscript bytes. Verify rights and applied credits per asset and channel. A draft kit, planned date or approved post produces no publication event."
     },
     "RECOVERY": {
       "kind": "human",
-      "description": "In controlled run evidence, bind candidate, inputs, attempts, author decisions and a separate current checkpoint to the verified private store. Exercise interruption after dispatch, stop, late result, author edit, stale checkpoint, budget and one external call under concurrent attempts. Inspect the target and verify delayed A cannot replace accepted B."
+      "description": "In controlled private store evidence, pin candidate, versioned inputs, attempts, human decisions and a separately retained current checkpoint. Reopen from a separate session and read back the exact versions and checkpoint. Start two sessions competing for the same action and observe exactly one external call. Exercise interruption after dispatch, stop, late results, author edits, stale checkpoints and time, call and rework limits. Report unknown cost as unknown. Reconcile pending A or demonstrate channel stale-write rejection, then inspect the mutable target and confirm accepted B survives delayed A."
     },
     "HANDOFF": {
       "kind": "human",
-      "description": "Record the full package delta and changed PR head refusal before any outward transfer, with separate observations for authorized delivery."
+      "description": "Record prior author authorization of exact public exposure or retain private review. Inspect the entire outgoing content and history before public push. For an approved article and PDF with the deck deferred, compare the full package delta, links and assets to the approved scope. An extra deck or link blocks transfer. In the existing controller test, substitute otherwise-valid head B after approval of A and before dispatch. Verify zero dispatches for B under the approval of A. End at private R3 until proven. Separately record the site-first sequence, observed production state and manual external publication when authorized."
     },
     "PILOT": {
       "kind": "human",
-      "description": "Record author evaluation, active review/edit time, rewrites, claim corrections and observed costs with the reviewed implementation."
+      "description": "Map applicable style rules, source owners, guard selectors, unautomated review and stable AC IDs to the existing CI profiles and owning acceptance record. Retain the four independent technical judgments for the affected acceptance scope. Tie the author evaluation to actual pilot outputs. Record active author review and edit time, rewrites, claim corrections after R2, repeated work and observed costs."
     }
   }
 }

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f9cdbfeba23b9e63956b7fa6c91d39566719b482f3c8c78b141a9141a09936a4",
+    "digest": "6f239289c76479ada938c6ca45b335aec09d9adfff49423cd6909a1533658021",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -157,7 +157,7 @@
       {
         "path": ".github/acceptance/issue-217.json",
         "identity_mode": "content",
-        "sha256": "76e303849329d38e372562757a3f7b090df62f303f07498adb5ffba9299e7454"
+        "sha256": "67bbd292fdc2f06a3716ebf287a0e77c314a77d28f7ccb1a6c132d37c5a8640f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -291,7 +291,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "086e524cbdda7a7c09124e20362ecac554b45976ab7a3f20a5d8452d9dea5283"
+        "sha256": "e4eeecdc28eeec80a84014099cde6da0fb7c7f037ddae1602159816a004b40e2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -441,7 +441,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f9c6cc47b094a16ab49065526a93de681608b40ea4899de2021007eef53806df"
+        "sha256": "3b56120bcddaf567da7e0d128799a31b6d88a69fd0f5e8a8164c83cb03a5bd98"
       },
       {
         "path": "NOTICE.md",
@@ -6105,7 +6105,7 @@
       {
         "path": "review/issue-217/2026-11-27-editorial-review.md",
         "identity_mode": "content",
-        "sha256": "7773aa604273cbc1a7e96378bf46557d910c17484e1995d702f47ad747e2e448"
+        "sha256": "c1807c9eddd4f2d591f5fe6e273159aa0906bd26dc4026c022ab7b5285100f27"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14215,7 +14215,7 @@
       {
         "path": "tests/orchestration.test.cjs",
         "identity_mode": "content",
-        "sha256": "ad16cb5eb8e713809d5ecafd1814750a00157b399a31558adf27b7d408722898"
+        "sha256": "6e63babe028d3fdfc1c8b5714e534194793f69f7c047a1554c0d6a58e730a154"
       },
       {
         "path": "tests/pages-delivery.test.cjs",

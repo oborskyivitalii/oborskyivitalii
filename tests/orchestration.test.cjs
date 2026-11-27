@@ -447,3 +447,44 @@ test('a freshly accepted replacement cannot admit work citing the previous accep
     /manuscript decision required/
   );
 });
+
+test('identical artifacts at the same replay position need separate HTML and PDF decisions', () => {
+  const html = editorialRun();
+  html.brief();
+  html.decision('brief', 'accept');
+  html.manuscript();
+  html.decision('manuscript', 'accept');
+
+  const pdf = editorialRun();
+  pdf.input.events = structuredClone(html.input.events);
+  const htmlReview = html.render('html', 'c').artifacts.html.review;
+  const pdfReview = pdf.render('pdf', 'c').artifacts.pdf.review;
+
+  assert.notEqual(htmlReview, pdfReview);
+  assert.throws(() => html.decision('html', 'accept', pdfReview), /stale editorial decision/);
+  assert.throws(() => pdf.decision('pdf', 'accept', htmlReview), /stale editorial decision/);
+  assert.equal(
+    html.decision('html', 'accept', htmlReview).artifacts.html.decision.choice,
+    'accept'
+  );
+  assert.equal(pdf.decision('pdf', 'accept', pdfReview).artifacts.pdf.decision.choice, 'accept');
+});
+
+test('replacing the brief after writing does not reopen the research-only stop', () => {
+  const run = editorialRun();
+  run.brief();
+  run.decision('brief', 'accept');
+  run.manuscript();
+  const replacement = run.brief('d');
+
+  assert.equal(replacement.manuscript, null);
+  assert.throws(
+    () => run.decision('brief', 'stop', replacement.brief.review),
+    /invalid editorial decision/
+  );
+  assert.equal(run.current().stopped, false);
+  assert.equal(
+    run.decision('brief', 'accept', replacement.brief.review).brief.decision.choice,
+    'accept'
+  );
+});
