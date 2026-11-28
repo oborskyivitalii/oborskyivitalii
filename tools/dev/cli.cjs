@@ -31,8 +31,8 @@ const usage = [
 
 // The Containerfile is the single owner of the development toolchain versions.
 function pinnedVersions(text = fs.readFileSync(containerfile, 'utf8')) {
-  const node = /^ARG NODE_VERSION=(\d+\.\d+\.\d+)$/m.exec(text);
-  const python = /^FROM \S+\/python:(\d+\.\d+\.\d+)-\S+@sha256:[0-9a-f]{64}$/m.exec(text);
+  const node = text.match(/^ARG NODE_VERSION=(\d+\.\d+\.\d+)$/m);
+  const python = text.match(/^FROM \S+\/python:(\d+\.\d+\.\d+)-\S+@sha256:[0-9a-f]{64}$/m);
   if (!node || !python) {
     throw Error('Containerfile must pin Node and a digest-bound Python base');
   }
