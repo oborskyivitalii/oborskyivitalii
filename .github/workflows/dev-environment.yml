@@ -1,0 +1,34 @@
+name: Development environment
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - .devcontainer/**
+      - tools/dev/**
+      - tools/quality/serve.cjs
+      - tests/dev-environment.test.cjs
+      - .github/workflows/dev-environment.yml
+      - guides/DEV-ENVIRONMENT.md
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build the same image every devcontainer host builds
+        run: docker build --tag author-site-dev --file .devcontainer/Containerfile .devcontainer
+      - name: Run setup, version doctor and source checks inside the container
+        run: |
+          docker run --rm --volume "$PWD:/workspace" --workdir /workspace --user root author-site-dev bash -euc '
+            git config --global --add safe.directory /workspace
+            node tools/dev/cli.cjs doctor
+            node tools/dev/cli.cjs setup
+            node tools/dev/cli.cjs check
+          '

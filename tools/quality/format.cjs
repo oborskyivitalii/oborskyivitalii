@@ -5,7 +5,7 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const maintainedRoles = new Set(['source', 'validator', 'configuration', 'workflow', 'test']);
-const requiredRoots = ['site/', 'tools/', 'tests/', '.github/'];
+const requiredRoots = ['site/', 'tools/', 'tests/', '.github/', '.devcontainer/'];
 const requiredDirectories = [
   'docs/',
   'review/',

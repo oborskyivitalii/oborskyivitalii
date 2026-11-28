@@ -1,0 +1,16 @@
+{
+  "name": "Author site",
+  "build": {
+    "dockerfile": "Containerfile",
+    "context": "."
+  },
+  "remoteUser": "dev",
+  "postCreateCommand": "node tools/dev/cli.cjs setup",
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": {
+      "label": "Site preview",
+      "onAutoForward": "notify"
+    }
+  }
+}

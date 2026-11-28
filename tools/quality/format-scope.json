@@ -5,7 +5,7 @@
     "prettier": "3.6.2",
     "ruff": "0.16.10"
   },
-  "roots": ["site/", "tools/", "tests/", ".github/"],
+  "roots": ["site/", "tools/", "tests/", ".github/", ".devcontainer/"],
   "languages": {
     "js": [".js", ".cjs", ".mjs"],
     "css": [".css"],

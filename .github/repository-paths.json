@@ -7,6 +7,24 @@
       "role": "guide",
       "owner": "CONTRIBUTING.md"
     },
+    ".devcontainer": {
+      "kind": "directory",
+      "purpose": "Open-spec development container used by any devcontainer host, agent and CI.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    ".devcontainer/Containerfile": {
+      "kind": "file",
+      "purpose": "Digest-bound Python 3.12.14 base plus checksum-verified Node 24.19.0; single owner of development toolchain versions.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    ".devcontainer/devcontainer.json": {
+      "kind": "file",
+      "purpose": "Vendor-neutral devcontainer wiring: build the Containerfile, run setup, forward the preview port.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
     ".gitattributes": {
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -402,6 +420,12 @@
       "purpose": "Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/dev-environment.yml": {
+      "kind": "file",
+      "purpose": "GitHub Actions: Development environment; builds the devcontainer image and runs doctor/setup/check inside it.",
+      "role": "workflow",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
@@ -2502,6 +2526,12 @@
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "guides/DEV-ENVIRONMENT.md": {
+      "kind": "file",
+      "purpose": "Vendor-neutral, browser-usable development environment, commands, AI entry and hosting-adapter boundaries.",
+      "role": "guide",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -19333,6 +19363,12 @@
       "role": "test",
       "owner": "tools/quality/delivery-observation.cjs"
     },
+    "tests/dev-environment.test.cjs": {
+      "kind": "file",
+      "purpose": "Behavioral tests for container pins matching CI, open-spec devcontainer fields and delegated command plans.",
+      "role": "test",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
     "tests/edition-retention.test.cjs": {
       "kind": "file",
       "purpose": "Production and Color immutable-edition preservation, staging isolation and collision/closure rejection.",
@@ -20100,6 +20136,18 @@
       "purpose": "Site generation/offline review helper: compact site recordings; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/dev": {
+      "kind": "directory",
+      "purpose": "Single development command entry delegating to existing locked owners.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/cli.cjs": {
+      "kind": "file",
+      "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     "tools/issue_acceptance.py": {
       "kind": "file",

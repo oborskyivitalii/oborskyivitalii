@@ -557,6 +557,23 @@
       "content": true
     },
     {
+      "path": "tests/dev-environment.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Development container pins equal CI pins, open-spec devcontainer fields and delegated setup/build/check plans.",
+      "owner": "tools/dev/cli.cjs",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "inputs": [
+        ".devcontainer/Containerfile",
+        ".devcontainer/devcontainer.json",
+        "tools/dev/cli.cjs",
+        "tests/dev-environment.test.cjs",
+        ".github/workflows/site-checks.yml"
+      ],
+      "disposition": "Retain as a permanent source guard; the real container build runs in the Development environment workflow.",
+      "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles; dev-environment workflow builds and exercises the image."
+    },
+    {
       "path": "tests/endpoint-fixtures.test.cjs",
       "language": "javascript",
       "purpose": "Native wheel/scroll endpoint takeover, fresh continuation intent and strict no-progress deadlines",

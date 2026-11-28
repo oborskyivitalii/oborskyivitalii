@@ -17,8 +17,18 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "82e5441878876c79298ea87c2c54991d6cdd43210ba6bfee61c96af315fb1690",
+    "digest": "e35eba05b615aeb11a378760d3b88dc7fa51d232e1c33f3914f0f5414db8e648",
     "inputs": [
+      {
+        "path": ".devcontainer/Containerfile",
+        "identity_mode": "content",
+        "sha256": "ccf9893ae81ba9a314a18fd19f0147a1f8d2522857de322bab70d79d648b29b4"
+      },
+      {
+        "path": ".devcontainer/devcontainer.json",
+        "identity_mode": "content",
+        "sha256": "5cc5cc01c10f1ec6a10acce3fd35be2ab7158eabd0993225b9ead2ae452706db"
+      },
       {
         "path": ".gitattributes",
         "identity_mode": "content",
@@ -276,17 +286,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
+        "sha256": "1025976edf6496eb21ace6b02ee5951011000233275be9b579e9aba7f7e63cee"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "7e011dacd12c4bc04305f25debbddf197c87fb2118e132f386f37eae50d2e9de"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ede9c2330909ce3ede60734a737e18fe3639557b8754ba43792d6ca2d9b7fabe"
+        "sha256": "ae1dec67dd3555d2f6b7b33b7c670695196311989e47a393d29a94b64ed899e8"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -307,6 +317,11 @@
         "path": ".github/workflows/delivery-observation.yml",
         "identity_mode": "content",
         "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
+      },
+      {
+        "path": ".github/workflows/dev-environment.yml",
+        "identity_mode": "content",
+        "sha256": "3da8ac92700a4c481c462cb2c4ce184c16277e7645728eed45269a851738b749"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -446,7 +461,7 @@
       {
         "path": "PROJECT-BOOTSTRAP.md",
         "identity_mode": "content",
-        "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
+        "sha256": "f23f8d3d30e34c110cf40a89bd4709b967ef05bdda6b035bd4c2d171f57cd363"
       },
       {
         "path": "README.md",
@@ -1398,9 +1413,14 @@
         "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
       },
       {
+        "path": "guides/DEV-ENVIRONMENT.md",
+        "identity_mode": "content",
+        "sha256": "b313896a9758c18b419f2b06a68ae8f69ed8fa75d902400a4a4d4ad548e802fb"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "ca8099cd2998806759ac04b83efcceaae2d3404f234da48ecc062debdd8eaa7e"
+        "sha256": "4ab21408f77aaab8d9ce09026e847985b7509007b10b11788b7c09f378a71261"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -14053,6 +14073,11 @@
         "sha256": "9bdf0283ad6bfc1520b595553f6bf89b2752c820197268fe1d41d691f3a32d9e"
       },
       {
+        "path": "tests/dev-environment.test.cjs",
+        "identity_mode": "content",
+        "sha256": "3e2e652f23a986423d2c0099e493abcee3e9808e4eee5d2c8e75aa85635aa2fe"
+      },
+      {
         "path": "tests/edition-retention.test.cjs",
         "identity_mode": "content",
         "sha256": "ebac5bbeb04366fb07860bcf00f4e3ce6fe8652446fd692cc3a06d11eb4b1ed0"
@@ -14555,7 +14580,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "0a6bd3bb73e6170ac1c917ce491a3b09d543a7cdc88cbe29b1ff753011f29086"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -14681,6 +14706,11 @@
         "path": "tools/compact_site_recordings.cjs",
         "identity_mode": "content",
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
+      },
+      {
+        "path": "tools/dev/cli.cjs",
+        "identity_mode": "content",
+        "sha256": "82ff28c06e0e14b069481746fa93c0a816fabb0b01a9f3b430972cc31dca233e"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -15070,7 +15100,7 @@
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "d66b3c27ae634ede5e757fdde13c75b5522d683c9c843e0ecd7eb97e643c5eb8"
+        "sha256": "a1ed136476ae48dc3ac7cd06011339aa314fb475f04b6e208c0d374a1b3e4d45"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -15130,12 +15160,12 @@
       {
         "path": "tools/quality/format-scope.json",
         "identity_mode": "content",
-        "sha256": "dd6784e0d61495f1edef8e0f6b28c0c4dbcc1782196331a6db2fcb8e4029643a"
+        "sha256": "25aa6099343d807a0230ac571245533a746e17da7619b065b9fdc3350ffa1dc2"
       },
       {
         "path": "tools/quality/format.cjs",
         "identity_mode": "content",
-        "sha256": "c95dd0c6ccd20e1fa855becd9431b7250e7a9a5e66101b5ef8456d2a4dfdced7"
+        "sha256": "f2b1f99c7323baa97189d11ab129335af5a41bedcdf8994d31a3eb5b6ce6f5cb"
       },
       {
         "path": "tools/quality/functional.cjs",
@@ -15315,7 +15345,7 @@
       {
         "path": "tools/quality/serve.cjs",
         "identity_mode": "content",
-        "sha256": "822f515cfa9e192a550f8e3f19497f6378ddf7cb6c3507987932c9ad56f0a79e"
+        "sha256": "6178dd79d4ac585913c8783936bfb26f7d15e9ad645e16f61d37e5c90c8332ab"
       },
       {
         "path": "tools/quality/source-test-shards.cjs",
@@ -15355,7 +15385,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "6e30144cb2c1daffc291461cb0a82f75cba1d6789e25bbeb505ee6371de7c3b5"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -16171,6 +16201,28 @@
   ],
   "artifacts": [
     {
+      "path": ".devcontainer/Containerfile",
+      "kind": "file",
+      "purpose": "Digest-bound Python 3.12.14 base plus checksum-verified Node 24.19.0; single owner of development toolchain versions.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Containerfile"
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "kind": "file",
+      "purpose": "Vendor-neutral devcontainer wiring: build the Containerfile, run setup, forward the preview port.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcontainer.json"
+    },
+    {
       "path": ".gitattributes",
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -16807,6 +16859,17 @@
         "AGENTS.md"
       ],
       "title": "delivery-observation.yml"
+    },
+    {
+      "path": ".github/workflows/dev-environment.yml",
+      "kind": "file",
+      "purpose": "GitHub Actions: Development environment; builds the devcontainer image and runs doctor/setup/check inside it.",
+      "role": "workflow",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "dev-environment.yml"
     },
     {
       "path": ".github/workflows/issue-acceptance.yml",
@@ -19205,6 +19268,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/DEV-ENVIRONMENT.md",
+      "kind": "file",
+      "purpose": "Vendor-neutral, browser-usable development environment, commands, AI entry and hosting-adapter boundaries.",
+      "role": "guide",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Development environment"
     },
     {
       "path": "guides/README.md",
@@ -47048,6 +47122,17 @@
       "title": "delivery-observation.test.cjs"
     },
     {
+      "path": "tests/dev-environment.test.cjs",
+      "kind": "file",
+      "purpose": "Behavioral tests for container pins matching CI, open-spec devcontainer fields and delegated command plans.",
+      "role": "test",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "dev-environment.test.cjs"
+    },
+    {
       "path": "tests/edition-retention.test.cjs",
       "kind": "file",
       "purpose": "Production and Color immutable-edition preservation, staging isolation and collision/closure rejection.",
@@ -48432,6 +48517,17 @@
         "AGENTS.md"
       ],
       "title": "compact_site_recordings.cjs"
+    },
+    {
+      "path": "tools/dev/cli.cjs",
+      "kind": "file",
+      "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cli.cjs"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -50762,6 +50858,16 @@
       "purpose": "Repository entry points, authored site, generated renditions, checks and historical review evidence.",
       "role": "guide",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".devcontainer",
+      "kind": "directory",
+      "purpose": "Open-spec development container used by any devcontainer host, agent and CI.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -54922,6 +55028,16 @@
       "purpose": "Repository navigation, public generation and offline review/export entry points.",
       "role": "source",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/dev",
+      "kind": "directory",
+      "purpose": "Single development command entry delegating to existing locked owners.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
       "instructions": [
         "AGENTS.md"
       ]

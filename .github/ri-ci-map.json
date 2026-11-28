@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/213",
-    "date": "2026-11-21",
-    "summary": "Map the owning discovery acceptance policy while retaining all existing RI checks and workflow routes."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/219",
+    "date": "2026-11-28",
+    "summary": "Map the development-environment layer while retaining all existing RI checks and workflow routes."
   },
   "layers": [
     {
@@ -530,6 +530,19 @@
         ".github/acceptance/issue-198.json"
       ],
       "checks": ["site-basic", "test-profile-regressions", "acceptance-policy", "ri-freshness"]
+    },
+    {
+      "id": "development-environment",
+      "purpose": "Vendor-neutral devcontainer image, single command entry and its container workflow; pins mirror CI and every step delegates to existing locked owners.",
+      "paths": [
+        ".devcontainer/Containerfile",
+        ".devcontainer/devcontainer.json",
+        "tools/dev/cli.cjs",
+        "tests/dev-environment.test.cjs",
+        ".github/workflows/dev-environment.yml",
+        "guides/DEV-ENVIRONMENT.md"
+      ],
+      "checks": ["site-basic", "test-profile-regressions", "maintained-format-check"]
     }
   ],
   "checks": [
@@ -753,7 +766,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3e89fdc3344352faa719a7f7e0911a28313d2409f17e4ac38e2c15c7ba75d85e",
+    "digest": "d7d9ee9afe7536e959c61bc098d2d067bc80a0548690d69ac49bdae4b2118a67",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -945,11 +958,11 @@
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
+        "sha256": "1025976edf6496eb21ace6b02ee5951011000233275be9b579e9aba7f7e63cee"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "7e011dacd12c4bc04305f25debbddf197c87fb2118e132f386f37eae50d2e9de"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -966,6 +979,10 @@
       {
         "path": ".github/workflows/delivery-observation.yml",
         "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
+      },
+      {
+        "path": ".github/workflows/dev-environment.yml",
+        "sha256": "3da8ac92700a4c481c462cb2c4ce184c16277e7645728eed45269a851738b749"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1053,7 +1070,7 @@
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
-        "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
+        "sha256": "f23f8d3d30e34c110cf40a89bd4709b967ef05bdda6b035bd4c2d171f57cd363"
       },
       {
         "path": "agents/reviewers/README.md",
@@ -1217,7 +1234,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "0a6bd3bb73e6170ac1c917ce491a3b09d543a7cdc88cbe29b1ff753011f29086"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -1257,7 +1274,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "6e30144cb2c1daffc291461cb0a82f75cba1d6789e25bbeb505ee6371de7c3b5"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
