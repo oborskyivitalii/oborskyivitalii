@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d4e7824bbe90a8bf8b4bd66d306736bc2d7f27194fe2dc7d40b6241d0e9584ae",
+    "digest": "c914070390b672cbc3397d91e4e94e06f62165ce20a7fc2d14ab5ad0b04206aa",
     "inputs": [
       {
         "path": ".agents/skills/EDITORIAL-SOURCES.md",
         "identity_mode": "content",
-        "sha256": "a2061364d12b217e84e9b77d9331f010119e6c0d5bf08f7c65695f18c0f24a4c"
+        "sha256": "5419de181f322762cc6b1edc3b67ebbe741769a30c57db3346efd7b50ecd3503"
       },
       {
         "path": ".agents/skills/competing-hypotheses/LICENSE",
@@ -40,19 +40,54 @@
         "sha256": "9be6844ce98bfa1ad68beecd5f70b482ee128aae7d8ecf3442d33ff33ed42003"
       },
       {
+        "path": ".agents/skills/constraint-first/LICENSE",
+        "identity_mode": "content",
+        "sha256": "c865f0594f9e986f4d635fe7d7d1dd091d344cc06116207e216c6160bb3ed2bb"
+      },
+      {
+        "path": ".agents/skills/constraint-first/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "0385f59672b32f1b2c8675dc463d9fdd840c6f74f24420b104e3b019d6a4937a"
+      },
+      {
+        "path": ".agents/skills/cynefin/LICENSE",
+        "identity_mode": "content",
+        "sha256": "41f47abf7be896c870173738e108e902b49497807a2c8b040c8144bf7128f01c"
+      },
+      {
+        "path": ".agents/skills/cynefin/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "7a6f91cb087cff64ae0dcb95755b95a26a90f0df4945ad656e2503a76d0f191c"
+      },
+      {
         "path": ".agents/skills/editorial-workflow/SKILL.md",
         "identity_mode": "content",
-        "sha256": "e1c28baa4a1537b8a1dae11b49a0e7234f31e98de7fc3ad81add09f49492e461"
+        "sha256": "d5e0986978d59cf2b8f2f13d0f0c9d0469ddd43290639bc70c309eeeb356cfae"
       },
       {
         "path": ".agents/skills/editorial-workflow/roles.md",
         "identity_mode": "content",
-        "sha256": "2b8abc9be5009f59e99a5c1916d88316c7c551d03df5dcbddc6b64d29b05d6a6"
+        "sha256": "0c1ce99953b2c3b0eb3afc47b5141b8911e742abc2304f35c1f01bd5f26cd329"
+      },
+      {
+        "path": ".agents/skills/problem-space-model/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "b915b24ca021b26a53ae4a449c436efa8a967f2266b534f79f7c670203260ccf"
       },
       {
         "path": ".agents/skills/source-research/SKILL.md",
         "identity_mode": "content",
         "sha256": "c8cfe22e8e8f578d69528ebc6afa7d12c634702949ecf2e9c4775aad69b9a716"
+      },
+      {
+        "path": ".agents/skills/systems-thinking/LICENSE",
+        "identity_mode": "content",
+        "sha256": "7445eb5acc11ae2ad4727260c28d6be2ff7c878fe4d2881991431e11378b7e3e"
+      },
+      {
+        "path": ".agents/skills/systems-thinking/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "5b52b48f372daf98f4b2182ed096bd4cd92c585991b901caf950e65fe0de9dd8"
       },
       {
         "path": ".gitattributes",
@@ -192,7 +227,7 @@
       {
         "path": ".github/acceptance/issue-217.json",
         "identity_mode": "content",
-        "sha256": "69cfd1a69da455ac78555aba52ab295c1c134e25cf12f8908b10dcbc612d1ed1"
+        "sha256": "bbb97686b691792b06f1fb7763f61c72cc5a41318f452084a2715907aa8b48b8"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -316,17 +351,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "abfddcf94d7dee7f13eb81dedc8fbacfadd2326883bfff2979726766e0f117df"
+        "sha256": "2fc5a3e0d229ed667f36010a82c9495e7f32d0860e0ca2dcbabf00668d68aeb7"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "20a229ecf8fa1666a89d825ab16e7709bcb1d8936a1426551b7f8b30e92256c9"
+        "sha256": "d9e03253613cb2d1d52ff4b744330748b1bb1bc26cdd1b6dcf45a67470dbcb50"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4fb0e275149e1f1267f41470a6c3f3e4fa884a011b0a3046861d3a3105a70ddb"
+        "sha256": "a608c89bc6f87615278dd45065eaa8f8acadb63b2b9d89f8b5d67f374b1932ab"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -476,7 +511,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ee17d6332b37d7a28113e9f505a7959364a04a34b4c326ec601a4bb2c5af47bd"
+        "sha256": "d24105ce70d69ee13875d865e94bad8779a44771e24b4e8ea6bbdc2177023019"
       },
       {
         "path": "NOTICE.md",
@@ -501,6 +536,11 @@
         "path": "agents/editorial/hypothesis-critic.md",
         "identity_mode": "content",
         "sha256": "20f79ac3eadd3b981919e8cd205c4e95d7be88df7cfaa3a2174c0d3b302002c7"
+      },
+      {
+        "path": "agents/editorial/problem-analyst.md",
+        "identity_mode": "content",
+        "sha256": "1eb49b30492bef41927f7a47579325c4f75e334ea39164650c5256a21ca5c9a3"
       },
       {
         "path": "agents/editorial/source-researcher.md",
@@ -1435,7 +1475,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "d35a575f3ff590fe3e423ba2ec550b56f9f926b4a18acae75bab3515d3e5e5cd"
+        "sha256": "df5a8e32ad216a82d77aaeaacaa4b61b97c91a91e87f3e80ef2d777d11e0170c"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1450,7 +1490,7 @@
       {
         "path": "guides/EDITORIAL-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "a09ca6c21f31f2ce034bdee0ee7654238b23d9838478839fdfbedd6074281d66"
+        "sha256": "dcb24bb29d6a753196320c7a65527813d0b105b3008cbd72ff6f20b6fe6e3acf"
       },
       {
         "path": "guides/README.md",
@@ -6150,7 +6190,7 @@
       {
         "path": "review/issue-217/2026-11-27-editorial-review.md",
         "identity_mode": "content",
-        "sha256": "5b7c8cad647afc945ada5b27ee333a419c060e3c360fb444d37d900357b7f5d5"
+        "sha256": "ab1495a2d13a3ecd97d61b3c5f389b1e25f04a76ec69d69c28924634be7b039a"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14260,7 +14300,7 @@
       {
         "path": "tests/orchestration.test.cjs",
         "identity_mode": "content",
-        "sha256": "3139765ce723615379c94ed7548ad9b1d15dacd60666cc6fb1368796e5caee89"
+        "sha256": "2d1df6a2b1ae80344a1dcbca53782b023800122307452eaf010b62f6331277d2"
       },
       {
         "path": "tests/pages-delivery.test.cjs",
@@ -14765,7 +14805,7 @@
       {
         "path": "tools/orchestration/editorial-research.cjs",
         "identity_mode": "content",
-        "sha256": "317f2a00a24f7e63c4d68fcfedba06d38a993e7e5b3dbbaeb33a8257744e3b72"
+        "sha256": "55cdf1aa552e3f37f17c6aa37e8e547d1d918aa465d827f02978e98306170cf1"
       },
       {
         "path": "tools/orchestration/reducer.cjs",
@@ -16290,6 +16330,50 @@
       "title": "Competing hypotheses provenance"
     },
     {
+      "path": ".agents/skills/constraint-first/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for constraint-first.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/constraint-first/SKILL.md",
+      "kind": "file",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Constraint first"
+    },
+    {
+      "path": ".agents/skills/cynefin/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for cynefin.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/cynefin/SKILL.md",
+      "kind": "file",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cynefin"
+    },
+    {
       "path": ".agents/skills/editorial-workflow/SKILL.md",
       "kind": "file",
       "purpose": "Choose and execute the article, PDF, talk or post workflow in the parent session.",
@@ -16312,6 +16396,17 @@
       "title": "Editorial roles"
     },
     {
+      "path": ".agents/skills/problem-space-model/SKILL.md",
+      "kind": "file",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Problem space model"
+    },
+    {
       "path": ".agents/skills/source-research/SKILL.md",
       "kind": "file",
       "purpose": "Source evidence, proposed thesis and documentary limits.",
@@ -16321,6 +16416,28 @@
         "AGENTS.md"
       ],
       "title": "Source research"
+    },
+    {
+      "path": ".agents/skills/systems-thinking/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for systems-thinking.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/systems-thinking/SKILL.md",
+      "kind": "file",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Systems thinking"
     },
     {
       "path": ".gitattributes",
@@ -17311,6 +17428,17 @@
         "AGENTS.md"
       ],
       "title": "Independent article hypothesis critic"
+    },
+    {
+      "path": "agents/editorial/problem-analyst.md",
+      "kind": "file",
+      "purpose": "Native problem analyst prompt, model shape and output rules.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article problem analyst"
     },
     {
       "path": "agents/editorial/source-researcher.md",
@@ -51037,6 +51165,26 @@
       ]
     },
     {
+      "path": ".agents/skills/constraint-first",
+      "kind": "directory",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/cynefin",
+      "kind": "directory",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".agents/skills/editorial-workflow",
       "kind": "directory",
       "purpose": "Repository-scoped authoring workflow and editorial role instructions.",
@@ -51047,9 +51195,29 @@
       ]
     },
     {
+      "path": ".agents/skills/problem-space-model",
+      "kind": "directory",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".agents/skills/source-research",
       "kind": "directory",
       "purpose": "Original article primary-source research skill.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/systems-thinking",
+      "kind": "directory",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
       "role": "guide",
       "owner": ".agents/skills/EDITORIAL-SOURCES.md",
       "instructions": [

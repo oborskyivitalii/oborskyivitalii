@@ -515,7 +515,17 @@ test('article research uses separate skill packets and hands only the approved b
       ],
     },
   };
-  const launch = (action, fields = {}) => runResearch({ ...request, action, ...fields });
+  const call = (action, fields = {}) => runResearch({ ...request, action, ...fields });
+  const launch = (action, fields = {}) => {
+    if (['critique', 'brief'].includes(action) && !Object.hasOwn(fields, 'analysis')) {
+      const analyst = call('analysis', fields);
+      return call(action, {
+        ...fields,
+        analysis: receipt(analyst, '/root/analyst', modeled(fields.research.result)),
+      });
+    }
+    return call(action, fields);
+  };
   const researcher = launch('research');
   assert.equal(researcher.launch.fork_turns, 'none');
   assert.match(researcher.launch.message, /source-research\/SKILL\.md/);
@@ -534,10 +544,132 @@ test('article research uses separate skill packets and hands only the approved b
     evidence: [{ source: 'setup', quote: 'An allowlist selects candidates.' }],
     limits: ['The researcher has not observed review.'],
   });
+  const modeled = (result) => ({
+    ...result,
+    thesis: 'An allowlist entry may suffice.',
+    outline: ['Explain the candidate mechanism.'],
+    model: {
+      scope: 'Existing article materials',
+      affected: ['Authors', 'Readers'],
+      mechanism: 'Selection may depend on both listing and review.',
+      unknowns: ['Review behavior before selection.'],
+      alternatives: [
+        {
+          explanation: 'The list alone selects the file',
+          disconfirmingObservation: 'A listed file is excluded.',
+        },
+        {
+          explanation: 'Review also gates the listing',
+          disconfirmingObservation: 'An unreviewed file is shown.',
+        },
+      ],
+    },
+    lens: null,
+  });
+  const packetBody = ({ launch }) => JSON.parse(launch.message.split('\n').at(-1));
+  const analyst = call('analysis', { research });
+  assert.deepEqual(analyst.selection, { skill: null, reason: 'no optional analysis need' });
+  assert.deepEqual(
+    packetBody(analyst).skills.map(({ file }) => file),
+    ['.agents/skills/problem-space-model/SKILL.md']
+  );
+  assert.doesNotMatch(analyst.launch.message, /pending  approval/);
+  const analysis = receipt(analyst, '/root/analyst', modeled(research.result));
+  const [firstAlternative, secondAlternative] = analysis.result.model.alternatives;
+  const duplicateAlternatives = {
+    ...analysis,
+    result: {
+      ...analysis.result,
+      model: {
+        ...analysis.result.model,
+        alternatives: [
+          firstAlternative,
+          {
+            ...secondAlternative,
+            explanation: firstAlternative.explanation.replace(' ', '\t  ').toUpperCase(),
+          },
+        ],
+      },
+    },
+  };
+  assert.throws(
+    () => call('critique', { research, analysis: duplicateAlternatives }),
+    /distinct alternative explanations/
+  );
+  assert.throws(() => call('critique', { research }), /analysis receipt is required/);
+  assert.throws(() => call('brief', { research }), /analysis receipt is required/);
+  assert.throws(
+    () =>
+      call('critique', {
+        research,
+        analysis: { ...analysis, handle: research.handle, resultHandle: research.handle },
+      }),
+    /distinct task handle/
+  );
+  assert.throws(
+    () =>
+      call('critique', {
+        research,
+        analysis: {
+          ...analysis,
+          result: {
+            ...analysis.result,
+            model: {
+              ...analysis.result.model,
+              alternatives: [analysis.result.model.alternatives[0]],
+            },
+          },
+        },
+      }),
+    /testable alternatives count/
+  );
+  for (const [analysisNeeds, expected] of [
+    [{ feedback: true }, 'systems-thinking'],
+    [{ bottleneck: true, feedback: true }, 'constraint-first'],
+    [{ uncertainApproach: true, bottleneck: true, feedback: true }, 'cynefin'],
+  ]) {
+    const article = { ...request.article, analysisNeeds };
+    const selected = call('analysis', { research, article });
+    assert.equal(selected.selection.skill, expected);
+    assert.equal(selected.launch.fork_turns, 'none');
+    assert.deepEqual(
+      packetBody(selected).skills.map(({ file }) => file),
+      ['.agents/skills/problem-space-model/SKILL.md', `.agents/skills/${expected}/SKILL.md`]
+    );
+    assert.throws(
+      () => call('critique', { research, article, analysis }),
+      /mismatched worker receipt/
+    );
+    const chosen = receipt(selected, '/root/analyst', {
+      ...analysis.result,
+      lens: { skill: expected, finding: 'A localized constraint needs a system-level check.' },
+    });
+    assert.throws(
+      () =>
+        call('critique', {
+          research,
+          article,
+          analysis: {
+            ...chosen,
+            result: {
+              ...chosen.result,
+              lens: { ...chosen.result.lens, skill: 'wrong-skill' },
+            },
+          },
+        }),
+      /Unexpected analysis skill/
+    );
+    const next = call('critique', { research, article, analysis: chosen });
+    assert.equal(packetBody(next).proposedThesis, analysis.result.thesis);
+    assert.doesNotMatch(
+      next.launch.message,
+      /localized constraint|gates the listing|candidate mechanism/
+    );
+  }
   const critic = launch('critique', { research });
   assert.match(critic.launch.message, /competing-hypotheses\/SKILL\.md/);
   assert.match(critic.launch.message, /pending  approval/);
-  assert.match(critic.launch.message, /A listing is sufficient/);
+  assert.match(critic.launch.message, /An allowlist entry may suffice/);
   assert.doesNotMatch(critic.launch.message, /allowlist alone|has not observed review/);
   const critique = receipt(critic, '/root/critic', {
     verdict: 'narrows',
@@ -594,6 +726,30 @@ test('article research uses separate skill packets and hands only the approved b
   );
   assert.throws(
     () =>
+      call('brief', {
+        research,
+        analysis,
+        critique: { ...critique, handle: analysis.handle, resultHandle: analysis.handle },
+      }),
+    /distinct task handle/
+  );
+  assert.throws(
+    () =>
+      call('brief', {
+        research,
+        critique,
+        analysis: {
+          ...analysis,
+          result: {
+            ...analysis.result,
+            model: { ...analysis.result.model, scope: 'Changed analytical scope' },
+          },
+        },
+      }),
+    /mismatched worker receipt/
+  );
+  assert.throws(
+    () =>
       launch('brief', {
         research,
         critique: {
@@ -639,6 +795,11 @@ test('article research uses separate skill packets and hands only the approved b
   assert.equal(writing.blueprint, output.candidate.blueprint);
   assert.match(writing.blueprint, /An approved listing can select the file\./);
   assert.match(writing.blueprint, /Explain approval\./);
+  assert.equal(output.candidate.analysis.model.scope, 'Existing article materials');
+  assert.doesNotMatch(
+    writing.blueprint,
+    /Existing article materials|An unreviewed file is shown|Explain the candidate mechanism/
+  );
   assert.match(writing.blueprint, /A pending  approval excludes the file\./);
   assert.match(writing.blueprint, /https:\/\/example.org\/review/);
   assert.doesNotMatch(writing.blueprint, /A listing is sufficient|allowlist alone/);
@@ -683,6 +844,39 @@ test('article research uses separate skill packets and hands only the approved b
     events: [open.event, { ...decision('accept'), review: open.review }],
   };
   assert.deepEqual(dispatch(openReplay, open.candidate), { status: 'needs-evidence' });
+  const supported = launch('brief', {
+    research,
+    critique: {
+      ...critique,
+      result: {
+        ...critique.result,
+        verdict: 'supports',
+        thesis: analysis.result.thesis,
+        outline: [],
+      },
+    },
+  });
+  assert.match(supported.candidate.blueprint, /Explain the candidate mechanism/);
+  assert.match(
+    supported.candidate.blueprint,
+    /The mechanism and alternatives below are hypotheses to test/
+  );
+  assert.match(supported.candidate.blueprint, /Existing article materials/);
+  const { analysis: ignored, ...historical } = supported.candidate;
+  const historicalEvent = {
+    ...supported.event,
+    artifact: createHash('sha256').update(JSON.stringify(historical)).digest('hex'),
+  };
+  const historicalReview = evaluateEditorial(
+    JSON.stringify({ ...replay, events: [historicalEvent] })
+  ).brief.review;
+  assert.equal(
+    dispatch(
+      { ...replay, events: [historicalEvent, { ...decision('accept'), review: historicalReview }] },
+      historical
+    ).blueprint,
+    historical.blueprint
+  );
   const fullReplay = { ...accepted, events: [output.event, ...Array(62).fill(decision('accept'))] };
   const start = (action, fields) =>
     launch(action, {

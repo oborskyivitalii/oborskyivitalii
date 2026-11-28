@@ -1,5 +1,8 @@
 # Editorial roles
 
+The [article problem analyst](../../../agents/editorial/problem-analyst.md)
+has a dedicated prompt and the structured model used by the article research entry.
+
 Every response identifies its assigned role and input identities, the deliverable
 or findings, unresolved questions, and any context or files received outside
 the assigned packet. Return the result to the parent. The parent owns edits and

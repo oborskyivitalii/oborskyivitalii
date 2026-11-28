@@ -25,6 +25,72 @@
       "role": "guide",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
+    ".agents/skills/problem-space-model": {
+      "kind": "directory",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/problem-space-model/SKILL.md": {
+      "kind": "file",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/systems-thinking": {
+      "kind": "directory",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/systems-thinking/SKILL.md": {
+      "kind": "file",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/systems-thinking/LICENSE": {
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for systems-thinking.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/constraint-first": {
+      "kind": "directory",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/constraint-first/SKILL.md": {
+      "kind": "file",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/constraint-first/LICENSE": {
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for constraint-first.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/cynefin": {
+      "kind": "directory",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/cynefin/SKILL.md": {
+      "kind": "file",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/cynefin/LICENSE": {
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for cynefin.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
     ".agents/skills/source-research": {
       "kind": "directory",
       "purpose": "Original article primary-source research skill.",
@@ -670,6 +736,12 @@
     "agents/editorial": {
       "kind": "directory",
       "purpose": "Specialized article evidence and independent hypothesis prompts.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
+    "agents/editorial/problem-analyst.md": {
+      "kind": "file",
+      "purpose": "Native problem analyst prompt, model shape and output rules.",
       "role": "guide",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },

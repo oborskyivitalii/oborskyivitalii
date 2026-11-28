@@ -47,13 +47,13 @@
 ### Article research entry
 
 The parent uses `node tools/orchestration/editorial-research.cjs < request.json`
-to prepare actual native calls, bind the two returns at R1 and obtain the
+to prepare actual native calls, bind the three returns at R1 and obtain the
 existing article blueprint. Article-only and changed-thesis work use this
 entry. The PDF-only and accepted-edition post paths use their own inputs.
 
 Use a local request outside the public checkout. Each request contains an
 `action` and the current `replay` object. The parent controls replay decisions.
-For research, critique and brief requests also supply `previous` (the current
+For research, analysis, critique and brief requests also supply `previous` (the current
 brief review ID or null), a fresh random 32-byte hex `attempt` retained across
 the three calls, and `article` with `issue`, `title`, `audience`, `purpose`,
 `language`, `question`, `sources` and `reviewSources`. Both source arrays
@@ -62,20 +62,43 @@ source. Pin each public primary document or clearly scoped excerpt in `body`.
 Put additional independent primary material in `reviewSources`. Only the
 critic sees that array. Retain the source fetch/version separately.
 
+Set optional boolean flags in `article.analysisNeeds` from the work request
+and its evidence. The analyst always receives `problem-space-model`. Use
+`uncertainApproach` when the evidence does not distinguish a known procedure,
+an expert analysis or a probe. Use `bottleneck` when testing which step limits
+end-to-end throughput. Use `feedback` when testing recurrence, accumulation or
+a feedback loop. If conditions overlap, the order is `uncertainApproach` →
+`bottleneck` → `feedback`. With no flag set, only the core skill runs. Retain the
+adapter's reported `selection` and why the supplied flag applies. Each run
+uses one analyst even when two skills are needed.
+Record a time allowance per role before dispatch. Hold the next action when
+that allowance expires; inspect the accepted task before replacing it.
+
 | Action | Parent action with the result |
 | --- | --- |
 | `research` | Check the returned packet and use its exact `launch` arguments. They contain the source researcher prompt and `source-research` skill. |
-| `critique` | Add the `research` receipt. Use the exact returned launch for a distinct fresh critic with `competing-hypotheses`. Its packet includes the proposed thesis and assigned primary sources. |
-| `brief` | Add the `critique` receipt. Retain the returned `candidate`, append its brief `event`, and present the exact thesis, outline and evidence for the returned review ID. |
+| `analysis` | Add the `research` receipt. Dispatch a fresh problem analyst with the selected packages. Its first return names scope, mechanism, affected parties, unknowns and alternative explanations with disconfirming observations. |
+| `critique` | Add the `analysis` receipt. Use the exact returned launch for a distinct fresh critic with `competing-hypotheses`. Its packet includes the analyst's proposed thesis, assigned primary sources and an opaque analysis identity. The analyst's mechanism, alternatives, rationale and prior returns stay in the parent. |
+| `brief` | Add the `critique` receipt. Retain the returned `candidate`, append its brief `event`, and present the complete exact blueprint for the returned review ID. For a held verdict, present the critique and limits for a return or stop. |
 | `handoff` | Use the current replay and retained `candidate`. On `ready-to-draft`, read the returned approved blueprint into the article's normal `blueprint.md` and submit that exact version to the ordinary Drafter. For any other status, keep drafting closed. |
 
 A receipt contains `packet` and `scope` from preparation, the tool-accepted `handle`, first-return
 `resultHandle`, the recorded `forkTurns`, and the parsed first `result`.
 Keep the raw tool arguments and first return before import. The adapter
 checks the packet, run scope (author and requested outputs), attempt, checkpoint, matching handles and literal source
-passages. The parent verifies the launch and checks the editorial claim and
+passages. The supported brief uses the analyst's outline and labels its
+mechanism and alternatives as hypotheses to test. The critic independently
+assesses the central thesis. A narrowed brief carries the critic's replacement
+thesis, outline, evidence and limits into drafting. The previous problem
+model remains in the retained research record. Previously
+accepted blueprints stay deliverable by exact bytes. New and returned work
+must include an analysis receipt.
+
+The parent verifies the launch and checks the editorial claim and
 source interpretation before seeking approval. Use a fresh attempt after a
-return or restart. The adapter does no file writes, provider launch, storage
+return or restart. This local adapter currently rebinds all three receipts to
+the new attempt. Selective reuse of unchanged results across a returned brief
+remains in AC06. The adapter does no file writes, provider launch, storage
 or author authentication. The parent owns those actions and observes zero
 draft dispatches for a stopped or unaccepted run.
 

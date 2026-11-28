@@ -11,10 +11,10 @@ current stage and the exact version of any existing input. Use the
 to select the next action and dispatch the appropriate
 [editorial role](roles.md). Keep the artifact with its existing owner.
 
-- **New article** — research, independent hypothesis check, author thesis
+- **New article** — research, problem analysis, independent hypothesis check, author thesis
   decision, draft, independent manuscript check, author manuscript decision.
   Use the [article research entry](../../../guides/EDITORIAL-ORCHESTRATION.md#article-research-entry)
-  for the researcher and hypothesis critic's exact launch packets.
+  for exact researcher, problem analyst and hypothesis critic launch packets.
   Put the accepted material through the
   [existing article workflow](../../../guides/ARTICLE-WORKFLOW.md#authoring-and-publication-sequence).
 - **Existing article or PDF** — start from the pinned edition and the actual

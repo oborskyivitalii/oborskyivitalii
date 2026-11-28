@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Documentary evidence and research stop",
-      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite verifies assigned literal passages, exact accepted blueprint handoff and modeled author stop. Blinded and author outcomes require retained pilot evidence.",
+      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite verifies selected analysis skills and overlap priority, source-bound model and critique, exact accepted blueprint handoff and modeled author stop. Blinded and author outcomes require retained pilot evidence.",
       "checks": ["BASIC"],
       "gates": ["AUTHOR", "SOURCE", "EVIDENCE"]
     },

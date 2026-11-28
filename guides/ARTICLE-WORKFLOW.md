@@ -150,7 +150,8 @@ copy into steps 5–6. For PDF-only layout work, start at the exact source editi
 and use the candidate commands and requested-output review in step 6.
 For a new article or a changed thesis, run the
 [article research entry](EDITORIAL-ORCHESTRATION.md#article-research-entry)
-to assemble the proposed blueprint. Use its accepted handoff as the input to
+to assemble the proposed blueprint from research, problem analysis and
+independent critique. Use its accepted handoff as the input to
 step 1, then give the exact resulting blueprint to the ordinary drafting role
 in step 2.
 

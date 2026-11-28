@@ -110,6 +110,10 @@
   },
   "active_markdown": [
     ".agents/skills/EDITORIAL-SOURCES.md",
+    ".agents/skills/problem-space-model/SKILL.md",
+    ".agents/skills/systems-thinking/SKILL.md",
+    ".agents/skills/constraint-first/SKILL.md",
+    ".agents/skills/cynefin/SKILL.md",
     ".agents/skills/source-research/SKILL.md",
     ".agents/skills/competing-hypotheses/SKILL.md",
     ".agents/skills/competing-hypotheses/SOURCES.md",
@@ -157,6 +161,7 @@
     "guides/SITE-CONTENT-RELEASE.md",
     "agents/reviewers/README.md",
     "agents/editorial/source-researcher.md",
+    "agents/editorial/problem-analyst.md",
     "agents/editorial/hypothesis-critic.md",
     "agents/reviewers/requirements-acceptance.md",
     "agents/reviewers/code-review.md",

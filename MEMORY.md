@@ -15,7 +15,7 @@ Dated handoff. Last verified **2026-11-28**. Revalidate live sources when resumi
 
 ## Open work
 
-- The [editorial workflow](.agents/skills/editorial-workflow/SKILL.md) routes new or changed article theses through the dedicated research and critique prompts. See the [first two skill packages](.agents/skills/EDITORIAL-SOURCES.md). Use approved public-safe inputs until private role access is verified. Durable recovery and protected delivery remain open.
+- The [editorial workflow](.agents/skills/editorial-workflow/SKILL.md) runs research, problem analysis and independent critique for new or changed article theses. See the [six skill packages](.agents/skills/EDITORIAL-SOURCES.md). The rest of Wave 1 covers argumentative challenge and audience/positioning skills. Use approved public-safe inputs while private access, recovery and delivery remain open.
 - Keep all eight issue criteria open until their whole requirements pass.
 
 ## Next session
