@@ -90,6 +90,7 @@ DEVICE and ISOLATION recorded open.
 | X6 | Exploratory | risk | Codex sandbox without bubblewrap unverified | DEVICE trial |
 | N1–N3 | Requirements (correction) | medium/low | four-role pass not recorded; tested head not pushed; DEVICE wording differs in issue | this section; pushed head; issue gate lines updated |
 | C1–C6 | Code (correction) | gate/low/nit | guide record stale; AC06 scope text; base hint; test cleanup; `.yaml`; build toolchain guard | record rebound; text, hint and cleanup fixed; rest accepted |
+| A1 | CI / Code (delta 98b23478..35a3fe79) | blocking | AC06 node-basic failed in the acceptance job: issue219 policy had no Basic toolchain install | e168df06 adds issue219 to the four install conditions used by issue211/213; reviewer approved; guide record updated |
 
 ### Test-impact review (8886647e..head)
 
