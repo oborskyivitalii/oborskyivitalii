@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c78b03158c70e3df92c86abde6e5b34c481573c9ca79782b13626ac8c925ac71",
+    "digest": "2f5e6b8e0b30ee39f2f811d378c6b8143266a715b61bd2fb10782e4310030457",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
         "identity_mode": "content",
-        "sha256": "44a2245cd5e3b1661beb26a7786ae6f3b9cff0ee32e12301f619be9ef2edc209"
+        "sha256": "1b326c84b89bcbd298456521ddd8eeb8db2d67f97f10a8a48da1019fab846bf5"
       },
       {
         "path": ".devcontainer/devcontainer.json",
@@ -296,12 +296,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "1dd5b3f86af6af1d8a6da61d0c42d831d7baca60451d59690db0ca279703210e"
+        "sha256": "de44e8e2e22977aa849faf44fcdc2e985ec9eef39cc7f5776d1678dd51fcb368"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "796b42622385d347fa7eb39ffdd8f35a61ae4da9c843db4b1cbcad90f468d14d"
+        "sha256": "a065a627ec8ab47cede3462e2118e0461d8b88cd7ee1391932bda6105a3fd14b"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -326,7 +326,7 @@
       {
         "path": ".github/workflows/dev-environment.yml",
         "identity_mode": "content",
-        "sha256": "99b513456738e68432b17559c47319a8f21e11ddbb3f389d4ef37df97ab246dc"
+        "sha256": "6c35757ab3e0338609a5dbc15fb0aa85b6ca65daebbde3fa93f7b0d8dc76f8a4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -426,12 +426,12 @@
       {
         "path": ".gitignore",
         "identity_mode": "content",
-        "sha256": "03ca7de05e17e9ae0d07de109f55dafce021ec1ebc49916cefa6496c41ad312b"
+        "sha256": "4bb18d0a405d085dea0f4b577f77a134509f0b9d61acd0d969c1ea2d85c11f28"
       },
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "9674e441101cce2c42bc368d5cf42dfafef6beed9302718a044f57435bd40451"
+        "sha256": "1f94a459b1beb4701bc3d366b4048bbcde5dcaaa931a4deb109658050a3868ef"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -1420,7 +1420,7 @@
       {
         "path": "guides/DEV-ENVIRONMENT.md",
         "identity_mode": "content",
-        "sha256": "14625db948e94dff6bf1a134331f37e38ef1a42c1940b9d85685b2e13d0c961d"
+        "sha256": "183d0893639c3d0e7794e63750a8ad9035b0a01eae23220bda8b1a2d1fbe183c"
       },
       {
         "path": "guides/README.md",
@@ -1435,7 +1435,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "caf6ef181b21f2195a9588e25e9fe7f810036b0b7b3e3f2695877fcf715c2b23"
+        "sha256": "7dd45a4287119412b7c8435f45f1d0b44d820097928eb3be7a6a249839c1e12d"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -6121,6 +6121,16 @@
         "path": "review/issue-219/2026-11-28-environment-review.md",
         "identity_mode": "content",
         "sha256": "49ca9ac017d7ecf8c90eff8294805b545a54d47ec63b1d19ef912416cde272b5"
+      },
+      {
+        "path": "review/issue-219/2026-11-28-runners-review.md",
+        "identity_mode": "content",
+        "sha256": "9d9f2cc91d124e1c4a995d0c99dfa67fda7fa98b6b9ab972c18e6c36dd3de7d2"
+      },
+      {
+        "path": "review/issue-219/workflow-guide-evidence.json",
+        "identity_mode": "content",
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14085,7 +14095,7 @@
       {
         "path": "tests/dev-environment.test.cjs",
         "identity_mode": "content",
-        "sha256": "5ada321195ef05157391d18997e6dc088d79f07cf00e52ed4fe8076bf1306658"
+        "sha256": "1e727d999175b1790d26861d56d3568c07fd93fc8549018bcd8cf07f6087a27b"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14735,12 +14745,12 @@
       {
         "path": "tools/dev/cli.cjs",
         "identity_mode": "content",
-        "sha256": "6a8baf552c737c8c19716a27302b17bbcb229aaf2680fa71bfc31d5233f5c97f"
+        "sha256": "c3eddbe9c9b49fc10914a47c16dc3878ce0c5cbf740b6f8ce44ebe75bc0f6968"
       },
       {
         "path": "tools/dev/runners.cjs",
         "identity_mode": "content",
-        "sha256": "d1e371d6f476de1dfd27bbe16c3350891abdf246a893280c780c54e9c0d5f1a4"
+        "sha256": "2876beca3958a8620f31eb2d53fe6ea25b39db1e153441b1874b35da0fbc8be6"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -29660,6 +29670,28 @@
         "AGENTS.md"
       ],
       "title": "Issue 219 — 2026-11-28 review / analysis / handoff"
+    },
+    {
+      "path": "review/issue-219/2026-11-28-runners-review.md",
+      "kind": "file",
+      "purpose": "Issue219 iteration-2 independent code review of runner work, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "placeholder"
+    },
+    {
+      "path": "review/issue-219/workflow-guide-evidence.json",
+      "kind": "file",
+      "purpose": "Issue219 source-bound independent workflow-guide review disposition for covered control changes.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-evidence.json"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",

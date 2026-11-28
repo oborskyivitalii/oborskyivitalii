@@ -99,8 +99,10 @@ test('serve defaults to loopback and rejects unknown or malformed arguments', ()
     port: 8080,
     host: '0.0.0.0',
   });
-  for (const args of [['--port=8080'], ['foo'], ['--port'], ['--port', 'x'], ['--port', '0']])
+  const invalid = [['--port=8080'], ['foo'], ['--port'], ['--port', 'x'], ['--port', '0']];
+  for (const args of invalid) {
     assert.throws(() => serveOptions(args), args.join(' '));
+  }
 });
 
 test('runner agents are generated from every repository reviewer prompt', () => {
@@ -119,7 +121,10 @@ test('runner agents are generated from every repository reviewer prompt', () => 
     const prompt = read('agents/reviewers/' + agent.name + '.md');
     assert.ok(agent.body.startsWith('---\ndescription: Independent '));
     assert.match(agent.body, /mode: subagent\n/);
-    assert.match(agent.body, /\npermission:\n {2}edit: deny\n/);
+    assert.match(agent.body, /\npermission:\n {2}edit: deny\n {2}task: deny\n/);
+    assert.match(agent.body, /\n {2}bash:\n {4}"\*": deny\n/);
+    assert.doesNotMatch(agent.body, /"git (push|commit|add)/);
+    assert.match(agent.body, /README\.md sha256:[0-9a-f]{64}, /);
     assert.ok(agent.body.includes(readme.trimEnd()));
     assert.ok(agent.body.includes(prompt.trimEnd()));
     assert.ok(agent.body.includes(runners.marker));
@@ -133,16 +138,26 @@ test('runner configuration stays outside the checkout and keeps hand-written fil
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
   assert.equal(runners.writeOpencodeAgents(directory).length, 4);
   assert.equal(runners.writeOpencodeAgents(directory).length, 4);
+  const retired = path.join(directory, 'retired-role.md');
+  const own = path.join(directory, 'my-agent.md');
+  fs.writeFileSync(retired, '<!-- ' + runners.marker + ' old -->\n');
+  fs.writeFileSync(own, 'my own agent\n');
+  runners.writeOpencodeAgents(directory);
+  assert.equal(fs.existsSync(retired), false, 'generated agent for a retired role is removed');
+  assert.equal(fs.existsSync(own), true, 'hand-written agents are kept');
   fs.writeFileSync(path.join(directory, 'code-review.md'), 'my own agent\n');
   assert.throws(() => runners.writeOpencodeAgents(directory), /hand-written/);
+  assert.throws(() => runners.writeOpencodeAgents(root));
   assert.equal(runners.opencodeAgentDirectory({ XDG_CONFIG_HOME: '/x' }), '/x/opencode/agents');
 });
 
 test('review runs Codex against a validated base branch only', () => {
-  assert.deepEqual(reviewArgs([]), ['review', '--base', 'main']);
+  assert.deepEqual(reviewArgs([]), ['review', '--base', 'origin/main']);
   assert.deepEqual(reviewArgs(['--base', 'origin/main']), ['review', '--base', 'origin/main']);
-  for (const args of [['--base'], ['--base', 'a;b'], ['--uncommitted'], ['x', 'y']])
+  const invalid = [['--base'], ['--base', 'a;b'], ['--base', '--uncommitted'], ['x', 'y']];
+  for (const args of invalid) {
     assert.throws(() => reviewArgs(args), args.join(' '));
+  }
   assert.throws(() => runners.runnerCommand('other', []), /Unknown runner/);
 });
 
@@ -151,8 +166,11 @@ test('repository tracks no vendor-specific agent instruction files', () => {
     .execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' })
     .split('\0')
     .filter(Boolean);
-  const vendor =
-    /(^|\/)(CLAUDE\.md|GEMINI\.md|\.claude|\.opencode|\.codex|\.cursor|\.cursorrules|\.windsurfrules|\.github\/copilot-instructions\.md)(\/|$)/;
+  const vendor = new RegExp(
+    '(^|/)(CLAUDE\\.md|GEMINI\\.md|\\.claude|\\.opencode|\\.codex|\\.cursor|\\.cursorrules|' +
+      '\\.windsurfrules|\\.clinerules|\\.roo|\\.continue|\\.junie|\\.aider[^/]*|' +
+      '\\.github/copilot-instructions\\.md|\\.github/instructions)(/|$)'
+  );
   assert.deepEqual(
     tracked.filter((file) => vendor.test(file) && !file.startsWith('review/')),
     []

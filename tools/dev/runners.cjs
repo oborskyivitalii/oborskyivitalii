@@ -24,24 +24,42 @@ function reviewerRoles(readme) {
 }
 
 function digest(text) {
-  return crypto.createHash('sha256').update(text).digest('hex').slice(0, 16);
+  return crypto.createHash('sha256').update(text).digest('hex');
 }
+
+// Reviewers inspect and run read-only checks; they never edit, delegate or push.
+const reviewerPermission = [
+  'permission:',
+  '  edit: deny',
+  '  task: deny',
+  '  webfetch: ask',
+  '  bash:',
+  '    "*": deny',
+  '    "git diff*": allow',
+  '    "git log*": allow',
+  '    "git show*": allow',
+  '    "git status*": allow',
+  '    "git rev-parse*": allow',
+  '    "node --test*": allow',
+];
 
 // One OpenCode subagent per role: common contract plus role prompt, read-only.
 function opencodeAgents(read = (file) => fs.readFileSync(path.join(root, file), 'utf8')) {
   const contract = read(reviewers + '/README.md');
   return reviewerRoles(contract).map(({ role, file }) => {
     const prompt = read(reviewers + '/' + file);
-    const sources = `${reviewers}/README.md + ${reviewers}/${file}`;
+    const sources = [
+      `${reviewers}/README.md sha256:${digest(contract)}`,
+      `${reviewers}/${file} sha256:${digest(prompt)}`,
+    ].join(', ');
     const body = [
       '---',
       `description: Independent ${role} (repository prompt ${file})`,
       'mode: subagent',
-      'permission:',
-      '  edit: deny',
+      ...reviewerPermission,
       '---',
       '',
-      `<!-- ${marker} ${sources} sha256:${digest(contract + prompt)} -->`,
+      `<!-- ${marker} ${sources} -->`,
       '',
       contract.trimEnd(),
       '',
@@ -57,16 +75,39 @@ function opencodeAgentDirectory(env = process.env) {
   return path.join(config, 'opencode', 'agents');
 }
 
-// Writes only generated files; refuses to overwrite a file it did not generate.
+function realTarget(directory) {
+  let existing = path.resolve(directory);
+  while (!fs.existsSync(existing)) {
+    existing = path.dirname(existing);
+  }
+  return path.join(fs.realpathSync(existing), path.relative(existing, path.resolve(directory)));
+}
+
+function generated(file) {
+  return fs.readFileSync(file, 'utf8').includes(marker);
+}
+
+// Writes only generated files, removes generated files for retired roles and
+// refuses to overwrite a file it did not generate.
 function writeOpencodeAgents(directory = opencodeAgentDirectory()) {
-  if (path.resolve(directory).startsWith(root + path.sep)) {
+  const target = realTarget(directory);
+  const checkout = fs.realpathSync(root);
+  if (target === checkout || target.startsWith(checkout + path.sep)) {
     throw Error('Runner configuration must stay outside the repository checkout');
   }
   fs.mkdirSync(directory, { recursive: true });
+  const agents = opencodeAgents();
+  const names = new Set(agents.map((agent) => agent.name + '.md'));
+  for (const name of fs.readdirSync(directory)) {
+    const file = path.join(directory, name);
+    if (name.endsWith('.md') && !names.has(name) && generated(file)) {
+      fs.rmSync(file);
+    }
+  }
   const written = [];
-  for (const agent of opencodeAgents()) {
+  for (const agent of agents) {
     const file = path.join(directory, agent.name + '.md');
-    if (fs.existsSync(file) && !fs.readFileSync(file, 'utf8').includes(marker)) {
+    if (fs.existsSync(file) && !generated(file)) {
       throw Error('Refusing to overwrite a hand-written agent: ' + file);
     }
     fs.writeFileSync(file, agent.body);
@@ -77,8 +118,17 @@ function writeOpencodeAgents(directory = opencodeAgentDirectory()) {
 
 const binaries = {
   opencode: () => {
-    const arch = { x64: 'x64', arm64: 'arm64' }[process.arch];
-    return path.join(packageDir, 'node_modules', `opencode-linux-${arch}`, 'bin', 'opencode');
+    if (process.platform !== 'linux' || !['x64', 'arm64'].includes(process.arch)) {
+      throw Error('The pinned OpenCode runner supports the Linux x64/arm64 container only');
+    }
+    const candidates = [
+      `opencode-linux-${process.arch}`,
+      `opencode-linux-${process.arch}-baseline`,
+    ];
+    const found = candidates
+      .map((name) => path.join(packageDir, 'node_modules', name, 'bin', 'opencode'))
+      .find((file) => fs.existsSync(path.join(root, file)));
+    return found || path.join(packageDir, 'node_modules', candidates[0], 'bin', 'opencode');
   },
   codex: () => path.join(packageDir, 'node_modules', '@openai', 'codex', 'bin', 'codex.js'),
 };
@@ -92,6 +142,10 @@ function runnerCommand(name, args) {
   const binary = binaries[name]();
   if (!fs.existsSync(path.join(root, binary))) {
     throw Error(`Missing ${name}; run: node tools/dev/cli.cjs setup`);
+  }
+  if (name === 'opencode') {
+    // Keep runner agents identical to the current repository prompts.
+    writeOpencodeAgents();
   }
   const argv = name === 'codex' ? ['node', binary, ...args] : [binary, ...args];
   return { argv, env: { ...process.env, OPENCODE_DISABLE_CLAUDE_CODE: '1' } };

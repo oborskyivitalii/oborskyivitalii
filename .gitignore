@@ -1,4 +1,5 @@
 node_modules/
+.opencode/
 __pycache__/
 .ruff_cache/
 .venv/

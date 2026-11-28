@@ -47,5 +47,6 @@ jobs:
             test "$(id -un)" = dev
             node tools/dev/cli.cjs doctor
             node tools/dev/cli.cjs setup
+            XDG_CONFIG_HOME="$(mktemp -d)" node tools/dev/cli.cjs agents
             node tools/dev/cli.cjs check
           '

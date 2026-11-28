@@ -771,7 +771,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "9b3be2bce98f73d1dbce94fed005ee4ec01be9c0527e7c81abbb69d765bc7265",
+    "digest": "9881bfa4796363d73afe2168c7ee11f7908e2597806dccf1bb33b2dbb3c9b35e",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -971,7 +971,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "1dd5b3f86af6af1d8a6da61d0c42d831d7baca60451d59690db0ca279703210e"
+        "sha256": "de44e8e2e22977aa849faf44fcdc2e985ec9eef39cc7f5776d1678dd51fcb368"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -991,7 +991,7 @@
       },
       {
         "path": ".github/workflows/dev-environment.yml",
-        "sha256": "99b513456738e68432b17559c47319a8f21e11ddbb3f389d4ef37df97ab246dc"
+        "sha256": "6c35757ab3e0338609a5dbc15fb0aa85b6ca65daebbde3fa93f7b0d8dc76f8a4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1071,7 +1071,7 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "9674e441101cce2c42bc368d5cf42dfafef6beed9302718a044f57435bd40451"
+        "sha256": "1f94a459b1beb4701bc3d366b4048bbcde5dcaaa931a4deb109658050a3868ef"
       },
       {
         "path": "CONTRIBUTING.md",

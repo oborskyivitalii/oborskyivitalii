@@ -70,10 +70,13 @@ Two optional runners are pinned in `tools/dev/agents` and installed by `setup`:
 
 | Command | What it does |
 | --- | --- |
-| `node tools/dev/cli.cjs agents` | Generates one read-only OpenCode subagent per reviewer role from `agents/reviewers/` into `~/.config/opencode/agents/` (outside the checkout); runs after setup |
+| `node tools/dev/cli.cjs agents` | Generates one OpenCode subagent per reviewer role from `agents/reviewers/` into `~/.config/opencode/agents/` (outside the checkout), with full prompt SHA-256s; runs after setup and before every `opencode` command |
 | `node tools/dev/cli.cjs opencode [ARGS]` | Pinned OpenCode; Claude Code compatibility fallbacks are disabled, so `AGENTS.md` is its only project rule file |
 | `node tools/dev/cli.cjs codex [ARGS]` | Pinned Codex CLI, which also reads `AGENTS.md` |
-| `node tools/dev/cli.cjs review [--base BRANCH]` | Codex review of the branch against `BRANCH` (default `main`) |
+| `node tools/dev/cli.cjs review [--base BRANCH]` | Codex review of the branch against `BRANCH` (default `origin/main`; run `git fetch origin main` first) |
+
+Reviewer subagents cannot edit files, delegate (`task`) or run shell commands other
+than `git diff/log/show/status/rev-parse` and `node --test`; web fetches ask first.
 
 Model access is the operator's choice. OpenCode signs in with any provider,
 including a ChatGPT Plus/Pro plan (`opencode providers login`, headless device
@@ -81,7 +84,8 @@ flow) or an API key; Codex uses `codex login --device-auth`. Credentials stay in
 the container user's home and are never committed.
 
 From an iPad, start the server in the container and open the forwarded port:
-`OPENCODE_SERVER_PASSWORD=<secret> node tools/dev/cli.cjs opencode serve --port 4096`.
+`read -rs OPENCODE_SERVER_PASSWORD && export OPENCODE_SERVER_PASSWORD`, then
+`node tools/dev/cli.cjs opencode serve --port 4096` (the password stays out of shell history).
 Devcontainer hosts forward 4096 privately; keep the password on any shared host.
 
 ### Cascaded review
@@ -92,8 +96,9 @@ Devcontainer hosts forward 4096 privately; keep the password on any shared host.
    `fork_turns="none"` still needs one recorded verification under the
    [reviewer contract](../agents/reviewers/README.md) before it counts.
 3. A second vendor reviews: `node tools/dev/cli.cjs review` in the container, and/or
-   `@codex review` (or automatic Codex review) on the GitHub PR. Codex reads the
-   `Code Review Rules` section of AGENTS.md. Its findings are inputs to the
+   `@codex review` (or automatic Codex review) on the GitHub PR. Codex's GitHub
+   review guide reads a `## Code Review Rules` section in AGENTS.md (observed in its
+   documentation on 2026-11-28; confirm on the first real review). Its findings are inputs to the
    iteration protocol; they never approve or merge.
 
 ## Hosting is an adapter

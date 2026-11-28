@@ -8515,6 +8515,18 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-219/2026-11-28-runners-review.md": {
+      "kind": "file",
+      "purpose": "Issue219 iteration-2 independent code review of runner work, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-219/workflow-guide-evidence.json": {
+      "kind": "file",
+      "purpose": "Issue219 source-bound independent workflow-guide review disposition for covered control changes.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-31": {
       "kind": "directory",
       "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",

@@ -20,7 +20,10 @@ RUN set -eu; \
     "https://nodejs.org/dist/v${NODE_VERSION}/${archive}"; \
   echo "${sum}  /tmp/${archive}" | sha256sum --check --strict; \
   tar --extract --xz --file "/tmp/${archive}" --directory /usr/local --strip-components=1 \
-    --no-same-owner --exclude='*/CHANGELOG.md' --exclude='*/LICENSE' --exclude='*/README.md'; \
+    --no-same-owner --exclude="node-v${NODE_VERSION}-linux-${arch}/CHANGELOG.md" \
+    --exclude="node-v${NODE_VERSION}-linux-${arch}/README.md"; \
+  mkdir -p /usr/local/share/doc/node; \
+  mv /usr/local/LICENSE /usr/local/share/doc/node/LICENSE; \
   rm "/tmp/${archive}"; \
   node --version; \
   npm --version

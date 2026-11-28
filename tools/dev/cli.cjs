@@ -22,7 +22,7 @@ const usage = [
   '  agents                  generate runner agents from agents/reviewers (outside the repo)',
   '  opencode [ARGS...]      run the pinned OpenCode with AGENTS.md as its only rules',
   '  codex [ARGS...]         run the pinned Codex CLI',
-  '  review [--base BRANCH]  Codex review of this branch against BRANCH (default main)',
+  '  review [--base BRANCH]  Codex review of this branch against BRANCH (default origin/main)',
 ].join('\n');
 
 // The Containerfile is the single owner of the development toolchain versions.
@@ -135,9 +135,9 @@ async function serve(args) {
 
 function reviewArgs(args) {
   if (args.length === 0) {
-    return ['review', '--base', 'main'];
+    return ['review', '--base', 'origin/main'];
   }
-  if (args.length === 2 && args[0] === '--base' && /^[\w./-]+$/.test(args[1])) {
+  if (args.length === 2 && args[0] === '--base' && /^[\w.][\w./-]*$/.test(args[1])) {
     return ['review', '--base', args[1]];
   }
   throw Error(usage);
