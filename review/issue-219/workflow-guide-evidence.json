@@ -1,6 +1,6 @@
 {
   "base_sha": "8886647e8a94ed5ddd1d73ae64dfd0eaf1be24e6",
-  "scope_sha256": "21bb8d9f054beb7121f078fbca4dbcb1e7fce63f6c44ef53ba6cbf100ede92a8",
+  "scope_sha256": "b5bf7779239dc3e348a4d28ce243c7aa6229589c3f2ee178eb68002a0ebb3cc1",
   "paths": [
     ".github/repository-layout.json",
     ".github/repository-paths.json",
@@ -12,6 +12,7 @@
     "tests/test_issue219_acceptance.py",
     "tests/test_ri_ci.py",
     "tools/quality/delivery-routing.cjs",
+    "tools/quality/secrets-publication.json",
     "tools/quality/serve.cjs",
     "tools/quality/test-profiles.json"
   ],
@@ -22,5 +23,5 @@
     "Delivery routes and controls"
   ],
   "rationale": "Agents and orchestration now describes the AGENTS.md-native OpenCode and Codex runners, reviewer subagents generated outside the checkout under best-effort permission rules, and the hedged second-vendor review that never replaces a required role. Harness and ownership and Delivery routes and controls stay accurate: the bootstrap route only points to the development environment guide, and the new .devcontainer/ control classification falls under the existing generic control wording. The issue219 provisioning added to issue-acceptance.yml falls under the existing owning-acceptance wording in Delivery routes and controls.",
-  "reviewer_execution": "review/issue-219/2026-11-28-runners-review.md: fresh Code Reviewer subagent (iteration 6) judged Agents and orchestration updated and accurate and Harness and ownership and Delivery routes and controls accurate; a fresh Code Reviewer correction pass on b6ad858f found the guide still accurate for the changed test-profiles inputs; a fresh Code Reviewer pass on 98b23478..35a3fe79 recomputed the scope including .github/workflows/issue-acceptance.yml and judged the guide accurate (disposition updated, same three sections). The record's scope_sha256 is that recomputed value."
+  "reviewer_execution": "review/issue-219/2026-11-28-runners-review.md: fresh Code Reviewer subagent (iteration 6) judged Agents and orchestration updated and accurate and Harness and ownership and Delivery routes and controls accurate; a fresh Code Reviewer correction pass on b6ad858f found the guide still accurate for the changed test-profiles inputs; a fresh Code Reviewer pass on 98b23478..35a3fe79 recomputed the scope including .github/workflows/issue-acceptance.yml and judged the guide accurate (disposition updated, same three sections). A further fresh Code Reviewer pass covers the later security-ledger append for the issue213 guide identifiers (tools/quality/secrets-publication.json) and the rebound scope; see the same review record."
 }
