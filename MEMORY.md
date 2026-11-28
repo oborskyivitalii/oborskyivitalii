@@ -1,6 +1,6 @@
 # Session memory
 
-Dated handoff. Last verified **2026-11-27**. Revalidate live sources when resuming.
+Dated handoff. Last verified **2026-11-28**. Revalidate live sources when resuming.
 
 ## Snapshot
 
@@ -15,7 +15,7 @@ Dated handoff. Last verified **2026-11-27**. Revalidate live sources when resumi
 
 ## Open work
 
-- Retain actual author decisions and private pilot artifacts. Durable recovery, external effect ordering and protected delivery are separate gates.
+- Bind native HTML and PDF for the pilot once its manuscript passes R2. Durable recovery, external effect ordering and protected delivery are separate gates.
 - Keep all eight issue criteria open until their whole requirements pass.
 
 ## Next session

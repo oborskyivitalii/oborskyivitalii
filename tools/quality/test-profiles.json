@@ -2076,6 +2076,11 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/article-delivery.test.cjs",
+        "tools/orchestration/editorial-renditions.cjs",
+        "tools/orchestration/editorial-article.cjs",
+        "guides/EDITORIAL-ORCHESTRATION.md",
+        "tools/publishing/kit.cjs",
+        "tools/publishing/print.mjs",
         "tools/staging/**",
         "tools/pages/**",
         "tools/release/edition.cjs",

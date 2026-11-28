@@ -20149,6 +20149,12 @@
       "role": "source",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
+    "tools/orchestration/editorial-renditions.cjs": {
+      "kind": "file",
+      "purpose": "Verify and bind a native site alias or publisher PDF to an accepted local manuscript for R3.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
     "tools/orchestration/reducer.cjs": {
       "kind": "file",
       "purpose": "Pure JSON-text reducer for synthetic acceptance/start, semantic dedupe, receipt/cessation holds and safe public projection.",

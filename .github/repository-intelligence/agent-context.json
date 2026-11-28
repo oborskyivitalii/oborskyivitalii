@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6f239289c76479ada938c6ca45b335aec09d9adfff49423cd6909a1533658021",
+    "digest": "c370dc46bac23d7c61f4fb54525bf60d6e4362ba6a8f991f9fe48e87d7070560",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -157,7 +157,7 @@
       {
         "path": ".github/acceptance/issue-217.json",
         "identity_mode": "content",
-        "sha256": "67bbd292fdc2f06a3716ebf287a0e77c314a77d28f7ccb1a6c132d37c5a8640f"
+        "sha256": "a123eaf05a3b2cf3e99f02e27f3141f9275c12af547fec833493e8b74f57da61"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -286,12 +286,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "62f3f93c242f0f73235c1312f78f38a43627fc61a2f10719aea77d7204284603"
+        "sha256": "6a4fc82e79b6e7019cbdfb478b6a477141cb288ef134f54243b671e9479b09f1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e4eeecdc28eeec80a84014099cde6da0fb7c7f037ddae1602159816a004b40e2"
+        "sha256": "4c224bda3eeb7e0b0877e8683bebcd642440c3850c294770a9a159a0f99b09f2"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -441,7 +441,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3b56120bcddaf567da7e0d128799a31b6d88a69fd0f5e8a8164c83cb03a5bd98"
+        "sha256": "857e4d2f34488c1bb24cf7c9e6b822e9b8cc3684144fe8670cddac84fa89e1ed"
       },
       {
         "path": "NOTICE.md",
@@ -1405,7 +1405,7 @@
       {
         "path": "guides/EDITORIAL-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "0ecd0d4f1a2861e0a3add08cde21a7f037a2552c4664a76768a0e10b1a2ff96e"
+        "sha256": "ebc29ba91faefd467b98ba4f856adde59e1ce678872c3baa44f30b4d9afd253a"
       },
       {
         "path": "guides/README.md",
@@ -6105,7 +6105,7 @@
       {
         "path": "review/issue-217/2026-11-27-editorial-review.md",
         "identity_mode": "content",
-        "sha256": "c1807c9eddd4f2d591f5fe6e273159aa0906bd26dc4026c022ab7b5285100f27"
+        "sha256": "6bd2b49d10230f920d95efb8b80b835b754b92b5bcd8ee37ba871a9baf304d64"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -13940,7 +13940,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "1b60122c6fb63238dcffab7e4b0725e36be0d2ccbd1343f7eb82ec38cf88f97e"
+        "sha256": "b96b099db60a1fcd982dd3ba6e79cdebdbd114e01d2eeff536bbc7943ffc2205"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -14713,6 +14713,11 @@
         "sha256": "2cb4b3a4a7f37a00071f857dcba6ff124389ff514d1a04d84508de891d296f56"
       },
       {
+        "path": "tools/orchestration/editorial-renditions.cjs",
+        "identity_mode": "content",
+        "sha256": "b3af74d4e2c418302c9f23d52cdb8f31ae1ce9127ac9071be449e1d0e449abb5"
+      },
+      {
         "path": "tools/orchestration/reducer.cjs",
         "identity_mode": "content",
         "sha256": "fbdfcfa670b259079d9bc9d1809ba4082d2b035d2dd361bed1ae0cf36034fdc5"
@@ -15375,7 +15380,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "2900ea7d36de4c34147855af7de0c356a9951a9b91537960a317bbe33b54f207"
+        "sha256": "dbc25c16e954ba4727ea61a65760210590ccdea44d693537e2aeb14d9c3f7243"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -48518,6 +48523,17 @@
         "AGENTS.md"
       ],
       "title": "editorial-article.cjs"
+    },
+    {
+      "path": "tools/orchestration/editorial-renditions.cjs",
+      "kind": "file",
+      "purpose": "Verify and bind a native site alias or publisher PDF to an accepted local manuscript for R3.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "editorial-renditions.cjs"
     },
     {
       "path": "tools/orchestration/reducer.cjs",

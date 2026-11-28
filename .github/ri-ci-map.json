@@ -525,7 +525,9 @@
       "paths": [
         "guides/EDITORIAL-ORCHESTRATION.md",
         "tools/orchestration/editorial-article.cjs",
+        "tools/orchestration/editorial-renditions.cjs",
         "tests/orchestration.test.cjs",
+        "tests/article-delivery.test.cjs",
         ".github/acceptance/issue-217.json"
       ],
       "checks": ["site-basic", "acceptance-policy", "ri-freshness"]
@@ -764,7 +766,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5b632e935f759c79d111564eca3e4d5fa3164907a294d40d41daba106e2c75dc",
+    "digest": "768e7f391806d4e03b4a85581633de62659aaec1ae1be79f24d76ebf26c5a013",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -872,7 +874,7 @@
       },
       {
         "path": ".github/acceptance/issue-217.json",
-        "sha256": "67bbd292fdc2f06a3716ebf287a0e77c314a77d28f7ccb1a6c132d37c5a8640f"
+        "sha256": "a123eaf05a3b2cf3e99f02e27f3141f9275c12af547fec833493e8b74f57da61"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -964,7 +966,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "62f3f93c242f0f73235c1312f78f38a43627fc61a2f10719aea77d7204284603"
+        "sha256": "6a4fc82e79b6e7019cbdfb478b6a477141cb288ef134f54243b671e9479b09f1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1272,7 +1274,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "2900ea7d36de4c34147855af7de0c356a9951a9b91537960a317bbe33b54f207"
+        "sha256": "dbc25c16e954ba4727ea61a65760210590ccdea44d693537e2aeb14d9c3f7243"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

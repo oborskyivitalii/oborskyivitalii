@@ -28,7 +28,7 @@
     {
       "id": "AC04",
       "intent": "Native article and PDF review",
-      "automated_scope": "Local Basic checks the site baseline. The focused suite checks PDF-only decision invalidation. Actual route and exact linked bytes are separate proof.",
+      "automated_scope": "Local Basic checks the site baseline. The source suite checks PDF-only decision invalidation, pinned native site and print artifacts, stale inputs and independent format decisions. Actual browser navigation and linked PDF readback are separate proof.",
       "checks": ["BASIC"],
       "gates": ["AUTHOR", "SOURCE", "PUBLISHER"]
     },
@@ -81,7 +81,7 @@
     },
     "SOURCE": {
       "kind": "human",
-      "description": "Verify exact-source orchestration test evidence from the maintained Site Checks source suite. Local Basic does not select that suite."
+      "description": "Verify exact-source orchestration and article-delivery evidence from the maintained Site Checks source suite. Local Basic does not select that suite."
     },
     "NATIVE": {
       "kind": "human",
