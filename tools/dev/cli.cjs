@@ -144,7 +144,7 @@ function verifyBase(base, spawn = cp.spawnSync) {
     encoding: 'utf8',
   });
   if (result.status !== 0) {
-    throw Error(`Unknown review base ${base}; run: git fetch origin main`);
+    throw Error(`Unknown review base ${base}; fetch it first (for example: git fetch origin main)`);
   }
 }
 

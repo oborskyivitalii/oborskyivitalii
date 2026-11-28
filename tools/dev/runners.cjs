@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 'use strict';
-// Optional agent runners for the development container (issue219).
+// Agent runners for the development container (issue219); installed by setup, optional to use.
 // The repository keeps one provider-neutral source of agent instructions:
 // AGENTS.md and agents/reviewers/*.md. Runner-specific files are generated
 // outside the checkout from those owners and are never committed.

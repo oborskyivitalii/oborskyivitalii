@@ -253,7 +253,7 @@ test('review runs Codex against a validated base branch only', () => {
   assert.throws(() => runners.runnerCommand('other', []), /Unknown runner/);
   const spawn = (status) => () => ({ status });
   assert.doesNotThrow(() => cli.verifyBase('origin/main', spawn(0)));
-  assert.throws(() => cli.verifyBase('nosuch', spawn(1)), /git fetch origin main/);
+  assert.throws(() => cli.verifyBase('nosuch', spawn(1)), /Unknown review base nosuch; fetch it/);
 });
 
 test('runner commands disable vendor fallbacks and refresh agents first', () => {
@@ -331,8 +331,11 @@ test('quality server binds the requested host and port and rejects listen errors
     assert.equal(first.url, `http://127.0.0.1:${port}`);
     await assert.rejects(start({ publicDir, localOnly: true, port }), /EADDRINUSE/);
     const second = await start({ publicDir, localOnly: true, host: 'localhost', port: 0 });
-    assert.match(second.url, /^http:\/\/localhost:\d+$/);
-    second.server.close();
+    try {
+      assert.match(second.url, /^http:\/\/localhost:\d+$/);
+    } finally {
+      second.server.close();
+    }
   } finally {
     first.server.close();
     fs.rmSync(publicDir, { recursive: true, force: true });

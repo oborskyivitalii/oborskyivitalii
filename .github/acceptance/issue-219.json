@@ -37,12 +37,12 @@
       "intent": "Browser-only workflow on interchangeable hosts and hosting as a replaceable adapter.",
       "automated_scope": "ENTRY verifies named hosts and adapter owners; the iPad trial is external.",
       "checks": ["ENTRY"],
-      "gates": ["DEVICE"]
+      "gates": ["DEVICE", "REVIEW"]
     },
     {
       "id": "AC06",
       "intent": "Registries, RI, layout, format and CS01/CS04/CS05 stay green.",
-      "automated_scope": "BASIC, RI-CI and STYLE prove their enforced subsets; architecture judgment needs review.",
+      "automated_scope": "BASIC, RI-CI, STYLE and WORKFLOW prove their enforced subsets; the workflow run (CI-RUN) executes layout verify; architecture judgment needs review.",
       "checks": ["BASIC", "RI-CI", "STYLE", "WORKFLOW"],
       "gates": ["REVIEW", "CI-RUN"]
     },
