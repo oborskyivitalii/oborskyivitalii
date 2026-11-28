@@ -51,6 +51,7 @@ function start(options = {}) {
     publicDir = root,
     localOnly = false,
     port = 0,
+    host = '127.0.0.1',
   } = typeof options === 'string' ? { publicDir: options, localOnly: true } : options;
   if (process.env.SITE_TEST_BASE_URL && !localOnly) {
     const url = require('./hosted-origin.cjs').target(
@@ -92,10 +93,11 @@ function start(options = {}) {
     });
     res.end(body);
   });
-  return new Promise((resolve) =>
-    server.listen(port, '127.0.0.1', () =>
-      resolve({ server, url: `http://127.0.0.1:${server.address().port}` })
-    )
-  );
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(port, host, () =>
+      resolve({ server, url: `http://${host}:${server.address().port}` })
+    );
+  });
 }
 module.exports = { start, canonicalType, assertContentType };

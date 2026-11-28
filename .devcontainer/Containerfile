@@ -20,7 +20,7 @@ RUN set -eu; \
     "https://nodejs.org/dist/v${NODE_VERSION}/${archive}"; \
   echo "${sum}  /tmp/${archive}" | sha256sum --check --strict; \
   tar --extract --xz --file "/tmp/${archive}" --directory /usr/local --strip-components=1 \
-    --no-same-owner; \
+    --no-same-owner --exclude='*/CHANGELOG.md' --exclude='*/LICENSE' --exclude='*/README.md'; \
   rm "/tmp/${archive}"; \
   node --version; \
   npm --version

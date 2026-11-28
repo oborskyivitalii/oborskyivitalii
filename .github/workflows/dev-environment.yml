@@ -6,7 +6,20 @@ on:
       - .devcontainer/**
       - tools/dev/**
       - tools/quality/serve.cjs
+      - tools/quality/toolchain/package.json
+      - tools/quality/toolchain/package-lock.json
+      - tools/quality/toolchain/requirements.txt
+      - tools/publishing/toolchain/package.json
+      - tools/publishing/toolchain/package-lock.json
+      - tools/quality/python_toolchain.py
+      - tools/quality/local.cjs
+      - tools/quality/format.cjs
+      - tools/quality/format-scope.json
+      - tools/repository_intelligence.py
+      - tools/check_repository_layout.py
+      - tools/site/build.cjs
       - tests/dev-environment.test.cjs
+      - .github/workflows/site-checks.yml
       - .github/workflows/dev-environment.yml
       - guides/DEV-ENVIRONMENT.md
   workflow_dispatch:
@@ -24,10 +37,12 @@ jobs:
           persist-credentials: false
       - name: Build the same image every devcontainer host builds
         run: docker build --tag author-site-dev --file .devcontainer/Containerfile .devcontainer
-      - name: Run setup, version doctor and source checks inside the container
+      - name: Give the checkout to the image's unprivileged dev user, as hosts do
+        run: sudo chown -R 1000:1000 "$PWD"
+      - name: Run doctor, setup and check as the dev user inside the container
         run: |
-          docker run --rm --volume "$PWD:/workspace" --workdir /workspace --user root author-site-dev bash -euc '
-            git config --global --add safe.directory /workspace
+          docker run --rm --volume "$PWD:/workspace" --workdir /workspace author-site-dev bash -euc '
+            test "$(id -un)" = dev
             node tools/dev/cli.cjs doctor
             node tools/dev/cli.cjs setup
             node tools/dev/cli.cjs check

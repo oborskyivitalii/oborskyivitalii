@@ -16,8 +16,9 @@ Nothing here selects a cloud IDE, editor, AI provider or web host.
 | Python packages | `tools/quality/toolchain/requirements.txt` | Exact pins, verified by `python_toolchain.py` |
 | Host wiring | [devcontainer.json](../.devcontainer/devcontainer.json) | Open-spec fields only; no features or vendor customizations |
 
-The Containerfile versions must equal the CI pins; `tests/dev-environment.test.cjs`
-fails when they drift. Change a version in the Containerfile and the workflows together.
+The Containerfile versions must equal the CI pins. `tests/dev-environment.test.cjs`
+fails when the Node pin differs from any literal workflow `node-version`, or the
+Python pin from the Basic lane (`site-checks.yml`). Change them together.
 
 ## Working from a browser or iPad
 
@@ -26,8 +27,12 @@ and runs `node tools/dev/cli.cjs setup` after creation:
 
 - GitHub Codespaces: **Code → Codespaces → Create codespace** on the branch.
 - Gitpod / Ona, Coder, Daytona or DevPod: create a workspace from the repository URL.
-- Any server with Docker or Podman: `docker build -f .devcontainer/Containerfile .devcontainer`,
-  then run the commands below in that image with the checkout mounted.
+- Any server with Docker or Podman: build with
+  `docker build -t author-site-dev -f .devcontainer/Containerfile .devcontainer`, then
+  `docker run -it --network host -v "$PWD:/workspace" -w /workspace author-site-dev bash`.
+  The image runs as the unprivileged `dev` user (uid 1000), so the checkout must be
+  owned by uid 1000, or add `--user "$(id -u):$(id -g)" -e HOME=/tmp`. Without
+  `--network host`, start the preview with `serve --host 0.0.0.0` and publish the port.
 
 These hosts are interchangeable. Switching hosts changes no repository file.
 Clone with full history (the hosts do this by default), because the publication
@@ -41,17 +46,18 @@ delegates to the existing owner; it adds no checks or pins of its own.
 | Command | Runs |
 | --- | --- |
 | `node tools/dev/cli.cjs setup` | Locked npm and Python toolchains |
-| `node tools/dev/cli.cjs doctor` | Compares running Node/Python with the Containerfile pins |
+| `node tools/dev/cli.cjs doctor` | Compares `node` and the system `python3` with the Containerfile pins |
 | `node tools/dev/cli.cjs build` | `node tools/site/build.cjs` (regenerates `docs/`) |
-| `node tools/dev/cli.cjs check` | Output freshness, formatting, RI, layout and the Basic `local.cjs` check |
-| `node tools/dev/cli.cjs serve [--port N]` | Serves `docs/` on loopback, port 4173 by default; the host forwards it |
+| `node tools/dev/cli.cjs check` | Formatting, RI, layout and the Basic `local.cjs` check (which includes output freshness) |
+| `node tools/dev/cli.cjs serve [--port N] [--host ADDRESS]` | Serves `docs/` on loopback port 4173 by default; devcontainer hosts forward it |
 
 Browser, Lighthouse and hosted profiles stay in CI under
 [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md). On a tablet, review the PR
 preview URL that CI posts instead of running browsers in the container.
 The [Development environment workflow](../.github/workflows/dev-environment.yml)
-builds this image and runs `doctor`, `setup` and `check` inside it, so a green
-run means the container works on a clean host.
+builds this image and runs `doctor`, `setup` and `check` inside it as the `dev`
+user on a clean runner. It does not exercise a specific host's port forwarding or
+`postCreateCommand` wiring; that remains the maintainer's device trial.
 
 ## AI assistants and agents
 

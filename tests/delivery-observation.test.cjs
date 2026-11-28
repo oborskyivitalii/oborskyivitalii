@@ -128,6 +128,7 @@ const cases = [
   ['tools/site/edition.cjs', 'website', true, 'D09'],
   ['tools/quality/common.cjs', 'website', true, 'D09'],
   ['tools/quality/artifact.cjs', 'website', true, 'D09'],
+  ['.devcontainer/devcontainer.json', 'website', true, 'D09'],
   ['review/REVIEW-TEMPLATE-nearby.txt', 'website', null, 'D10'],
 ];
 function technicalFixture(t, change, prepare = () => {}) {

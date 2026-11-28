@@ -4,22 +4,38 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { pinnedVersions, plans } = require('../tools/dev/cli.cjs');
+const { pinnedVersions, plans, serveOptions } = require('../tools/dev/cli.cjs');
 
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('Containerfile pins exactly the CI Node and Python versions', () => {
+function literalPins(text, key) {
+  const pattern = new RegExp('^\\s*' + key + ':\\s*[\'"]?(\\d+\\.\\d+\\.\\d+)[\'"]?\\s*$', 'gm');
+  return [...text.matchAll(pattern)].map((match) => match[1]);
+}
+
+test('Containerfile Node pin equals every literal workflow Node pin', () => {
   const pins = pinnedVersions();
-  const workflow = read('.github/workflows/site-checks.yml');
-  assert.deepEqual(
-    [...new Set(workflow.match(/node-version: '?(\d+\.\d+\.\d+)/g))],
-    ['node-version: ' + pins.node]
-  );
-  assert.deepEqual(
-    [...new Set(workflow.match(/python-version: '?(\d+\.\d+\.\d+)/g))],
-    ['python-version: ' + pins.python]
-  );
+  const directory = path.join(root, '.github/workflows');
+  const observed = fs
+    .readdirSync(directory)
+    .filter((name) => /\.ya?ml$/.test(name))
+    .flatMap((name) => literalPins(read('.github/workflows/' + name), 'node-version'));
+  assert.ok(observed.length > 10);
+  assert.deepEqual([...new Set(observed)], [pins.node]);
+});
+
+test('Containerfile Python pin equals the Basic lane Python pin', () => {
+  const pins = pinnedVersions();
+  const observed = literalPins(read('.github/workflows/site-checks.yml'), 'python-version');
+  assert.ok(observed.length > 0);
+  assert.deepEqual([...new Set(observed)], [pins.python]);
+});
+
+test('literal pin parsing accepts quoted values and ignores expressions', () => {
+  const text =
+    'node-version: \'24.19.0\'\n  node-version: "24.19.0"\nnode-version: ${{ matrix.n }}\n';
+  assert.deepEqual(literalPins(text, 'node-version'), ['24.19.0', '24.19.0']);
 });
 
 test('Containerfile verifies the Node archive and uses a digest-bound base', () => {
@@ -62,10 +78,19 @@ test('build and check reuse the existing producer and source checks', () => {
   assert.deepEqual(plans.build(), [['node', 'tools/site/build.cjs']]);
   const check = plans.check().map((step) => step.slice(1).join(' '));
   assert.deepEqual(check, [
-    'tools/site/build.cjs --check',
     'tools/quality/format.cjs --check',
     'tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify',
     'tools/check_repository_layout.py verify',
     'tools/quality/local.cjs',
   ]);
+});
+
+test('serve defaults to loopback and rejects unknown or malformed arguments', () => {
+  assert.deepEqual(serveOptions([]), { port: 4173, host: '127.0.0.1' });
+  assert.deepEqual(serveOptions(['--port', '8080', '--host', '0.0.0.0']), {
+    port: 8080,
+    host: '0.0.0.0',
+  });
+  for (const args of [['--port=8080'], ['foo'], ['--port'], ['--port', 'x'], ['--port', '0']])
+    assert.throws(() => serveOptions(args), args.join(' '));
 });

@@ -13,12 +13,17 @@ const containerfile = path.join(root, '.devcontainer/Containerfile');
 const venvPython = 'tools/quality/toolchain/venv/bin/python';
 const riConfig = '.github/repository-intelligence-config.json';
 const defaultPort = 4173;
+const loopback = '127.0.0.1';
+const usage =
+  'Usage: node tools/dev/cli.cjs <setup|build|check|doctor|serve [--port N] [--host ADDRESS]>';
 
 // The Containerfile is the single owner of the development toolchain versions.
 function pinnedVersions(text = fs.readFileSync(containerfile, 'utf8')) {
   const node = /^ARG NODE_VERSION=(\d+\.\d+\.\d+)$/m.exec(text);
   const python = /^FROM \S+\/python:(\d+\.\d+\.\d+)-\S+@sha256:[0-9a-f]{64}$/m.exec(text);
-  if (!node || !python) throw Error('Containerfile must pin Node and a digest-bound Python base');
+  if (!node || !python) {
+    throw Error('Containerfile must pin Node and a digest-bound Python base');
+  }
   return { node: node[1], python: python[1] };
 }
 
@@ -45,8 +50,8 @@ const plans = {
     [venvPython, 'tools/quality/python_toolchain.py'],
   ],
   build: () => [['node', 'tools/site/build.cjs']],
+  // local.cjs starts with the generated-output freshness check (build.cjs --check).
   check: () => [
-    ['node', 'tools/site/build.cjs', '--check'],
     ['node', 'tools/quality/format.cjs', '--check'],
     [python(), 'tools/repository_intelligence.py', '--config', riConfig, 'verify'],
     [python(), 'tools/check_repository_layout.py', 'verify'],
@@ -58,7 +63,9 @@ function run(argv) {
   const [program, ...args] = argv;
   process.stdout.write('$ ' + argv.join(' ') + '\n');
   const result = cp.spawnSync(program, args, { cwd: root, stdio: 'inherit' });
-  if (result.error) throw result.error;
+  if (result.error) {
+    throw result.error;
+  }
   if (result.status !== 0) {
     process.exitCode = result.status || 1;
     return false;
@@ -66,51 +73,81 @@ function run(argv) {
   return true;
 }
 
+// Compares the interpreters on PATH (the venv is created from this python3).
 function observedVersions() {
   const output = cp.execFileSync('python3', ['--version'], { encoding: 'utf8' });
   return { node: process.versions.node, python: output.trim().replace(/^Python /, '') };
 }
 
 function doctor() {
-  const expected = pinnedVersions(),
-    observed = observedVersions();
+  const expected = pinnedVersions();
+  const observed = observedVersions();
   const rows = Object.keys(expected).map((name) => ({
     name,
     expected: expected[name],
     observed: observed[name],
     ok: expected[name] === observed[name],
   }));
-  for (const row of rows)
-    process.stdout.write(
-      `${row.ok ? 'ok  ' : 'FAIL'} ${row.name} ${row.observed} (pinned ${row.expected})\n`
-    );
-  if (!rows.every((row) => row.ok)) process.exitCode = 1;
+  for (const row of rows) {
+    const status = row.ok ? 'ok  ' : 'FAIL';
+    process.stdout.write(`${status} ${row.name} ${row.observed} (pinned ${row.expected})\n`);
+  }
+  if (!rows.every((row) => row.ok)) {
+    process.exitCode = 1;
+  }
   return rows;
 }
 
+function serveOptions(args) {
+  const options = { port: defaultPort, host: loopback };
+  for (let index = 0; index < args.length; index += 2) {
+    const [flag, value] = [args[index], args[index + 1]];
+    if (flag === '--port' && /^\d+$/.test(value ?? '')) {
+      options.port = Number(value);
+    } else if (flag === '--host' && value) {
+      options.host = value;
+    } else {
+      throw Error(usage);
+    }
+  }
+  if (options.port < 1 || options.port > 65535) {
+    throw Error('Invalid --port: ' + options.port);
+  }
+  return options;
+}
+
 async function serve(args) {
-  const index = args.indexOf('--port');
-  const port = index === -1 ? defaultPort : Number(args[index + 1]);
-  if (!Number.isInteger(port) || port < 1 || port > 65535) throw Error('Invalid --port');
+  const options = serveOptions(args);
   const { start } = require('../quality/serve.cjs');
-  const { url } = await start({ publicDir: path.join(root, 'docs'), localOnly: true, port });
+  const publicDir = path.join(root, 'docs');
+  const { url } = await start({ publicDir, localOnly: true, ...options });
   process.stdout.write(`Serving docs/ at ${url} (Ctrl+C stops)\n`);
 }
 
-const usage = 'Usage: node tools/dev/cli.cjs <setup|build|check|serve [--port N]|doctor>';
-
 async function main(argv) {
   const [command, ...rest] = argv;
-  if (command === 'doctor') return doctor();
-  if (command === 'serve') return serve(rest);
-  if (!plans[command] || rest.length) throw Error(usage);
-  for (const step of plans[command]()) if (!run(step)) return;
+  if (command === 'doctor' && !rest.length) {
+    return doctor();
+  }
+  if (command === 'serve') {
+    return serve(rest);
+  }
+  if (!Object.hasOwn(plans, command) || rest.length) {
+    throw Error(usage);
+  }
+  for (const step of plans[command]()) {
+    if (!run(step)) {
+      return undefined;
+    }
+  }
+  return undefined;
 }
 
-if (require.main === module)
+if (require.main === module) {
   main(process.argv.slice(2)).catch((error) => {
     process.stderr.write(error.message + '\n');
     process.exitCode = 1;
   });
+}
 
-module.exports = { pinnedVersions, plans };
+module.exports = { pinnedVersions, plans, serveOptions };

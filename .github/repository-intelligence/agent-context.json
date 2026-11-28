@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "639ebc99027655517bc66dc62adeb9a3d862c53c88547f36e24a0773f3c1bc46",
+    "digest": "64495deabf1168cb6e1b621454db75818323e89be59f74044967566ce5709acb",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
         "identity_mode": "content",
-        "sha256": "ccf9893ae81ba9a314a18fd19f0147a1f8d2522857de322bab70d79d648b29b4"
+        "sha256": "44a2245cd5e3b1661beb26a7786ae6f3b9cff0ee32e12301f619be9ef2edc209"
       },
       {
         "path": ".devcontainer/devcontainer.json",
@@ -301,7 +301,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8f53b7364523f278f04fe0a8d78b85b05c544e531bdd5a320d891506f2b9f21d"
+        "sha256": "8be06066a48f3fdc8d97687fde7844cf64d31a8fcfca36d894491d2ac57aa1d5"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -326,7 +326,7 @@
       {
         "path": ".github/workflows/dev-environment.yml",
         "identity_mode": "content",
-        "sha256": "3da8ac92700a4c481c462cb2c4ce184c16277e7645728eed45269a851738b749"
+        "sha256": "09d70f5138c0b23557558a718972f02432ab4c2af0992e58ba7297cbc8fdfa88"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1420,7 +1420,7 @@
       {
         "path": "guides/DEV-ENVIRONMENT.md",
         "identity_mode": "content",
-        "sha256": "b313896a9758c18b419f2b06a68ae8f69ed8fa75d902400a4a4d4ad548e802fb"
+        "sha256": "63914441dd2980bff6dfe30ac195d01f14807b3a35db9a3c29c36463950d7e7a"
       },
       {
         "path": "guides/README.md",
@@ -14075,12 +14075,12 @@
       {
         "path": "tests/delivery-observation.test.cjs",
         "identity_mode": "content",
-        "sha256": "9bdf0283ad6bfc1520b595553f6bf89b2752c820197268fe1d41d691f3a32d9e"
+        "sha256": "bb03050a1fd8743090c98c05fc8379e519a8dd96ccc41c3cdafa57dbdc9969e2"
       },
       {
         "path": "tests/dev-environment.test.cjs",
         "identity_mode": "content",
-        "sha256": "3e2e652f23a986423d2c0099e493abcee3e9808e4eee5d2c8e75aa85635aa2fe"
+        "sha256": "80f551bb52c185d186bd7a1f5a4fc1b28a352fee1d1978c992586278c2a48420"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14720,7 +14720,7 @@
       {
         "path": "tools/dev/cli.cjs",
         "identity_mode": "content",
-        "sha256": "82ff28c06e0e14b069481746fa93c0a816fabb0b01a9f3b430972cc31dca233e"
+        "sha256": "ce164f0505eb669cb4c5adb13c8a8b07e9ad49ad8d88e6b9575fb442830459de"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -15355,7 +15355,7 @@
       {
         "path": "tools/quality/serve.cjs",
         "identity_mode": "content",
-        "sha256": "6178dd79d4ac585913c8783936bfb26f7d15e9ad645e16f61d37e5c90c8332ab"
+        "sha256": "729ba969fc90427e62e98303bc6bb7fd82a2f06552652a81bc0520b5b0af5e68"
       },
       {
         "path": "tools/quality/source-test-shards.cjs",
