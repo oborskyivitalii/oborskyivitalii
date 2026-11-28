@@ -37,11 +37,10 @@ const reviewerPermission = [
   '  webfetch: ask',
   '  bash:',
   '    "*": deny',
-  '    "git diff*": allow',
-  '    "git log*": allow',
-  '    "git show*": allow',
-  '    "git status*": allow',
-  '    "git rev-parse*": allow',
+  ...['diff', 'log', 'show', 'status', 'rev-parse'].flatMap((command) => [
+    `    "git ${command}": allow`,
+    `    "git ${command} *": allow`,
+  ]),
   '    "node --test tests/*": allow',
   ...[
     '*--output*',
@@ -58,9 +57,15 @@ const reviewerPermission = [
     '*&*',
     '*|*',
     '*>*',
-    '*$(*',
+    '*$*',
     '*`*',
-  ].map((pattern) => `    "${pattern}": deny`),
+    '*"*',
+    "*'*",
+    '*\\*',
+    '*difftool*',
+    'node --test *..*',
+    'node --test * /*',
+  ].map((pattern) => `    ${JSON.stringify(pattern)}: deny`),
 ];
 
 // One OpenCode subagent per role: common contract plus role prompt, read-only.
@@ -118,10 +123,12 @@ function writeOpencodeAgents(directory = opencodeAgentDirectory()) {
   fs.mkdirSync(directory, { recursive: true });
   const agents = opencodeAgents();
   const names = new Set(agents.map((agent) => agent.name + '.md'));
-  const isFile = (file) => fs.existsSync(file) && fs.statSync(file).isFile();
+  // lstat: a symlink, even a dangling one, is never a generated agent.
+  const entry = (file) => fs.lstatSync(file, { throwIfNoEntry: false });
+  const isFile = (file) => Boolean(entry(file)?.isFile());
   for (const agent of agents) {
     const file = path.join(directory, agent.name + '.md');
-    if (fs.existsSync(file) && (!isFile(file) || !generated(file))) {
+    if (entry(file) && (!isFile(file) || !generated(file))) {
       throw Error('Refusing to overwrite a hand-written agent: ' + file);
     }
   }

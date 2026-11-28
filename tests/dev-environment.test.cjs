@@ -142,6 +142,53 @@ test('runner agents are generated from every repository reviewer prompt', () => 
   assert.throws(() => runners.reviewerRoles('| Role | Prompt |\n'));
 });
 
+// Mirrors OpenCode 1.19.6 wildcard rules: `*` is any text, a trailing ` *` makes
+// the arguments optional and the last matching rule wins.
+function bashAction(body, command) {
+  const rules = [...body.matchAll(/^ {4}("(?:[^"\\]|\\.)*"): (allow|deny)$/gm)];
+  let action = 'ask';
+  for (const [, key, value] of rules) {
+    let source = JSON.parse(key)
+      .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+      .replace(/\*/g, '.*')
+      .replace(/\?/g, '.');
+    if (source.endsWith(' .*')) source = source.slice(0, -3) + '( .*)?';
+    if (new RegExp('^' + source + '$', 's').test(command)) action = value;
+  }
+  return action;
+}
+
+test('reviewer shell rules allow inspection and deny known write or exec forms', () => {
+  const [agent] = runners.opencodeAgents();
+  const allowed = [
+    'git diff',
+    'git diff origin/main...HEAD',
+    'git log -p -3',
+    'git show HEAD:README.md',
+    'git status --short',
+    'git rev-parse HEAD',
+    'node --test tests/dev-environment.test.cjs',
+  ];
+  const denied = [
+    'git difftool -y -x "touch x" HEAD~1',
+    'git diff HEAD --output=x',
+    'git diff HEAD --out"put"=x',
+    "git log --out'put'=x",
+    'git diff --outpu$x=y',
+    'git diff --out\\put=x',
+    'git diff --ext-diff',
+    'git -c diff.external=x diff',
+    'git push',
+    'git status && touch x',
+    'node --test --import data:x tests/a.cjs',
+    'node --test tests/../../x.mjs',
+    'node --test tests/a.cjs /tmp/x.mjs',
+    'rm -rf docs',
+  ];
+  for (const command of allowed) assert.equal(bashAction(agent.body, command), 'allow', command);
+  for (const command of denied) assert.equal(bashAction(agent.body, command), 'deny', command);
+});
+
 test('runner configuration stays outside the checkout and keeps hand-written files', (t) => {
   assert.throws(() => runners.writeOpencodeAgents(path.join(root, '.opencode/agents')));
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-agents-'));
@@ -162,6 +209,12 @@ test('runner configuration stays outside the checkout and keeps hand-written fil
   fs.rmSync(path.join(directory, 'code-review.md'));
   fs.mkdirSync(path.join(directory, 'folder.md'));
   assert.equal(runners.writeOpencodeAgents(directory).length, 4, 'non-file entries are skipped');
+  const dangling = path.join(directory, 'code-review.md');
+  fs.rmSync(dangling);
+  fs.symlinkSync(path.join(directory, 'missing-target'), dangling);
+  assert.throws(() => runners.writeOpencodeAgents(directory), /hand-written/);
+  assert.equal(fs.existsSync(path.join(directory, 'missing-target')), false);
+  fs.rmSync(dangling);
   assert.throws(() => runners.writeOpencodeAgents(root));
   const link = path.join(directory, 'checkout-link');
   fs.symlinkSync(root, link);
