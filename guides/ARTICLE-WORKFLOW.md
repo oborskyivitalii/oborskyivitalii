@@ -143,6 +143,18 @@ explicit dependency direction, readable bounded adapters and exact-source checks
 
 ## Authoring and publication sequence
 
+For new arguments, substantive manuscript revisions or platform copy, start
+with the [editorial workflow](../.agents/skills/editorial-workflow/SKILL.md).
+The parent feeds the accepted brief and draft into steps 1–4 and the approved
+copy into steps 5–6. For PDF-only layout work, start at the exact source edition
+and use the candidate commands and requested-output review in step 6.
+For a new article or a changed thesis, run the
+[article research entry](EDITORIAL-ORCHESTRATION.md#article-research-entry)
+to assemble the proposed blueprint from research, problem analysis and
+independent critique. Use its accepted handoff as the input to
+step 1, then give the exact resulting blueprint to the ordinary drafting role
+in step 2.
+
 1. Record audience, purpose, language, argument, sources, figures and unresolved
    editorial decisions in the owning issue and complete blueprint.
 2. Read the whole blueprint and manuscript before a substantial iteration. Write

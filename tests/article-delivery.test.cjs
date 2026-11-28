@@ -462,3 +462,259 @@ test('article URL rebasing refuses foreign, absolute and traversing descriptors'
     assert.throws(() => articleURLs('https://author.invalid/project/staging', { ...good, alias }));
   }
 });
+
+test('editorial review binds the requested native article and PDF to the accepted manuscript', async (t) => {
+  const { evaluate } = require('../tools/orchestration/editorial-article.cjs');
+  const { prepareRendition } = require('../tools/orchestration/editorial-renditions.cjs');
+  const { renderKit } = require('../tools/publishing/kit.cjs');
+  const root = path.resolve(__dirname, '..');
+  const articleId = 'pmday-two-shifts';
+  const publicDir = path.join(prepared, 'public');
+  const lockBytes = fs.readFileSync(publicDir + '.output-lock.json');
+  const { contentEdition, sourceSha256, semanticSha256, url } = JSON.parse(lockBytes).articles[key];
+  const article = { id: articleId, edition: contentEdition, sourceSha256, semanticSha256 };
+  const run = { run: 'a'.repeat(64), author: 'editor', outputs: ['html', 'pdf'], events: [] };
+  const replay = () => JSON.stringify(run);
+  const accept = (scope, review) =>
+    run.events.push({ type: 'decision', scope, review, author: run.author, choice: 'accept' });
+  run.events.push({ type: 'brief', artifact: 'b'.repeat(64), previous: null });
+  accept('brief', evaluate(replay()).brief.review);
+  run.events.push({
+    type: 'manuscript',
+    artifact: sourceSha256,
+    brief: evaluate(replay()).brief.review,
+    previous: null,
+  });
+  const manuscript = evaluate(replay()).manuscript.review;
+  const siteDirectory = path.join(prepared, 'editorial-site');
+  const generation = artifact.storeGeneration(siteDirectory, publicDir, lockBytes);
+  function writingBrowser({ articleBody = fs.readFileSync(path.join(publicDir, url)) } = {}) {
+    const frame = {};
+    const response = (url, body) => ({
+      ok: () => true,
+      url: () => url,
+      body: async () => body,
+      frame: () => frame,
+      request: () => ({ isNavigationRequest: () => true }),
+    });
+    return {
+      async newPage(options) {
+        assert.equal(options.javaScriptEnabled, false);
+        assert.equal(options.offline, true);
+        let writingUrl;
+        let clicked = false;
+        return {
+          mainFrame: () => frame,
+          async goto(address) {
+            writingUrl = address;
+            return response(address, fs.readFileSync(path.join(publicDir, 'writing.html')));
+          },
+          locator(selector) {
+            assert.ok(selector.includes('a[href="' + url + '"]'));
+            return {
+              filter(options) {
+                assert.deepEqual(options, { visible: true });
+                return {
+                  first: () => ({
+                    async click() {
+                      clicked = true;
+                    },
+                  }),
+                };
+              },
+            };
+          },
+          async waitForResponse(matches) {
+            const article = response(new URL(url, writingUrl).href, articleBody);
+            assert.equal(matches({ ...article, url: () => writingUrl }), false);
+            assert.equal(
+              matches({ ...article, request: () => ({ isNavigationRequest: () => false }) }),
+              false
+            );
+            assert.equal(matches({ ...article, frame: () => ({}) }), false);
+            assert.equal(matches(article), true);
+            return article;
+          },
+          async waitForURL(address) {
+            assert.equal(clicked, true, 'a browser link must be activated');
+            assert.equal(address, new URL(url, writingUrl).href);
+          },
+          async close() {},
+        };
+      },
+    };
+  }
+  const htmlRequest = {
+    directory: siteDirectory,
+    identity: generation.outputLockSha256,
+    article,
+    manuscript,
+    output: 'html',
+    previous: null,
+    browser: writingBrowser(),
+  };
+  await assert.rejects(prepareRendition(replay(), htmlRequest), /current accepted manuscript/);
+  accept('manuscript', manuscript);
+  await assert.rejects(
+    prepareRendition(replay(), { ...htmlRequest, manuscript: 'e'.repeat(64) }),
+    /current accepted manuscript/
+  );
+  await assert.rejects(
+    prepareRendition(replay(), { ...htmlRequest, output: 'slides' }),
+    /not requested/
+  );
+  await assert.rejects(
+    prepareRendition(replay(), {
+      ...htmlRequest,
+      article: { ...article, semanticSha256: 'c'.repeat(64) },
+    }),
+    /selected editorial edition/
+  );
+  await assert.rejects(
+    prepareRendition(replay(), { ...htmlRequest, browser: undefined }),
+    /requires a local review browser/
+  );
+  await assert.rejects(
+    prepareRendition(replay(), {
+      ...htmlRequest,
+      browser: writingBrowser({ articleBody: Buffer.from('different article bytes') }),
+    }),
+    /matching Writing navigation observation/
+  );
+  const html = await prepareRendition(replay(), htmlRequest);
+  assert.equal(html.file, url);
+  assert.equal(html.event.artifact, artifact.digest(fs.readFileSync(path.join(publicDir, url))));
+  run.events.push(html.event);
+  accept('html', html.review);
+
+  const missing = path.join(prepared, 'editorial-missing-link');
+  const hidden = artifact.storeGeneration(missing, publicDir, lockBytes);
+  const { publicDir: hiddenRoot, lockFile } = artifact.generationPaths(missing);
+  const writing = path.join(hiddenRoot, 'writing.html');
+  const text =
+    fs.readFileSync(writing, 'utf8').replaceAll('href="' + url + '"', 'data-href="' + url + '"') +
+    `<!-- <a href="${url}">inert</a> --><iframe><a href="${url}">raw text</a></iframe>` +
+    `<xmp><a href="${url}">raw text</a></xmp>` +
+    `<div class="article-list" inert><a href="${url}">inert</a></div>` +
+    `<div class="publication-list" hidden><a href="${url}">hidden</a></div>` +
+    `<div class="article-list"><svg><defs><a href="${url}">svg</a></defs></svg></div>` +
+    `<script><!--<script></script><div class="article-list"><a href="${url}">script</a></div>--></script>`;
+  fs.writeFileSync(writing, text);
+  const updated = JSON.parse(lockBytes);
+  updated.files['writing.html'] = artifact.digest(Buffer.from(text));
+  const updatedBytes = Buffer.from(JSON.stringify(updated));
+  fs.writeFileSync(lockFile, updatedBytes);
+  assert.notEqual(artifact.digest(updatedBytes), hidden.outputLockSha256);
+  await assert.rejects(
+    prepareRendition(replay(), {
+      ...htmlRequest,
+      directory: missing,
+      identity: artifact.digest(updatedBytes),
+      previous: html.review,
+    }),
+    /matching Writing navigation observation/
+  );
+
+  const kitRoot = path.join(root, 'dist/publications');
+  fs.mkdirSync(kitRoot, { recursive: true });
+  const temp = fs.mkdtempSync(path.join(kitRoot, 'editorial-print-'));
+  t.after(() => fs.rmSync(temp, { recursive: true, force: true }));
+  const kit = await renderKit(root, articleId, {
+    outputRoot: temp,
+    pdf: true,
+    printProducer: async () => ({
+      pdf: Buffer.from('%PDF-1.7\n<< /Type /Page >>\n' + ' '.repeat(1100) + '\n%%EOF\n'),
+      browser: { name: 'editorial-test-fixture', version: '1' },
+      toolchain: { name: 'editorial-test-fixture' },
+    }),
+  });
+  const pdfRequest = {
+    ...htmlRequest,
+    directory: kit.directory,
+    identity: kit.manifest.artifactId,
+    output: 'pdf',
+    browser: undefined,
+  };
+  await assert.rejects(
+    prepareRendition(replay(), { ...pdfRequest, output: 'html', previous: html.review }),
+    /generation\/output-lock.json/
+  );
+  const htmlOnly = { ...run, outputs: ['html'], events: [] };
+  htmlOnly.events.push(run.events[0]);
+  const htmlOnlyBrief = evaluate(JSON.stringify(htmlOnly)).brief.review;
+  htmlOnly.events.push(
+    { ...run.events[1], review: htmlOnlyBrief },
+    { ...run.events[2], brief: htmlOnlyBrief }
+  );
+  const htmlOnlyManuscript = evaluate(JSON.stringify(htmlOnly)).manuscript.review;
+  htmlOnly.events.push({ ...run.events[3], review: htmlOnlyManuscript });
+  await assert.rejects(
+    prepareRendition(JSON.stringify(htmlOnly), { ...pdfRequest, manuscript: htmlOnlyManuscript }),
+    /not requested/
+  );
+  const replacement = { ...run, events: [...run.events] };
+  replacement.events.push({
+    ...run.events[2],
+    artifact: 'f'.repeat(64),
+    previous: manuscript,
+  });
+  const replacementManuscript = evaluate(JSON.stringify(replacement)).manuscript.review;
+  replacement.events.push({ ...run.events[3], review: replacementManuscript });
+  await assert.rejects(
+    prepareRendition(JSON.stringify(replacement), {
+      ...pdfRequest,
+      manuscript: replacementManuscript,
+    }),
+    /current accepted manuscript/
+  );
+  const pdf = await prepareRendition(replay(), pdfRequest);
+  assert.equal(
+    pdf.event.artifact,
+    artifact.digest(fs.readFileSync(path.join(kit.directory, 'article.pdf')))
+  );
+  run.events.push(pdf.event);
+  assert.equal(evaluate(replay()).artifacts.html.decision.choice, 'accept');
+  assert.equal(evaluate(replay()).artifacts.pdf.decision, null);
+  await assert.rejects(prepareRendition(replay(), pdfRequest), /output slot has changed/);
+
+  const { artifactId: kitId, ...manifest } = kit.manifest;
+  const replaceKitFile = (name, bytes) => {
+    fs.writeFileSync(path.join(kit.directory, name), bytes);
+    Object.assign(
+      manifest.outputs.find((entry) => entry.path === name),
+      {
+        bytes: bytes.length,
+        sha256: artifact.digest(bytes),
+      }
+    );
+    const identity = artifact.digest(Buffer.from(JSON.stringify(manifest)));
+    fs.writeFileSync(
+      path.join(kit.directory, 'manifest.json'),
+      JSON.stringify({ ...manifest, artifactId: identity })
+    );
+    assert.notEqual(identity, kitId);
+    return identity;
+  };
+  const pdfManifest = path.join(kit.directory, 'article.manifest.json');
+  const { artifactId: printId, ...pair } = JSON.parse(fs.readFileSync(pdfManifest, 'utf8'));
+  pair.render.resources.find((item) => item.path === 'print.html').sha256 = 'd'.repeat(64);
+  const changedPair = Buffer.from(
+    JSON.stringify({ ...pair, artifactId: artifact.digest(Buffer.from(JSON.stringify(pair))) })
+  );
+  assert.notEqual(JSON.parse(changedPair).artifactId, printId);
+  const identity = replaceKitFile('article.manifest.json', changedPair);
+  await assert.rejects(
+    prepareRendition(replay(), { ...pdfRequest, identity, previous: pdf.review }),
+    /PDF resources differ/
+  );
+
+  const foreignManuscript = replaceKitFile('article.md', Buffer.from('# Another manuscript\n'));
+  await assert.rejects(
+    prepareRendition(replay(), {
+      ...pdfRequest,
+      identity: foreignManuscript,
+      previous: pdf.review,
+    }),
+    /does not contain the accepted manuscript/
+  );
+});

@@ -17,8 +17,78 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "82e5441878876c79298ea87c2c54991d6cdd43210ba6bfee61c96af315fb1690",
+    "digest": "c914070390b672cbc3397d91e4e94e06f62165ce20a7fc2d14ab5ad0b04206aa",
     "inputs": [
+      {
+        "path": ".agents/skills/EDITORIAL-SOURCES.md",
+        "identity_mode": "content",
+        "sha256": "5419de181f322762cc6b1edc3b67ebbe741769a30c57db3346efd7b50ecd3503"
+      },
+      {
+        "path": ".agents/skills/competing-hypotheses/LICENSE",
+        "identity_mode": "content",
+        "sha256": "41f47abf7be896c870173738e108e902b49497807a2c8b040c8144bf7128f01c"
+      },
+      {
+        "path": ".agents/skills/competing-hypotheses/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "1245bea44155da01187f262e09907248c94362f7d3069cfeb3fdd70b3b2244bc"
+      },
+      {
+        "path": ".agents/skills/competing-hypotheses/SOURCES.md",
+        "identity_mode": "content",
+        "sha256": "9be6844ce98bfa1ad68beecd5f70b482ee128aae7d8ecf3442d33ff33ed42003"
+      },
+      {
+        "path": ".agents/skills/constraint-first/LICENSE",
+        "identity_mode": "content",
+        "sha256": "c865f0594f9e986f4d635fe7d7d1dd091d344cc06116207e216c6160bb3ed2bb"
+      },
+      {
+        "path": ".agents/skills/constraint-first/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "0385f59672b32f1b2c8675dc463d9fdd840c6f74f24420b104e3b019d6a4937a"
+      },
+      {
+        "path": ".agents/skills/cynefin/LICENSE",
+        "identity_mode": "content",
+        "sha256": "41f47abf7be896c870173738e108e902b49497807a2c8b040c8144bf7128f01c"
+      },
+      {
+        "path": ".agents/skills/cynefin/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "7a6f91cb087cff64ae0dcb95755b95a26a90f0df4945ad656e2503a76d0f191c"
+      },
+      {
+        "path": ".agents/skills/editorial-workflow/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "d5e0986978d59cf2b8f2f13d0f0c9d0469ddd43290639bc70c309eeeb356cfae"
+      },
+      {
+        "path": ".agents/skills/editorial-workflow/roles.md",
+        "identity_mode": "content",
+        "sha256": "0c1ce99953b2c3b0eb3afc47b5141b8911e742abc2304f35c1f01bd5f26cd329"
+      },
+      {
+        "path": ".agents/skills/problem-space-model/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "b915b24ca021b26a53ae4a449c436efa8a967f2266b534f79f7c670203260ccf"
+      },
+      {
+        "path": ".agents/skills/source-research/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "c8cfe22e8e8f578d69528ebc6afa7d12c634702949ecf2e9c4775aad69b9a716"
+      },
+      {
+        "path": ".agents/skills/systems-thinking/LICENSE",
+        "identity_mode": "content",
+        "sha256": "7445eb5acc11ae2ad4727260c28d6be2ff7c878fe4d2881991431e11378b7e3e"
+      },
+      {
+        "path": ".agents/skills/systems-thinking/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "5b52b48f372daf98f4b2182ed096bd4cd92c585991b901caf950e65fe0de9dd8"
+      },
       {
         "path": ".gitattributes",
         "identity_mode": "content",
@@ -155,6 +225,11 @@
         "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
       },
       {
+        "path": ".github/acceptance/issue-217.json",
+        "identity_mode": "content",
+        "sha256": "bbb97686b691792b06f1fb7763f61c72cc5a41318f452084a2715907aa8b48b8"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "identity_mode": "content",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
@@ -276,17 +351,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
+        "sha256": "2fc5a3e0d229ed667f36010a82c9495e7f32d0860e0ca2dcbabf00668d68aeb7"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "d9e03253613cb2d1d52ff4b744330748b1bb1bc26cdd1b6dcf45a67470dbcb50"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ede9c2330909ce3ede60734a737e18fe3639557b8754ba43792d6ca2d9b7fabe"
+        "sha256": "a608c89bc6f87615278dd45065eaa8f8acadb63b2b9d89f8b5d67f374b1932ab"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -411,7 +486,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
+        "sha256": "7bdba13bbdda047f0a44bccec5046bab5cb678e719f9a336404671d8c5e74ab3"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -436,7 +511,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f9c6cc47b094a16ab49065526a93de681608b40ea4899de2021007eef53806df"
+        "sha256": "d24105ce70d69ee13875d865e94bad8779a44771e24b4e8ea6bbdc2177023019"
       },
       {
         "path": "NOTICE.md",
@@ -456,6 +531,21 @@
       {
         "path": "REPOSITORY-MAP.md",
         "identity_mode": "derived"
+      },
+      {
+        "path": "agents/editorial/hypothesis-critic.md",
+        "identity_mode": "content",
+        "sha256": "20f79ac3eadd3b981919e8cd205c4e95d7be88df7cfaa3a2174c0d3b302002c7"
+      },
+      {
+        "path": "agents/editorial/problem-analyst.md",
+        "identity_mode": "content",
+        "sha256": "1eb49b30492bef41927f7a47579325c4f75e334ea39164650c5256a21ca5c9a3"
+      },
+      {
+        "path": "agents/editorial/source-researcher.md",
+        "identity_mode": "content",
+        "sha256": "fa073fc1ac0750bcce489354b69896c61859ec3714f399929aebbc43bd23ad92"
       },
       {
         "path": "agents/reviewers/README.md",
@@ -1380,12 +1470,12 @@
       {
         "path": "guides/ARTICLE-MATERIALS.md",
         "identity_mode": "content",
-        "sha256": "1a84030b98385cc7db1770443f6a0add23d5e931664c8a4d85ef33819ded5bf6"
+        "sha256": "55575b3bc257e9049ec85025990f22360b49eb758ee21ce05dca83b975df1778"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "253efab7f399a5623ec5e50016fd451b83c9b3eb0dab9c566e63e000bd728c43"
+        "sha256": "df5a8e32ad216a82d77aaeaacaa4b61b97c91a91e87f3e80ef2d777d11e0170c"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1396,6 +1486,11 @@
         "path": "guides/CODE-STYLE.md",
         "identity_mode": "content",
         "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
+      },
+      {
+        "path": "guides/EDITORIAL-ORCHESTRATION.md",
+        "identity_mode": "content",
+        "sha256": "dcb24bb29d6a753196320c7a65527813d0b105b3008cbd72ff6f20b6fe6e3acf"
       },
       {
         "path": "guides/README.md",
@@ -6091,6 +6186,11 @@
         "path": "review/issue-213/workflow-guide-evidence.json",
         "identity_mode": "content",
         "sha256": "ec1264e64e1f9cdd2d946785782fd76d916496caffc10f2efc300e9965943e37"
+      },
+      {
+        "path": "review/issue-217/2026-11-27-editorial-review.md",
+        "identity_mode": "content",
+        "sha256": "ab1495a2d13a3ecd97d61b3c5f389b1e25f04a76ec69d69c28924634be7b039a"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -10955,7 +11055,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "b88cd8e1597563430d68b1baea0c14ef768ff70e62a2ffb0276f59110971ab0f"
+        "sha256": "c352f8d59a3ea7dc0fd2eb9acfe678fbcd109a656d32e83974917e702e66cd78"
       },
       {
         "path": "site/analytics.json",
@@ -13925,7 +14025,7 @@
       {
         "path": "tests/article-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "1b60122c6fb63238dcffab7e4b0725e36be0d2ccbd1343f7eb82ec38cf88f97e"
+        "sha256": "b96b099db60a1fcd982dd3ba6e79cdebdbd114e01d2eeff536bbc7943ffc2205"
       },
       {
         "path": "tests/article-materials.test.cjs",
@@ -14200,7 +14300,7 @@
       {
         "path": "tests/orchestration.test.cjs",
         "identity_mode": "content",
-        "sha256": "1da3cb3d941cb27d2d4253776b02b89c9274ec9807d389fd17e9d706af9cbb6d"
+        "sha256": "2d1df6a2b1ae80344a1dcbca53782b023800122307452eaf010b62f6331277d2"
       },
       {
         "path": "tests/pages-delivery.test.cjs",
@@ -14555,7 +14655,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "10a9815f761c3a046ed590c0ecc86da3a5254a337447d7c715cb471385ddb500"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -14691,6 +14791,21 @@
         "path": "tools/orchestration/contract.json",
         "identity_mode": "content",
         "sha256": "e3cd3d9a08f438764857b3b294eb6e5a1eec93f3a46e6622d364b2031e9c1110"
+      },
+      {
+        "path": "tools/orchestration/editorial-article.cjs",
+        "identity_mode": "content",
+        "sha256": "2cb4b3a4a7f37a00071f857dcba6ff124389ff514d1a04d84508de891d296f56"
+      },
+      {
+        "path": "tools/orchestration/editorial-renditions.cjs",
+        "identity_mode": "content",
+        "sha256": "b3af74d4e2c418302c9f23d52cdb8f31ae1ce9127ac9071be449e1d0e449abb5"
+      },
+      {
+        "path": "tools/orchestration/editorial-research.cjs",
+        "identity_mode": "content",
+        "sha256": "55cdf1aa552e3f37f17c6aa37e8e547d1d918aa465d827f02978e98306170cf1"
       },
       {
         "path": "tools/orchestration/reducer.cjs",
@@ -15355,7 +15470,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "04a6288d3289827cbe643d9f2ff62faffbb0c258c662c639b9537e84b92e8b91"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -16171,6 +16286,160 @@
   ],
   "artifacts": [
     {
+      "path": ".agents/skills/EDITORIAL-SOURCES.md",
+      "kind": "file",
+      "purpose": "Editorial skill packages and first-increment provenance.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author-site editorial skill inventory"
+    },
+    {
+      "path": ".agents/skills/competing-hypotheses/LICENSE",
+      "kind": "file",
+      "purpose": "Unmodified MIT license from the upstream skill repository.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/competing-hypotheses/SKILL.md",
+      "kind": "file",
+      "purpose": "Editorial adaptation of a pinned hypothesis differential.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Competing hypotheses"
+    },
+    {
+      "path": ".agents/skills/competing-hypotheses/SOURCES.md",
+      "kind": "file",
+      "purpose": "Pinned upstream source, attribution and adaptation scope.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Competing hypotheses provenance"
+    },
+    {
+      "path": ".agents/skills/constraint-first/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for constraint-first.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/constraint-first/SKILL.md",
+      "kind": "file",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Constraint first"
+    },
+    {
+      "path": ".agents/skills/cynefin/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for cynefin.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/cynefin/SKILL.md",
+      "kind": "file",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cynefin"
+    },
+    {
+      "path": ".agents/skills/editorial-workflow/SKILL.md",
+      "kind": "file",
+      "purpose": "Choose and execute the article, PDF, talk or post workflow in the parent session.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial workflow"
+    },
+    {
+      "path": ".agents/skills/editorial-workflow/roles.md",
+      "kind": "file",
+      "purpose": "Independent editorial role instructions and expected return contents.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial roles"
+    },
+    {
+      "path": ".agents/skills/problem-space-model/SKILL.md",
+      "kind": "file",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Problem space model"
+    },
+    {
+      "path": ".agents/skills/source-research/SKILL.md",
+      "kind": "file",
+      "purpose": "Source evidence, proposed thesis and documentary limits.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Source research"
+    },
+    {
+      "path": ".agents/skills/systems-thinking/LICENSE",
+      "kind": "file",
+      "purpose": "Exact upstream MIT license for systems-thinking.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "LICENSE"
+    },
+    {
+      "path": ".agents/skills/systems-thinking/SKILL.md",
+      "kind": "file",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Systems thinking"
+    },
+    {
       "path": ".gitattributes",
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -16466,6 +16735,17 @@
         "AGENTS.md"
       ],
       "title": "issue-213.json"
+    },
+    {
+      "path": ".github/acceptance/issue-217.json",
+      "kind": "file",
+      "purpose": "Issue 217 editorial orchestration source checks and outstanding runtime and author gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-217.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -17137,6 +17417,39 @@
         "AGENTS.md"
       ],
       "title": "REPOSITORY-MAP.md"
+    },
+    {
+      "path": "agents/editorial/hypothesis-critic.md",
+      "kind": "file",
+      "purpose": "Independent critique role and scoped verdict return.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Independent article hypothesis critic"
+    },
+    {
+      "path": "agents/editorial/problem-analyst.md",
+      "kind": "file",
+      "purpose": "Native problem analyst prompt, model shape and output rules.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article problem analyst"
+    },
+    {
+      "path": "agents/editorial/source-researcher.md",
+      "kind": "file",
+      "purpose": "Native researcher role and structured article evidence return.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article source researcher"
     },
     {
       "path": "agents/reviewers/README.md",
@@ -19205,6 +19518,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/EDITORIAL-ORCHESTRATION.md",
+      "kind": "file",
+      "purpose": "Parent-session editorial routing, native agent dispatch and exact article decisions.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial orchestration"
     },
     {
       "path": "guides/README.md",
@@ -29534,6 +29858,17 @@
         "AGENTS.md"
       ],
       "title": "workflow-guide-evidence.json"
+    },
+    {
+      "path": "review/issue-217/2026-11-27-editorial-review.md",
+      "kind": "file",
+      "purpose": "Issue 217 native capability preflight and synthetic editorial decision implementation evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue #217 — initial editorial decision component"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -47369,7 +47704,7 @@
     {
       "path": "tests/orchestration.test.cjs",
       "kind": "file",
-      "purpose": "Permanent behavioral positive/negative coverage of fixture-only orchestration state and recovery proposals.",
+      "purpose": "Offline WEB fixture behavior and synthetic editorial review decision regressions.",
       "role": "test",
       "owner": "guides/WEB-ORCHESTRATION.md",
       "instructions": [
@@ -48454,6 +48789,39 @@
         "AGENTS.md"
       ],
       "title": "contract.json"
+    },
+    {
+      "path": "tools/orchestration/editorial-article.cjs",
+      "kind": "file",
+      "purpose": "Bounded article R1/R2/R3 decision replay with independent output and source identity.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "editorial-article.cjs"
+    },
+    {
+      "path": "tools/orchestration/editorial-renditions.cjs",
+      "kind": "file",
+      "purpose": "Verify and bind a native site alias or publisher PDF to an accepted local manuscript for R3.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "editorial-renditions.cjs"
+    },
+    {
+      "path": "tools/orchestration/editorial-research.cjs",
+      "kind": "file",
+      "purpose": "Prepare scoped native research and critic packets and gate the existing blueprint handoff on author acceptance.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "editorial-research.cjs"
     },
     {
       "path": "tools/orchestration/reducer.cjs",
@@ -50767,6 +51135,96 @@
       ]
     },
     {
+      "path": ".agents",
+      "kind": "directory",
+      "purpose": "Repository-scoped agent capabilities.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills",
+      "kind": "directory",
+      "purpose": "Repository skills discoverable by supported coding sessions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/competing-hypotheses",
+      "kind": "directory",
+      "purpose": "Independent editorial hypothesis skill with MIT notice.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/constraint-first",
+      "kind": "directory",
+      "purpose": "Throughput-constraint lens for article hypotheses.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/cynefin",
+      "kind": "directory",
+      "purpose": "Response-mode lens for uncertain cause and effect.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/editorial-workflow",
+      "kind": "directory",
+      "purpose": "Repository-scoped authoring workflow and editorial role instructions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/problem-space-model",
+      "kind": "directory",
+      "purpose": "Source-bound scope, mechanisms and alternative explanations for an article.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/source-research",
+      "kind": "directory",
+      "purpose": "Original article primary-source research skill.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/systems-thinking",
+      "kind": "directory",
+      "purpose": "Feedback and accumulation lens for recurring editorial problems.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github",
       "kind": "directory",
       "purpose": "Contributor templates, RI contracts/views and GitHub Actions controllers.",
@@ -50852,6 +51310,16 @@
       "purpose": "Repository agent role prompts and shared launch contracts; not installed skills.",
       "role": "guide",
       "owner": "agents/reviewers/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "agents/editorial",
+      "kind": "directory",
+      "purpose": "Specialized article evidence and independent hypothesis prompts.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -52710,6 +53178,16 @@
       "path": "review/issue-213/search-baseline",
       "kind": "directory",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-217",
+      "kind": "directory",
+      "purpose": "Source-bound editorial pilot review and capability evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

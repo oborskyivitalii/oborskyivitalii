@@ -2076,6 +2076,11 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/article-delivery.test.cjs",
+        "tools/orchestration/editorial-renditions.cjs",
+        "tools/orchestration/editorial-article.cjs",
+        "guides/EDITORIAL-ORCHESTRATION.md",
+        "tools/publishing/kit.cjs",
+        "tools/publishing/print.mjs",
         "tools/staging/**",
         "tools/pages/**",
         "tools/release/edition.cjs",
@@ -2933,7 +2938,7 @@
     {
       "path": "tests/orchestration.test.cjs",
       "language": "javascript",
-      "purpose": "Fixture-only offline WEB state/recovery proposals: strict input boundary, acceptance/start separation, stable semantic dedupe, unknown receipt/cessation holds and public allowlist.",
+      "purpose": "Offline WEB operation fixtures and synthetic article decisions, including strict inputs, stale results, exact review scope and selective output decisions.",
       "owner": "guides/WEB-ORCHESTRATION.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -2943,7 +2948,11 @@
         "tests/orchestration.test.cjs",
         "tools/orchestration/**",
         "tests/fixtures/orchestration*.json",
-        "guides/WEB-ORCHESTRATION.md"
+        "guides/WEB-ORCHESTRATION.md",
+        "guides/ARTICLE-WORKFLOW.md",
+        ".agents/skills/**",
+        "agents/editorial/**",
+        "guides/EDITORIAL-ORCHESTRATION.md"
       ]
     },
     {

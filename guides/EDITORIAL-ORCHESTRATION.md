@@ -1,0 +1,165 @@
+# Editorial orchestration
+
+[Issue #217](https://github.com/oborskyivitalii/oborskyivitalii/issues/217) owns the editorial workflow. Start from the [editorial workflow skill](../.agents/skills/editorial-workflow/SKILL.md) when preparing an article, PDF, talk or post. The replay component below supports exact decisions for an article run.
+
+## Run in the parent session
+
+1. Pin the issue, repository commit, source or candidate hashes, requested
+   outputs and already accepted decisions. Choose the next step from the skill.
+   Record a skip with its reason. For example, a PDF-only layout change has no
+   research or writing step. An accepted edition can feed post drafting directly.
+2. Read the selected role instructions. Prepare an explicit worker message with
+   that role, one task, only its necessary public-safe sources, exact input
+   identities, allowed reads, a bounded time/call budget and a return format.
+   Limit reads to the packet and keep file edits, outward actions and delegation
+   with the parent. Use a runner containing only approved public-safe role-reachable
+   material on a shared filesystem. Hold dispatch when access to unrelated private
+   inputs is possible.
+   The parent invokes `collaboration.spawn_agent` with explicit
+   `fork_turns="none"` for each worker and independent review. The hypothesis
+   reviewer gets the thesis and primary sources. Keep the researcher's reasoning
+   and verdict outside its packet. Editorial reviewers get the exact candidate
+   and constraints without the writer's rationale or other verdicts. A reviewer
+   for a correction gets a fresh handle, the revised candidate and neutral findings.
+3. Retain the actual arguments, accepted handle and first result separately.
+   Before import, match the active attempt, handle, input identities and
+   current checkpoint or review ID. Refuse late results for stopped, returned
+   or superseded attempts even if candidate bytes recur. Hold missing or
+   exposed results. Record observed disclosures and any
+   access limits. This runner shares filesystem access. Use public-safe worker
+   inputs while private access controls are unverified. Hold an independent
+   judgment if the candidate's required isolation cannot be demonstrated.
+   Keep private drafts, comments and original receipts out of Git and previews.
+4. Reconcile evidence before first drafting and before redrafting. For decisive
+   claims that need inaccessible evidence or new computation, hold those claims
+   and record the missing inputs. Ask the author to accept a narrower thesis
+   that preserves the uncertainty, return the brief or stop the run.
+   Ask for the exact thesis decision before writing. Route new material evidence
+   gaps to renewed evidence review. Return other draft issues to the affected
+   role with the author's edits pinned. Send the accepted
+   manuscript, storyboard or post to its existing owner. Render deterministically
+   and request format review only for outputs in scope. Preserve actual review
+   decisions and the first reviewer returns separately from modeled tests.
+   For the #217 pilot and its outward handoff, finish at private output review
+   until AC07 verifies the exact outgoing package, head and author exposure and
+   transfer decisions. Existing publication owners apply their normal release gates.
+
+### Article research entry
+
+The parent uses `node tools/orchestration/editorial-research.cjs < request.json`
+to prepare actual native calls, bind the three returns at R1 and obtain the
+existing article blueprint. Article-only and changed-thesis work use this
+entry. The PDF-only and accepted-edition post paths use their own inputs.
+
+Use a local request outside the public checkout. Each request contains an
+`action` and the current `replay` object. The parent controls replay decisions.
+For research, analysis, critique and brief requests also supply `previous` (the current
+brief review ID or null), a fresh random 32-byte hex `attempt` retained across
+the three calls, and `article` with `issue`, `title`, `audience`, `purpose`,
+`language`, `question`, `sources` and `reviewSources`. Both source arrays
+contain at most four `{id, url, body}` records, with at least one research
+source. Pin each public primary document or clearly scoped excerpt in `body`.
+Put additional independent primary material in `reviewSources`. Only the
+critic sees that array. Retain the source fetch/version separately.
+
+Set optional boolean flags in `article.analysisNeeds` from the work request
+and its evidence. The analyst always receives `problem-space-model`. Use
+`uncertainApproach` when the evidence does not distinguish a known procedure,
+an expert analysis or a probe. Use `bottleneck` when testing which step limits
+end-to-end throughput. Use `feedback` when testing recurrence, accumulation or
+a feedback loop. If conditions overlap, the order is `uncertainApproach` →
+`bottleneck` → `feedback`. With no flag set, only the core skill runs. Retain the
+adapter's reported `selection` and why the supplied flag applies. Each run
+uses one analyst even when two skills are needed.
+Record a time allowance per role before dispatch. Hold the next action when
+that allowance expires; inspect the accepted task before replacing it.
+
+| Action | Parent action with the result |
+| --- | --- |
+| `research` | Check the returned packet and use its exact `launch` arguments. They contain the source researcher prompt and `source-research` skill. |
+| `analysis` | Add the `research` receipt. Dispatch a fresh problem analyst with the selected packages. Its first return names scope, mechanism, affected parties, unknowns and alternative explanations with disconfirming observations. |
+| `critique` | Add the `analysis` receipt. Use the exact returned launch for a distinct fresh critic with `competing-hypotheses`. Its packet includes the analyst's proposed thesis, assigned primary sources and an opaque analysis identity. The analyst's mechanism, alternatives, rationale and prior returns stay in the parent. |
+| `brief` | Add the `critique` receipt. Retain the returned `candidate`, append its brief `event`, and present the complete exact blueprint for the returned review ID. For a held verdict, present the critique and limits for a return or stop. |
+| `handoff` | Use the current replay and retained `candidate`. On `ready-to-draft`, read the returned approved blueprint into the article's normal `blueprint.md` and submit that exact version to the ordinary Drafter. For any other status, keep drafting closed. |
+
+A receipt contains `packet` and `scope` from preparation, the tool-accepted `handle`, first-return
+`resultHandle`, the recorded `forkTurns`, and the parsed first `result`.
+Keep the raw tool arguments and first return before import. The adapter
+checks the packet, run scope (author and requested outputs), attempt, checkpoint, matching handles and literal source
+passages. The supported brief uses the analyst's outline and labels its
+mechanism and alternatives as hypotheses to test. The critic independently
+assesses the central thesis. A narrowed brief carries the critic's replacement
+thesis, outline, evidence and limits into drafting. The previous problem
+model remains in the retained research record. Previously
+accepted blueprints stay deliverable by exact bytes. New and returned work
+must include an analysis receipt.
+
+The parent verifies the launch and checks the editorial claim and
+source interpretation before seeking approval. Use a fresh attempt after a
+return or restart. This local adapter currently rebinds all three receipts to
+the new attempt. Selective reuse of unchanged results across a returned brief
+remains in AC06. The adapter does no file writes, provider launch, storage
+or author authentication. The parent owns those actions and observes zero
+draft dispatches for a stopped or unaccepted run.
+
+### Existing producers
+
+- **Article and PDF.** Use the existing [publisher CLI](ARTICLE-WORKFLOW.md#candidate-commands)
+  for the print kit. For HTML, put the accepted article into the intended
+  site selection and use the [native artifact builder](SITE-CONTENT-RELEASE.md)
+  to verify the actual Writing link. Use the
+  [rendition adapter](#attach-a-rendered-review-artifact) for native HTML and
+  for PDFs generated by the publisher kit. For a separately produced reading
+  PDF, use its identified producer and bind the actual bytes and source
+  edition to its author and material review.
+  To replace an already linked PDF, retain the old selection until the exact
+  replacement is approved. Apply the
+  [material binding](ARTICLE-MATERIALS.md#review-binding-and-rendering), rebuild
+  the reader and compare the downloaded file hash with the reviewed hash.
+- **Talk.** The [presentation edition contract and validator](https://github.com/oborskyivitalii/oborskyivitalii/blob/f96425baa9195b06149fd32c85cc6c9056efadcf/guides/PRESENTATION-VERSIONING.md#validation)
+  are in Draft PR #110. Check tools against current main, using isolated sources
+  when testing a draft tool. Generate a new editable PPTX with the session's
+  presentation tools from the accepted storyboard and script. For a private
+  PPTX-only candidate, use the session editor or renderer to inspect actual
+  slide order, linked speaker notes and every rendered slide against the storyboard.
+  A retained repository edition includes the exact PPTX, its exported PDF,
+  synchronized notes and the edition manifest. Run the PR #110 validator on
+  that complete package.
+- **Post.** The article publisher already exports platform and launch copy. A
+  standalone text post can be reviewed directly. Additional campaign kits use
+  the [distribution owner #106](https://github.com/oborskyivitalii/oborskyivitalii/issues/106)
+  and the [draft tooling in PR #107](https://github.com/oborskyivitalii/oborskyivitalii/tree/50efb5c07dc4d8087be6a2731d6f3871f6116be6/tools/distribution).
+  Apply credits per channel and asset. Verify the source edition actually
+  served at the website destination before authorized manual publication of
+  a linked text post on its selected channel. Record actual post evidence
+  separately. For a selected LinkedIn/Medium
+  article pair, use the existing
+  [site-first sequence](ARTICLE-WORKFLOW.md#site-first-distribution).
+
+## Local article decisions
+
+`tools/orchestration/editorial-article.cjs` exports `evaluate(jsonText)`. Supply a SHA-256 run identifier, a synthetic author ID, the requested `outputs` selected from `html` and `pdf`, and an ordered `events` array. The component replays up to 64 events within 32,768 UTF-8 bytes and returns the current brief, manuscript and individual artifacts. Each artifact includes a SHA-256 identity, a scoped review ID and the latest modeled decision. Invalid events throw before a result is returned. Retain the previously valid history after a refusal.
+
+| Event type | Required inputs beyond `type` |
+| --- | --- |
+| `brief` | `artifact`, `previous` |
+| `manuscript` | `brief` accepted review ID, `artifact`, `previous` |
+| `render` | `manuscript` accepted review ID, `output`, `artifact`, `previous` |
+| `decision` | `scope`, `review`, `author`, `choice` |
+
+`artifact` identifies the immutable inputs and bytes under review. Include the relevant dependency identities in that hash. Resolve source bytes and actual author identity before evaluating records in any future real adapter. `previous` is the review ID current when the result was prepared, or null for a newly empty slot. Returning a candidate assigns a new review ID to the returned slot, so results prepared before the return are refused. An accepted upstream review must match the one used to prepare the result. The run and output selection are stable for the replay.
+
+- **R1, `brief`.** The author can accept or return the current thesis and outline. The author may stop from a pending, accepted or returned brief before any manuscript has been recorded.
+- **R2, `manuscript`.** The accepted brief permits a manuscript. A revision invalidates downstream artifacts. A returned candidate must be resubmitted before it can be accepted.
+- **R3, `html` or `pdf`.** The accepted manuscript permits each requested rendition. The author can accept, return or defer each separately. A PDF-only reflow leaves R1, R2 and the current HTML decision in place.
+
+The returned decisions describe the supplied synthetic records. This component performs no native launch, authorization, file write or delivery. The existing [reviewer admission contract](WEB-ORCHESTRATION.md#parent-mediated-reviewer-admission) owns independent technical review. The [publisher](ARTICLE-WORKFLOW.md) owns the actual article and PDF. Exercise the model with `node --test tests/orchestration.test.cjs` through the maintained source suite.
+
+## Attach a rendered review artifact
+
+`tools/orchestration/editorial-renditions.cjs` exports async `prepareRendition(replay, request)`. Use one call per requested output after R2. The parent takes `manuscript` and `previous` from the render request's recorded replay state, and supplies the retained `article` identity (`id`, `edition`, `sourceSha256`, `semanticSha256`). For this adapter, the approved manuscript artifact is the SHA-256 of the actual manuscript bytes. The parent supplies `output`, `directory` and the producer's retained `identity` from outside the stored output under verification.
+
+- For HTML, `directory` is the local native site artifact root and `identity` is its generation lock SHA-256. Supply an approved local Playwright `browser`. The adapter verifies the pinned generation and activates a visible native article link from Writing with JavaScript and network access disabled. It compares both main document response hashes to the verified files and uses the alias bytes for review. Actual author and visual acceptance are separate.
+- For PDF, `directory` is the publisher kit and `identity` is its kit artifact ID. The adapter verifies the kit, print pair and the pair's HTML/CSS/images against the kit inventory, then uses the PDF bytes for the review. Visual inspection and any published PDF download keep their separate evidence.
+
+The return value contains a render `event`, relative `file` and scoped `review` ID. The parent can append the event to the replay. Retain and recheck the actual artifact at review, and preserve the event's manuscript and slot identities on import. This local adapter returns evidence descriptors from already produced outputs. Author authentication, durable append and outward transfer require their owning gates.

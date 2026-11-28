@@ -64,6 +64,8 @@ CommonJS factories are trusted code and require code review. They assemble into
 one classic browser script, with no runtime dependencies or import requirements.
 
 Page JSON has exactly `schema`, `template`, `text`, `attributes` and `urls`.
+Prepare a new talk or revise its storyboard with the
+[editorial workflow](../.agents/skills/editorial-workflow/SKILL.md).
 Talks' repeated event records live in `content/events.json`; the bounded event
 renderer and `templates/components/event*.html` own their validated presentation.
 Adding/reordering/editing an event is content work. A new presentation/schema is

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 217,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/217",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Native execution and independent reviews",
+      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite checks separate source-bound native launch packets and refuses mismatched worker handles. Actual launch and isolation require native evidence.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW", "NATIVE", "SOURCE"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Documentary evidence and research stop",
+      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite verifies selected analysis skills and overlap priority, source-bound model and critique, exact accepted blueprint handoff and modeled author stop. Blinded and author outcomes require retained pilot evidence.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "SOURCE", "EVIDENCE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Exact author decisions and fidelity",
+      "automated_scope": "Local Basic checks the site baseline. The focused suite exercises scoped decisions, wrong actors, edits and separate outputs. Actual voice and approval evidence remain live.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "REVIEW", "SOURCE", "DECISIONS"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Native article and PDF review",
+      "automated_scope": "Local Basic checks the site baseline. The source suite checks PDF-only decision invalidation, pinned native site and print artifacts, stale inputs and independent format decisions. Actual browser navigation and linked PDF readback are separate proof.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "SOURCE", "PUBLISHER"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Editable talks and distribution",
+      "automated_scope": "Local Basic checks existing site behavior. Actual deck and post outputs require the mapped pilot observations.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "TALKS_POSTS"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Durable recovery and budgets",
+      "automated_scope": "Local Basic checks the site baseline. The focused suite exercises event/byte bounds and stale result refusal. Durable checkpoint and external calls require separate proof.",
+      "checks": ["BASIC"],
+      "gates": ["REVIEW", "SOURCE", "RECOVERY"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Exact candidate handoff",
+      "automated_scope": "Local Basic checks existing site behavior. The local model has no outward effect. Controller and package evidence remain live.",
+      "checks": ["BASIC"],
+      "gates": ["AUTHOR", "HANDOFF"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Integration and measured pilot",
+      "automated_scope": "Local Basic and the bounded style guard cover their registered source scopes. The protected source selector includes the focused replay suite. Independent reviews and pilot measurements remain gates.",
+      "checks": ["BASIC", "STYLE"],
+      "gates": ["REVIEW", "AUTHOR", "SOURCE", "PILOT"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "AUTHOR": {
+      "kind": "human",
+      "description": "Record the applicable author decision for the actual material and any required rights approval."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Record all applicable independent technical role results and style review for the exact candidate."
+    },
+    "SOURCE": {
+      "kind": "human",
+      "description": "Verify exact-source orchestration and article-delivery evidence from the maintained Site Checks source suite. Local Basic does not select that suite."
+    },
+    "NATIVE": {
+      "kind": "human",
+      "description": "Record separate native worker and critic handles, isolation checks and a fresh correction under issue #217 review evidence."
+    },
+    "EVIDENCE": {
+      "kind": "human",
+      "description": "Record the two blinded source decisions, the computation-limits case and the author-approved research stop in the private pilot record."
+    },
+    "DECISIONS": {
+      "kind": "human",
+      "description": "Record actual R1/R2/R-deck/R3 decisions and pre-edit voice evaluations for the author draft and derivative post, plus edit retention."
+    },
+    "PUBLISHER": {
+      "kind": "human",
+      "description": "Retain independent browser and PDF evidence in the private pilot record. Open Writing and follow the actual built article route. Remove site selection and verify that the route is absent while both print-kit HTML files still open. Inspect the actual edition PDF separately. With changed allowlisted PDF bytes, refuse stale approval, rebuild the article, follow the link and compare the download SHA-256 with the reviewed SHA-256. Record PDF-only reapproval with the thesis decision preserved."
+    },
+    "TALKS_POSTS": {
+      "kind": "human",
+      "description": "In the pilot record, bind the editable standalone PPTX to a new topic and source without an article or an existing event deck. Match each note to its slide content and verify order, rendered pages, claims and legibility. Produce a talk PDF when requested. Trace the actual post and its correction to an exact accepted edition and compare unchanged manuscript bytes. Verify rights and applied credits per asset and channel. A draft kit, planned date or approved post produces no publication event."
+    },
+    "RECOVERY": {
+      "kind": "human",
+      "description": "In controlled private store evidence, pin candidate, versioned inputs, attempts, human decisions and a separately retained current checkpoint. Reopen from a separate session and read back the exact versions and checkpoint. Start two sessions competing for the same action and observe exactly one external call. Exercise interruption after dispatch, stop, late results, author edits, stale checkpoints and time, call and rework limits. Report unknown cost as unknown. Reconcile pending A or demonstrate channel stale-write rejection, then inspect the mutable target and confirm accepted B survives delayed A."
+    },
+    "HANDOFF": {
+      "kind": "human",
+      "description": "Record prior author authorization of exact public exposure or retain private review. Inspect the entire outgoing content and history before public push. For an approved article and PDF with the deck deferred, compare the full package delta, links and assets to the approved scope. An extra deck or link blocks transfer. In the existing controller test, substitute otherwise-valid head B after approval of A and before dispatch. Verify zero dispatches for B under the approval of A. End at private R3 until proven. Separately record the site-first sequence, observed production state and manual external publication when authorized."
+    },
+    "PILOT": {
+      "kind": "human",
+      "description": "Map applicable style rules, source owners, guard selectors, unautomated review and stable AC IDs to the existing CI profiles and owning acceptance record. Retain the four independent technical judgments for the affected acceptance scope. Tie the author evaluation to actual pilot outputs. Record active author review and edit time, rewrites, claim corrections after R2, repeated work and observed costs."
+    }
+  }
+}

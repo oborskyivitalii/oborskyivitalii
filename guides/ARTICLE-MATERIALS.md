@@ -95,6 +95,12 @@ historical exports remain historical artifacts.
 
 ## Links back to the article
 
+Start a new post or a post revision with the
+[editorial workflow](../.agents/skills/editorial-workflow/SKILL.md) on the exact
+accepted article edition. Feed reviewed copy back into the owning publication
+or campaign route. The link and material approval rules below apply when a post
+is actually observed and selected for the website.
+
 Campaign validation returns each piece's `articleUrl`, derived from the
 publisher's actually observed public canonical and optional validated section.
 It stays null before publication; preview URLs are refused. Authors/kit adapters
