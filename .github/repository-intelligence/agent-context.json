@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0d3ae8a728df6d07ac4009b665a3600135e586edf9dbef18cf6baafffaf26963",
+    "digest": "c78b03158c70e3df92c86abde6e5b34c481573c9ca79782b13626ac8c925ac71",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -1435,7 +1435,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "cec5fd9748792cfb7aa1b7bfa734fca4e0bfd695fb367c76f7b89b57ed1c21d0"
+        "sha256": "caf6ef181b21f2195a9588e25e9fe7f810036b0b7b3e3f2695877fcf715c2b23"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
