@@ -1,11 +1,12 @@
 {
   "base_sha": "8886647e8a94ed5ddd1d73ae64dfd0eaf1be24e6",
-  "scope_sha256": "962ab2e4d5cd81bef19c30cc6924ac93bd54a14b90556a924c275aa4fcc44682",
+  "scope_sha256": "21bb8d9f054beb7121f078fbca4dbcb1e7fce63f6c44ef53ba6cbf100ede92a8",
   "paths": [
     ".github/repository-layout.json",
     ".github/repository-paths.json",
     ".github/ri-ci-map.json",
     ".github/workflows/dev-environment.yml",
+    ".github/workflows/issue-acceptance.yml",
     "AGENTS.md",
     "PROJECT-BOOTSTRAP.md",
     "tests/test_issue219_acceptance.py",
