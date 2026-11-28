@@ -7,6 +7,36 @@
       "role": "guide",
       "owner": "CONTRIBUTING.md"
     },
+    ".agents": {
+      "kind": "directory",
+      "purpose": "Repository-scoped agent capabilities.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md"
+    },
+    ".agents/skills": {
+      "kind": "directory",
+      "purpose": "Repository skills discoverable by supported coding sessions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md"
+    },
+    ".agents/skills/editorial-workflow": {
+      "kind": "directory",
+      "purpose": "Repository-scoped authoring workflow and editorial role instructions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md"
+    },
+    ".agents/skills/editorial-workflow/SKILL.md": {
+      "kind": "file",
+      "purpose": "Choose and execute the article, PDF, talk or post workflow in the parent session.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md"
+    },
+    ".agents/skills/editorial-workflow/roles.md": {
+      "kind": "file",
+      "purpose": "Independent editorial role instructions and expected return contents.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md"
+    },
     ".gitattributes": {
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -2511,7 +2541,7 @@
     },
     "guides/EDITORIAL-ORCHESTRATION.md": {
       "kind": "file",
-      "purpose": "Synthetic article review decisions and editorial orchestration boundaries.",
+      "purpose": "Parent-session editorial routing, native agent dispatch and exact article decisions.",
       "role": "guide",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },

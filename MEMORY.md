@@ -15,7 +15,7 @@ Dated handoff. Last verified **2026-11-28**. Revalidate live sources when resumi
 
 ## Open work
 
-- Bind native HTML and PDF for the pilot once its manuscript passes R2. Durable recovery, external effect ordering and protected delivery are separate gates.
+- The [editorial workflow](.agents/skills/editorial-workflow/SKILL.md) selects roles from the existing authoring route. Use approved public-safe inputs until private role access is verified. Bind the author's native HTML/PDF once the exact manuscript passes R2. Durable recovery, external effect ordering and protected delivery remain separate gates.
 - Keep all eight issue criteria open until their whole requirements pass.
 
 ## Next session

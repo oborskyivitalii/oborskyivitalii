@@ -29,6 +29,7 @@ Roles describe navigation, not scientific, rights, merge or publication acceptan
 
 | Path | Purpose | Role | Editing owner |
 | --- | --- | --- | --- |
+| [.agents](.agents) | Repository-scoped agent capabilities. | guide | [.agents/skills/editorial-workflow/SKILL.md](.agents/skills/editorial-workflow/SKILL.md) |
 | [.github](.github) | Contributor templates, RI contracts/views and GitHub Actions controllers. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [agents](agents) | Repository agent role prompts and shared launch contracts; not installed skills. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |

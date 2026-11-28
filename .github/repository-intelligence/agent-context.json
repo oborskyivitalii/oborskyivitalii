@@ -17,8 +17,18 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c370dc46bac23d7c61f4fb54525bf60d6e4362ba6a8f991f9fe48e87d7070560",
+    "digest": "891b7a71985b2417c3e4962a9a60d2118f86ce39a28fe2d0b9b7389117d731f7",
     "inputs": [
+      {
+        "path": ".agents/skills/editorial-workflow/SKILL.md",
+        "identity_mode": "content",
+        "sha256": "e9533e59e36fe9e6c9a94cd32252d4e7aa8b020da92e2bb5000ab3208a904701"
+      },
+      {
+        "path": ".agents/skills/editorial-workflow/roles.md",
+        "identity_mode": "content",
+        "sha256": "2b8abc9be5009f59e99a5c1916d88316c7c551d03df5dcbddc6b64d29b05d6a6"
+      },
       {
         "path": ".gitattributes",
         "identity_mode": "content",
@@ -281,17 +291,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
+        "sha256": "a9edd2c65647b0b9d132068e91dd1307f316eb388e7dfb78776ed744a3efb3c7"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6a4fc82e79b6e7019cbdfb478b6a477141cb288ef134f54243b671e9479b09f1"
+        "sha256": "2faeb3476668ec8866d71c01218a586a166cd6403845c5af604dd899996afa8f"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4c224bda3eeb7e0b0877e8683bebcd642440c3850c294770a9a159a0f99b09f2"
+        "sha256": "4e6bd844c7af494ffce5cb50d33a47ff1e0c83bbeb76024139d4d5c44de1f0fc"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -416,7 +426,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
+        "sha256": "7bdba13bbdda047f0a44bccec5046bab5cb678e719f9a336404671d8c5e74ab3"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -441,7 +451,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "857e4d2f34488c1bb24cf7c9e6b822e9b8cc3684144fe8670cddac84fa89e1ed"
+        "sha256": "edea04f9dc880170eb1b9145acceda86f89449133c81cb03d676e76ec71e976b"
       },
       {
         "path": "NOTICE.md",
@@ -1385,12 +1395,12 @@
       {
         "path": "guides/ARTICLE-MATERIALS.md",
         "identity_mode": "content",
-        "sha256": "1a84030b98385cc7db1770443f6a0add23d5e931664c8a4d85ef33819ded5bf6"
+        "sha256": "55575b3bc257e9049ec85025990f22360b49eb758ee21ce05dca83b975df1778"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "253efab7f399a5623ec5e50016fd451b83c9b3eb0dab9c566e63e000bd728c43"
+        "sha256": "add7f17718c08326c84a849208464df3206d595ba214b63b5b150ef7ba86379b"
       },
       {
         "path": "guides/BROWSER-ARCHIVES.md",
@@ -1405,7 +1415,7 @@
       {
         "path": "guides/EDITORIAL-ORCHESTRATION.md",
         "identity_mode": "content",
-        "sha256": "ebc29ba91faefd467b98ba4f856adde59e1ce678872c3baa44f30b4d9afd253a"
+        "sha256": "b9036dc517baa51876964f1d06c0c5a571d0b26d9f8cf2ae670d0b5e94fcd408"
       },
       {
         "path": "guides/README.md",
@@ -6105,7 +6115,7 @@
       {
         "path": "review/issue-217/2026-11-27-editorial-review.md",
         "identity_mode": "content",
-        "sha256": "6bd2b49d10230f920d95efb8b80b835b754b92b5bcd8ee37ba871a9baf304d64"
+        "sha256": "69b6ef82b43b7725d3b2c1a5e1c371e1185b33bbb6513bb34472911d3fe5e93b"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -10970,7 +10980,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "b88cd8e1597563430d68b1baea0c14ef768ff70e62a2ffb0276f59110971ab0f"
+        "sha256": "c352f8d59a3ea7dc0fd2eb9acfe678fbcd109a656d32e83974917e702e66cd78"
       },
       {
         "path": "site/analytics.json",
@@ -16196,6 +16206,28 @@
   ],
   "artifacts": [
     {
+      "path": ".agents/skills/editorial-workflow/SKILL.md",
+      "kind": "file",
+      "purpose": "Choose and execute the article, PDF, talk or post workflow in the parent session.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial workflow"
+    },
+    {
+      "path": ".agents/skills/editorial-workflow/roles.md",
+      "kind": "file",
+      "purpose": "Independent editorial role instructions and expected return contents.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial roles"
+    },
+    {
       "path": ".gitattributes",
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -19245,7 +19277,7 @@
     {
       "path": "guides/EDITORIAL-ORCHESTRATION.md",
       "kind": "file",
-      "purpose": "Synthetic article review decisions and editorial orchestration boundaries.",
+      "purpose": "Parent-session editorial routing, native agent dispatch and exact article decisions.",
       "role": "guide",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md",
       "instructions": [
@@ -50842,6 +50874,36 @@
       "purpose": "Repository entry points, authored site, generated renditions, checks and historical review evidence.",
       "role": "guide",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents",
+      "kind": "directory",
+      "purpose": "Repository-scoped agent capabilities.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills",
+      "kind": "directory",
+      "purpose": "Repository skills discoverable by supported coding sessions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".agents/skills/editorial-workflow",
+      "kind": "directory",
+      "purpose": "Repository-scoped authoring workflow and editorial role instructions.",
+      "role": "guide",
+      "owner": ".agents/skills/editorial-workflow/SKILL.md",
       "instructions": [
         "AGENTS.md"
       ]

@@ -109,6 +109,8 @@
     }
   },
   "active_markdown": [
+    ".agents/skills/editorial-workflow/SKILL.md",
+    ".agents/skills/editorial-workflow/roles.md",
     ".github/ACCEPTANCE.md",
     ".github/ISSUE_TEMPLATE/research-input.md",
     ".github/ISSUE_TEMPLATE/work-item.md",
@@ -147,6 +149,7 @@
     "guides/SITE-PRODUCTION.md",
     "guides/ARTICLE-WORKFLOW.md",
     "guides/ARTICLE-MATERIALS.md",
+    "guides/EDITORIAL-ORCHESTRATION.md",
     "guides/SITE-CONTENT-RELEASE.md",
     "agents/reviewers/README.md",
     "agents/reviewers/requirements-acceptance.md",
