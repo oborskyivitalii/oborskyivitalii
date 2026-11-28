@@ -79,7 +79,9 @@ Reviewer subagents get best-effort OpenCode permission rules, not a sandbox: edi
 and delegation (`task`) are denied; shell allows `git diff/log/show/status/rev-parse`
 with arguments and `node --test tests/<file>` only as the exact command for one
 repository node test file. It denies `difftool`, `--output`, `--ext-diff`,
-`--textconv`, quoting, `$`, redirection and shell operators; web fetches ask first.
+`--textconv` (also harmless `--output-…` options), quoting, `$`, brace expansion,
+redirection and shell operators; web fetches ask first. Re-run `agents` after adding
+a node test file.
 The rules match command text (OpenCode reads `\` as `/`, so a backslash-escaped option
 name is not caught), and repository tests run code, so run reviews in a disposable
 container.

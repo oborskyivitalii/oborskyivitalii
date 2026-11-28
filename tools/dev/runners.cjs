@@ -29,7 +29,7 @@ function digest(text) {
 
 // Best-effort OpenCode permission rules, not a sandbox. Later rules win and
 // OpenCode reads `\` as `/` before matching, so the denies below cannot catch a
-// backslash-escaped option name. Tests are allowed only as exact commands, one
+// backslash-escaped option name; brace expansion is denied. Tests are allowed only as exact commands, one
 // per repository node test file, so they take no extra files or flags.
 function reviewerPermission(testFiles) {
   const denies = ['*--output*', '*--ext-diff*', '*--textconv*', '*difftool*'];
@@ -44,9 +44,20 @@ function reviewerPermission(testFiles) {
       `    "git ${command}": allow`,
       `    "git ${command} *": allow`,
     ]),
-    ...[...denies, '*;*', '*&*', '*|*', '*>*', '*<*', '*$*', '*`*', '*"*', "*'*"].map(
-      (pattern) => `    ${JSON.stringify(pattern)}: deny`
-    ),
+    ...[
+      ...denies,
+      '*;*',
+      '*&*',
+      '*|*',
+      '*>*',
+      '*<*',
+      '*$*',
+      '*`*',
+      '*"*',
+      "*'*",
+      '*{*,*}*',
+      '*{*..*}*',
+    ].map((pattern) => `    ${JSON.stringify(pattern)}: deny`),
     ...testFiles.map((file) => `    ${JSON.stringify('node --test ' + file)}: allow`),
   ];
 }
