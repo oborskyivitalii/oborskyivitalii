@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2f5e6b8e0b30ee39f2f811d378c6b8143266a715b61bd2fb10782e4310030457",
+    "digest": "2f608fc6a7747ffd5ef2c9fb97ee862e21fa515404d465d339ea2fb25d25078a",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -301,7 +301,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a065a627ec8ab47cede3462e2118e0461d8b88cd7ee1391932bda6105a3fd14b"
+        "sha256": "952cbb69c8f20473840e6f8955d26a81b972fe466008387a2b918ecc1d82cd5f"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1420,7 +1420,7 @@
       {
         "path": "guides/DEV-ENVIRONMENT.md",
         "identity_mode": "content",
-        "sha256": "183d0893639c3d0e7794e63750a8ad9035b0a01eae23220bda8b1a2d1fbe183c"
+        "sha256": "3f3153f3f1c9ed8be0ecfb2df8e08662effcb7a7abad2cacc34ac7046c00945b"
       },
       {
         "path": "guides/README.md",
@@ -1435,7 +1435,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "7dd45a4287119412b7c8435f45f1d0b44d820097928eb3be7a6a249839c1e12d"
+        "sha256": "76b68a190cad515fcc663e9b003b3370fe386b09ac81fda2358ff05e2c2d2b31"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -6125,12 +6125,12 @@
       {
         "path": "review/issue-219/2026-11-28-runners-review.md",
         "identity_mode": "content",
-        "sha256": "9d9f2cc91d124e1c4a995d0c99dfa67fda7fa98b6b9ab972c18e6c36dd3de7d2"
+        "sha256": "01405f2063a047cc90b0d4499cc23d0c788583461b0be1499c88f6956b04b957"
       },
       {
         "path": "review/issue-219/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        "sha256": "a35dda8ddc8fc3acae8690b2562ce9c21a8f79b95ff36b6bfca88d3d7693ee32"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14095,7 +14095,7 @@
       {
         "path": "tests/dev-environment.test.cjs",
         "identity_mode": "content",
-        "sha256": "1e727d999175b1790d26861d56d3568c07fd93fc8549018bcd8cf07f6087a27b"
+        "sha256": "db77288fc03a289d6a1db34e44681c8ce32121f724ba7a9d44acdd3423c7d591"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14500,7 +14500,7 @@
       {
         "path": "tests/test_issue219_acceptance.py",
         "identity_mode": "content",
-        "sha256": "918595b40eee991faf72487f5a47d3e077523f3d28e87901b5cf3153ee07be86"
+        "sha256": "2cdb564751e76d4bcdeba675fccc7725e502751a041f7c4d27cccfb0634629b2"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -14750,7 +14750,7 @@
       {
         "path": "tools/dev/runners.cjs",
         "identity_mode": "content",
-        "sha256": "2876beca3958a8620f31eb2d53fe6ea25b39db1e153441b1874b35da0fbc8be6"
+        "sha256": "fb1a80ef49b632d41e0bc4d360bb9b4fbcc5c6c7e5e22496d1dc1eca3abba257"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -29680,7 +29680,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "placeholder"
+      "title": "Issue 219 — 2026-11-28 review / analysis / handoff"
     },
     {
       "path": "review/issue-219/workflow-guide-evidence.json",
