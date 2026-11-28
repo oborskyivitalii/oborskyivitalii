@@ -570,7 +570,11 @@
         "tests/dev-environment.test.cjs",
         ".github/workflows/site-checks.yml",
         "tools/dev/runners.cjs",
-        "tools/dev/agents/package.json"
+        "tools/dev/agents/package.json",
+        "tools/dev/agents/package-lock.json",
+        "tools/quality/serve.cjs",
+        ".github/workflows/*.yml",
+        "agents/reviewers/*.md"
       ],
       "disposition": "Retain as a permanent source guard; the real container build runs in the Development environment workflow.",
       "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles; dev-environment workflow builds and exercises the image."

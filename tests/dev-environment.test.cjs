@@ -6,7 +6,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const cp = require('node:child_process');
-const { pinnedVersions, plans, serveOptions, reviewArgs } = require('../tools/dev/cli.cjs');
+const cli = require('../tools/dev/cli.cjs');
+const { pinnedVersions, plans, serveOptions, reviewArgs } = cli;
+const crypto = require('node:crypto');
 const runners = require('../tools/dev/runners.cjs');
 
 const root = path.resolve(__dirname, '..');
@@ -130,7 +132,15 @@ test('runner agents are generated from every repository reviewer prompt', () => 
       assert.ok(rules.indexOf(`"*${flag}*": deny`) > lastWildcardAllow, flag + ' denied later');
     }
     assert.doesNotMatch(rules, /"node --test[^"]*\*[^"]*": allow/, 'tests are exact commands');
-    assert.match(agent.body, /README\.md sha256:[0-9a-f]{64}, /);
+    const sha = (text) => crypto.createHash('sha256').update(text).digest('hex');
+    assert.ok(agent.body.includes(`README.md sha256:${sha(readme)}, `));
+    assert.ok(agent.body.includes(`/${agent.name}.md sha256:${sha(prompt)} `));
+    const allows = [...rules.matchAll(/^ {4}"([^"]+)": allow$/gm)].map((match) => match[1]);
+    const git = ['diff', 'log', 'show', 'status', 'rev-parse'];
+    assert.deepEqual(
+      allows.filter((key) => !key.startsWith('node --test ')),
+      git.flatMap((command) => [`git ${command}`, `git ${command} *`])
+    );
     assert.ok(agent.body.includes(readme.trimEnd()));
     assert.ok(agent.body.includes(prompt.trimEnd()));
     assert.ok(agent.body.includes(runners.marker));
@@ -182,6 +192,12 @@ test('reviewer shell rules allow inspection and deny known write or exec forms',
     'git -c diff.external=x diff',
     'git push',
     'git status && touch x',
+    'git diff > x',
+    'git diff; touch x',
+    'git log | sh',
+    'git diff < x',
+    'git log `touch x`',
+    'git config core.pager x',
     'node --test --import data:x tests/a.cjs',
     'node --test tests/../../x.mjs',
     'node --test tests/dev-environment.test.cjs /tmp/x.mjs',
@@ -235,6 +251,92 @@ test('review runs Codex against a validated base branch only', () => {
     assert.throws(() => reviewArgs(args), args.join(' '));
   }
   assert.throws(() => runners.runnerCommand('other', []), /Unknown runner/);
+  const spawn = (status) => () => ({ status });
+  assert.doesNotThrow(() => cli.verifyBase('origin/main', spawn(0)));
+  assert.throws(() => cli.verifyBase('nosuch', spawn(1)), /git fetch origin main/);
+});
+
+test('runner commands disable vendor fallbacks and refresh agents first', () => {
+  let refreshed = 0;
+  const resolve = { opencode: () => 'AGENTS.md', codex: () => 'AGENTS.md' };
+  const refresh = () => refreshed++;
+  const opencode = runners.runnerCommand('opencode', ['--version'], { resolve, refresh });
+  assert.deepEqual(opencode.argv, ['AGENTS.md', '--version']);
+  assert.equal(opencode.env.OPENCODE_DISABLE_CLAUDE_CODE, '1');
+  assert.equal(refreshed, 1);
+  const codex = runners.runnerCommand('codex', ['review'], { resolve, refresh });
+  assert.deepEqual(codex.argv, ['node', 'AGENTS.md', 'review']);
+  assert.equal(codex.env.OPENCODE_DISABLE_CLAUDE_CODE, '1');
+  assert.equal(refreshed, 1, 'only OpenCode reads generated agents');
+  const missing = { opencode: () => 'no/such/opencode' };
+  assert.throws(
+    () => runners.runnerCommand('opencode', [], { resolve: missing, refresh }),
+    /run: node tools\/dev\/cli\.cjs setup/
+  );
+});
+
+test('doctor fails on a pin mismatch and steps stop at the first failure', (t) => {
+  const exitCode = process.exitCode;
+  const write = process.stdout.write;
+  t.after(() => {
+    process.exitCode = exitCode;
+    process.stdout.write = write;
+  });
+  process.stdout.write = () => true;
+  const pins = { node: '24.19.0', python: '3.12.14' };
+  process.exitCode = undefined;
+  assert.ok(cli.doctor(pins, { ...pins }).every((row) => row.ok));
+  assert.equal(process.exitCode, undefined);
+  const rows = cli.doctor(pins, { node: '24.18.0', python: '3.12.14' });
+  assert.deepEqual(
+    rows.map((row) => row.ok),
+    [false, true]
+  );
+  assert.equal(process.exitCode, 1);
+  process.exitCode = undefined;
+  const ran = [];
+  const runStep = (step) => ran.push(step[0]) && step[0] !== 'bad';
+  assert.equal(cli.runSteps([['a'], ['bad'], ['c']], runStep), false);
+  assert.deepEqual(ran, ['a', 'bad']);
+  assert.equal(cli.runSteps([['a']], runStep), true);
+  const error = process.stderr.write;
+  process.stderr.write = () => true;
+  try {
+    assert.equal(
+      cli.run(['x'], {}, () => ({ status: 3 })),
+      false
+    );
+    assert.equal(process.exitCode, 3);
+    assert.equal(
+      cli.run(['x'], {}, () => ({ status: 0 })),
+      true
+    );
+    assert.throws(() => cli.run(['x'], {}, () => ({ error: Error('spawn x ENOENT') })), /ENOENT/);
+  } finally {
+    process.stderr.write = error;
+  }
+  process.exitCode = undefined;
+  assert.throws(() => cli.requireToolchains(() => false), /run: node tools\/dev\/cli\.cjs setup/);
+  assert.doesNotThrow(() => cli.requireToolchains(() => true));
+});
+
+test('quality server binds the requested host and port and rejects listen errors', async () => {
+  const { start } = require('../tools/quality/serve.cjs');
+  const publicDir = fs.mkdtempSync(path.join(os.tmpdir(), 'serve-'));
+  const first = await start({ publicDir, localOnly: true });
+  try {
+    const { address, port } = first.server.address();
+    assert.equal(address, '127.0.0.1');
+    assert.ok(port > 0);
+    assert.equal(first.url, `http://127.0.0.1:${port}`);
+    await assert.rejects(start({ publicDir, localOnly: true, port }), /EADDRINUSE/);
+    const second = await start({ publicDir, localOnly: true, host: 'localhost', port: 0 });
+    assert.match(second.url, /^http:\/\/localhost:\d+$/);
+    second.server.close();
+  } finally {
+    first.server.close();
+    fs.rmSync(publicDir, { recursive: true, force: true });
+  }
 });
 
 test('repository tracks no vendor-specific agent instruction files', () => {

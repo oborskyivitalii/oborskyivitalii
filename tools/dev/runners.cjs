@@ -29,8 +29,9 @@ function digest(text) {
 
 // Best-effort OpenCode permission rules, not a sandbox. Later rules win and
 // OpenCode reads `\` as `/` before matching, so the denies below cannot catch a
-// backslash-escaped option name; brace expansion is denied. Tests are allowed only as exact commands, one
-// per repository node test file, so they take no extra files or flags.
+// backslash-escaped option name; brace expansion is denied. Tests are allowed
+// only as exact commands, one per repository node test file, so they take no
+// extra files or flags.
 function reviewerPermission(testFiles) {
   const denies = ['*--output*', '*--ext-diff*', '*--textconv*', '*difftool*'];
   return [
@@ -171,17 +172,17 @@ const binaries = {
 
 // Command line for a pinned runner; OpenCode's Claude Code compatibility
 // fallbacks are disabled so only AGENTS.md supplies project instructions.
-function runnerCommand(name, args) {
-  if (!Object.hasOwn(binaries, name)) {
+function runnerCommand(name, args, { resolve = binaries, refresh = writeOpencodeAgents } = {}) {
+  if (!Object.hasOwn(resolve, name)) {
     throw Error('Unknown runner: ' + name);
   }
-  const binary = binaries[name]();
+  const binary = resolve[name]();
   if (!fs.existsSync(path.join(root, binary))) {
     throw Error(`Missing ${name}; run: node tools/dev/cli.cjs setup`);
   }
   if (name === 'opencode') {
     // Keep runner agents identical to the current repository prompts.
-    writeOpencodeAgents();
+    refresh();
   }
   const argv = name === 'codex' ? ['node', binary, ...args] : [binary, ...args];
   return { argv, env: { ...process.env, OPENCODE_DISABLE_CLAUDE_CODE: '1' } };

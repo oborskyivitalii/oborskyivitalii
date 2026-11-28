@@ -1,7 +1,7 @@
 {
   "name": "author-site-agent-runners",
   "private": true,
-  "description": "Pinned, optional vendor-neutral agent runners for the development container (issue219)",
+  "description": "Pinned vendor-neutral agent runners, installed by setup and optional to use, for the development container (issue219)",
   "license": "UNLICENSED",
   "dependencies": {
     "@openai/codex": "0.172.0",

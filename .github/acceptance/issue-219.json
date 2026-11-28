@@ -43,8 +43,8 @@
       "id": "AC06",
       "intent": "Registries, RI, layout, format and CS01/CS04/CS05 stay green.",
       "automated_scope": "BASIC, RI-CI and STYLE prove their enforced subsets; architecture judgment needs review.",
-      "checks": ["BASIC", "RI-CI", "STYLE"],
-      "gates": ["REVIEW"]
+      "checks": ["BASIC", "RI-CI", "STYLE", "WORKFLOW"],
+      "gates": ["REVIEW", "CI-RUN"]
     },
     {
       "id": "AC07",
@@ -86,7 +86,7 @@
   "gates": {
     "REVIEW": {
       "kind": "human",
-      "description": "Independent nonauthor code/white-box review of the exact PR head with recorded findings and dispositions."
+      "description": "Independent nonauthor review of the exact PR head by every role the scope requires (Requirements & Acceptance, Code, White-box QA, Exploratory QA), launched under agents/reviewers/README.md isolation, with recorded findings and dispositions."
     },
     "CI-RUN": {
       "kind": "human",
@@ -98,7 +98,7 @@
     },
     "DEVICE": {
       "kind": "human",
-      "description": "Maintainer opens the environment on a devcontainer host from the iPad and reports the result."
+      "description": "Maintainer opens the environment on a devcontainer host from the iPad, signs in to OpenCode and Codex inside it, confirms AGENTS.md is the loaded rule file, runs one Codex review of the exact PR head and records its findings and dispositions."
     },
     "ISOLATION": {
       "kind": "human",

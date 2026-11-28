@@ -15,6 +15,10 @@ const venvPython = 'tools/quality/toolchain/venv/bin/python';
 const riConfig = '.github/repository-intelligence-config.json';
 const defaultPort = 4173;
 const loopback = '127.0.0.1';
+const toolchains = [
+  'tools/quality/toolchain/node_modules',
+  'tools/publishing/toolchain/node_modules',
+];
 const usage = [
   'Usage: node tools/dev/cli.cjs <command>',
   '  setup | build | check | doctor',
@@ -68,10 +72,11 @@ const plans = {
   ],
 };
 
-function run(argv, env = process.env) {
+// The echo goes to stderr so runner stdout (for example JSON output) stays clean.
+function run(argv, env = process.env, spawn = cp.spawnSync) {
   const [program, ...args] = argv;
-  process.stdout.write('$ ' + argv.join(' ') + '\n');
-  const result = cp.spawnSync(program, args, { cwd: root, stdio: 'inherit', env });
+  process.stderr.write('$ ' + argv.join(' ') + '\n');
+  const result = spawn(program, args, { cwd: root, stdio: 'inherit', env });
   if (result.error) {
     throw result.error;
   }
@@ -88,9 +93,7 @@ function observedVersions() {
   return { node: process.versions.node, python: output.trim().replace(/^Python /, '') };
 }
 
-function doctor() {
-  const expected = pinnedVersions();
-  const observed = observedVersions();
+function doctor(expected = pinnedVersions(), observed = observedVersions()) {
   const rows = Object.keys(expected).map((name) => ({
     name,
     expected: expected[name],
@@ -102,6 +105,7 @@ function doctor() {
     process.stdout.write(`${status} ${row.name} ${row.observed} (pinned ${row.expected})\n`);
   }
   if (!rows.every((row) => row.ok)) {
+    process.stdout.write('Rebuild or reopen the development container (.devcontainer/).\n');
     process.exitCode = 1;
   }
   return rows;
@@ -131,6 +135,17 @@ async function serve(args) {
   const publicDir = path.join(root, 'docs');
   const { url } = await start({ publicDir, localOnly: true, ...options });
   process.stdout.write(`Serving docs/ at ${url} (Ctrl+C stops)\n`);
+}
+
+// Stops before a Codex session starts against a base the checkout does not have.
+function verifyBase(base, spawn = cp.spawnSync) {
+  const result = spawn('git', ['rev-parse', '--verify', '--quiet', base + '^{commit}'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  if (result.status !== 0) {
+    throw Error(`Unknown review base ${base}; run: git fetch origin main`);
+  }
 }
 
 function reviewArgs(args) {
@@ -166,7 +181,9 @@ async function main(argv) {
     return runner(command, rest);
   }
   if (command === 'review') {
-    return runner('codex', reviewArgs(rest));
+    const argv = reviewArgs(rest);
+    verifyBase(argv[2]);
+    return runner('codex', argv);
   }
   if (command === 'doctor' && !rest.length) {
     return doctor();
@@ -177,12 +194,29 @@ async function main(argv) {
   if (!Object.hasOwn(plans, command) || rest.length) {
     throw Error(usage);
   }
-  for (const step of plans[command]()) {
-    if (!run(step)) {
-      return undefined;
+  if (command !== 'setup') {
+    requireToolchains();
+  }
+  runSteps(plans[command]());
+  return undefined;
+}
+
+// Build and check need the locked toolchains that setup installs.
+function requireToolchains(exists = fs.existsSync) {
+  const missing = toolchains.filter((directory) => !exists(path.join(root, directory)));
+  if (missing.length) {
+    throw Error(`Missing ${missing.join(', ')}; run: node tools/dev/cli.cjs setup`);
+  }
+}
+
+// Runs steps in order and stops at the first failure.
+function runSteps(steps, runStep = run) {
+  for (const step of steps) {
+    if (!runStep(step)) {
+      return false;
     }
   }
-  return undefined;
+  return true;
 }
 
 if (require.main === module) {
@@ -192,4 +226,14 @@ if (require.main === module) {
   });
 }
 
-module.exports = { pinnedVersions, plans, serveOptions, reviewArgs };
+module.exports = {
+  pinnedVersions,
+  plans,
+  serveOptions,
+  reviewArgs,
+  verifyBase,
+  doctor,
+  run,
+  runSteps,
+  requireToolchains,
+};

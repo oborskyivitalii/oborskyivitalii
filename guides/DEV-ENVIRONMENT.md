@@ -36,7 +36,8 @@ and runs `node tools/dev/cli.cjs setup` after creation:
 
 These hosts are interchangeable. Switching hosts changes no repository file.
 Clone with full history (the hosts do this by default), because the publication
-history and layout checks need complete ancestry.
+history and layout checks need complete ancestry. A shallow clone fails the layout
+step of `check`; recover with `git fetch --unshallow`.
 
 ## Commands
 
@@ -66,7 +67,7 @@ only role prompts. The repository tracks no runner-specific instruction files
 (`CLAUDE.md`, `.opencode/`, `.cursor/` and similar); a test enforces this.
 [PROJECT-BOOTSTRAP.md](../PROJECT-BOOTSTRAP.md) is the short entry for chat assistants.
 
-Two optional runners are pinned in `tools/dev/agents` and installed by `setup`:
+Two runners are pinned in `tools/dev/agents` and always installed by `setup`; using them is optional:
 
 | Command | What it does |
 | --- | --- |
@@ -78,8 +79,9 @@ Two optional runners are pinned in `tools/dev/agents` and installed by `setup`:
 Reviewer subagents get best-effort OpenCode permission rules, not a sandbox: edits
 and delegation (`task`) are denied; shell allows `git diff/log/show/status/rev-parse`
 with arguments and `node --test tests/<file>` only as the exact command for one
-repository node test file. It denies `difftool`, `--output`, `--ext-diff`,
-`--textconv` (also harmless `--output-…` options), quoting, `$`, brace expansion,
+repository node test file. It denies `difftool`, `--output` (also harmless
+`--output-…` options), `--ext-diff`, `--textconv`, quoting, `$`, brace expansion (so
+`HEAD@{1}..HEAD@{0}` ranges too; pass the two revisions as separate arguments),
 redirection and shell operators; web fetches ask first. Re-run `agents` after adding
 a node test file.
 The rules match command text (OpenCode reads `\` as `/`, so a backslash-escaped option
@@ -104,9 +106,10 @@ Devcontainer hosts forward 4096 privately; keep the password on any shared host.
    `fork_turns="none"` still needs one recorded verification under the
    [reviewer contract](../agents/reviewers/README.md) before it counts.
 3. A second vendor reviews: `node tools/dev/cli.cjs review` in the container, and/or
-   `@codex review` (or automatic Codex review) on the GitHub PR. Codex's GitHub
-   review guide reads a `## Code Review Rules` section in AGENTS.md (observed in its
-   documentation on 2026-11-28; confirm on the first real review). Its findings are inputs to the
+   `@codex review` (or automatic Codex review) on the GitHub PR. The
+   [Codex GitHub review documentation](https://learn.chatgpt.com/docs/third-party/github)
+   says it follows a `## Code Review Rules` section in AGENTS.md (read 2026-11-28; the
+   maintainer trial confirms it on a real review). Its findings are inputs to the
    iteration protocol; they never approve or merge.
 
 ## Hosting is an adapter
