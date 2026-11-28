@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9a02e50afa717442801b3c58bb0680d365c92d2d10aeb1717c9b3be8d8cea510",
+    "digest": "3e869bb61957f5fb1ad647b0fe9626007fe2293bfe679c4f5d285c13a4dd822c",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -167,7 +167,7 @@
       {
         "path": ".github/acceptance/issue-219.json",
         "identity_mode": "content",
-        "sha256": "2ef2ce23cf41be615154c6dc9077c9cdd8a92a579d0083ae2645660e02608516"
+        "sha256": "51a62257cf9d14de6c0a96919f2406ef618a1849786c51d331ca4ad5ce3aa234"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -301,7 +301,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "952cbb69c8f20473840e6f8955d26a81b972fe466008387a2b918ecc1d82cd5f"
+        "sha256": "f7f7634fbfa8ca0454cce3cbfb22666952e562a27ade337c2b7ae35d1bf6393b"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1420,7 +1420,7 @@
       {
         "path": "guides/DEV-ENVIRONMENT.md",
         "identity_mode": "content",
-        "sha256": "3f3153f3f1c9ed8be0ecfb2df8e08662effcb7a7abad2cacc34ac7046c00945b"
+        "sha256": "c1df608e4edd186f266bc394da1a53e398b9ff229c8859881cf58cccde63c6c5"
       },
       {
         "path": "guides/README.md",
@@ -14095,7 +14095,7 @@
       {
         "path": "tests/dev-environment.test.cjs",
         "identity_mode": "content",
-        "sha256": "db77288fc03a289d6a1db34e44681c8ce32121f724ba7a9d44acdd3423c7d591"
+        "sha256": "dd9626b02b6baa9127c396efa1581b63fb2d232f6c27e13c99658130658ea49e"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14740,17 +14740,17 @@
       {
         "path": "tools/dev/agents/package.json",
         "identity_mode": "content",
-        "sha256": "682a34900e917e792ca851014bfeef45e9840075d04a888b4cbccadcd2aca522"
+        "sha256": "caa57a16e6003f547e13ec960a66340a55ee442e1664483f8736f1d183b7fed0"
       },
       {
         "path": "tools/dev/cli.cjs",
         "identity_mode": "content",
-        "sha256": "c3eddbe9c9b49fc10914a47c16dc3878ce0c5cbf740b6f8ce44ebe75bc0f6968"
+        "sha256": "524664d75ad2d91d653ec654cd876b6bb338c3edc5cb96fafe243341443e4786"
       },
       {
         "path": "tools/dev/runners.cjs",
         "identity_mode": "content",
-        "sha256": "fb1a80ef49b632d41e0bc4d360bb9b4fbcc5c6c7e5e22496d1dc1eca3abba257"
+        "sha256": "7d53823675e555c8f8497dd4574095a7bbbbd1b1f1bd8b9ff86af0da680742b0"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -15425,7 +15425,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "b17b13a0be4f4557479392e04e207c3bd277777f29a2a51ec83bf3c0378d4a0d"
+        "sha256": "965600a6623dbb555a227256fae6313efee9423d33a819ff3280461851c570c1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

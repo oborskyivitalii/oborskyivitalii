@@ -771,7 +771,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5a8bfc1ea8c9f21aafdc223a1fd20d9cf79c30f847a136f8e9a86d640917f53f",
+    "digest": "1f3e7f61dbea72727750e843f88743a89885b86db4b09c944a63da2530523ad7",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -879,7 +879,7 @@
       },
       {
         "path": ".github/acceptance/issue-219.json",
-        "sha256": "2ef2ce23cf41be615154c6dc9077c9cdd8a92a579d0083ae2645660e02608516"
+        "sha256": "51a62257cf9d14de6c0a96919f2406ef618a1849786c51d331ca4ad5ce3aa234"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -1287,7 +1287,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "b17b13a0be4f4557479392e04e207c3bd277777f29a2a51ec83bf3c0378d4a0d"
+        "sha256": "965600a6623dbb555a227256fae6313efee9423d33a819ff3280461851c570c1"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",
