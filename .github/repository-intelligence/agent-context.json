@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2d69ca26b9611d1587b93ea33aa6949822ed081d0961e7784f1e87518d1997d6",
+    "digest": "1f1cbb7c87a6339e4343ec22b6e490b7c6bc937ae3cba20c16b51988d538c18c",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -6130,7 +6130,7 @@
       {
         "path": "review/issue-219/workflow-guide-evidence.json",
         "identity_mode": "content",
-        "sha256": "856833db69fc15c098c06e1a97d7766de2208ca328afdb26d516b13aa0a8db5f"
+        "sha256": "0b73cf09d9ce4a837114830f930b7b16584c05d934ee4add2feb18f47db3ae14"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -15360,7 +15360,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "9435b8da06ee130d969a2d0e42f11f8daa97f54163dee840227d64c79991fbd8"
+        "sha256": "7de0667dc7958e16274f8e40868243210571ef3121173fda46b211b281080acd"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
