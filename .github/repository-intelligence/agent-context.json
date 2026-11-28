@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2559237f2c8fd367cca398196ec52d87368c6eab87ac39f3229c39c44d450900",
+    "digest": "b890eaafce05249492f0134b9fd4065dcfb082a2be908479f164dfe6e09c6db2",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -6125,7 +6125,7 @@
       {
         "path": "review/issue-219/2026-11-28-runners-review.md",
         "identity_mode": "content",
-        "sha256": "f652dd792572efa14494ea023cdebbd4c5ef6721db0df3a71e4ef66a61f28a71"
+        "sha256": "e4bc0f4474e1cab24d0e37c2d76b2e352116ba4fb79fcb97dc844dfd74553072"
       },
       {
         "path": "review/issue-219/workflow-guide-evidence.json",

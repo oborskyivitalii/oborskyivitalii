@@ -91,6 +91,7 @@ DEVICE and ISOLATION recorded open.
 | N1–N3 | Requirements (correction) | medium/low | four-role pass not recorded; tested head not pushed; DEVICE wording differs in issue | this section; pushed head; issue gate lines updated |
 | C1–C6 | Code (correction) | gate/low/nit | guide record stale; AC06 scope text; base hint; test cleanup; `.yaml`; build toolchain guard | record rebound; text, hint and cleanup fixed; rest accepted |
 | A1 | CI / Code (delta 98b23478..35a3fe79) | blocking | AC06 node-basic failed in the acceptance job: issue219 policy had no Basic toolchain install | e168df06 adds issue219 to the four install conditions used by issue211/213; reviewer approved; guide record updated |
+| A2 | CI staging / Code (delta f8806f2f..7f050d74) | blocking | Owner staging run 46157875000 failed `scanners.cjs security`: semgrep `node-shell-injection` matched `RegExp.exec` in `tools/dev/cli.cjs`; detect-secrets found the merged issue213 guide record's base commit and scope SHA-256 unproved once issue219 adds its own record (generated proof covers only the single changed record) | `String.match` (13bcda07); two exact rows appended to `tools/quality/secrets-publication.json` with a scope sentence, following issue183/199 (checksum ledger at its size bound); hex removed from the issue219 record text; fresh Code Reviewer approved, guide still accurate; ledger-purpose drift and proof design debt accepted as follow-up |
 
 ### Test-impact review (8886647e..head)
 
