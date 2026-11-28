@@ -103,8 +103,8 @@ Any runner works from the same sources. The [development environment](DEV-ENVIRO
 open-spec container with pinned optional OpenCode and Codex CLI runners. Both read
 AGENTS.md; `tools/dev/cli.cjs agents` generates the four role prompts as OpenCode
 subagents outside the checkout with best-effort permission rules (edits and
-delegation denied; shell rules allow listed git inspection and repository tests by
-command text, so they are not a sandbox), and no runner-specific
+delegation denied; shell rules allow git inspection commands and exact repository
+node test commands by command text, so they are not a sandbox), and no runner-specific
 instruction file is tracked. OpenCode's fresh child sessions count as the `fork_turns="none"` equivalent
 only after one recorded verification. A second-vendor pass (`tools/dev/cli.cjs review`
 or Codex review on the PR, which its documentation says follows the AGENTS.md Code Review

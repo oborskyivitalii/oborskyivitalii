@@ -125,15 +125,11 @@ test('runner agents are generated from every repository reviewer prompt', () => 
     assert.match(agent.body, /\n {2}bash:\n {4}"\*": deny\n/);
     assert.doesNotMatch(agent.body, /"git (push|commit|add)/);
     const rules = agent.body.slice(agent.body.indexOf('  bash:'), agent.body.indexOf('\n---'));
-    const lastAllow = rules.lastIndexOf(': allow');
-    for (const flag of ['--output', '--ext-diff', '--import', '--require', '--test-reporter']) {
-      assert.ok(
-        rules.indexOf(`"*${flag}*": deny`) > lastAllow,
-        flag + ' is denied after the allows'
-      );
+    const lastWildcardAllow = rules.lastIndexOf(' *": allow');
+    for (const flag of ['--output', '--ext-diff', '--textconv', 'difftool']) {
+      assert.ok(rules.indexOf(`"*${flag}*": deny`) > lastWildcardAllow, flag + ' denied later');
     }
-    assert.match(rules, /"node --test tests\/\*": allow/);
-    assert.doesNotMatch(rules, /"node --test\*"/);
+    assert.doesNotMatch(rules, /"node --test[^"]*\*[^"]*": allow/, 'tests are exact commands');
     assert.match(agent.body, /README\.md sha256:[0-9a-f]{64}, /);
     assert.ok(agent.body.includes(readme.trimEnd()));
     assert.ok(agent.body.includes(prompt.trimEnd()));
@@ -142,18 +138,21 @@ test('runner agents are generated from every repository reviewer prompt', () => 
   assert.throws(() => runners.reviewerRoles('| Role | Prompt |\n'));
 });
 
-// Mirrors OpenCode 1.19.6 wildcard rules: `*` is any text, a trailing ` *` makes
-// the arguments optional and the last matching rule wins.
+// Mirrors OpenCode 1.19.6 wildcard rules: `\` is read as `/` on both sides, `*` is
+// any text, a trailing ` *` makes the arguments optional and the last match wins.
 function bashAction(body, command) {
   const rules = [...body.matchAll(/^ {4}("(?:[^"\\]|\\.)*"): (allow|deny)$/gm)];
   let action = 'ask';
   for (const [, key, value] of rules) {
     let source = JSON.parse(key)
+      .replaceAll('\\', '/')
       .replace(/[.+^${}()|[\]\\]/g, '\\$&')
       .replace(/\*/g, '.*')
       .replace(/\?/g, '.');
     if (source.endsWith(' .*')) source = source.slice(0, -3) + '( .*)?';
-    if (new RegExp('^' + source + '$', 's').test(command)) action = value;
+    if (new RegExp('^' + source + '$', 's').test(command.replaceAll('\\', '/'))) {
+      action = value;
+    }
   }
   return action;
 }
@@ -163,6 +162,7 @@ test('reviewer shell rules allow inspection and deny known write or exec forms',
   const allowed = [
     'git diff',
     'git diff origin/main...HEAD',
+    'git diff origin/main...HEAD -- tests/dev-environment.test.cjs tools/dev/',
     'git log -p -3',
     'git show HEAD:README.md',
     'git status --short',
@@ -175,14 +175,16 @@ test('reviewer shell rules allow inspection and deny known write or exec forms',
     'git diff HEAD --out"put"=x',
     "git log --out'put'=x",
     'git diff --outpu$x=y',
-    'git diff --out\\put=x',
     'git diff --ext-diff',
     'git -c diff.external=x diff',
     'git push',
     'git status && touch x',
     'node --test --import data:x tests/a.cjs',
     'node --test tests/../../x.mjs',
-    'node --test tests/a.cjs /tmp/x.mjs',
+    'node --test tests/dev-environment.test.cjs /tmp/x.mjs',
+    'node --test tests/dev-environment.test.cjs tools/dev/cli.cjs',
+    'node --test tests/dev-environment.test.cjs --cpu-prof',
+    'node --test',
     'rm -rf docs',
   ];
   for (const command of allowed) assert.equal(bashAction(agent.body, command), 'allow', command);

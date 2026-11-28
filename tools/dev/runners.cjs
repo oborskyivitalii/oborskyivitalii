@@ -27,49 +27,43 @@ function digest(text) {
   return crypto.createHash('sha256').update(text).digest('hex');
 }
 
-// Best-effort OpenCode permission rules, not a sandbox: reviewers inspect and run
-// repository tests; edits, delegation and known write/exec flags are denied.
-// Later rules win, so the denies after the allows override them.
-const reviewerPermission = [
-  'permission:',
-  '  edit: deny',
-  '  task: deny',
-  '  webfetch: ask',
-  '  bash:',
-  '    "*": deny',
-  ...['diff', 'log', 'show', 'status', 'rev-parse'].flatMap((command) => [
-    `    "git ${command}": allow`,
-    `    "git ${command} *": allow`,
-  ]),
-  '    "node --test tests/*": allow',
-  ...[
-    '*--output*',
-    '*--ext-diff*',
-    '*--textconv*',
-    '*--import*',
-    '*--require*',
-    '* -r *',
-    '*--loader*',
-    '*--experimental*',
-    '*--test-reporter*',
-    '*--env-file*',
-    '*;*',
-    '*&*',
-    '*|*',
-    '*>*',
-    '*$*',
-    '*`*',
-    '*"*',
-    "*'*",
-    '*\\*',
-    '*difftool*',
-    'node --test *..*',
-    'node --test * /*',
-  ].map((pattern) => `    ${JSON.stringify(pattern)}: deny`),
-];
+// Best-effort OpenCode permission rules, not a sandbox. Later rules win and
+// OpenCode reads `\` as `/` before matching, so the denies below cannot catch a
+// backslash-escaped option name. Tests are allowed only as exact commands, one
+// per repository node test file, so they take no extra files or flags.
+function reviewerPermission(testFiles) {
+  const denies = ['*--output*', '*--ext-diff*', '*--textconv*', '*difftool*'];
+  return [
+    'permission:',
+    '  edit: deny',
+    '  task: deny',
+    '  webfetch: ask',
+    '  bash:',
+    '    "*": deny',
+    ...['diff', 'log', 'show', 'status', 'rev-parse'].flatMap((command) => [
+      `    "git ${command}": allow`,
+      `    "git ${command} *": allow`,
+    ]),
+    ...[...denies, '*;*', '*&*', '*|*', '*>*', '*<*', '*$*', '*`*', '*"*', "*'*"].map(
+      (pattern) => `    ${JSON.stringify(pattern)}: deny`
+    ),
+    ...testFiles.map((file) => `    ${JSON.stringify('node --test ' + file)}: allow`),
+  ];
+}
+
+function nodeTestFiles() {
+  return fs
+    .readdirSync(path.join(root, 'tests'))
+    .filter((name) => /^[\w.-]+\.test\.cjs$/.test(name))
+    .sort()
+    .map((name) => 'tests/' + name);
+}
 
 // One OpenCode subagent per role: common contract plus role prompt, read-only.
-function opencodeAgents(read = (file) => fs.readFileSync(path.join(root, file), 'utf8')) {
+function opencodeAgents(
+  read = (file) => fs.readFileSync(path.join(root, file), 'utf8'),
+  testFiles = nodeTestFiles()
+) {
   const contract = read(reviewers + '/README.md');
   return reviewerRoles(contract).map(({ role, file }) => {
     const prompt = read(reviewers + '/' + file);
@@ -81,7 +75,7 @@ function opencodeAgents(read = (file) => fs.readFileSync(path.join(root, file), 
       '---',
       `description: Independent ${role} (repository prompt ${file})`,
       'mode: subagent',
-      ...reviewerPermission,
+      ...reviewerPermission(testFiles),
       '---',
       '',
       `<!-- ${marker} ${sources} -->`,
