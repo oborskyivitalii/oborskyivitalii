@@ -594,10 +594,17 @@
       "id": "editorial-orchestration",
       "purpose": "Native editorial workflow and exact article decisions with maintained checks and live acceptance.",
       "paths": [
+        ".agents/skills/EDITORIAL-SOURCES.md",
+        ".agents/skills/source-research/SKILL.md",
+        ".agents/skills/competing-hypotheses/SKILL.md",
+        ".agents/skills/competing-hypotheses/SOURCES.md",
+        "agents/editorial/source-researcher.md",
+        "agents/editorial/hypothesis-critic.md",
         ".agents/skills/editorial-workflow/SKILL.md",
         ".agents/skills/editorial-workflow/roles.md",
         "guides/EDITORIAL-ORCHESTRATION.md",
         "tools/orchestration/editorial-article.cjs",
+        "tools/orchestration/editorial-research.cjs",
         "tools/orchestration/editorial-renditions.cjs",
         "tests/orchestration.test.cjs",
         "tests/article-delivery.test.cjs",
@@ -904,7 +911,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "fcca46cd724f2d245348e5cbfca2c718da4593cd3969d6b5fa72d3af3d507a51",
+    "digest": "10f5a52dcdb35e01a49855737e536113993883816ea76367731733437ce4ced8",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -1012,7 +1019,7 @@
       },
       {
         "path": ".github/acceptance/issue-217.json",
-        "sha256": "a123eaf05a3b2cf3e99f02e27f3141f9275c12af547fec833493e8b74f57da61"
+        "sha256": "69cfd1a69da455ac78555aba52ab295c1c134e25cf12f8908b10dcbc612d1ed1"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -1100,11 +1107,11 @@
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "a9edd2c65647b0b9d132068e91dd1307f316eb388e7dfb78776ed744a3efb3c7"
+        "sha256": "abfddcf94d7dee7f13eb81dedc8fbacfadd2326883bfff2979726766e0f117df"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2faeb3476668ec8866d71c01218a586a166cd6403845c5af604dd899996afa8f"
+        "sha256": "20a229ecf8fa1666a89d825ab16e7709bcb1d8936a1426551b7f8b30e92256c9"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1412,7 +1419,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "dbc25c16e954ba4727ea61a65760210590ccdea44d693537e2aeb14d9c3f7243"
+        "sha256": "04a6288d3289827cbe643d9f2ff62faffbb0c258c662c639b9537e84b92e8b91"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

@@ -44,6 +44,41 @@
    until AC07 verifies the exact outgoing package, head and author exposure and
    transfer decisions. Existing publication owners apply their normal release gates.
 
+### Article research entry
+
+The parent uses `node tools/orchestration/editorial-research.cjs < request.json`
+to prepare actual native calls, bind the two returns at R1 and obtain the
+existing article blueprint. Article-only and changed-thesis work use this
+entry. The PDF-only and accepted-edition post paths use their own inputs.
+
+Use a local request outside the public checkout. Each request contains an
+`action` and the current `replay` object. The parent controls replay decisions.
+For research, critique and brief requests also supply `previous` (the current
+brief review ID or null), a fresh random 32-byte hex `attempt` retained across
+the three calls, and `article` with `issue`, `title`, `audience`, `purpose`,
+`language`, `question`, `sources` and `reviewSources`. Both source arrays
+contain at most four `{id, url, body}` records, with at least one research
+source. Pin each public primary document or clearly scoped excerpt in `body`.
+Put additional independent primary material in `reviewSources`. Only the
+critic sees that array. Retain the source fetch/version separately.
+
+| Action | Parent action with the result |
+| --- | --- |
+| `research` | Check the returned packet and use its exact `launch` arguments. They contain the source researcher prompt and `source-research` skill. |
+| `critique` | Add the `research` receipt. Use the exact returned launch for a distinct fresh critic with `competing-hypotheses`. Its packet includes the proposed thesis and assigned primary sources. |
+| `brief` | Add the `critique` receipt. Retain the returned `candidate`, append its brief `event`, and present the exact thesis, outline and evidence for the returned review ID. |
+| `handoff` | Use the current replay and retained `candidate`. On `ready-to-draft`, read the returned approved blueprint into the article's normal `blueprint.md` and submit that exact version to the ordinary Drafter. For any other status, keep drafting closed. |
+
+A receipt contains `packet` and `scope` from preparation, the tool-accepted `handle`, first-return
+`resultHandle`, the recorded `forkTurns`, and the parsed first `result`.
+Keep the raw tool arguments and first return before import. The adapter
+checks the packet, run scope (author and requested outputs), attempt, checkpoint, matching handles and literal source
+passages. The parent verifies the launch and checks the editorial claim and
+source interpretation before seeking approval. Use a fresh attempt after a
+return or restart. The adapter does no file writes, provider launch, storage
+or author authentication. The parent owns those actions and observes zero
+draft dispatches for a stopped or unaccepted run.
+
 ### Existing producers
 
 - **Article and PDF.** Use the existing [publisher CLI](ARTICLE-WORKFLOW.md#candidate-commands)

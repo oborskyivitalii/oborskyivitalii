@@ -7,14 +7,14 @@
     {
       "id": "AC01",
       "intent": "Native execution and independent reviews",
-      "automated_scope": "Local Basic checks existing site behavior. Independent native launch and isolation require live evidence.",
+      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite checks separate source-bound native launch packets and refuses mismatched worker handles. Actual launch and isolation require native evidence.",
       "checks": ["BASIC"],
-      "gates": ["REVIEW", "NATIVE"]
+      "gates": ["REVIEW", "NATIVE", "SOURCE"]
     },
     {
       "id": "AC02",
       "intent": "Documentary evidence and research stop",
-      "automated_scope": "Local Basic checks the site baseline. The focused orchestration suite exercises modeled author stop. The blinded and author outcomes require retained pilot evidence.",
+      "automated_scope": "Local Basic checks the site baseline. The orchestration source suite verifies assigned literal passages, exact accepted blueprint handoff and modeled author stop. Blinded and author outcomes require retained pilot evidence.",
       "checks": ["BASIC"],
       "gates": ["AUTHOR", "SOURCE", "EVIDENCE"]
     },

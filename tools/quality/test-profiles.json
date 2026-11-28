@@ -2949,6 +2949,9 @@
         "tools/orchestration/**",
         "tests/fixtures/orchestration*.json",
         "guides/WEB-ORCHESTRATION.md",
+        "guides/ARTICLE-WORKFLOW.md",
+        ".agents/skills/**",
+        "agents/editorial/**",
         "guides/EDITORIAL-ORCHESTRATION.md"
       ]
     },

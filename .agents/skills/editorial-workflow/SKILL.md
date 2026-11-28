@@ -13,11 +13,13 @@ to select the next action and dispatch the appropriate
 
 - **New article** — research, independent hypothesis check, author thesis
   decision, draft, independent manuscript check, author manuscript decision.
+  Use the [article research entry](../../../guides/EDITORIAL-ORCHESTRATION.md#article-research-entry)
+  for the researcher and hypothesis critic's exact launch packets.
   Put the accepted material through the
   [existing article workflow](../../../guides/ARTICLE-WORKFLOW.md#authoring-and-publication-sequence).
 - **Existing article or PDF** — start from the pinned edition and the actual
-  change. For changed claims, repeat research and independent hypothesis
-  review, then present the revised thesis for author approval. For substantive
+  change. For changed claims, use the article research entry again and
+  present the revised thesis for author approval. For substantive
   copy changes, obtain fresh manuscript review and author approval before
   rendering, and replace the affected downstream review IDs. For layout-only
   changes use the

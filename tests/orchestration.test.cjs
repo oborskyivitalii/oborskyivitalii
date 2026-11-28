@@ -3,6 +3,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
+const { run: runResearch } = require('../tools/orchestration/editorial-research.cjs');
 const { reduce } = require('../tools/orchestration/reducer.cjs');
 const startFixture = require('./fixtures/orchestration-start.json');
 const acceptFixture = require('./fixtures/orchestration-accept-only.json');
@@ -487,4 +488,251 @@ test('replacing the brief after writing does not reopen the research-only stop',
     run.decision('brief', 'accept', replacement.brief.review).brief.decision.choice,
     'accept'
   );
+});
+
+test('article research uses separate skill packets and hands only the approved blueprint to drafting', () => {
+  const replay = { run: 'a'.repeat(64), author: 'editor', outputs: ['html'], events: [] };
+  const request = {
+    replay,
+    previous: null,
+    attempt: 'b'.repeat(64),
+    article: {
+      issue: 217,
+      title: 'Article material',
+      audience: 'Authors',
+      purpose: 'Explain selection',
+      language: 'English',
+      question: 'Is being listed sufficient?',
+      sources: [
+        { id: 'setup', url: 'https://example.org/setup', body: 'An allowlist selects candidates.' },
+      ],
+      reviewSources: [
+        {
+          id: 'review',
+          url: 'https://example.org/review',
+          body: 'A pending  approval excludes the file.',
+        },
+      ],
+    },
+  };
+  const launch = (action, fields = {}) => runResearch({ ...request, action, ...fields });
+  const researcher = launch('research');
+  assert.equal(researcher.launch.fork_turns, 'none');
+  assert.match(researcher.launch.message, /source-research\/SKILL\.md/);
+  assert.doesNotMatch(researcher.launch.message, /pending  approval/);
+  const receipt = ({ packet, scope }, handle, result) => ({
+    packet,
+    scope,
+    handle,
+    resultHandle: handle,
+    forkTurns: 'none',
+    result,
+  });
+  const research = receipt(researcher, '/root/research', {
+    thesis: 'A listing is sufficient.',
+    outline: ['Explain the allowlist alone.'],
+    evidence: [{ source: 'setup', quote: 'An allowlist selects candidates.' }],
+    limits: ['The researcher has not observed review.'],
+  });
+  const critic = launch('critique', { research });
+  assert.match(critic.launch.message, /competing-hypotheses\/SKILL\.md/);
+  assert.match(critic.launch.message, /pending  approval/);
+  assert.match(critic.launch.message, /A listing is sufficient/);
+  assert.doesNotMatch(critic.launch.message, /allowlist alone|has not observed review/);
+  const critique = receipt(critic, '/root/critic', {
+    verdict: 'narrows',
+    reason: 'Approval is a separate condition.',
+    thesis: 'An approved listing can select the file.',
+    outline: ['Explain selection.', 'Explain approval.'],
+    evidence: [{ source: 'review', quote: 'A pending  approval excludes the file.' }],
+    limits: [],
+  });
+  assert.throws(() => launch('brief', { research }), /worker receipt/);
+  const changed = JSON.parse(critic.launch.message.split('\n').at(-1));
+  delete changed.skill;
+  const withoutSkill = createHash('sha256')
+    .update(critic.launch.message.split('\n')[0] + '\n' + JSON.stringify(changed))
+    .digest('hex');
+  assert.throws(
+    () => launch('brief', { research, critique: { ...critique, packet: withoutSkill } }),
+    /mismatched worker receipt/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research: {
+          ...research,
+          result: { ...research.result, outline: ['Different research outline.'] },
+        },
+        critique,
+      }),
+    /mismatched worker receipt/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique: { ...critique, result: { ...critique.result, limits: 'Not a list' } },
+      }),
+    /Invalid limits count/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique: { ...critique, resultHandle: '/root/other' },
+      }),
+    /mismatched worker receipt/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique: { ...critique, handle: research.handle, resultHandle: research.handle },
+      }),
+    /distinct task handle/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique: {
+          ...critique,
+          result: { ...critique.result, evidence: [{ source: 'review', quote: 'invented' }] },
+        },
+      }),
+    /match an assigned primary source/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique,
+        attempt: 'c'.repeat(64),
+      }),
+    /mismatched worker receipt/
+  );
+
+  assert.throws(
+    () =>
+      launch('critique', { research, replay: { ...replay, author: 'other', outputs: ['pdf'] } }),
+    /mismatched worker receipt/
+  );
+  const output = launch('brief', { research, critique });
+  const pending = { ...replay, events: [output.event] };
+  const dispatch = (state, candidate = output.candidate) =>
+    runResearch({ action: 'handoff', replay: state, candidate });
+  assert.deepEqual(dispatch(pending), { status: 'awaiting-author' });
+  const decision = (choice) => ({
+    type: 'decision',
+    scope: 'brief',
+    review: output.review,
+    author: replay.author,
+    choice,
+  });
+  assert.deepEqual(dispatch({ ...replay, events: [output.event, decision('stop')] }), {
+    status: 'stopped',
+  });
+  const accepted = { ...replay, events: [output.event, decision('accept')] };
+  const writing = dispatch(accepted);
+  assert.equal(writing.status, 'ready-to-draft');
+  assert.equal(writing.blueprint, output.candidate.blueprint);
+  assert.match(writing.blueprint, /An approved listing can select the file\./);
+  assert.match(writing.blueprint, /Explain approval\./);
+  assert.match(writing.blueprint, /A pending  approval excludes the file\./);
+  assert.match(writing.blueprint, /https:\/\/example.org\/review/);
+  assert.doesNotMatch(writing.blueprint, /A listing is sufficient|allowlist alone/);
+  assert.throws(
+    () => dispatch(accepted, { ...output.candidate, title: 'Substituted' }),
+    /not the accepted brief/
+  );
+
+  const returned = { ...replay, events: [output.event, decision('return')] };
+  const current = evaluateEditorial(JSON.stringify(returned)).brief.review;
+  assert.throws(
+    () => launch('brief', { research, critique, replay: returned }),
+    /Stale or stopped/
+  );
+  assert.throws(
+    () =>
+      launch('brief', {
+        research,
+        critique,
+        replay: returned,
+        previous: current,
+        attempt: 'd'.repeat(64),
+      }),
+    /mismatched worker receipt/
+  );
+  const open = launch('brief', {
+    research,
+    critique: {
+      ...critique,
+      result: {
+        verdict: 'open',
+        reason: 'Evidence unavailable.',
+        thesis: '',
+        outline: [],
+        evidence: [],
+        limits: ['Load reader records.'],
+      },
+    },
+  });
+  const openReplay = {
+    ...replay,
+    events: [open.event, { ...decision('accept'), review: open.review }],
+  };
+  assert.deepEqual(dispatch(openReplay, open.candidate), { status: 'needs-evidence' });
+  const fullReplay = { ...accepted, events: [output.event, ...Array(62).fill(decision('accept'))] };
+  const start = (action, fields) =>
+    launch(action, {
+      ...fields,
+      replay: fullReplay,
+      previous: output.review,
+      attempt: 'e'.repeat(64),
+    });
+  const newResearch = receipt(start('research'), research.handle, research.result);
+  const newCritique = receipt(
+    start('critique', { research: newResearch }),
+    critique.handle,
+    critique.result
+  );
+  assert.throws(
+    () => start('brief', { research: newResearch, critique: newCritique }),
+    /invalid editorial plan/
+  );
+
+  const largeQuotes = Array.from(
+    { length: 12 },
+    (_, index) => '~'.repeat(1_880) + ' text ' + index
+  );
+  const largeSource = largeQuotes.join('\n');
+  const largeArticle = {
+    ...request.article,
+    sources: [{ ...request.article.sources[0], body: largeSource }],
+    reviewSources: [{ ...request.article.reviewSources[0], body: largeSource }],
+  };
+  const fromLarge = (action, fields) => launch(action, { ...fields, article: largeArticle });
+  const sourceResult = {
+    ...research.result,
+    evidence: largeQuotes.map((quote) => ({ source: 'setup', quote })),
+  };
+  const reviewResult = {
+    ...critique.result,
+    evidence: largeQuotes.map((quote) => ({ source: 'review', quote })),
+    outline: Array.from({ length: 12 }, (_, index) => index + '&'.repeat(995)),
+  };
+  const largeResearch = receipt(fromLarge('research'), research.handle, sourceResult);
+  const largeCritique = receipt(
+    fromLarge('critique', { research: largeResearch }),
+    critique.handle,
+    reviewResult
+  );
+  const large = fromLarge('brief', { research: largeResearch, critique: largeCritique });
+  const largeAccepted = {
+    ...replay,
+    events: [large.event, { ...decision('accept'), review: large.review }],
+  };
+  assert.ok(Buffer.byteLength(large.candidate.blueprint) > 100_000);
+  assert.equal(dispatch(largeAccepted, large.candidate).blueprint, large.candidate.blueprint);
 });

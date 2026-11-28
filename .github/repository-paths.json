@@ -19,6 +19,48 @@
       "role": "guide",
       "owner": ".agents/skills/editorial-workflow/SKILL.md"
     },
+    ".agents/skills/EDITORIAL-SOURCES.md": {
+      "kind": "file",
+      "purpose": "Editorial skill packages and first-increment provenance.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
+    ".agents/skills/source-research": {
+      "kind": "directory",
+      "purpose": "Original article primary-source research skill.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/source-research/SKILL.md": {
+      "kind": "file",
+      "purpose": "Source evidence, proposed thesis and documentary limits.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/competing-hypotheses": {
+      "kind": "directory",
+      "purpose": "Independent editorial hypothesis skill with MIT notice.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/competing-hypotheses/SKILL.md": {
+      "kind": "file",
+      "purpose": "Editorial adaptation of a pinned hypothesis differential.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/competing-hypotheses/SOURCES.md": {
+      "kind": "file",
+      "purpose": "Pinned upstream source, attribution and adaptation scope.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
+    ".agents/skills/competing-hypotheses/LICENSE": {
+      "kind": "file",
+      "purpose": "Unmodified MIT license from the upstream skill repository.",
+      "role": "guide",
+      "owner": ".agents/skills/EDITORIAL-SOURCES.md"
+    },
     ".agents/skills/editorial-workflow": {
       "kind": "directory",
       "purpose": "Repository-scoped authoring workflow and editorial role instructions.",
@@ -624,6 +666,24 @@
       "purpose": "Repository agent role prompts and shared launch contracts; not installed skills.",
       "role": "guide",
       "owner": "agents/reviewers/README.md"
+    },
+    "agents/editorial": {
+      "kind": "directory",
+      "purpose": "Specialized article evidence and independent hypothesis prompts.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
+    "agents/editorial/source-researcher.md": {
+      "kind": "file",
+      "purpose": "Native researcher role and structured article evidence return.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
+    "agents/editorial/hypothesis-critic.md": {
+      "kind": "file",
+      "purpose": "Independent critique role and scoped verdict return.",
+      "role": "guide",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
     "agents/reviewers": {
       "kind": "directory",
@@ -20176,6 +20236,12 @@
     "tools/orchestration/editorial-article.cjs": {
       "kind": "file",
       "purpose": "Bounded article R1/R2/R3 decision replay with independent output and source identity.",
+      "role": "source",
+      "owner": "guides/EDITORIAL-ORCHESTRATION.md"
+    },
+    "tools/orchestration/editorial-research.cjs": {
+      "kind": "file",
+      "purpose": "Prepare scoped native research and critic packets and gate the existing blueprint handoff on author acceptance.",
       "role": "source",
       "owner": "guides/EDITORIAL-ORCHESTRATION.md"
     },
