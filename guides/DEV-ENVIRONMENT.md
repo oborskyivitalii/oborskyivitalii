@@ -75,8 +75,11 @@ Two optional runners are pinned in `tools/dev/agents` and installed by `setup`:
 | `node tools/dev/cli.cjs codex [ARGS]` | Pinned Codex CLI, which also reads `AGENTS.md` |
 | `node tools/dev/cli.cjs review [--base BRANCH]` | Codex review of the branch against `BRANCH` (default `origin/main`; run `git fetch origin main` first) |
 
-Reviewer subagents cannot edit files, delegate (`task`) or run shell commands other
-than `git diff/log/show/status/rev-parse` and `node --test`; web fetches ask first.
+Reviewer subagents get best-effort OpenCode permission rules, not a sandbox: edits
+and delegation (`task`) are denied, shell is limited to `git diff/log/show/status/rev-parse`
+and `node --test tests/…`, known write or code-loading flags (`--output`, `--import`,
+`--require` …) and shell operators are denied, and web fetches ask first. Run reviews in
+a disposable container.
 
 Model access is the operator's choice. OpenCode signs in with any provider,
 including a ChatGPT Plus/Pro plan (`opencode providers login`, headless device

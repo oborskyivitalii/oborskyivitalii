@@ -124,6 +124,16 @@ test('runner agents are generated from every repository reviewer prompt', () => 
     assert.match(agent.body, /\npermission:\n {2}edit: deny\n {2}task: deny\n/);
     assert.match(agent.body, /\n {2}bash:\n {4}"\*": deny\n/);
     assert.doesNotMatch(agent.body, /"git (push|commit|add)/);
+    const rules = agent.body.slice(agent.body.indexOf('  bash:'), agent.body.indexOf('\n---'));
+    const lastAllow = rules.lastIndexOf(': allow');
+    for (const flag of ['--output', '--ext-diff', '--import', '--require', '--test-reporter']) {
+      assert.ok(
+        rules.indexOf(`"*${flag}*": deny`) > lastAllow,
+        flag + ' is denied after the allows'
+      );
+    }
+    assert.match(rules, /"node --test tests\/\*": allow/);
+    assert.doesNotMatch(rules, /"node --test\*"/);
     assert.match(agent.body, /README\.md sha256:[0-9a-f]{64}, /);
     assert.ok(agent.body.includes(readme.trimEnd()));
     assert.ok(agent.body.includes(prompt.trimEnd()));
@@ -145,9 +155,17 @@ test('runner configuration stays outside the checkout and keeps hand-written fil
   runners.writeOpencodeAgents(directory);
   assert.equal(fs.existsSync(retired), false, 'generated agent for a retired role is removed');
   assert.equal(fs.existsSync(own), true, 'hand-written agents are kept');
+  fs.writeFileSync(retired, '<!-- ' + runners.marker + ' old -->\n');
   fs.writeFileSync(path.join(directory, 'code-review.md'), 'my own agent\n');
   assert.throws(() => runners.writeOpencodeAgents(directory), /hand-written/);
+  assert.equal(fs.existsSync(retired), true, 'a refused update changes nothing');
+  fs.rmSync(path.join(directory, 'code-review.md'));
+  fs.mkdirSync(path.join(directory, 'folder.md'));
+  assert.equal(runners.writeOpencodeAgents(directory).length, 4, 'non-file entries are skipped');
   assert.throws(() => runners.writeOpencodeAgents(root));
+  const link = path.join(directory, 'checkout-link');
+  fs.symlinkSync(root, link);
+  assert.throws(() => runners.writeOpencodeAgents(path.join(link, 'agents')), /outside/);
   assert.equal(runners.opencodeAgentDirectory({ XDG_CONFIG_HOME: '/x' }), '/x/opencode/agents');
 });
 

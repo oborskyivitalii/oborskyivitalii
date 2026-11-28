@@ -27,7 +27,9 @@ function digest(text) {
   return crypto.createHash('sha256').update(text).digest('hex');
 }
 
-// Reviewers inspect and run read-only checks; they never edit, delegate or push.
+// Best-effort OpenCode permission rules, not a sandbox: reviewers inspect and run
+// repository tests; edits, delegation and known write/exec flags are denied.
+// Later rules win, so the denies after the allows override them.
 const reviewerPermission = [
   'permission:',
   '  edit: deny',
@@ -40,7 +42,25 @@ const reviewerPermission = [
   '    "git show*": allow',
   '    "git status*": allow',
   '    "git rev-parse*": allow',
-  '    "node --test*": allow',
+  '    "node --test tests/*": allow',
+  ...[
+    '*--output*',
+    '*--ext-diff*',
+    '*--textconv*',
+    '*--import*',
+    '*--require*',
+    '* -r *',
+    '*--loader*',
+    '*--experimental*',
+    '*--test-reporter*',
+    '*--env-file*',
+    '*;*',
+    '*&*',
+    '*|*',
+    '*>*',
+    '*$(*',
+    '*`*',
+  ].map((pattern) => `    "${pattern}": deny`),
 ];
 
 // One OpenCode subagent per role: common contract plus role prompt, read-only.
@@ -98,18 +118,22 @@ function writeOpencodeAgents(directory = opencodeAgentDirectory()) {
   fs.mkdirSync(directory, { recursive: true });
   const agents = opencodeAgents();
   const names = new Set(agents.map((agent) => agent.name + '.md'));
+  const isFile = (file) => fs.existsSync(file) && fs.statSync(file).isFile();
+  for (const agent of agents) {
+    const file = path.join(directory, agent.name + '.md');
+    if (fs.existsSync(file) && (!isFile(file) || !generated(file))) {
+      throw Error('Refusing to overwrite a hand-written agent: ' + file);
+    }
+  }
   for (const name of fs.readdirSync(directory)) {
     const file = path.join(directory, name);
-    if (name.endsWith('.md') && !names.has(name) && generated(file)) {
+    if (name.endsWith('.md') && !names.has(name) && isFile(file) && generated(file)) {
       fs.rmSync(file);
     }
   }
   const written = [];
   for (const agent of agents) {
     const file = path.join(directory, agent.name + '.md');
-    if (fs.existsSync(file) && !generated(file)) {
-      throw Error('Refusing to overwrite a hand-written agent: ' + file);
-    }
     fs.writeFileSync(file, agent.body);
     written.push(file);
   }

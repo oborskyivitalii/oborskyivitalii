@@ -47,6 +47,7 @@ process.stdout.write(JSON.stringify(runner.run(process.cwd(), {
         self.assertIn("--file .devcontainer/Containerfile", workflow)
         for command in ("doctor", "setup", "check"):
             self.assertIn("node tools/dev/cli.cjs " + command, workflow)
+        self.assertIn('XDG_CONFIG_HOME="$(mktemp -d)" node tools/dev/cli.cjs agents', workflow)
         self.assertIn("persist-credentials: false", workflow)
         self.assertNotRegex(workflow, r"secrets\.")
 
