@@ -5,7 +5,7 @@
     "prettier": "3.6.2",
     "ruff": "0.16.10"
   },
-  "roots": ["site/", "tools/", "tests/", ".github/"],
+  "roots": ["site/", "tools/", "tests/", ".github/", ".devcontainer/"],
   "languages": {
     "js": [".js", ".cjs", ".mjs"],
     "css": [".css"],
@@ -76,6 +76,12 @@
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "reason": "Package-manager lock bytes bind the exact build-only article dependency graph.",
       "reviewCondition": "Update through the pinned package manager and review old/new article behavior in the owning publisher issue."
+    },
+    {
+      "path": "tools/dev/agents/package-lock.json",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "reason": "Package-manager lock bytes bind the exact optional agent-runner dependency graph.",
+      "reviewCondition": "Update through the pinned package manager with --ignore-scripts and re-run the dev-environment workflow."
     }
   ],
   "nonSourceDirectories": [

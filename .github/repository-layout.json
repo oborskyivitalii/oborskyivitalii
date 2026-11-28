@@ -153,6 +153,7 @@
     "agents/reviewers/code-review.md",
     "agents/reviewers/white-box-qa.md",
     "agents/reviewers/exploratory-interaction-qa.md",
-    "guides/WEB-ORCHESTRATION.md"
+    "guides/WEB-ORCHESTRATION.md",
+    "guides/DEV-ENVIRONMENT.md"
   ]
 }

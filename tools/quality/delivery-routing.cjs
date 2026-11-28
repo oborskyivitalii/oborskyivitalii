@@ -186,6 +186,7 @@ function classify(file, rights, contentPaths = new Set()) {
 function control(file) {
   return (
     /^(tools|tests|\.github\/(workflows|actions|acceptance))\//.test(file) ||
+    file.startsWith('.devcontainer/') ||
     /^requirements[^/]*\.txt$/.test(file) ||
     /^[^/]+\.config\.[^/]+$/.test(file) ||
     [

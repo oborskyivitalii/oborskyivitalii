@@ -7,6 +7,24 @@
       "role": "guide",
       "owner": "CONTRIBUTING.md"
     },
+    ".devcontainer": {
+      "kind": "directory",
+      "purpose": "Open-spec development container used by any devcontainer host, agent and CI.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    ".devcontainer/Containerfile": {
+      "kind": "file",
+      "purpose": "Digest-bound Python 3.12.14 base plus checksum-verified Node 24.19.0; single owner of development toolchain versions.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    ".devcontainer/devcontainer.json": {
+      "kind": "file",
+      "purpose": "Vendor-neutral devcontainer wiring: build the Containerfile, run setup, forward the preview port.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
     ".gitattributes": {
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -184,6 +202,12 @@
     ".github/acceptance/issue-213.json": {
       "kind": "file",
       "purpose": "Issue213 stable AC01–AC06 mapping with bounded source checks and explicit editorial, live, release and measurement gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-219.json": {
+      "kind": "file",
+      "purpose": "Issue219 acceptance policy mapping development-environment criteria to checks and gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -402,6 +426,12 @@
       "purpose": "Read-only candidate-policy routing observations alongside existing required CI; grants no admission authority.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/dev-environment.yml": {
+      "kind": "file",
+      "purpose": "GitHub Actions: Development environment; builds the devcontainer image and runs doctor/setup/check inside it.",
+      "role": "workflow",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
@@ -2502,6 +2532,12 @@
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "guides/DEV-ENVIRONMENT.md": {
+      "kind": "file",
+      "purpose": "Vendor-neutral, browser-usable development environment, commands, AI entry and hosting-adapter boundaries.",
+      "role": "guide",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -8464,6 +8500,30 @@
     "review/issue-213/workflow-guide-evidence.json": {
       "kind": "file",
       "purpose": "Source-bound independent workflow-guide review disposition for issue213 covered control changes.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-219": {
+      "kind": "directory",
+      "purpose": "Issue219 development-environment independent review and dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-219/2026-11-28-environment-review.md": {
+      "kind": "file",
+      "purpose": "Issue219 iteration-1 independent code review, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-219/2026-11-28-runners-review.md": {
+      "kind": "file",
+      "purpose": "Issue219 iteration-2 independent code review of runner work, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-219/workflow-guide-evidence.json": {
+      "kind": "file",
+      "purpose": "Issue219 source-bound independent workflow-guide review disposition for covered control changes.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
@@ -19333,6 +19393,12 @@
       "role": "test",
       "owner": "tools/quality/delivery-observation.cjs"
     },
+    "tests/dev-environment.test.cjs": {
+      "kind": "file",
+      "purpose": "Behavioral tests for container pins matching CI, open-spec devcontainer fields and delegated command plans.",
+      "role": "test",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
     "tests/edition-retention.test.cjs": {
       "kind": "file",
       "purpose": "Production and Color immutable-edition preservation, staging isolation and collision/closure rejection.",
@@ -19819,6 +19885,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/test_issue219_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue219 task-snapshot acceptance selecting development-environment contracts.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -20100,6 +20172,42 @@
       "purpose": "Site generation/offline review helper: compact site recordings; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/dev": {
+      "kind": "directory",
+      "purpose": "Single development command entry delegating to existing locked owners.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/agents": {
+      "kind": "directory",
+      "purpose": "Locked optional agent-runner packages (OpenCode, Codex CLI) for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/agents/package-lock.json": {
+      "kind": "file",
+      "purpose": "Pinned agent-runner dependency lock: package-lock.json.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/agents/package.json": {
+      "kind": "file",
+      "purpose": "Exact OpenCode and Codex CLI versions for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/cli.cjs": {
+      "kind": "file",
+      "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/runners.cjs": {
+      "kind": "file",
+      "purpose": "Pinned OpenCode/Codex runner commands and generation of runner agents from agents/reviewers outside the checkout.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
     },
     "tools/issue_acceptance.py": {
       "kind": "file",

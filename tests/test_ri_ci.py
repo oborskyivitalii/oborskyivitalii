@@ -100,6 +100,7 @@ class RICICouplingTests(unittest.TestCase):
             {layer["id"] for layer in data["layers"]},
             {
                 "authority-instructions",
+                "development-environment",
                 "reviewer-prompts",
                 "offline-web-orchestration",
                 "reviewer-admission",

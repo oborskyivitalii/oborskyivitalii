@@ -29,6 +29,7 @@ Roles describe navigation, not scientific, rights, merge or publication acceptan
 
 | Path | Purpose | Role | Editing owner |
 | --- | --- | --- | --- |
+| [.devcontainer](.devcontainer) | Open-spec development container used by any devcontainer host, agent and CI. | configuration | [guides/DEV-ENVIRONMENT.md](guides/DEV-ENVIRONMENT.md) |
 | [.github](.github) | Contributor templates, RI contracts/views and GitHub Actions controllers. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [agents](agents) | Repository agent role prompts and shared launch contracts; not installed skills. | guide | [agents/reviewers/README.md](agents/reviewers/README.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |

@@ -98,6 +98,19 @@ in [#167](https://github.com/oborskyivitalii/oborskyivitalii/issues/167) and
 See the [review lifecycle](../CONTRIBUTING.md#independent-quality-agents) and
 [launch contract](../agents/reviewers/README.md).
 
+Any runner works from the same sources. The [development environment](DEV-ENVIRONMENT.md)
+([#219](https://github.com/oborskyivitalii/oborskyivitalii/issues/219)) is an
+open-spec container with pinned optional OpenCode and Codex CLI runners. Both read
+AGENTS.md; `tools/dev/cli.cjs agents` generates the four role prompts as OpenCode
+subagents outside the checkout with best-effort permission rules (edits and
+delegation denied; shell rules allow git inspection commands and exact repository
+node test commands by command text, so they are not a sandbox), and no runner-specific
+instruction file is tracked. OpenCode's fresh child sessions count as the `fork_turns="none"` equivalent
+only after one recorded verification. A second-vendor pass (`tools/dev/cli.cjs review`
+or Codex review on the PR, which its documentation says follows the AGENTS.md Code Review
+Rules) supplies extra
+findings; it never replaces a required role or approves a merge.
+
 ## Keeping this guide current
 
 A PR that changes workflows, reusable actions, harness rules or checks, authored

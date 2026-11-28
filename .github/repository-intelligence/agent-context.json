@@ -17,8 +17,18 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "82e5441878876c79298ea87c2c54991d6cdd43210ba6bfee61c96af315fb1690",
+    "digest": "b890eaafce05249492f0134b9fd4065dcfb082a2be908479f164dfe6e09c6db2",
     "inputs": [
+      {
+        "path": ".devcontainer/Containerfile",
+        "identity_mode": "content",
+        "sha256": "1b326c84b89bcbd298456521ddd8eeb8db2d67f97f10a8a48da1019fab846bf5"
+      },
+      {
+        "path": ".devcontainer/devcontainer.json",
+        "identity_mode": "content",
+        "sha256": "3b1c6c9148a0199be9a46d10fa9b0db071e60e4a5a6cea58ad0a7b21e121c0b7"
+      },
       {
         "path": ".gitattributes",
         "identity_mode": "content",
@@ -155,6 +165,11 @@
         "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
       },
       {
+        "path": ".github/acceptance/issue-219.json",
+        "identity_mode": "content",
+        "sha256": "d834b05eb465b35650706eea6869d56b628812981ccb5dbe4fc8f961a4c65569"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "identity_mode": "content",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
@@ -276,17 +291,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "592fe4b883c2feb2d4a5761396378999057ddbb3be66a58e35d140247c2ba57b"
+        "sha256": "1025976edf6496eb21ace6b02ee5951011000233275be9b579e9aba7f7e63cee"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f9b908b8b78e4d81e196e10cb964e29aabd169bc5c722aa0177109dee6836979"
+        "sha256": "de44e8e2e22977aa849faf44fcdc2e985ec9eef39cc7f5776d1678dd51fcb368"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ede9c2330909ce3ede60734a737e18fe3639557b8754ba43792d6ca2d9b7fabe"
+        "sha256": "a25e105c198fef8175701d9ac131b2951a88e4672d6f2ad2c302e0b78526afa1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -309,9 +324,14 @@
         "sha256": "7dec4ce43784fabdde0e245f067030ad9d52d45b0b8b5e65b7446c04c0593481"
       },
       {
+        "path": ".github/workflows/dev-environment.yml",
+        "identity_mode": "content",
+        "sha256": "6c35757ab3e0338609a5dbc15fb0aa85b6ca65daebbde3fa93f7b0d8dc76f8a4"
+      },
+      {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "12dad0f673951fae57ea4c5e14edfdc44eb4e2750e8a52a3c7ff7dbb45abe663"
+        "sha256": "78d6d4899c7a039b5dadadfed23beb3d2c87da78bdcfc154829f6f08715f33df"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -406,12 +426,12 @@
       {
         "path": ".gitignore",
         "identity_mode": "content",
-        "sha256": "03ca7de05e17e9ae0d07de109f55dafce021ec1ebc49916cefa6496c41ad312b"
+        "sha256": "4bb18d0a405d085dea0f4b577f77a134509f0b9d61acd0d969c1ea2d85c11f28"
       },
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
+        "sha256": "1f94a459b1beb4701bc3d366b4048bbcde5dcaaa931a4deb109658050a3868ef"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -446,7 +466,7 @@
       {
         "path": "PROJECT-BOOTSTRAP.md",
         "identity_mode": "content",
-        "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
+        "sha256": "f23f8d3d30e34c110cf40a89bd4709b967ef05bdda6b035bd4c2d171f57cd363"
       },
       {
         "path": "README.md",
@@ -1398,9 +1418,14 @@
         "sha256": "cdef877504055734d653af12237fc708f3e3636dd15dfc0703f71e0f6c87ee40"
       },
       {
+        "path": "guides/DEV-ENVIRONMENT.md",
+        "identity_mode": "content",
+        "sha256": "c1df608e4edd186f266bc394da1a53e398b9ff229c8859881cf58cccde63c6c5"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "ca8099cd2998806759ac04b83efcceaae2d3404f234da48ecc062debdd8eaa7e"
+        "sha256": "4ab21408f77aaab8d9ce09026e847985b7509007b10b11788b7c09f378a71261"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -1410,7 +1435,7 @@
       {
         "path": "guides/REPOSITORY-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "cec5fd9748792cfb7aa1b7bfa734fca4e0bfd695fb367c76f7b89b57ed1c21d0"
+        "sha256": "76b68a190cad515fcc663e9b003b3370fe386b09ac81fda2358ff05e2c2d2b31"
       },
       {
         "path": "guides/SITE-ANALYTICS.md",
@@ -6091,6 +6116,21 @@
         "path": "review/issue-213/workflow-guide-evidence.json",
         "identity_mode": "content",
         "sha256": "ec1264e64e1f9cdd2d946785782fd76d916496caffc10f2efc300e9965943e37"
+      },
+      {
+        "path": "review/issue-219/2026-11-28-environment-review.md",
+        "identity_mode": "content",
+        "sha256": "49ca9ac017d7ecf8c90eff8294805b545a54d47ec63b1d19ef912416cde272b5"
+      },
+      {
+        "path": "review/issue-219/2026-11-28-runners-review.md",
+        "identity_mode": "content",
+        "sha256": "e4bc0f4474e1cab24d0e37c2d76b2e352116ba4fb79fcb97dc844dfd74553072"
+      },
+      {
+        "path": "review/issue-219/workflow-guide-evidence.json",
+        "identity_mode": "content",
+        "sha256": "4c6234d34eb4f6af7b7c5b1ca26065e71945135dc79c3d102a7fa3b56a0f5fbc"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -14050,7 +14090,12 @@
       {
         "path": "tests/delivery-observation.test.cjs",
         "identity_mode": "content",
-        "sha256": "9bdf0283ad6bfc1520b595553f6bf89b2752c820197268fe1d41d691f3a32d9e"
+        "sha256": "bb03050a1fd8743090c98c05fc8379e519a8dd96ccc41c3cdafa57dbdc9969e2"
+      },
+      {
+        "path": "tests/dev-environment.test.cjs",
+        "identity_mode": "content",
+        "sha256": "5ea4c57879a2be51eea0cec8eab2a3dc6cb169f028b4ee65afa97f0ffdb36637"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14453,6 +14498,11 @@
         "sha256": "cdd307234fff613ac8296d7c354983bff8ebcee30868c4fc855d63298bb4805a"
       },
       {
+        "path": "tests/test_issue219_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "2cdb564751e76d4bcdeba675fccc7725e502751a041f7c4d27cccfb0634629b2"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
@@ -14555,7 +14605,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "a0390c9f7082e1576bd8613705f4342442c60991a7a21dda31f1e7d19c99a719"
+        "sha256": "0a6bd3bb73e6170ac1c917ce491a3b09d543a7cdc88cbe29b1ff753011f29086"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -14681,6 +14731,26 @@
         "path": "tools/compact_site_recordings.cjs",
         "identity_mode": "content",
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
+      },
+      {
+        "path": "tools/dev/agents/package-lock.json",
+        "identity_mode": "content",
+        "sha256": "bc41ae2e7e22d3d8616e2fccb18cde808087072af8f96c4d6e44f5c7fcaa11cc"
+      },
+      {
+        "path": "tools/dev/agents/package.json",
+        "identity_mode": "content",
+        "sha256": "caa57a16e6003f547e13ec960a66340a55ee442e1664483f8736f1d183b7fed0"
+      },
+      {
+        "path": "tools/dev/cli.cjs",
+        "identity_mode": "content",
+        "sha256": "a4923d5609e8291cc233e53b96542cc3a65571100bb81d0b70ac0cef81da62e7"
+      },
+      {
+        "path": "tools/dev/runners.cjs",
+        "identity_mode": "content",
+        "sha256": "5e7296363be6e749f91cb37c1e18c07e08a89571926b2e251ea4962e2dbfab51"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -15070,7 +15140,7 @@
       {
         "path": "tools/quality/delivery-routing.cjs",
         "identity_mode": "content",
-        "sha256": "d66b3c27ae634ede5e757fdde13c75b5522d683c9c843e0ecd7eb97e643c5eb8"
+        "sha256": "a1ed136476ae48dc3ac7cd06011339aa314fb475f04b6e208c0d374a1b3e4d45"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",
@@ -15130,12 +15200,12 @@
       {
         "path": "tools/quality/format-scope.json",
         "identity_mode": "content",
-        "sha256": "dd6784e0d61495f1edef8e0f6b28c0c4dbcc1782196331a6db2fcb8e4029643a"
+        "sha256": "a30a60862d40a235a2726843891d3475614bd50816d0a1741b8a306702f0a65e"
       },
       {
         "path": "tools/quality/format.cjs",
         "identity_mode": "content",
-        "sha256": "c95dd0c6ccd20e1fa855becd9431b7250e7a9a5e66101b5ef8456d2a4dfdced7"
+        "sha256": "a69d174202ce81268433f4c4bcc93753ac3387d6596cddc279ed8a5ba54d02b6"
       },
       {
         "path": "tools/quality/functional.cjs",
@@ -15290,7 +15360,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "9435b8da06ee130d969a2d0e42f11f8daa97f54163dee840227d64c79991fbd8"
+        "sha256": "7de0667dc7958e16274f8e40868243210571ef3121173fda46b211b281080acd"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -15315,7 +15385,7 @@
       {
         "path": "tools/quality/serve.cjs",
         "identity_mode": "content",
-        "sha256": "822f515cfa9e192a550f8e3f19497f6378ddf7cb6c3507987932c9ad56f0a79e"
+        "sha256": "729ba969fc90427e62e98303bc6bb7fd82a2f06552652a81bc0520b5b0af5e68"
       },
       {
         "path": "tools/quality/source-test-shards.cjs",
@@ -15355,7 +15425,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e80619a09014be675e95433dcda8482c3a04e1dc7007aebb2229b6c90cac62d8"
+        "sha256": "965600a6623dbb555a227256fae6313efee9423d33a819ff3280461851c570c1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -16171,6 +16241,28 @@
   ],
   "artifacts": [
     {
+      "path": ".devcontainer/Containerfile",
+      "kind": "file",
+      "purpose": "Digest-bound Python 3.12.14 base plus checksum-verified Node 24.19.0; single owner of development toolchain versions.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Containerfile"
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "kind": "file",
+      "purpose": "Vendor-neutral devcontainer wiring: build the Containerfile, run setup, forward the preview port.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcontainer.json"
+    },
+    {
       "path": ".gitattributes",
       "kind": "file",
       "purpose": "Cross-platform LF normalization and binary-file exceptions.",
@@ -16466,6 +16558,17 @@
         "AGENTS.md"
       ],
       "title": "issue-213.json"
+    },
+    {
+      "path": ".github/acceptance/issue-219.json",
+      "kind": "file",
+      "purpose": "Issue219 acceptance policy mapping development-environment criteria to checks and gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-219.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -16807,6 +16910,17 @@
         "AGENTS.md"
       ],
       "title": "delivery-observation.yml"
+    },
+    {
+      "path": ".github/workflows/dev-environment.yml",
+      "kind": "file",
+      "purpose": "GitHub Actions: Development environment; builds the devcontainer image and runs doctor/setup/check inside it.",
+      "role": "workflow",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "dev-environment.yml"
     },
     {
       "path": ".github/workflows/issue-acceptance.yml",
@@ -19205,6 +19319,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/DEV-ENVIRONMENT.md",
+      "kind": "file",
+      "purpose": "Vendor-neutral, browser-usable development environment, commands, AI entry and hosting-adapter boundaries.",
+      "role": "guide",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Development environment"
     },
     {
       "path": "guides/README.md",
@@ -29528,6 +29653,39 @@
       "path": "review/issue-213/workflow-guide-evidence.json",
       "kind": "file",
       "purpose": "Source-bound independent workflow-guide review disposition for issue213 covered control changes.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "workflow-guide-evidence.json"
+    },
+    {
+      "path": "review/issue-219/2026-11-28-environment-review.md",
+      "kind": "file",
+      "purpose": "Issue219 iteration-1 independent code review, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 219 — 2026-11-28 review / analysis / handoff"
+    },
+    {
+      "path": "review/issue-219/2026-11-28-runners-review.md",
+      "kind": "file",
+      "purpose": "Issue219 iteration-2 independent code review of runner work, finding dispositions and executed checks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 219 — 2026-11-28 review / analysis / handoff"
+    },
+    {
+      "path": "review/issue-219/workflow-guide-evidence.json",
+      "kind": "file",
+      "purpose": "Issue219 source-bound independent workflow-guide review disposition for covered control changes.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md",
       "instructions": [
@@ -47048,6 +47206,17 @@
       "title": "delivery-observation.test.cjs"
     },
     {
+      "path": "tests/dev-environment.test.cjs",
+      "kind": "file",
+      "purpose": "Behavioral tests for container pins matching CI, open-spec devcontainer fields and delegated command plans.",
+      "role": "test",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "dev-environment.test.cjs"
+    },
+    {
       "path": "tests/edition-retention.test.cjs",
       "kind": "file",
       "purpose": "Production and Color immutable-edition preservation, staging isolation and collision/closure rejection.",
@@ -47928,6 +48097,17 @@
       "title": "test_issue213_acceptance.py"
     },
     {
+      "path": "tests/test_issue219_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue219 task-snapshot acceptance selecting development-environment contracts.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue219_acceptance.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -48432,6 +48612,50 @@
         "AGENTS.md"
       ],
       "title": "compact_site_recordings.cjs"
+    },
+    {
+      "path": "tools/dev/agents/package-lock.json",
+      "kind": "file",
+      "purpose": "Pinned agent-runner dependency lock: package-lock.json.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package-lock.json"
+    },
+    {
+      "path": "tools/dev/agents/package.json",
+      "kind": "file",
+      "purpose": "Exact OpenCode and Codex CLI versions for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package.json"
+    },
+    {
+      "path": "tools/dev/cli.cjs",
+      "kind": "file",
+      "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cli.cjs"
+    },
+    {
+      "path": "tools/dev/runners.cjs",
+      "kind": "file",
+      "purpose": "Pinned OpenCode/Codex runner commands and generation of runner agents from agents/reviewers outside the checkout.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "runners.cjs"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -50767,6 +50991,16 @@
       ]
     },
     {
+      "path": ".devcontainer",
+      "kind": "directory",
+      "purpose": "Open-spec development container used by any devcontainer host, agent and CI.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github",
       "kind": "directory",
       "purpose": "Contributor templates, RI contracts/views and GitHub Actions controllers.",
@@ -52710,6 +52944,16 @@
       "path": "review/issue-213/search-baseline",
       "kind": "directory",
       "purpose": "Issue213 source-bound discovery analysis, review, baseline, PDF parity or exact historical recovery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-219",
+      "kind": "directory",
+      "purpose": "Issue219 development-environment independent review and dispositions.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -54922,6 +55166,26 @@
       "purpose": "Repository navigation, public generation and offline review/export entry points.",
       "role": "source",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/dev",
+      "kind": "directory",
+      "purpose": "Single development command entry delegating to existing locked owners.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/dev/agents",
+      "kind": "directory",
+      "purpose": "Locked optional agent-runner packages (OpenCode, Codex CLI) for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
       "instructions": [
         "AGENTS.md"
       ]

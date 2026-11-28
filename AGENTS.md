@@ -88,3 +88,11 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     at meaningful progress, interruption/handoff and observed delivery or closure.
     Replace stale entries, preserve the five sections and rebuild/verify RI after
     changing either file. Keep this guide within 100 lines; route to existing owners.
+
+## Code Review Rules
+
+Runners and PR review bots apply the [Code Reviewer](agents/reviewers/code-review.md) rubric:
+check issue ACs, report severity/evidence/AC impact; never approve or merge. Their findings
+are iteration inputs, not a required role execution unless admitted under its launch contract.
+Flag generated `docs/`, RI views or locks edited without their owner; flag vendor-specific
+agent files (CLAUDE.md, `.opencode/`, `.cursor/` …); runner wiring lives in `tools/dev/`.
