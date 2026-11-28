@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1e66dc0d1265b3120f99d5c4e157fffb5bbbac7162afa49cf57ae96f58e4c6fa",
+    "digest": "0d3ae8a728df6d07ac4009b665a3600135e586edf9dbef18cf6baafffaf26963",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -301,7 +301,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "9abb3f63ee67ffdee88c846d522161c20931f3e10f4c22488d3f6f276cc6fc71"
+        "sha256": "796b42622385d347fa7eb39ffdd8f35a61ae4da9c843db4b1cbcad90f468d14d"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -15415,7 +15415,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "4451bada7de2ee7197fa7bcee47aeb6743557d0c3509d826f89a65a632ca3cfd"
+        "sha256": "b17b13a0be4f4557479392e04e207c3bd277777f29a2a51ec83bf3c0378d4a0d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
