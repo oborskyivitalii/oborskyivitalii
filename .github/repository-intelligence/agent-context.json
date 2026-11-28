@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a0259715a5b22337e55b2ee935a1d3f1b632b2681a554d5e200b535da861d395",
+    "digest": "b0e926035e74ee6f0c2e3e63339bf9bd2f4df2c53ae0f364a4ba5d86dd2677ed",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -301,7 +301,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b848f43879a1e85b86e98957a4c2027a0137693d1f2c26c0dfef7fd298275921"
+        "sha256": "a25e105c198fef8175701d9ac131b2951a88e4672d6f2ad2c302e0b78526afa1"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -331,7 +331,7 @@
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "12dad0f673951fae57ea4c5e14edfdc44eb4e2750e8a52a3c7ff7dbb45abe663"
+        "sha256": "78d6d4899c7a039b5dadadfed23beb3d2c87da78bdcfc154829f6f08715f33df"
       },
       {
         "path": ".github/workflows/navigation.yml",
