@@ -1,1 +1,25 @@
-{}
+{
+  "base_sha": "8886647e8a94ed5ddd1d73ae64dfd0eaf1be24e6",
+  "scope_sha256": "fe71009f7e39c2c878eeb5fbda8cac1d8afe712a0ed06ba0be1b5e597bacb9dd",
+  "paths": [
+    ".github/repository-layout.json",
+    ".github/repository-paths.json",
+    ".github/ri-ci-map.json",
+    ".github/workflows/dev-environment.yml",
+    "AGENTS.md",
+    "PROJECT-BOOTSTRAP.md",
+    "tests/test_issue219_acceptance.py",
+    "tests/test_ri_ci.py",
+    "tools/quality/delivery-routing.cjs",
+    "tools/quality/serve.cjs",
+    "tools/quality/test-profiles.json"
+  ],
+  "disposition": "updated",
+  "sections": [
+    "Agents and orchestration",
+    "Harness and ownership",
+    "Delivery routes and controls"
+  ],
+  "rationale": "Agents and orchestration now describes the AGENTS.md-native OpenCode and Codex runners, reviewer subagents generated outside the checkout under best-effort permission rules, and the hedged second-vendor review that never replaces a required role. Harness and ownership and Delivery routes and controls stay accurate: the bootstrap route only points to the development environment guide, and the new .devcontainer/ control classification falls under the existing generic control wording.",
+  "reviewer_execution": "review/issue-219/2026-11-28-runners-review.md: fresh Code Reviewer subagent, iteration 6, no author conversation, inspected f887491e..0d73e8bf and recomputed guide-scope fe71009f7e39c2c878eeb5fbda8cac1d8afe712a0ed06ba0be1b5e597bacb9dd; it judged Agents and orchestration updated and accurate and the other two sections accurate unchanged. Covered bytes are unchanged at the recorded head."
+}
