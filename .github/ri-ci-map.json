@@ -183,7 +183,9 @@
         ".github/acceptance/issue-189.json",
         ".github/acceptance/issue-211.json",
         "tests/test_issue189_acceptance.py",
-        ".github/acceptance/issue-213.json"
+        ".github/acceptance/issue-213.json",
+        ".github/acceptance/issue-219.json",
+        "tests/test_issue219_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -766,7 +768,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d7d9ee9afe7536e959c61bc098d2d067bc80a0548690d69ac49bdae4b2118a67",
+    "digest": "f9aa1bc502edf59ed32bd93479bb1ab5e83ba7c1c90aa45621c60baf09c457ce",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -873,6 +875,10 @@
         "sha256": "551f6b898d0889296b786b8b89cd6b8467d19e007a2875679396786a3eca4898"
       },
       {
+        "path": ".github/acceptance/issue-219.json",
+        "sha256": "fbff40735c1f35e7f1760ab738ddea382fc159c9a1794f061acc8d94fe9e55fe"
+      },
+      {
         "path": ".github/acceptance/issue-31.json",
         "sha256": "fab7c6d73ef4814c40b26f63025b9e9dbc5e6f2435b733bd09480a34076ccef0"
       },
@@ -962,7 +968,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7e011dacd12c4bc04305f25debbddf197c87fb2118e132f386f37eae50d2e9de"
+        "sha256": "1f152703c85eda8942b5716a909d921268b4365b6661ff74737f2d346a399820"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -1161,6 +1167,10 @@
         "sha256": "7699c8a96aee48cc7432346807c6b28db9f310701018ee79471b1c99744a7ab2"
       },
       {
+        "path": "tests/test_issue219_acceptance.py",
+        "sha256": "316162917212d64277ca869f3d230873cb4fdb70b6dc3d258bb43e82d5abd61c"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
       },
@@ -1274,7 +1284,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "6e30144cb2c1daffc291461cb0a82f75cba1d6789e25bbeb505ee6371de7c3b5"
+        "sha256": "85b7643e33af1b4332b57ac962c1a8cd99074c99ffd081e85ac3667b8a0fb7e2"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

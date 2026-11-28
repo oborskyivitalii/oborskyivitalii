@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 219,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/219",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Open-spec devcontainer builds a digest-bound image with exactly the CI Node/Python versions and a verified Node archive.",
+      "automated_scope": "CONTAINER checks pins, digest, checksum and open-spec fields from source; the real image build runs in the Development environment workflow.",
+      "checks": ["CONTAINER", "WORKFLOW"],
+      "gates": ["REVIEW", "CI-RUN"]
+    },
+    {
+      "id": "AC02",
+      "intent": "One setup/build/check/serve/doctor entry delegating to the existing locked owners.",
+      "automated_scope": "CONTAINER verifies the exact delegated plans; execution inside the image is the workflow run.",
+      "checks": ["CONTAINER"],
+      "gates": ["REVIEW", "CI-RUN"]
+    },
+    {
+      "id": "AC03",
+      "intent": "CI builds the same Containerfile and runs doctor, setup and check inside it.",
+      "automated_scope": "WORKFLOW verifies the workflow shape; only an actual run on the PR head proves it.",
+      "checks": ["WORKFLOW"],
+      "gates": ["CI-RUN", "CONTROL"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Vendor-neutral AI entry with AGENTS.md as router.",
+      "automated_scope": "ENTRY verifies wording and the guide link; usefulness needs review.",
+      "checks": ["ENTRY"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Browser-only workflow on interchangeable hosts and hosting as a replaceable adapter.",
+      "automated_scope": "ENTRY verifies named hosts and adapter owners; the iPad trial is external.",
+      "checks": ["ENTRY"],
+      "gates": ["DEVICE"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Registries, RI, layout, format and CS01/CS04/CS05 stay green.",
+      "automated_scope": "BASIC, RI-CI and STYLE prove their enforced subsets; architecture judgment needs review.",
+      "checks": ["BASIC", "RI-CI", "STYLE"],
+      "gates": ["REVIEW"]
+    }
+  ],
+  "checks": {
+    "CONTAINER": {
+      "kind": "unittest",
+      "test": "test_issue219_acceptance.Issue219AcceptanceTests.test_container_and_command_contracts"
+    },
+    "WORKFLOW": {
+      "kind": "unittest",
+      "test": "test_issue219_acceptance.Issue219AcceptanceTests.test_container_workflow_runs_the_shared_commands"
+    },
+    "ENTRY": {
+      "kind": "unittest",
+      "test": "test_issue219_acceptance.Issue219AcceptanceTests.test_vendor_neutral_entry_and_guide"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent nonauthor code/white-box review of the exact PR head with recorded findings and dispositions."
+    },
+    "CI-RUN": {
+      "kind": "human",
+      "description": "Development environment workflow passes on the exact PR head."
+    },
+    "CONTROL": {
+      "kind": "merge",
+      "description": "Maintainer accepts the new workflow and tools/quality control changes and decides the merge."
+    },
+    "DEVICE": {
+      "kind": "human",
+      "description": "Maintainer opens the environment on a devcontainer host from the iPad and reports the result."
+    }
+  }
+}

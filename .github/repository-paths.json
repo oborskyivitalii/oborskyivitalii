@@ -205,6 +205,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-219.json": {
+      "kind": "file",
+      "purpose": "Issue219 acceptance policy mapping development-environment criteria to checks and gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -19854,6 +19860,12 @@
       "purpose": "Issue213 owning-policy selector for maintained SEO and article-material positive and negative contracts.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/test_issue219_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue219 task-snapshot acceptance selecting development-environment contracts.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",

@@ -1200,6 +1200,25 @@
       ]
     },
     {
+      "path": "tests/test_issue219_acceptance.py",
+      "language": "python",
+      "purpose": "Issue219 selects the development-container, workflow-shape and vendor-neutral entry contracts; real host and iPad trials remain external.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue219 policy only; the maintained dev-environment suite retains normal PR/staging/production routes.",
+      "surviving_route": ".github/acceptance/issue-219.json",
+      "inputs": [
+        "tests/test_issue219_acceptance.py",
+        ".github/acceptance/issue-219.json",
+        "tests/dev-environment.test.cjs",
+        ".github/workflows/dev-environment.yml",
+        "PROJECT-BOOTSTRAP.md",
+        "guides/DEV-ENVIRONMENT.md",
+        "tools/quality/source-tests.cjs"
+      ]
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "language": "python",
       "purpose": "Closed #31 task snapshots tied to immutable historical source and accepted issue policy; permanent controls live separately",
