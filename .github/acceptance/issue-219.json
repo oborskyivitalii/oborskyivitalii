@@ -45,6 +45,13 @@
       "automated_scope": "BASIC, RI-CI and STYLE prove their enforced subsets; architecture judgment needs review.",
       "checks": ["BASIC", "RI-CI", "STYLE"],
       "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC07",
+      "intent": "AGENTS.md-native, vendor-neutral agent runners: pinned OpenCode and Codex CLI, reviewer roles generated outside the repo from agents/reviewers, cascaded Codex review rules in AGENTS.md, no vendor-specific agent files.",
+      "automated_scope": "CONTAINER verifies generation, outside-checkout writes, review argument validation and absence of vendor files; RUNNERS verifies the lock, AGENTS.md rules and guide route. Real sign-in, subagent isolation and Codex PR review need an operator trial.",
+      "checks": ["CONTAINER", "RUNNERS"],
+      "gates": ["REVIEW", "DEVICE", "ISOLATION"]
     }
   ],
   "checks": {
@@ -70,6 +77,10 @@
     "STYLE": {
       "kind": "unittest",
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RUNNERS": {
+      "kind": "unittest",
+      "test": "test_issue219_acceptance.Issue219AcceptanceTests.test_agents_md_native_runners_and_review_rules"
     }
   },
   "gates": {
@@ -88,6 +99,10 @@
     "DEVICE": {
       "kind": "human",
       "description": "Maintainer opens the environment on a devcontainer host from the iPad and reports the result."
+    },
+    "ISOLATION": {
+      "kind": "human",
+      "description": "Record one verified OpenCode subagent run showing no parent-conversation inheritance before its reviews count under agents/reviewers/README.md."
     }
   }
 }

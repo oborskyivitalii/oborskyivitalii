@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9d65741282730a1703144615e6f957f9c5d1616158ca7d81204566d65f016703",
+    "digest": "1e66dc0d1265b3120f99d5c4e157fffb5bbbac7162afa49cf57ae96f58e4c6fa",
     "inputs": [
       {
         "path": ".devcontainer/Containerfile",
@@ -27,7 +27,7 @@
       {
         "path": ".devcontainer/devcontainer.json",
         "identity_mode": "content",
-        "sha256": "5cc5cc01c10f1ec6a10acce3fd35be2ab7158eabd0993225b9ead2ae452706db"
+        "sha256": "3b1c6c9148a0199be9a46d10fa9b0db071e60e4a5a6cea58ad0a7b21e121c0b7"
       },
       {
         "path": ".gitattributes",
@@ -167,7 +167,7 @@
       {
         "path": ".github/acceptance/issue-219.json",
         "identity_mode": "content",
-        "sha256": "fbff40735c1f35e7f1760ab738ddea382fc159c9a1794f061acc8d94fe9e55fe"
+        "sha256": "2ef2ce23cf41be615154c6dc9077c9cdd8a92a579d0083ae2645660e02608516"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -296,12 +296,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "be318ed220b431673dde0c9ef70164dc0d8aadab2d426c96bcb310df7a32453d"
+        "sha256": "1dd5b3f86af6af1d8a6da61d0c42d831d7baca60451d59690db0ca279703210e"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "2a0e9bec7637aff9002e2479a8eb2eaeeb07553207dfaba93e25d7a6cf248673"
+        "sha256": "9abb3f63ee67ffdee88c846d522161c20931f3e10f4c22488d3f6f276cc6fc71"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -326,7 +326,7 @@
       {
         "path": ".github/workflows/dev-environment.yml",
         "identity_mode": "content",
-        "sha256": "09d70f5138c0b23557558a718972f02432ab4c2af0992e58ba7297cbc8fdfa88"
+        "sha256": "99b513456738e68432b17559c47319a8f21e11ddbb3f389d4ef37df97ab246dc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -431,7 +431,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
+        "sha256": "9674e441101cce2c42bc368d5cf42dfafef6beed9302718a044f57435bd40451"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -1420,7 +1420,7 @@
       {
         "path": "guides/DEV-ENVIRONMENT.md",
         "identity_mode": "content",
-        "sha256": "63914441dd2980bff6dfe30ac195d01f14807b3a35db9a3c29c36463950d7e7a"
+        "sha256": "14625db948e94dff6bf1a134331f37e38ef1a42c1940b9d85685b2e13d0c961d"
       },
       {
         "path": "guides/README.md",
@@ -14085,7 +14085,7 @@
       {
         "path": "tests/dev-environment.test.cjs",
         "identity_mode": "content",
-        "sha256": "80f551bb52c185d186bd7a1f5a4fc1b28a352fee1d1978c992586278c2a48420"
+        "sha256": "5ada321195ef05157391d18997e6dc088d79f07cf00e52ed4fe8076bf1306658"
       },
       {
         "path": "tests/edition-retention.test.cjs",
@@ -14490,7 +14490,7 @@
       {
         "path": "tests/test_issue219_acceptance.py",
         "identity_mode": "content",
-        "sha256": "316162917212d64277ca869f3d230873cb4fdb70b6dc3d258bb43e82d5abd61c"
+        "sha256": "918595b40eee991faf72487f5a47d3e077523f3d28e87901b5cf3153ee07be86"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -14723,9 +14723,24 @@
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
       },
       {
+        "path": "tools/dev/agents/package-lock.json",
+        "identity_mode": "content",
+        "sha256": "bc41ae2e7e22d3d8616e2fccb18cde808087072af8f96c4d6e44f5c7fcaa11cc"
+      },
+      {
+        "path": "tools/dev/agents/package.json",
+        "identity_mode": "content",
+        "sha256": "682a34900e917e792ca851014bfeef45e9840075d04a888b4cbccadcd2aca522"
+      },
+      {
         "path": "tools/dev/cli.cjs",
         "identity_mode": "content",
-        "sha256": "ce164f0505eb669cb4c5adb13c8a8b07e9ad49ad8d88e6b9575fb442830459de"
+        "sha256": "6a8baf552c737c8c19716a27302b17bbcb229aaf2680fa71bfc31d5233f5c97f"
+      },
+      {
+        "path": "tools/dev/runners.cjs",
+        "identity_mode": "content",
+        "sha256": "d1e371d6f476de1dfd27bbe16c3350891abdf246a893280c780c54e9c0d5f1a4"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -15175,12 +15190,12 @@
       {
         "path": "tools/quality/format-scope.json",
         "identity_mode": "content",
-        "sha256": "25aa6099343d807a0230ac571245533a746e17da7619b065b9fdc3350ffa1dc2"
+        "sha256": "a30a60862d40a235a2726843891d3475614bd50816d0a1741b8a306702f0a65e"
       },
       {
         "path": "tools/quality/format.cjs",
         "identity_mode": "content",
-        "sha256": "f2b1f99c7323baa97189d11ab129335af5a41bedcdf8994d31a3eb5b6ce6f5cb"
+        "sha256": "a69d174202ce81268433f4c4bcc93753ac3387d6596cddc279ed8a5ba54d02b6"
       },
       {
         "path": "tools/quality/functional.cjs",
@@ -15400,7 +15415,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "85b7643e33af1b4332b57ac962c1a8cd99074c99ffd081e85ac3667b8a0fb7e2"
+        "sha256": "4451bada7de2ee7197fa7bcee47aeb6743557d0c3509d826f89a65a632ca3cfd"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -48567,6 +48582,28 @@
       "title": "compact_site_recordings.cjs"
     },
     {
+      "path": "tools/dev/agents/package-lock.json",
+      "kind": "file",
+      "purpose": "Pinned agent-runner dependency lock: package-lock.json.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package-lock.json"
+    },
+    {
+      "path": "tools/dev/agents/package.json",
+      "kind": "file",
+      "purpose": "Exact OpenCode and Codex CLI versions for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package.json"
+    },
+    {
       "path": "tools/dev/cli.cjs",
       "kind": "file",
       "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
@@ -48576,6 +48613,17 @@
         "AGENTS.md"
       ],
       "title": "cli.cjs"
+    },
+    {
+      "path": "tools/dev/runners.cjs",
+      "kind": "file",
+      "purpose": "Pinned OpenCode/Codex runner commands and generation of runner agents from agents/reviewers outside the checkout.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "runners.cjs"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -55095,6 +55143,16 @@
       "kind": "directory",
       "purpose": "Single development command entry delegating to existing locked owners.",
       "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/dev/agents",
+      "kind": "directory",
+      "purpose": "Locked optional agent-runner packages (OpenCode, Codex CLI) for the development container.",
+      "role": "configuration",
       "owner": "guides/DEV-ENVIRONMENT.md",
       "instructions": [
         "AGENTS.md"

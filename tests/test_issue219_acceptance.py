@@ -60,3 +60,19 @@ process.stdout.write(JSON.stringify(runner.run(process.cwd(), {
         self.assertGreaterEqual(len(set(hosts)), 3)
         for owner in ("SITE-STAGING.md", "SITE-PRODUCTION.md", "`docs/`"):
             self.assertIn(owner, guide)
+
+    def test_agents_md_native_runners_and_review_rules(self):
+        agents = (ROOT / "AGENTS.md").read_text()
+        self.assertIn("\n## Code Review Rules\n", agents)
+        self.assertIn("agents/reviewers/code-review.md", agents)
+        self.assertLessEqual(len(agents.splitlines()), 100)
+        lock = json.loads((ROOT / "tools/dev/agents/package-lock.json").read_text())
+        root = lock["packages"][""]["dependencies"]
+        self.assertEqual(set(root), {"@openai/codex", "opencode-ai"})
+        self.assertTrue(all(re.fullmatch(r"\d+\.\d+\.\d+", v) for v in root.values()))
+        for name in root:
+            entry = lock["packages"]["node_modules/" + name]
+            self.assertTrue(entry["integrity"].startswith("sha512-"))
+        guide = (ROOT / "guides/DEV-ENVIRONMENT.md").read_text()
+        for phrase in ("cli.cjs agents", "cli.cjs review", "@codex review", "fork_turns"):
+            self.assertIn(phrase, guide)

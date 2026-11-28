@@ -560,7 +560,7 @@
       "path": "tests/dev-environment.test.cjs",
       "language": "javascript",
       "lifecycle": "permanent",
-      "purpose": "Development container pins equal CI pins, open-spec devcontainer fields and delegated setup/build/check plans.",
+      "purpose": "Development container pins equal CI pins, open-spec devcontainer fields, delegated command plans, runner agents generated outside the checkout and no vendor-specific agent files.",
       "owner": "tools/dev/cli.cjs",
       "profiles": ["pr-targeted", "staging", "production"],
       "inputs": [
@@ -568,7 +568,11 @@
         ".devcontainer/devcontainer.json",
         "tools/dev/cli.cjs",
         "tests/dev-environment.test.cjs",
-        ".github/workflows/site-checks.yml"
+        ".github/workflows/site-checks.yml",
+        "tools/dev/runners.cjs",
+        "tools/dev/agents/package.json",
+        "agents/reviewers/README.md",
+        "AGENTS.md"
       ],
       "disposition": "Retain as a permanent source guard; the real container build runs in the Development environment workflow.",
       "surviving_route": "Existing Basic changed-source selection and permanent staging/production source profiles; dev-environment workflow builds and exercises the image."

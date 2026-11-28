@@ -20167,9 +20167,33 @@
       "role": "source",
       "owner": "guides/DEV-ENVIRONMENT.md"
     },
+    "tools/dev/agents": {
+      "kind": "directory",
+      "purpose": "Locked optional agent-runner packages (OpenCode, Codex CLI) for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/agents/package-lock.json": {
+      "kind": "file",
+      "purpose": "Pinned agent-runner dependency lock: package-lock.json.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/agents/package.json": {
+      "kind": "file",
+      "purpose": "Exact OpenCode and Codex CLI versions for the development container.",
+      "role": "configuration",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
     "tools/dev/cli.cjs": {
       "kind": "file",
       "purpose": "setup/build/check/serve/doctor commands for people, agents and CI; no pins or checks of its own.",
+      "role": "source",
+      "owner": "guides/DEV-ENVIRONMENT.md"
+    },
+    "tools/dev/runners.cjs": {
+      "kind": "file",
+      "purpose": "Pinned OpenCode/Codex runner commands and generation of runner agents from agents/reviewers outside the checkout.",
       "role": "source",
       "owner": "guides/DEV-ENVIRONMENT.md"
     },

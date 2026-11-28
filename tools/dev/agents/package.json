@@ -1,0 +1,10 @@
+{
+  "name": "author-site-agent-runners",
+  "private": true,
+  "description": "Pinned, optional vendor-neutral agent runners for the development container (issue219)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@openai/codex": "0.172.0",
+    "opencode-ai": "1.19.6"
+  }
+}

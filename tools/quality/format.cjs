@@ -17,6 +17,7 @@ const requiredExactExclusions = [
   'site/output-lock.json',
   'tools/quality/toolchain/package-lock.json',
   'tools/publishing/toolchain/package-lock.json',
+  'tools/dev/agents/package-lock.json',
   'tools/quality/secrets-baseline.json',
   'tools/quality/secrets-reviewed.json',
 ];

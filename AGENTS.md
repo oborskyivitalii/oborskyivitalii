@@ -88,3 +88,10 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
     at meaningful progress, interruption/handoff and observed delivery or closure.
     Replace stale entries, preserve the five sections and rebuild/verify RI after
     changing either file. Keep this guide within 100 lines; route to existing owners.
+
+## Code Review Rules
+
+Every runner (including GitHub PR review bots) reviews as the [Code Reviewer](agents/reviewers/code-review.md):
+check the owning issue's ACs, report severity/evidence/AC impact, never approve or merge.
+Flag generated `docs/`, RI views or locks edited without their owner; flag vendor-specific
+agent files (CLAUDE.md, `.opencode/`, `.cursor/` …); runner wiring lives in `tools/dev/`.

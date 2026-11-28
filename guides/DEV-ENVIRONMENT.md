@@ -45,7 +45,7 @@ delegates to the existing owner; it adds no checks or pins of its own.
 
 | Command | Runs |
 | --- | --- |
-| `node tools/dev/cli.cjs setup` | Locked npm and Python toolchains |
+| `node tools/dev/cli.cjs setup` | Locked npm, Python and agent-runner toolchains |
 | `node tools/dev/cli.cjs doctor` | Compares `node` and the system `python3` with the Containerfile pins |
 | `node tools/dev/cli.cjs build` | `node tools/site/build.cjs` (regenerates `docs/`) |
 | `node tools/dev/cli.cjs check` | Formatting, RI, layout and the Basic `local.cjs` check (which includes output freshness) |
@@ -61,9 +61,40 @@ user on a clean runner. It does not exercise a specific host's port forwarding o
 
 ## AI assistants and agents
 
-[AGENTS.md](../AGENTS.md) is the provider-neutral rule router and
-[PROJECT-BOOTSTRAP.md](../PROJECT-BOOTSTRAP.md) is the short entry to paste into
-any assistant. Neither depends on a specific model, product or vendor tool.
+[AGENTS.md](../AGENTS.md) is the only rule router and `agents/reviewers/*.md` the
+only role prompts. The repository tracks no runner-specific instruction files
+(`CLAUDE.md`, `.opencode/`, `.cursor/` and similar); a test enforces this.
+[PROJECT-BOOTSTRAP.md](../PROJECT-BOOTSTRAP.md) is the short entry for chat assistants.
+
+Two optional runners are pinned in `tools/dev/agents` and installed by `setup`:
+
+| Command | What it does |
+| --- | --- |
+| `node tools/dev/cli.cjs agents` | Generates one read-only OpenCode subagent per reviewer role from `agents/reviewers/` into `~/.config/opencode/agents/` (outside the checkout); runs after setup |
+| `node tools/dev/cli.cjs opencode [ARGS]` | Pinned OpenCode; Claude Code compatibility fallbacks are disabled, so `AGENTS.md` is its only project rule file |
+| `node tools/dev/cli.cjs codex [ARGS]` | Pinned Codex CLI, which also reads `AGENTS.md` |
+| `node tools/dev/cli.cjs review [--base BRANCH]` | Codex review of the branch against `BRANCH` (default `main`) |
+
+Model access is the operator's choice. OpenCode signs in with any provider,
+including a ChatGPT Plus/Pro plan (`opencode providers login`, headless device
+flow) or an API key; Codex uses `codex login --device-auth`. Credentials stay in
+the container user's home and are never committed.
+
+From an iPad, start the server in the container and open the forwarded port:
+`OPENCODE_SERVER_PASSWORD=<secret> node tools/dev/cli.cjs opencode serve --port 4096`.
+Devcontainer hosts forward 4096 privately; keep the password on any shared host.
+
+### Cascaded review
+
+1. The working agent follows AGENTS.md and the owning issue.
+2. It launches the four repository roles as separate subagents. OpenCode documents
+   that subagents start in fresh child sessions; that claimed equivalent of
+   `fork_turns="none"` still needs one recorded verification under the
+   [reviewer contract](../agents/reviewers/README.md) before it counts.
+3. A second vendor reviews: `node tools/dev/cli.cjs review` in the container, and/or
+   `@codex review` (or automatic Codex review) on the GitHub PR. Codex reads the
+   `Code Review Rules` section of AGENTS.md. Its findings are inputs to the
+   iteration protocol; they never approve or merge.
 
 ## Hosting is an adapter
 

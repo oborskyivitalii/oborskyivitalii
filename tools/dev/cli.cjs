@@ -7,6 +7,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
+const runners = require('./runners.cjs');
 
 const root = path.resolve(__dirname, '../..');
 const containerfile = path.join(root, '.devcontainer/Containerfile');
@@ -14,8 +15,15 @@ const venvPython = 'tools/quality/toolchain/venv/bin/python';
 const riConfig = '.github/repository-intelligence-config.json';
 const defaultPort = 4173;
 const loopback = '127.0.0.1';
-const usage =
-  'Usage: node tools/dev/cli.cjs <setup|build|check|doctor|serve [--port N] [--host ADDRESS]>';
+const usage = [
+  'Usage: node tools/dev/cli.cjs <command>',
+  '  setup | build | check | doctor',
+  '  serve [--port N] [--host ADDRESS]',
+  '  agents                  generate runner agents from agents/reviewers (outside the repo)',
+  '  opencode [ARGS...]      run the pinned OpenCode with AGENTS.md as its only rules',
+  '  codex [ARGS...]         run the pinned Codex CLI',
+  '  review [--base BRANCH]  Codex review of this branch against BRANCH (default main)',
+].join('\n');
 
 // The Containerfile is the single owner of the development toolchain versions.
 function pinnedVersions(text = fs.readFileSync(containerfile, 'utf8')) {
@@ -36,6 +44,7 @@ const plans = {
   setup: () => [
     ['npm', 'ci', '--prefix', 'tools/quality/toolchain', '--ignore-scripts'],
     ['npm', 'ci', '--prefix', 'tools/publishing/toolchain', '--ignore-scripts'],
+    ['npm', 'ci', '--prefix', runners.packageDir, '--ignore-scripts'],
     ['python3', '-m', 'venv', 'tools/quality/toolchain/venv'],
     [
       venvPython,
@@ -59,10 +68,10 @@ const plans = {
   ],
 };
 
-function run(argv) {
+function run(argv, env = process.env) {
   const [program, ...args] = argv;
   process.stdout.write('$ ' + argv.join(' ') + '\n');
-  const result = cp.spawnSync(program, args, { cwd: root, stdio: 'inherit' });
+  const result = cp.spawnSync(program, args, { cwd: root, stdio: 'inherit', env });
   if (result.error) {
     throw result.error;
   }
@@ -124,8 +133,41 @@ async function serve(args) {
   process.stdout.write(`Serving docs/ at ${url} (Ctrl+C stops)\n`);
 }
 
+function reviewArgs(args) {
+  if (args.length === 0) {
+    return ['review', '--base', 'main'];
+  }
+  if (args.length === 2 && args[0] === '--base' && /^[\w./-]+$/.test(args[1])) {
+    return ['review', '--base', args[1]];
+  }
+  throw Error(usage);
+}
+
+function runner(name, args) {
+  const { argv, env } = runners.runnerCommand(name, args);
+  run(argv, env);
+}
+
+function agents(args) {
+  if (args.length) {
+    throw Error(usage);
+  }
+  for (const file of runners.writeOpencodeAgents()) {
+    process.stdout.write('wrote ' + file + '\n');
+  }
+}
+
 async function main(argv) {
   const [command, ...rest] = argv;
+  if (command === 'agents') {
+    return agents(rest);
+  }
+  if (command === 'opencode' || command === 'codex') {
+    return runner(command, rest);
+  }
+  if (command === 'review') {
+    return runner('codex', reviewArgs(rest));
+  }
   if (command === 'doctor' && !rest.length) {
     return doctor();
   }
@@ -150,4 +192,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { pinnedVersions, plans, serveOptions };
+module.exports = { pinnedVersions, plans, serveOptions, reviewArgs };

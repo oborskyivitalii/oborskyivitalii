@@ -542,7 +542,10 @@
         "tools/dev/cli.cjs",
         "tests/dev-environment.test.cjs",
         ".github/workflows/dev-environment.yml",
-        "guides/DEV-ENVIRONMENT.md"
+        "guides/DEV-ENVIRONMENT.md",
+        "tools/dev/runners.cjs",
+        "tools/dev/agents/package.json",
+        "tools/dev/agents/package-lock.json"
       ],
       "checks": ["site-basic", "test-profile-regressions", "maintained-format-check"]
     }
@@ -768,7 +771,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "fc42e6a63dab1f38be69a0457d7f5d2b0530c46bfd47d333f5a41e08f3ddf4db",
+    "digest": "7e65525a5f6b551c8cd7ab1556e6a230222e44d9cb1a079125f68135988fcca7",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -876,7 +879,7 @@
       },
       {
         "path": ".github/acceptance/issue-219.json",
-        "sha256": "fbff40735c1f35e7f1760ab738ddea382fc159c9a1794f061acc8d94fe9e55fe"
+        "sha256": "2ef2ce23cf41be615154c6dc9077c9cdd8a92a579d0083ae2645660e02608516"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -968,7 +971,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "be318ed220b431673dde0c9ef70164dc0d8aadab2d426c96bcb310df7a32453d"
+        "sha256": "1dd5b3f86af6af1d8a6da61d0c42d831d7baca60451d59690db0ca279703210e"
       },
       {
         "path": ".github/workflows/browser-archives.yml",
@@ -988,7 +991,7 @@
       },
       {
         "path": ".github/workflows/dev-environment.yml",
-        "sha256": "09d70f5138c0b23557558a718972f02432ab4c2af0992e58ba7297cbc8fdfa88"
+        "sha256": "99b513456738e68432b17559c47319a8f21e11ddbb3f389d4ef37df97ab246dc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1068,7 +1071,7 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "120bba8320b0ed2c24fb6ce21cb317b9773490f5fafc19fc780f8b42781caba3"
+        "sha256": "9674e441101cce2c42bc368d5cf42dfafef6beed9302718a044f57435bd40451"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -1168,7 +1171,7 @@
       },
       {
         "path": "tests/test_issue219_acceptance.py",
-        "sha256": "316162917212d64277ca869f3d230873cb4fdb70b6dc3d258bb43e82d5abd61c"
+        "sha256": "918595b40eee991faf72487f5a47d3e077523f3d28e87901b5cf3153ee07be86"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -1284,7 +1287,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "85b7643e33af1b4332b57ac962c1a8cd99074c99ffd081e85ac3667b8a0fb7e2"
+        "sha256": "4451bada7de2ee7197fa7bcee47aeb6743557d0c3509d826f89a65a632ca3cfd"
       },
       {
         "path": "tools/quality/workflow-guide-markdown.mjs",

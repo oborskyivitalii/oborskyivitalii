@@ -19,6 +19,8 @@ on:
       - tools/check_repository_layout.py
       - tools/site/build.cjs
       - tests/dev-environment.test.cjs
+      - agents/reviewers/**
+      - AGENTS.md
       - .github/workflows/site-checks.yml
       - .github/workflows/dev-environment.yml
       - guides/DEV-ENVIRONMENT.md
